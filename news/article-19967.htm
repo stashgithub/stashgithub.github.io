@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://stashgithub.github.io/news/article-19967.htm" />
+    <meta charset="utf-8">
+    <title>C ++程序，实现布斯的乘法算法来对两个有符号数相乘</title>
+        <meta name="description" content="Booth的算法是一种乘法算法，将两个有符号的二进制数乘以2的恭维表示法。Booth使用的台式计算器在转换时比添加时要快，并创建了算法来提高速度。 算法 Begin &nbsp;&nbsp;&nbsp" />
+        <link rel="icon" href="__ADDON__/img/stashgithub/favicon.ico" type="image/x-icon"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/assets/website/js/frontend/stashgithub/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/stashgithub/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/stashgithub/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/stashgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNXJ21P00N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NNXJ21P00N');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+        <div class="container topbar bg-primary d-none d-lg-block">
+            <div class="d-flex justify-content-between">
+                
+            </div>
+        </div>
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                                <a href="/" class="navbar-brand">
+                    <span class="text-primary display-6">Stash Github</span>
+                </a>
+                                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                                <a href="#" class="nav-item nav-link">关于</a>
+                        <a href="#" class="nav-item nav-link">联系</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">C ++程序，实现布斯的乘法算法来对两个有符号数相乘</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+            <li class="breadcrumb-item active text-white">正文</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+    <!-- Fruits Shop Start-->
+    <div class="container-fluid fruite py-5">
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-md-9">
+                                      				  				  				<p>Booth的算法是一种乘法算法，将两个有符号的二进制数乘以2的恭维表示法。Booth使用的台式计算器在转换时比添加时要快，并创建了算法来提高速度。</p> <h2>算法</h2> <pre>Begin &nbsp;&nbsp;&nbsp;Put&nbsp;multiplicand&nbsp;in&nbsp;BR&nbsp;and&nbsp;multiplier&nbsp;in&nbsp;QR &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;then&nbsp;the&nbsp;algorithm&nbsp;works&nbsp;as&nbsp;per&nbsp;the&nbsp;following&nbsp;conditions: &nbsp;&nbsp;&nbsp;1.&nbsp;If&nbsp;Qn&nbsp;and&nbsp;Qn+1&nbsp;are&nbsp;same&nbsp;i.e.&nbsp;00&nbsp;or&nbsp;11&nbsp;perform&nbsp;arithmetic&nbsp;shift&nbsp;by&nbsp;1&nbsp;bit. &nbsp;&nbsp;&nbsp;2.&nbsp;If&nbsp;Qn&nbsp;Qn+1&nbsp;=&nbsp;10&nbsp;do&nbsp;A=&nbsp;A&nbsp;+&nbsp;BR&nbsp;and&nbsp;perform&nbsp;arithmetic&nbsp;shift&nbsp;by&nbsp;1&nbsp;bit. &nbsp;&nbsp;&nbsp;3.&nbsp;If&nbsp;Qn&nbsp;Qn+1&nbsp;=&nbsp;01&nbsp;do&nbsp;A=&nbsp;A&nbsp;–&nbsp;BR&nbsp;and&nbsp;perform&nbsp;arithmetic&nbsp;shift&nbsp;by&nbsp;1&nbsp;bit. End</pre> <h2>范例程式码</h2> <pre>#include&lt;iostream&gt; using&nbsp;namespace&nbsp;std; void&nbsp;add(int&nbsp;a[],&nbsp;int&nbsp;x[],&nbsp;int&nbsp;q); void&nbsp;complement(int&nbsp;a[],&nbsp;int&nbsp;n)&nbsp;{ &nbsp;&nbsp;&nbsp;int&nbsp;i; &nbsp;&nbsp;&nbsp;int&nbsp;x[8]&nbsp;=&nbsp;{&nbsp;NULL&nbsp;}; &nbsp;&nbsp;&nbsp;x[0]&nbsp;=&nbsp;1; &nbsp;&nbsp;&nbsp;for&nbsp;(i&nbsp;=&nbsp;0;&nbsp;i&nbsp;&lt;&nbsp;n;&nbsp;i++)&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a[i]&nbsp;=&nbsp;(a[i]&nbsp;+&nbsp;1)&nbsp;%&nbsp;2; &nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;add(a,&nbsp;x,&nbsp;n); } void&nbsp;add(int&nbsp;ac[],&nbsp;int&nbsp;x[],&nbsp;int&nbsp;q)&nbsp;{ &nbsp;&nbsp;&nbsp;int&nbsp;i,&nbsp;c&nbsp;=&nbsp;0; &nbsp;&nbsp;&nbsp;for&nbsp;(i&nbsp;=&nbsp;0;&nbsp;i&nbsp;&lt;&nbsp;q;&nbsp;i++)&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ac[i]&nbsp;=&nbsp;ac[i]&nbsp;+&nbsp;x[i]&nbsp;+&nbsp;c; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(ac[i]&nbsp;&gt;&nbsp;1)&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ac[i]&nbsp;=&nbsp;ac[i]&nbsp;%&nbsp;2; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c&nbsp;=&nbsp;1; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}else &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c&nbsp;=&nbsp;0; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;void&nbsp;ashr(int&nbsp;ac[],&nbsp;int&nbsp;qr[],&nbsp;int&nbsp;&amp;qn,&nbsp;int&nbsp;q)&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;temp,&nbsp;i; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;temp&nbsp;=&nbsp;ac[0]; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qn&nbsp;=&nbsp;qr[0]; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;"\t\tashr\t\t"; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(i&nbsp;=&nbsp;0;&nbsp;i&nbsp;&lt;&nbsp;q&nbsp;-&nbsp;1;&nbsp;i++)&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ac[i]&nbsp;=&nbsp;ac[i&nbsp;+&nbsp;1]; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qr[i]&nbsp;=&nbsp;qr[i&nbsp;+&nbsp;1]; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qr[q&nbsp;-&nbsp;1]&nbsp;=&nbsp;temp; &nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;void&nbsp;display(int&nbsp;ac[],&nbsp;int&nbsp;qr[],&nbsp;int&nbsp;qrn)&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;i; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(i&nbsp;=&nbsp;qrn&nbsp;-&nbsp;1;&nbsp;i&nbsp;&gt;=&nbsp;0;&nbsp;i--) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;ac[i]; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;"&nbsp;"; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(i&nbsp;=&nbsp;qrn&nbsp;-&nbsp;1;&nbsp;i&nbsp;&gt;=&nbsp;0;&nbsp;i--) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;qr[i]; &nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;int&nbsp;main(int&nbsp;argc,&nbsp;char&nbsp;**argv)&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;mt[10],&nbsp;br[10],&nbsp;qr[10],&nbsp;sc,&nbsp;ac[10]&nbsp;=&nbsp;{&nbsp;0&nbsp;}; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;brn,&nbsp;qrn,&nbsp;i,&nbsp;qn,&nbsp;temp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;"\n--Enter&nbsp;the&nbsp;multiplicand&nbsp;and&nbsp;multipier&nbsp;in&nbsp;signed&nbsp;2's &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;complement&nbsp;form&nbsp;if&nbsp;negative--"; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;"\n&nbsp;Number&nbsp;of&nbsp;multiplicand&nbsp;bit="; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cin&nbsp;&gt;&gt;&nbsp;brn; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;"\nmultiplicand="; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(i&nbsp;=&nbsp;brn&nbsp;-&nbsp;1;&nbsp;i&nbsp;&gt;=&nbsp;0;&nbsp;i--) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cin&nbsp;&gt;&gt;&nbsp;br[i];&nbsp;//multiplicand &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(i&nbsp;=&nbsp;brn&nbsp;-&nbsp;1;&nbsp;i&nbsp;&gt;=&nbsp;0;&nbsp;i--) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mt[i]&nbsp;=&nbsp;br[i]; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;complement(mt,&nbsp;brn); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;"\nNo.&nbsp;of&nbsp;multiplier&nbsp;bit="; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cin&nbsp;&gt;&gt;&nbsp;qrn; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sc&nbsp;=&nbsp;qrn; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;"Multiplier="; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(i&nbsp;=&nbsp;qrn&nbsp;-&nbsp;1;&nbsp;i&nbsp;&gt;=&nbsp;0;&nbsp;i--) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cin&nbsp;&gt;&gt;&nbsp;qr[i]; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qn&nbsp;=&nbsp;0; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;temp&nbsp;=&nbsp;0; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;"qn\tq[n+1]\t\tBR\t\tAC\tQR\t\tsc\n"; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;"\t\t\tinitial\t\t"; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display(ac,&nbsp;qr,&nbsp;qrn); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;"\t\t"&nbsp;&lt;&lt;&nbsp;sc&nbsp;&lt;&lt;&nbsp;"\n"; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(sc&nbsp;!=&nbsp;0)&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;qr[0]&nbsp;&lt;&lt;&nbsp;"\t"&nbsp;&lt;&lt;&nbsp;qn; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;((qn&nbsp;+&nbsp;qr[0])&nbsp;==&nbsp;1)&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(temp&nbsp;==&nbsp;0)&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add(ac,&nbsp;mt,&nbsp;qrn); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;"\t\tsubtracting&nbsp;BR\t"; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(i&nbsp;=&nbsp;qrn&nbsp;-&nbsp;1;&nbsp;i&nbsp;&gt;=&nbsp;0;&nbsp;i--) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;ac[i]; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;temp&nbsp;=&nbsp;1; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;if&nbsp;(temp&nbsp;==&nbsp;1)&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add(ac,&nbsp;br,&nbsp;qrn); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;"\t\tadding&nbsp;BR\t"; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(i&nbsp;=&nbsp;qrn&nbsp;-&nbsp;1;&nbsp;i&nbsp;&gt;=&nbsp;0;&nbsp;i--) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;ac[i]; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;temp&nbsp;=&nbsp;0; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;"\n\t"; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ashr(ac,&nbsp;qr,&nbsp;qn,&nbsp;qrn); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;if&nbsp;(qn&nbsp;-&nbsp;qr[0]&nbsp;==&nbsp;0) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ashr(ac,&nbsp;qr,&nbsp;qn,&nbsp;qrn); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display(ac,&nbsp;qr,&nbsp;qrn); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;"\t"; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sc--; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;"\t"&nbsp;&lt;&lt;&nbsp;sc&nbsp;&lt;&lt;&nbsp;"\n"; &nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;"Result="; &nbsp;&nbsp;&nbsp;display(ac,&nbsp;qr,&nbsp;qrn); }</pre> <p>输出结果</p> <pre>--Enter&nbsp;the&nbsp;multiplicand&nbsp;and&nbsp;multipier&nbsp;in&nbsp;signed&nbsp;2's&nbsp;complement&nbsp;form&nbsp;if negative-- Number&nbsp;of&nbsp;multiplicand&nbsp;bit=5 multiplicand=0&nbsp;1&nbsp;1&nbsp;1&nbsp;1 No.&nbsp;of&nbsp;multiplier&nbsp;bit=5 Multiplier=1&nbsp;0&nbsp;1&nbsp;1&nbsp;1 qn&nbsp;q[n+1]&nbsp;BR&nbsp;AC&nbsp;QR&nbsp;sc initial&nbsp;00000&nbsp;10111&nbsp;5 1&nbsp;0&nbsp;subtracting&nbsp;BR&nbsp;10001 ashr&nbsp;11000&nbsp;11011&nbsp;4 1&nbsp;1&nbsp;ashr&nbsp;11100&nbsp;01101&nbsp;3 1&nbsp;1&nbsp;ashr&nbsp;11110&nbsp;00110&nbsp;2 0&nbsp;1&nbsp;adding&nbsp;BR&nbsp;01101 ashr&nbsp;00110&nbsp;10011&nbsp;1 1&nbsp;0&nbsp;subtracting&nbsp;BR&nbsp;10111 ashr&nbsp;11011&nbsp;11001&nbsp;0 Result=11011&nbsp;11001</pre> <div></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-19510.htm">参观动物医院的实验报告总结（动物医院社会实践报告）</a></p>
+                                        <p>下一个：<a href="/news/article-19968.htm">做宠物粮食的公司（宠物粮食供应商）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-11-11-today-vless-node.htm" title="「11月11日」最高速度22.7M/S，2024年Stash Github每天更新免费机场订阅节点链接">「11月11日」最高速度22.7M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-26-latest-vless-node.htm" title="「10月26日」最高速度22.3M/S，2024年Stash Github每天更新免费机场订阅节点链接">「10月26日」最高速度22.3M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-17-node-share.htm" title="「9月17日」最高速度22.7M/S，2024年Stash Github每天更新免费机场订阅节点链接">「9月17日」最高速度22.7M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-13-today-vless-node.htm" title="「11月13日」最高速度21.7M/S，2024年Stash Github每天更新免费机场订阅节点链接">「11月13日」最高速度21.7M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-9-free-subscribe-node.htm" title="「10月9日」最高速度21.2M/S，2024年Stash Github每天更新免费机场订阅节点链接">「10月9日」最高速度21.2M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-7-vless-github.htm" title="「9月7日」最高速度20.2M/S，2024年Stash Github每天更新免费机场订阅节点链接">「9月7日」最高速度20.2M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-10-free-subscribe-node.htm" title="「11月10日」最高速度22.5M/S，2024年Stash Github每天更新免费机场订阅节点链接">「11月10日」最高速度22.5M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-30-vless-node.htm" title="「11月30日」最高速度18.4M/S，2024年Stash Github每天更新免费机场订阅节点链接">「11月30日」最高速度18.4M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-13-free-vless-node.htm" title="「10月13日」最高速度20.9M/S，2024年Stash Github每天更新免费机场订阅节点链接">「10月13日」最高速度20.9M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-6-node-share-links.htm" title="「11月6日」最高速度20.2M/S，2024年Stash Github每天更新免费机场订阅节点链接">「11月6日」最高速度20.2M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">28</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fruits Shop End-->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3 mb-md-0">
+                    <span class="text-light">Stash Github机场分享官网 版权所有 Powered by WordPress</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/stashgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
