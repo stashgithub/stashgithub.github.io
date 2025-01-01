@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://stashgithub.github.io/news/article-33967.htm" />
+    <meta charset="utf-8">
+    <title>computed怎么使用_Vue中mixin怎么理解？</title>
+        <meta name="description" content="作者： qdmryt 转发链接：https://mp.weixin.qq.com/s/JHF3oIGSTnRegpvE6GSZhg   定义: mixin是为了让可复用的功能灵活的混入到当前组件中，混" />
+        <link rel="icon" href="/assets/website/img/stashgithub/favicon.ico" type="image/x-icon"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/assets/website/js/frontend/stashgithub/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/stashgithub/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/stashgithub/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/stashgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNXJ21P00N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NNXJ21P00N');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+        <div class="container topbar bg-primary d-none d-lg-block">
+            <div class="d-flex justify-content-between">
+                
+            </div>
+        </div>
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                                <a href="/" class="navbar-brand">
+                    <span class="text-primary display-6">Stash Github</span>
+                </a>
+                                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                                <a href="#" class="nav-item nav-link">关于</a>
+                        <a href="#" class="nav-item nav-link">联系</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">computed怎么使用_Vue中mixin怎么理解？</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+            <li class="breadcrumb-item active text-white">正文</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+    <!-- Fruits Shop Start-->
+    <div class="container-fluid fruite py-5">
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="StashNode免费订阅官网" data-url="https://stashnode.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <div style="font-size:16px;"> <div class="pgc-img">   <img decoding="async" src="http://img.555519.xyz/uploads/20221229/c1fe5c6157e7416e7a601e5dc6b40ea4.jpg" alt="computed怎么使用_Vue中mixin怎么理解？"> </div> <p class="pgc-end-literature">作者： qdmryt</p> <p class="pgc-end-literature">转发链接：https://mp.weixin.qq.com/s/JHF3oIGSTnRegpvE6GSZhg</p> </h1> <blockquote> <p>定义: mixin是为了让可复用的功能灵活的混入到当前组件中，混合的对象可以包含任意组件选项(生命周期，指令之类等等), mixin翻译过来叫混合,高级的词汇可以叫插件入侵</p> </blockquote> </h1> <pre class="has"><code>//&nbsp;定义一个混合对象const&nbsp;myMixin&nbsp;=&nbsp;{&nbsp;&nbsp;created:&nbsp;function&nbsp;()&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;this.hello()&nbsp;&nbsp;},&nbsp;&nbsp;methods:&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;hello:&nbsp;function&nbsp;()&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log('JS&nbsp;每日一题')&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;}}//&nbsp;定义一个使用混合对象的组件const&nbsp;Component&nbsp;=&nbsp;Vue.extend({&nbsp;&nbsp;mixins:&nbsp;[myMixin]})var&nbsp;component&nbsp;=&nbsp;new&nbsp;Component()&nbsp;//&nbsp;JS&nbsp;每日一题</code></pre> </h1> <p>当组件和混合对象含有同名选项时,选项会按照规则进行合并</p> <p>代码理解</p> <pre class="has"><code>const&nbsp;mixin&nbsp;=&nbsp;{&nbsp;&nbsp;created:&nbsp;function&nbsp;()&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;console.log('混合对象的钩子被调用')&nbsp;&nbsp;}}new&nbsp;Vue({&nbsp;&nbsp;mixins:&nbsp;[mixin],&nbsp;&nbsp;created:&nbsp;function&nbsp;()&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;console.log('组件钩子被调用')&nbsp;&nbsp;}})//&nbsp;=&gt;&nbsp;"混合对象的钩子被调用"//&nbsp;=&gt;&nbsp;"组件钩子被调用"//&nbsp;从上面的代码我们可以看出来混合对象的生命周期会被先调用</code></pre> <p>值为对象的选项，例如 methods, components 和 directives，将被混合为同一个对象。两个对象键名冲突时，取组件对象的键值对,Vue.extend() 也使用同样的策略进行合并。</p> <p>代码理解</p> <pre class="has"><code>const&nbsp;mixin&nbsp;=&nbsp;{&nbsp;&nbsp;methods:&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;foo:&nbsp;function&nbsp;()&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log('foo')&nbsp;&nbsp;&nbsp;&nbsp;},&nbsp;&nbsp;&nbsp;&nbsp;conflicting:&nbsp;function&nbsp;()&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log('from&nbsp;mixin')&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;}}const&nbsp;vm&nbsp;=&nbsp;new&nbsp;Vue({&nbsp;&nbsp;mixins:&nbsp;[mixin],&nbsp;&nbsp;methods:&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;bar:&nbsp;function&nbsp;()&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log('bar')&nbsp;&nbsp;&nbsp;&nbsp;},&nbsp;&nbsp;&nbsp;&nbsp;conflicting:&nbsp;function&nbsp;()&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log('from&nbsp;self')&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;}})vm.foo()&nbsp;//&nbsp;=&gt;&nbsp;"foo"vm.bar()&nbsp;//&nbsp;=&gt;&nbsp;"bar"vm.conflicting()&nbsp;//&nbsp;=&gt;&nbsp;"from&nbsp;self"</code></pre> </h1> <p>也可以全局注册混合对象。注意使用！一旦使用全局混合对象，将会影响到 所有 之后创建的 Vue 实例</p> <pre class="has"><code>//&nbsp;为自定义的选项&nbsp;'myOption'&nbsp;注入一个处理器。Vue.mixin({&nbsp;&nbsp;created:&nbsp;function&nbsp;()&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;myOption&nbsp;=&nbsp;this.$options.myOption&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(myOption)&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(myOption)&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;}})new&nbsp;Vue({&nbsp;&nbsp;myOption:&nbsp;'hello!'})//&nbsp;=&gt;&nbsp;"hello!"</code></pre> <p>在了解了基本用法后再简单过一遍源码加深印象</p> <pre class="has"><code>//&nbsp;源码地址&nbsp;https://github.com/vuejs/vue/blob/52719ccab8fccffbdf497b96d3731dc86f04c1ce/src/core/util/options.js#L365export&nbsp;function&nbsp;mergeOptions&nbsp;(&nbsp;&nbsp;parent:&nbsp;Object,&nbsp;&nbsp;child:&nbsp;Object,&nbsp;&nbsp;vm?:&nbsp;Component):&nbsp;Object&nbsp;{&nbsp;//&nbsp;flow语法，表明返回的是一个对象&nbsp;&nbsp;if&nbsp;(process.env.NODE_ENV&nbsp;!==&nbsp;'production')&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;checkComponents(child)&nbsp;&nbsp;}&nbsp;&nbsp;if&nbsp;(typeof&nbsp;child&nbsp;===&nbsp;'function')&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;child&nbsp;=&nbsp;child.options&nbsp;&nbsp;}&nbsp;&nbsp;normalizeProps(child,&nbsp;vm)&nbsp;&nbsp;normalizeInject(child,&nbsp;vm)&nbsp;&nbsp;normalizeDirectives(child)&nbsp;&nbsp;const&nbsp;extendsFrom&nbsp;=&nbsp;child.extends&nbsp;&nbsp;//若存在extends，则将其内容合并到父对象parent中保存，最后再和自身child合并&nbsp;&nbsp;if&nbsp;(extendsFrom)&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;parent&nbsp;=&nbsp;mergeOptions(parent,&nbsp;extendsFrom,&nbsp;vm)&nbsp;&nbsp;}&nbsp;&nbsp;//&nbsp;若存在mixins，则将其内容合并到父对象parent中保存，最后再和自身child合并&nbsp;&nbsp;if&nbsp;(child.mixins)&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(let&nbsp;i&nbsp;=&nbsp;0,&nbsp;l&nbsp;=&nbsp;child.mixins.length;&nbsp;i&nbsp;</code></pre> </h1> <p>mixin就是采取一定规则将一个功能(组件)的属性混合到另一个组件或者全局当中，优点就是灵活度高，耦合度低，便于维护</p> </h1> <p>《封装一个精致vue视频播放器组件》</p> <p>《入口开始解读Vue源码系列(一)——造物创世》</p> <p>《深入浅出探索 Vue 路由「值得收藏」》</p> <p>《学会使用Vue JSX，一车老干妈都是你的》</p> <p>《细聊Vue 3 系列之 JSX 语法》</p> <p>《「速围」尤雨溪详细介绍 Vue 3 的最新进展》</p> <p>《细聊single-spa + vue来实现前端微服务项目》</p> <p>《前端新工具—vite从入门到实践》</p> <p>《一文带你搞懂Vue3 底层源码》</p> <p>《9个优秀的 VUE 开源项目》</p> <p>《细聊Single-Spa + Vue Cli 微前端落地指南「实践」》</p> <p>《通俗易懂的Vue异步更新策略及 nextTick 原理》</p> <p>《通俗易懂的Vue响应式原理以及依赖收集》</p> <p>《原生JS +Vue实现框选功能》</p> <p>《Vue.js轮播库热门精选》</p> <p>《一文带你搞懂vue/react应用中实现ssr(服务端渲染)》</p> <p>《Vue+CSS3 实现图片滑块效果》</p> <p>《教你Vue3 Compiler 优化细节，如何手写高性能渲染函数(上)》</p> <p>《教你Vue3 Compiler 优化细节，如何手写高性能渲染函数(下)》</p> <p>《vue实现一个6个输入框的验证码输入组件》</p> <p>《一用惊人的Vue实践技巧「值得推荐」》</p> <p>《Vue常见的面试知识点汇总(上)「附答案」》</p> <p>《Vue常见的面试知识点汇总(下)「附答案」》</p> <p>《Kbone原理详解与小程序技术选型》</p> <p>《为什么我不再用Vue，改用React？》</p> <p>《让Jenkins自动部署你的Vue项目「实践」》</p> <p>《20个免费的设计资源 UI套件背景图标CSS框架》</p> <p>《Deno将停止使用TypeScript，并公布五项具体理由》</p> <p>《前端骨架屏都是如何生成的》</p> <p>《Vue原来可以这样写开发效率杠杠的》</p> <p>《用vue简单写一个音乐播放组件「附源码」》</p> <p>《为什么Vue3.0不再使用defineProperty实现数据监听？》</p> <p>《「干货」学会这些Vue小技巧，可以早点下班和女神约会》</p> <p>《探索 Vue-Multiselect》</p> <p>《细品30张脑图带你从零开始学Vue》</p> <p>《Vue后台项目中遇到的技术难点以及解决方案》</p> <p>《手把手教你Electron + Vue实战教程(五)》</p> <p>《手把手教你Electron + Vue实战教程(四)》</p> <p>《手把手教你Electron + Vue实战教程(三)》</p> <p>《手把手教你Electron + Vue实战教程(二)》</p> <p>《手把手教你Electron + Vue实战教程(一)》</p> <p>《收集22种开源Vue模板和主题框架「干货」》</p> <p>《如何写出优秀后台管理系统？11个经典模版拿去不谢「干货」》</p> <p>《手把手教你实现一个Vue自定义指令懒加载》</p> <p>《基于 Vue 和高德地图实现地图组件「实践」》</p> <p>《一个由 Vue 作者尤雨溪开发的 web 开发工具—vite》</p> <p>《是什么让我爱上了Vue.js》</p> <p>《1.1万字深入细品Vue3.0源码响应式系统笔记「上」》</p> <p>《1.1万字深入细品Vue3.0源码响应式系统笔记「下」》</p> <p>《「实践」Vue 数据更新7 种情况汇总及延伸解决总结》</p> <p>《尤大大细说Vue3 的诞生之路「译」》</p> <p>《提高10倍打包速度工具Snowpack 2.0正式发布，再也不需要打包器》</p> <p>《大厂Code Review总结Vue开发规范经验「值得学习」》</p> <p>《Vue3 插件开发详解尝鲜版「值得收藏」》</p> <p>《带你五步学会Vue SSR》</p> <p>《记一次Vue3.0技术干货分享会》</p> <p>《Vue 3.x 如何有惊无险地快速入门「进阶篇」》</p> <p>《「干货」微信支付前后端流程整理(Vue+Node)》</p> <p>《带你了解 vue-next(Vue 3.0)之 炉火纯青「实践」》</p> <p>《「干货」Vue+高德地图实现页面点击绘制多边形及多边形切割拆分》</p> <p>《「干货」Vue+Element前端导入导出Excel》</p> <p>《「实践」Deno bytes 模块全解析》</p> <p>《细品pdf.js实践解决含水印、电子签章问题「Vue篇」》</p> <p>《基于vue + element的后台管理系统解决方案》</p> <p>《Vue仿蘑菇街商城项目(vue+koa+mongodb)》</p> <p>《基于 electron-vue 开发的音乐播放器「实践」》</p> <p>《「实践」Vue项目中标配编辑器插件Vue-Quill-Editor》</p> <p>《基于 Vue 技术栈的微前端方案实践》</p> <p>《消息队列助你成为高薪 Node.js 工程师》</p> <p>《Node.js 中的 stream 模块详解》</p> <p>《「干货」Deno TCP Echo Server 是怎么运行的？》</p> <p>《「干货」了不起的 Deno 实战教程》</p> <p>《「干货」通俗易懂的Deno 入门教程》</p> <p>《Deno 正式发布，彻底弄明白和 node 的区别》</p> <p>《「实践」基于Apify+node+react/vue搭建一个有点意思的爬虫平台》</p> <p>《「实践」深入对比 Vue 3.0 Composition API 和 React Hooks》</p> <p>《前端网红框架的插件机制全梳理(axios、koa、redux、vuex)》</p> <p>《深入Vue 必学高阶组件 HOC「进阶篇」》</p> <p>《深入学习Vue的data、computed、watch来实现最精简响应式系统》</p> <p>《10个实例小练习，快速入门熟练 Vue3 核心新特性(一)》</p> <p>《10个实例小练习，快速入门熟练 Vue3 核心新特性(二)》</p> <p>《教你部署搭建一个Vue-cli4+Webpack移动端框架「实践」》</p> <p>《2020前端就业Vue框架篇「实践」》</p> <p>《详解Vue3中 router 带来了哪些变化？》</p> <p>《Vue项目部署及性能优化指导篇「实践」》</p> <p>《Vue高性能渲染大数据Tree组件「实践」》</p> <p>《尤大大细品VuePress搭建技术网站与个人博客「实践」》</p> <p>《10个Vue开发技巧「实践」》</p> <p>《是什么导致尤大大选择放弃Webpack？【vite 原理解析】》</p> <p>《带你了解 vue-next(Vue 3.0)之 小试牛刀【实践】》</p> <p>《带你了解 vue-next(Vue 3.0)之 初入茅庐【实践】》</p> <p>《实践Vue 3.0做JSX(TSX)风格的组件开发》</p> <p>《一篇文章教你并列比较React.js和Vue.js的语法【实践】》</p> <p>《手拉手带你开启Vue3世界的鬼斧神工【实践】》</p> <p>《深入浅出通过vue-cli3构建一个SSR应用程序【实践】》</p> <p>《怎样为你的 Vue.js 单页应用提速》</p> <p>《聊聊昨晚尤雨溪现场针对Vue3.0 Beta版本新特性知识点汇总》</p> <p>《【新消息】Vue 3.0 Beta 版本发布，你还学的动么？》</p> <p>《Vue真是太好了 壹万多字的Vue知识点 超详细!》</p> <p>《Vue + Koa从零打造一个H5页面可视化编辑器——Quark-h5》</p> <p>《深入浅出Vue3 跟着尤雨溪学 TypeScript 之 Ref 【实践】》</p> <p>《手把手教你深入浅出vue-cli3升级vue-cli4的方法》</p> <p>《Vue 3.0 Beta 和React 开发者分别杠上了》</p> <p>《手把手教你用vue drag chart 实现一个可以拖动 / 缩放的图表组件》</p> <p>《Vue3 尝鲜》</p> <p>《总结Vue组件的通信》</p> <p>《Vue 开源项目 TOP45》</p> <p>《2020 年，Vue 受欢迎程度是否会超过 React？》</p> <p>《尤雨溪：Vue 3.0的设计原则》</p> <p>《使用vue实现HTML页面生成图片》</p> <p>《实现全栈收银系统(Node+Vue)(上)》</p> <p>《实现全栈收银系统(Node+Vue)(下)》</p> <p>《vue引入原生高德地图》</p> <p>《Vue合理配置WebSocket并实现群聊》</p> <p>《多年vue项目实战经验汇总》</p> <p>《vue之将echart封装为组件》</p> <p>《基于 Vue 的两层吸顶踩坑总结》</p> <p>《Vue插件总结【前端开发必备】》</p> <p>《Vue 开发必须知道的 36 个技巧【近1W字】》</p> <p>《构建大型 Vue.js 项目的10条建议》</p> <p>《深入理解vue中的slot与slot-scope》</p> <p>《手把手教你Vue解析pdf(base64)转图片【实践】》</p> <p>《使用vue+node搭建前端异常监控系统》</p> <p>《推荐 8 个漂亮的 vue.js 进度条组件》</p> <p>《基于Vue实现拖拽升级(九宫格拖拽)》</p> <p>《手摸手，带你用vue撸后台 系列二(登录权限篇)》</p> <p>《手摸手，带你用vue撸后台 系列三(实战篇)》</p> <p>《前端框架用vue还是react？清晰对比两者差异》</p> <p>《Vue组件间通信几种方式，你用哪种？【实践】》</p> <p>《浅析 React / Vue 跨端渲染原理与实现》</p> <p>《10个Vue开发技巧助力成为更好的工程师》</p> <p>《手把手教你Vue之父子组件间通信实践讲解【props、$ref 、$emit】》</p> <p>《1W字长文+多图，带你了解vue的双向数据绑定源码实现》</p> <p>《深入浅出Vue3 的响应式和以前的区别到底在哪里？【实践】》</p> <p>《干货满满!如何优雅简洁地实现时钟翻牌器(支持JS/Vue/React)》</p> <p>《基于Vue/VueRouter/Vuex/Axios登录路由和接口级拦截原理与实现》</p> <p>《手把手教你D3.js 实现数据可视化极速上手到Vue应用》</p> <p>《吃透 Vue 项目开发实践｜16个方面深入前端工程化开发技巧【上】》</p> <p>《吃透 Vue 项目开发实践｜16个方面深入前端工程化开发技巧【中】》</p> <p>《吃透 Vue 项目开发实践｜16个方面深入前端工程化开发技巧【下】》</p> <p>《Vue3.0权限管理实现流程【实践】》</p> <p>《后台管理系统，前端Vue根据角色动态设置菜单栏和路由》</p> <p class="pgc-end-literature">作者： qdmryt</p> <p class="pgc-end-literature">转发链接：https://mp.weixin.qq.com/s/JHF3oIGSTnRegpvE6GSZhg</p> </div></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-33494.htm">宠物粮食品牌排名榜最新 宠物粮食品牌排名榜最新名单</a></p>
+                                        <p>下一个：<a href="/news/article-33968.htm">淮北动物救助（淮北动物救助站电话）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-10-5-free-high-speed-nodes.htm" title="「10月5日」最高速度22.9M/S，2024年Stash Github每天更新免费机场订阅节点链接">「10月5日」最高速度22.9M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-24095.htm" title="2021国考公务员报考人数（2021年国考公务员报考人数）">2021国考公务员报考人数（2021年国考公务员报考人数）</a></li>
+                        <li class="py-2"><a href="/news/article-20421.htm" title="动物防疫可以打疫苗吗多少钱啊（动物打防疫针多少钱）">动物防疫可以打疫苗吗多少钱啊（动物打防疫针多少钱）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-28-node-share.htm" title="「11月28日」最高速度21.3M/S，2024年Stash Github每天更新免费机场订阅节点链接">「11月28日」最高速度21.3M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-13-today-vless-node.htm" title="「11月13日」最高速度21.7M/S，2024年Stash Github每天更新免费机场订阅节点链接">「11月13日」最高速度21.7M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-24096.htm" title="宠物医师网官网（宠物医师论坛）">宠物医师网官网（宠物医师论坛）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-17-node-share-links.htm" title="「12月17日」最高速度22.3M/S，2024年Stash Github每天更新免费机场订阅节点链接">「12月17日」最高速度22.3M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-10-free-node-subscribe.htm" title="「10月10日」最高速度22M/S，2024年Stash Github每天更新免费机场订阅节点链接">「10月10日」最高速度22M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-33967.htm" title="computed怎么使用_Vue中mixin怎么理解？">computed怎么使用_Vue中mixin怎么理解？</a></li>
+                        <li class="py-2"><a href="/news/article-19968.htm" title="做宠物粮食的公司（宠物粮食供应商）">做宠物粮食的公司（宠物粮食供应商）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">28</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fruits Shop End-->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3 mb-md-0">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <span class="text-light">Stash Github机场分享官网 版权所有 Powered by WordPress</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/stashgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
