@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://stashgithub.github.io/news/article-37319.htm" />
+    <meta charset="utf-8">
+    <title>利用JavaScript实现秒表功能</title>
+        <meta name="description" content="&lt;!DOCTYPE html&gt; &lt;html lang="en"&gt; &lt;head&gt;     &lt;meta charset="UTF-8"&gt;     &lt;m" />
+        <link rel="icon" href="/assets/website/img/stashgithub/favicon.ico" type="image/x-icon"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/assets/website/js/frontend/stashgithub/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/stashgithub/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/stashgithub/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/stashgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNXJ21P00N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NNXJ21P00N');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+        <div class="container topbar bg-primary d-none d-lg-block">
+            <div class="d-flex justify-content-between">
+                
+            </div>
+        </div>
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                                <a href="/" class="navbar-brand">
+                    <span class="text-primary display-6">Stash Github</span>
+                </a>
+                                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                                <a href="#" class="nav-item nav-link">关于</a>
+                        <a href="#" class="nav-item nav-link">联系</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">利用JavaScript实现秒表功能</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+            <li class="breadcrumb-item active text-white">正文</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+    <!-- Fruits Shop Start-->
+    <div class="container-fluid fruite py-5">
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="StashNode免费订阅官网" data-url="https://stashnode.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <pre><code>&lt;!DOCTYPE html&gt; &lt;html lang="en"&gt; &lt;head&gt;     &lt;meta charset="UTF-8"&gt;     &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;     &lt;title&gt;Document&lt;/title&gt; &lt;/head&gt; &lt;body&gt;     &lt;div&gt;00:00:00:00&lt;/div&gt;     &lt;button &gt;开始&lt;/button&gt;     &lt;button disabled&gt;暂停&lt;/button&gt;     &lt;button disabled&gt;继续&lt;/button&gt;     &lt;button disabled&gt;重置&lt;/button&gt;     &lt;script&gt;         // 秒表功能分析         // 核心思路:         //   定义一个变量,根据定时器,每秒执行一次,每次执行++自增操作         //               变量存储的数值,就会每秒+1         //   现在需要的记录效果,是每0.01秒,也就是10毫秒执行一次         //   根据累计的数值,执行进位 ms 如果达到 100,就是1秒         //   如果 秒 达到 60 就是 1分钟         //   如果 分钟 达到 60 就是 1小时           // 获取按钮的标签对象         var oBtnStart = document.querySelectorAll('button')[0];         var oBtnPause = document.querySelectorAll('button')[1];         var oBtnContinue = document.querySelectorAll('button')[2];         var oBtnReset = document.querySelectorAll('button')[3];         var hour = minutes = seconds = millisecond = 0;          // 定义存储 时 分 秒 毫秒 字符串的变量         // 如果直接在 millisecond seconds minutes hour 变量上进行 拼接操作,会影响 ++操作的执行         // 单独的建立变量,来存储累加时间的执行结果         var ms = '';         var s = '';         var m = '';         var h = '';          // 因为定时器,是定义在函数内部,         // 必须定义一个全局变量,来存储定时器         // 在函数外部可以调用,终止定时器         var time = 0;                  // 获取div标签对象         var oDiv = document.querySelector('div');           //  开始按钮         oBtnStart.onclick = function(){             // 点击开始按钮,执行函数,执行秒表计时             timer();             oBtnStart.disabled = true;             oBtnPause.disabled = false;             oBtnContinue.disabled = true;             oBtnReset.disabled = true;         }         //  暂停按钮         oBtnPause.onclick = function(){             // 点击暂停按钮,清除定时器,终止秒表执行             clearInterval(time);             oBtnStart.disabled = true;             oBtnPause.disabled = true;             oBtnContinue.disabled = false;             oBtnReset.disabled = false;         }         //  继续按钮         oBtnContinue.onclick = function(){             // 点击继续按钮,继续执行定时器             timer();             oBtnStart.disabled = true;             oBtnPause.disabled = false;             oBtnContinue.disabled = true;             oBtnReset.disabled = true;          }         //  重置按钮         oBtnReset.onclick = function(){             // 点击重置按钮,将所有的数据,都恢复到0的状态             // 所有变量存储的数据都是 0 , div中的内容,也恢复到0             hour = minutes = seconds = millisecond = 0;             oDiv.innerHTML = '00:00:00:00'             oBtnStart.disabled = false;             oBtnPause.disabled = true;             oBtnContinue.disabled = true;             oBtnReset.disabled = true;         }          //  计时函数         function timer(){             // 赋值操作,将定时器,存储在全局作用域变量中             time = setInterval(function(){                 millisecond++;                 if( millisecond == 100){                     seconds++;                     millisecond = 0;                 }                 if( seconds == 60 ){                     minutes++;                     seconds = 0;                 }                 if( minutes == 60 ){                     hour++;                     minutes = 0;                 }              //  补零操作             // 如果记录的时间小于0,要做补零操作                 if( millisecond &lt; 10 ){                     ms = '0' + millisecond;                  }else{                     ms = millisecond;                  }                 if( seconds &lt; 10 ){                     s = '0' + seconds;                  }else{                     s = seconds;                  }                 if( minutes &lt; 10 ){                     m = '0' + minutes;                  }else{                     m = minutes;                  }                 if( hour &lt; 10 ){                     h = '0' + hour;                  }else{                     h = hour;                  }                 // 每次执行,返回一个记录时间的字符串                 // 将这个字符串,写入到div中                 oDiv.innerHTML = ` ${h}:${m}:${s}:${ms} `             },10);         }      &lt;/script&gt; &lt;/body&gt; &lt;/html&gt; </code></pre> <p>实现效果：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221229/748a4c5e411798ad5bbee69bad8026a7.jpg" alt="利用JavaScript实现秒表功能"><br /> 当点击开始时：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221229/ab006f85a97e54707f98a31d7fa0f26b.jpg" alt="利用JavaScript实现秒表功能"><br /> 当点击暂停时：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221229/206ae2518f5adb2a3a12b18778454caa.jpg" alt="利用JavaScript实现秒表功能"><br /> 当点击继续时：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221229/9dd0170bfd5904d40b2d5a6e22ebb198.jpg" alt="利用JavaScript实现秒表功能"></p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-36835.htm">动物防疫疫苗种类大全图（动物疫苗知识）</a></p>
+                                        <p>下一个：<a href="/news/article-37320.htm">三国杀已出武将有哪些（三国杀还出新武将吗）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-10-19-free-high-speed-nodes.htm" title="「10月19日」最高速度20.3M/S，2024年Stash Github每天更新免费机场订阅节点链接">「10月19日」最高速度20.3M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-2-node-share-links.htm" title="「1月2日」最高速度22.9M/S，2025年Stash Github每天更新免费机场订阅节点链接">「1月2日」最高速度22.9M/S，2025年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-35641.htm" title="动物医院资质要求标准最新文件（符合动物医院法定条件）">动物医院资质要求标准最新文件（符合动物医院法定条件）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-20-vless-node-share.htm" title="「11月20日」最高速度21.6M/S，2024年Stash Github每天更新免费机场订阅节点链接">「11月20日」最高速度21.6M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-23631.htm" title="python提供了9个基本的数值运算操作符_Python学习笔记（三）Python基本数字类型及其简单操作（1）&#8230;">python提供了9个基本的数值运算操作符_Python学习笔记（三）Python基本数字类型及其简单操作（1）&#8230;</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-23-free-subscribe-node.htm" title="「11月23日」最高速度18M/S，2024年Stash Github每天更新免费机场订阅节点链接">「11月23日」最高速度18M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-14-node-share-links.htm" title="「10月14日」最高速度18.2M/S，2024年Stash Github每天更新免费机场订阅节点链接">「10月14日」最高速度18.2M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-27-latest-vless-node.htm" title="「11月27日」最高速度19.4M/S，2024年Stash Github每天更新免费机场订阅节点链接">「11月27日」最高速度19.4M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-22254.htm" title="厦门有没有宠物领养中心 厦门有没有宠物领养中心啊">厦门有没有宠物领养中心 厦门有没有宠物领养中心啊</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-25-node-share-links.htm" title="「12月25日」最高速度22.3M/S，2024年Stash Github每天更新免费机场订阅节点链接">「12月25日」最高速度22.3M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fruits Shop End-->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3 mb-md-0">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <span class="text-light">Stash Github机场分享官网 版权所有 Powered by WordPress</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/stashgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
