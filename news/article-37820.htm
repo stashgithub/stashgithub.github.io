@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://stashgithub.github.io/news/article-37820.htm" />
+    <meta charset="utf-8">
+    <title>Python 图_系列之基于&lt;链接表&gt;实现无向图最短路径搜索</title>
+        <meta name="description" content="图的常用存储方式有 2 种：   邻接炬阵   链接表   邻接炬阵的优点和缺点都很明显。优点是简单、易理解，对于大部分图结构而言，都是稀疏的，使用炬阵存储空间浪费就较大。 链接表的存储相比较邻接炬阵" />
+        <link rel="icon" href="/assets/website/img/stashgithub/favicon.ico" type="image/x-icon"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/assets/website/js/frontend/stashgithub/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/stashgithub/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/stashgithub/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/stashgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNXJ21P00N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NNXJ21P00N');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+        <div class="container topbar bg-primary d-none d-lg-block">
+            <div class="d-flex justify-content-between">
+                
+            </div>
+        </div>
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                                <a href="/" class="navbar-brand">
+                    <span class="text-primary display-6">Stash Github</span>
+                </a>
+                                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                                <a href="#" class="nav-item nav-link">关于</a>
+                        <a href="#" class="nav-item nav-link">联系</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">Python 图_系列之基于&lt;链接表&gt;实现无向图最短路径搜索</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+            <li class="breadcrumb-item active text-white">正文</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+    <!-- Fruits Shop Start-->
+    <div class="container-fluid fruite py-5">
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="StashNode免费订阅官网" data-url="https://stashnode.github.io">
+                  				  				  				<p>图的常用存储方式有 2 种：</p> <ul> <li> <p>邻接炬阵</p> </li> <li> <p>链接表</p> </li> </ul> <p>邻接炬阵的优点和缺点都很明显。优点是简单、易理解，对于大部分图结构而言，都是稀疏的，使用炬阵存储空间浪费就较大。</p> <p>链接表的存储相比较邻接炬阵，使用起来更方便，对于空间的使用是刚好够用原则，不会产生太多空间浪费。操作起来，也是简单。</p> <p>本文将以<code>链接表</code>方式存储图结构，在此基础上实现无向图最短路径搜索。</p> <h2 id="1-链接表">1. 链接表</h2> <p><strong>链接表的存储思路：</strong></p> <p>使用链接表实现图的存储时，有<strong>主表</strong>和<strong>子表</strong>概念。</p> <ul> <li><strong>主表：</strong> 用来存储图对象中的所有顶点数据。</li> <li><strong>子表：</strong> 每一个顶点自身会维护一个子表，用来存储与其相邻的所有顶点数据。</li> </ul> <p>如下图结构中有 5 个顶点，使用链接表保存时，会有主表  1  张，子表  5  张。<strong>链接表的优点是能够紧凑地表示稀疏图。</strong></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/38e13d3e70f947d0e3df5629512d64c3.jpg" alt="Python 图_系列之基于&lt;链接表&gt;实现无向图最短路径搜索"></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/f3799a435dc19f23e2028fdcb3d949ce.jpg" alt="Python 图_系列之基于&lt;链接表&gt;实现无向图最短路径搜索"></p> <p>在<strong><code>Python</code></strong> 中可以使用列表嵌套实现链接表，这应该是最简单的表达方式。</p> <pre><code class="language-python">g = [     ['A0', [('B1', 3), ('D3', 5)]],     ['B1', [('C2', 4)]],     ['C2', [('D3', 6), ('E4', 1)]],     ['D3', [('E4', 2)]],     ['E4', [('B1', 7)]], ]</code></pre> <p>在此基础上，可以做一些简单的常规操作。</p> <p><strong>查询所有顶点：</strong></p> <pre><code class="language-python">for node in g:     print(node[0],end=' ')</code></pre> <p><strong>查询顶点及其相邻顶点</strong>：</p> <pre><code class="language-python">for node in g:     print('-------------------')     print(node[0], ":", end='')     edges = node[1]     for e in edges:         v, w = e         print(v, w, end=';')     print()</code></pre> <p>当顶点和相邻顶点之间的关系很复杂时，这种层层嵌套的存储格式会让人眼花缭乱。即使要使用这种嵌套方式，那也应该选择<strong><code>Python</code></strong> 中的字典类型，对于查询会方便很多。</p> <pre><code class="language-python">g = {     'A0':{'B1': 3, 'D3': 5},     'B1': {'C2': 4},     'C2': {'D3': 6, 'E4': 1},     'D3': {'E4':2},     'E4': {'B1': 7} }</code></pre> <p>如上结构，在查询时，无论是方便性还是性能，都要强于完全的列表方案。</p> <p><strong>查询所有顶点：</strong></p> <pre><code class="language-python">for node in g.keys():     print(node,end=" ")</code></pre> <p>查询与某一顶点相邻的顶点时，只需要提供顶点名称就可以了。</p> <pre><code class="language-python">print("查询与 A0 项点有连接的其它顶点") for k, v in g.get('A0').items():     print((k, v), end=";")</code></pre> <p>以上的存储方案，适合于演示，并不适合于开发环境，因顶点本身是具有特定的数据含义（如，可能是城市、公交车站、网址、路由器……），且以上存储方案让顶点和其相邻顶点的信息过度耦合，在实际运用时，会牵一发而动全身。</p> <p>也许一个微不足道的修改，会波动到整个结构的更新。</p> <p>所以，有必要引于<code>OOP</code> 设计理念，让顶点和图有各自特定数据结构，通过 2 种类类型可以更好地体现图是顶点的集合，顶点和顶点之间的多对多关系。</p> <p><strong>项点类：</strong></p> <pre><code class="language-python">class Vertex:     def __init__(self, name, v_id=0):         # 顶点的编号         self.v_id = v_id         # 顶点的名称         self.v_name = name         # 是否被访问过:False 没有 True:有         self.visited = False         # 与此顶点相连接的其它顶点         self.connected_to = {}</code></pre> <p>顶点类结构说明：</p> <ul> <li><code>visited</code>：用于搜索路径算法中，检查节点是否已经被搜索过。</li> <li><code>connected_to</code>：存储与项点相邻的顶点信息。这里使用了字典，以顶点为键，权重为值。</li> </ul> <p><strong>图类：</strong></p> <pre><code class="language-python">class Graph:      def __init__(self):         # 一维列表，保存节点         self.vert_list = {}         # 顶点个数         self.v_nums = 0         # 使用队列模拟队列或栈，用于路径搜索算法         self.queue_stack = []         # 保存搜索到的路径         self.searchPath = []</code></pre> <p>图类结构说明：</p> <ul> <li><code>queue_stack</code>：使用队列模拟栈或队列。用于路径搜索过程中保存临时数据。</li> </ul> <blockquote> <p><strong>怎么使用列表模拟队列或栈？</strong></p> <p>列表有<code>append()</code>、<code>pop()</code> 2 个很价值的方法。</p> <p><code>append()</code> 用来向列表中添加数据，且每次都是从列表最后面添加。</p> <p><code>pop()</code> 默认从列表最后面删除且弹出数据，<code>pop(参数)</code> 可以提供索引值用来从指定位置删除且弹出数据。</p> <p><strong>使用<code>append()</code> 和<code>pop()</code> 方法就能模拟栈，从同一个地方进出数据。</strong></p> <p><strong>使用<code>append()</code> 和<code>pop(0)</code> 方法就能模拟队列，从后面添加数据，从最前面获取数据</strong></p> </blockquote> <ul> <li><code>searchPath</code>：用于保存搜索到的路径数据。</li> </ul> <h2 id="2-最短路径算法">2. 最短路径算法</h2> <p>从图结构可知，从一个顶点到达另一个顶点，可不止一条可行路径，在众多路径我们总是试图选择一条最短路径，当然，需求不同，衡量一个路径是不是最短路径的标准也会不同。</p> <p>如打开导航系统后，最短路径可能是费用最少的那条，可能是速度最快的那条，也可能是量程数最少的或者是红绿灯是最少的……</p> <p>在<code>无向图</code>中，以经过的边数最少的路径为最短路径。</p> <p>在有向加权图中，会以附加在每条边上的权重的数据含义来衡量。权重可以是时间、速度、量程数……</p> <h3 id="21-无向图最短路径算法">2.1 无向图最短路径算法</h3> <p>查找无向图中任意两个顶点间的最短路径长度，可以直接使用广度搜索算法。如下图求解<code>A0 ~ F5</code> 的最短路径。</p> <blockquote> <p><strong>Tips：</strong> 无向图中任意 2 个顶点间的最短路径长度由边数决定。</p> </blockquote> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/5c7189a9c3e649396510b76a822bb1cc.jpg" alt="Python 图_系列之基于&lt;链接表&gt;实现无向图最短路径搜索"></p> <p><strong>广度优先搜索算法流程：</strong></p> <p>广度优先搜索算法的基本原则：以某一顶点为参考点，先搜索离此顶点最近的顶点，再搜索离最近顶点最近的顶点……以此类推，一层一层向目标顶点推进。</p> <p>如从顶点<code>A0</code>  找到顶点<code>F5</code>。先从离<code>A0</code> 最近的顶点<code>B1</code>、<code>D3</code> 找起，如果没找到，再找离<code>B1</code>、<code>D3</code> 最近的顶点<code>C2</code>、<code>E4</code>，如果还是没有找到，再找离<code>C2</code>、<code>E4</code> 最近的顶点<code>F5</code>。</p> <blockquote> <p>因为每一次搜索都是采用最近原则，最后搜索到的目标也一定是最近的路径。</p> <p>也因为采用最近原则，所以搜索过程中，在搜索过程中所经历到的每一个顶点的路径都是最短路径。<code>最近+最近，结果必然还是最近</code>。</p> </blockquote> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/908d80eee3582d9475d90ee59f2fce39.jpg" alt="Python 图_系列之基于&lt;链接表&gt;实现无向图最短路径搜索"></p> <p>显然，广度优先搜索的最近搜索原则是符合先进先出思想的，具体算法实施时可以借助队列实现整个过程。</p> <p><strong>算法流程：</strong></p> <ul> <li> <p>先确定起始点<code>A0</code>。</p> </li> <li> <p>找到<code>A0</code> 的 2 个后序顶点<code>B1</code> 、<code>D3</code> （或者说<code>B1、D3</code>的前序顶点是<code>A0</code>），压入队列中。除去起点<code>A0</code>，<code>B1</code>、<code>D3</code> 顶点属于第一近压入队列的节点。</p> <blockquote> <p><code>B1</code> 和<code>D3</code> 压入队列的顺序并不影响<code>A0</code> ~<code>B1</code> 或<code>A0</code> ~<code>D3</code> 的路径距离（都是 1）。</p> <p><code>A0</code>~<code>B1</code> 的最短路径长度为 1</p> <p><code>A0</code>~<code>D3</code> 的最短路径长度为 1</p> </blockquote> </li> <li> <p>从队列中搜索<code>B1</code> 时，找到<code>B1</code> 的后序顶点<code>C2</code> 并压入队列。<code>B1</code> 是<code>C2</code> 的前序顶点。</p> <blockquote> <p><code>B1</code> ~<code>C2</code> 的最短路径长度为 1，而又因为<code>A0</code>~<code>B1</code> 的最短路径长度为 1 ，所以<code>A0</code> ~<code>C2</code> 的最短路径为 2</p> </blockquote> </li> <li> <p><code>B1</code> 搜索完毕后，在队列中搜索<code>B3</code> 时，找到<code>B3</code> 的后序顶点<code>E4</code> ，压入队列。因<code>B1</code> 和<code>D3</code> 属于第一近顶点，所以这 2  个顶点的后序顶点<code>C2</code>、<code>E4</code> 属于第二近压入队列，或说<code>A0-B1-C2</code>、<code>A0-D3-E4</code> 的路径距离是相同的（都为 2）。</p> </li> <li> <p>当搜索到<code>C2</code> 时，没有后序顶点，此时队列没有压入操作。</p> </li> <li> <p>当 搜索到<code>E4</code> 时，<code>E4</code> 有 2 个后序顶点<code>C2</code>、<code>F5</code>，因<code>C2</code> 已经压入过，所以仅压入<code>F5</code>。因<code>F5</code> 是由第二近顶点压入，所以<code>F5</code> 是属于第三近压入顶点。</p> <blockquote> <p><code>A0-D3-E4-F5</code> 的路径为 3。</p> </blockquote> </li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/b646e2d5a4f2f2e3d4c33ff9f7ff6235.jpg" alt="Python 图_系列之基于&lt;链接表&gt;实现无向图最短路径搜索"></p> <p><strong>编码实现广度优先算法：</strong></p> <p>在顶点类中添加如下几个方法：</p> <pre><code class="language-python">class Vertex:     def __init__(self, v_name, v_id=0):         # 顶点的编号         self.v_id = v_id         # 顶点的名称         self.v_name = v_name         # 是否被访问过:False 没有 True:有         self.visited = False         # 与此顶点相连接的其它顶点         self.connected_to = {}      '''     添加邻接顶点     nbr_ver:相邻顶点     weight:无向无权重图，权重默认设置为 1     '''     def add_neighbor(self, nbr_ver, weight=1):         # 以相邻顶点为键，权重为值         self.connected_to[nbr_ver] = weight      '''     显示与当前顶点相邻的顶点     '''     def __str__(self):         return '与 {0} 顶点相邻的顶点有:{1}'.format(self.v_name,                                            str([(key.v_name, val) for key, val in self.connected_to.items()]))      '''     得到相邻顶点的权重     '''     def get_weight(self, nbr_v):         return self.connected_to[nbr_v]      '''     判断给定的顶点是否和当前顶点相邻     '''     def is_neighbor(self, nbr_v):         return nbr_v in self.connected_to</code></pre> <p>顶点类用来构造一个新顶点，并维护与相邻顶点的关系。</p> <p><strong>对图类中的方法做一下详细解释：</strong></p> <p>初始化方法：</p> <pre><code class="language-python">class Graph:     def __init__(self):         # 一维列表，保存节点         self.vert_list = {}         # 顶点个数         self.v_nums = 0         # 使用队列模拟队列或栈，用于路径搜索算法         self.queue_stack = []         # 保存搜索到的路径         self.searchPath = []</code></pre> <p>为图添加新顶点方法：</p> <pre><code class="language-python">   def add_vertex(self, vert):         if vert.v_name in self.vert_list:             # 已经存在             return         # 顶点的编号内部生成         vert.v_id = self.v_nums         # 所有顶点保存在图所维护的字典中，以顶点名为键，顶点对象为值         self.vert_list[vert.v_name] = vert         # 数量增一         self.v_nums += 1</code></pre> <blockquote> <p>顶点的编号由图对象内部指定，便于统一管理。</p> <p>所有顶点保存在一个字典中，以顶点名称为键，顶点对象为值。也可以使用列表直接保存顶点，根据需要决定。</p> </blockquote> <p>提供一个根据顶点名称返回顶点的方法：</p> <pre><code class="language-python"> 	'''     根据顶点名找到顶点对象     '''     def find_vertex(self, v_name):         if v_name in self.vert_list:             return self.vert_list.get(v_name)     # 查询所有顶点     def find_vertexes(self):         return [str(ver) for ver in self.vert_list.values()]</code></pre> <p>添加顶点与相邻顶点的关系：此方法属于一个封装方法，本质是调用顶点自身的添加相邻顶点方法。</p> <pre><code class="language-python">    '''     添加节点与节点之间的关系（边），     如果是无权重图，统一设定为 1      '''     def add_edge(self, from_v, to_v, weight=1):         # 如果节点不存在         if from_v not in self.vert_list:             self.add_vertex(from_v)         if to_v not in self.vert_list:             self.add_vertex(to_v)         from_v.add_neighbor(to_v, weight)</code></pre> <p>图中核心方法：用来广度优先搜索算法查找顶点与顶点之间的路径</p> <pre><code class="language-python">    '''     广度优先搜索     '''     def bfs_nearest_path(self, from_v, to_v):         tmp_path = []         tmp_path.append(from_v)         # 起始顶点不用压入队列         from_v.visited = True         # from_v 顶点的相邻顶点压入队列         self.push_queue(from_v)         while len(self.queue_stack) != 0:             # 从队列中获取顶点             v_ = self.queue_stack.pop(0)             if from_v.is_neighbor(v_):                 # 如果 v_ 是 from_v 的后序相邻顶点，则连接成一条中路径信息                  tmp_path.append(v_)                 # 添加路径信息                 self.searchPath.append(tmp_path)                 tmp_path = tmp_path.copy()                 tmp_path.pop()             else:                 for path_ in self.searchPath:                     tmp_path = path_.copy()                     tmp = tmp_path[len(tmp_path) - 1]                     if tmp.is_neighbor(v_):                         tmp_path.append(v_)                         self.searchPath.append(tmp_path)             if v_.v_id == to_v.v_id:                 break             else:                 self.push_queue(v_)      '''      把某一顶点的相邻顶点压入队列      '''     def push_queue(self, vertex):         # 获取 vertex 顶点的相邻顶点         for v_ in vertex.connected_to.keys():             # 检查此顶点是否压入过             if v_.visited:                 continue             vertex.visited = True             self.queue_stack.append(v_)</code></pre> <p>广度优先搜索算法有一个核心点，当搜索到某一个顶点后，需要找到与此顶点相邻的其它顶点，并压入队列中。<code>push_queue()</code> 方法就是做些事情的。如果某一个顶点曾经进过队列，就不要再重复压入队列了。</p> <p><strong>测试代码：</strong></p> <pre><code class="language-python">''' 测试无向图最短路径 '''  if __name__ == '__main__':     # 初始化图     graph = Graph()     # 添加节点     for v_name in ['A', 'B', 'C', 'D', 'E', 'F']:         v = Vertex(v_name)         graph.add_vertex(v)      # 添加顶点之间关系     v_to_v = [('A', 'B'), ('A', 'D'), ('B', 'C'), ('C', 'E'), ('D', 'E'), ('E', 'F')]     # 无向图中每 2 个相邻顶点之间互为关系     for v in v_to_v:         f_v = graph.find_vertex(v[0])         t_v = graph.find_vertex(v[1])         graph.add_edge(f_v, t_v)         graph.add_edge(t_v, f_v)      # 输出所有顶点     print('-----------顶点及顶点之间的关系-------------')     for v in graph.find_vertexes():         print(v)      # 查找路径     print('-------------广度优先搜索--------------------')     # 起始点     f_v = graph.find_vertex('A')     # 目标点     t_v = graph.find_vertex('F')     # 广度优先搜索     graph.bfs_nearest_path(f_v, t_v)     for path in graph.searchPath:         weight = 0         for idx in range(len(path)):             if idx != len(path) - 1:                 weight += path[idx].get_weight(path[idx + 1])             print(path[idx].v_name, end='-')         print("的最短路径长度，", weight)</code></pre> <p><strong>输出结果：</strong></p> <pre><code class="language-python">-----------顶点及顶点之间的关系------------- 与 A 顶点相邻的顶点有:[('B', 1), ('D', 1)] 与 B 顶点相邻的顶点有:[('A', 1), ('C', 1)] 与 C 顶点相邻的顶点有:[('B', 1), ('E', 1)] 与 D 顶点相邻的顶点有:[('A', 1), ('E', 1)] 与 E 顶点相邻的顶点有:[('C', 1), ('D', 1), ('F', 1)] 与 F 顶点相邻的顶点有:[('E', 1)] -------------广度优先搜索-------------------- A-B-的最短路径长度， 1 A-D-的最短路径长度， 1 A-B-C-的最短路径长度， 2 A-D-E-的最短路径长度， 2 A-B-C-E-的最短路径长度， 3 A-D-E-的最短路径长度， 2 A-B-C-E-的最短路径长度， 3 A-D-E-F-的最短路径长度， 3 A-B-C-E-F-的最短路径长度， 4 A-D-E-F-的最短路径长度， 3 A-B-C-E-F-的最短路径长度， 4</code></pre> <p>广度优先搜索算法也可以使用递归方案：</p> <pre><code class="language-python">    '''     递归实现     '''      def bfs_nearest_path_dg(self, from_v, to_v):          # 相邻顶点         self.push_queue(from_v)         tmp_v = self.queue_stack.pop(0)         if not tmp_v.visited:             self.searchPath.append(tmp_v)         if tmp_v.v_id == to_v.v_id:             return          self.bfs_nearest_path_dg(tmp_v, to_v)</code></pre> <p>在无向图中，查找起始点到目标点的最短路径，使用广度优先搜索算法便可实现，但如果是有向加权图，可能不会称心如愿。因有向加权图中的边是有权重的。所以对于有向加权图则需要另择方案。</p> <h2 id="3-总结">3. 总结</h2> <p>图数据结构的实现过程中会涉及到其它数据结构的运用。学习、使用图数据结构对其它数据结构有重新认识和巩固作用。</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-37320.htm">三国杀已出武将有哪些（三国杀还出新武将吗）</a></p>
+                                        <p>下一个：<a href="/news/article-37821.htm">中国猫粮生产基地（国内猫粮工厂）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-32539.htm" title="抖音领养宠物是真的吗（抖音领养宠物是真的吗还是假的）">抖音领养宠物是真的吗（抖音领养宠物是真的吗还是假的）</a></li>
+                        <li class="py-2"><a href="/news/article-25025.htm" title="DDL —— 数据定义语言">DDL —— 数据定义语言</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-14-node-share-links.htm" title="「10月14日」最高速度18.2M/S，2024年Stash Github每天更新免费机场订阅节点链接">「10月14日」最高速度18.2M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-25487.htm" title="动物门诊的程序和方法技术（动物门诊图片）">动物门诊的程序和方法技术（动物门诊图片）</a></li>
+                        <li class="py-2"><a href="/news/article-27351.htm" title="动物医院成本分析表（动物医院利润）">动物医院成本分析表（动物医院利润）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-6-vless-node-github.htm" title="「1月6日」最高速度22M/S，2025年SSR/Shadowrocket/Clash/V2rayStash免费机场订阅链接">「1月6日」最高速度22M/S，2025年SSR/Shadowrocket/Clash/V2rayStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-20-vless-node-share.htm" title="「11月20日」最高速度21.6M/S，2024年Stash Github每天更新免费机场订阅节点链接">「11月20日」最高速度21.6M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-9-vless-node-share.htm" title="「1月9日」最高速度19.2M/S，2025年V2ray/Shadowrocket/Clash/SSRStash免费机场订阅链接">「1月9日」最高速度19.2M/S，2025年V2ray/Shadowrocket/Clash/SSRStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-5-free-subscribe-node.htm" title="「12月5日」最高速度18.9M/S，2024年Stash Github每天更新免费机场订阅节点链接">「12月5日」最高速度18.9M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-18-free-subscribe-node.htm" title="「10月18日」最高速度18.9M/S，2024年Stash Github每天更新免费机场订阅节点链接">「10月18日」最高速度18.9M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fruits Shop End-->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3 mb-md-0">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <span class="text-light">Stash Github机场分享官网 版权所有 Powered by WordPress</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/stashgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
