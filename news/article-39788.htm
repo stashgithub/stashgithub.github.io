@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://stashgithub.github.io/news/article-39788.htm" />
+    <meta charset="utf-8">
+    <title>Vue中的插槽</title>
+        <meta name="description" content="# 什么是插槽 插槽（Slot）：是vue为组件的封装者提供的能力。允许开发者在封装组件时，把不确定的，希望由用户指定的部分定义为插槽。  # 插槽内容 1.没有插槽你在组件中写的内容会被忽略。 &l" />
+        <link rel="icon" href="/assets/website/img/stashgithub/favicon.ico" type="image/x-icon"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/assets/website/js/frontend/stashgithub/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/stashgithub/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/stashgithub/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/stashgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNXJ21P00N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NNXJ21P00N');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+        <div class="container topbar bg-primary d-none d-lg-block">
+            <div class="d-flex justify-content-between">
+                
+            </div>
+        </div>
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                                <a href="/" class="navbar-brand">
+                    <span class="text-primary display-6">Stash Github</span>
+                </a>
+                                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                                <a href="#" class="nav-item nav-link">关于</a>
+                        <a href="#" class="nav-item nav-link">联系</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">Vue中的插槽</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+            <li class="breadcrumb-item active text-white">正文</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+    <!-- Fruits Shop Start-->
+    <div class="container-fluid fruite py-5">
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="StashNode免费订阅官网" data-url="https://stashnode.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p><strong># 什么是插槽</strong></p> <p><span style="color:#fe2c24;">插槽</span>（<span style="color:#fe2c24;">Slot</span>）：是vue为组件的封装者提供的能力。允许开发者在封装组件时，把<span style="color:#fe2c24;">不确定</span>的，希望<span style="color:#fe2c24;">由用户指定</span>的部分定义为插槽。</p> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230119/76158e4178585e6fc73157af1c92f6c7.jpg"></p> <p><strong># 插槽内容</strong></p> <p>1.没有插槽你在组件中写的内容会被忽略。</p> <pre><code>&lt;template&gt;   &lt;div class="right-container"&gt;     &lt;Left&gt;       &lt;p&gt;这是Left组件的内容区域,声明p标签&lt;/p&gt;     &lt;/Left&gt;   &lt;/div&gt; &lt;/template&gt; // 因为没有给Left组件声明插槽，所以p标签不起作用</code></pre> <p>2.声明插槽，每个插槽都有name名称（默认为default）</p> <pre><code>&lt;template&gt;   &lt;div class="left-container"&gt;     &lt;h3&gt;Left 组件&lt;/h3&gt;     &lt;hr&gt;     &lt;!-- 声明一个插槽slot --&gt;     &lt;!-- vue官方规定:每个slot插槽都有一个 name名称 --&gt;     &lt;!-- 如果省略slot名称,则默认名称为default --&gt;     &lt;!-- 当用户没有指定插槽是默认内容是slot标签里的内容 --&gt;     &lt;slot name="default"&gt;这是default插槽默认的内容&lt;/slot&gt;   &lt;/div&gt; &lt;/template&gt;</code></pre> <p><strong>3.<span style="color:#fe2c24;">v-slot</span>指令</strong>：将内容渲染到指定的插槽中（没写 v-slot 则默认渲染到 <span style="color:#fe2c24;">default</span> 的插槽中）</p> <pre><code>&lt;template&gt;   &lt;div class="app-container"&gt;     &lt;h1 v-color="color"&gt;App 根组件&lt;/h1&gt;     &lt;p v-color="'pink'"&gt;测试&lt;/p&gt;      &lt;button @click="color = 'green'"&gt;改变color颜色值&lt;/button&gt;     &lt;hr&gt;     &lt;div class="box"&gt;       &lt;!-- 渲染 Left 组件和 Right 组件 --&gt;        &lt;Left style="display: none;"&gt;         &lt;!-- 默认情况下,在使用组件的时候,提供的内容都会被填充到名字为default的插槽中 --&gt;         &lt;!-- 1.如果要把内容填充到指定的名称的插槽中,需要v-slot:这个指令 --&gt;         &lt;!-- 2.v-slot:要跟上插槽的名称 --&gt;         &lt;!-- 3.v-slot:指令不能用在元素身上,只能用在template上 --&gt;         &lt;!-- 4.template这个标签是一个虚拟的标签,只起到包裹的作用,但不会被渲染成实质性的html元素--&gt;         &lt;!-- 5.v-slot: 简写为# --&gt;          &lt;template v-slot:default&gt;           &lt;p&gt;这是Left组件的内容区域，声明p标签&lt;/p&gt;         &lt;/template&gt;       &lt;/Left&gt;     &lt;/div&gt;   &lt;/div&gt; &lt;/template&gt;</code></pre> <p><strong># 后备内容</strong></p> <p>有时为一个插槽设置具体的后备 (也就是默认的) 内容是很有用的，它只会在没有提供内容的时候被渲染。例如在一个&nbsp;<strong><code>&lt;submit-button&gt;</code></strong>&nbsp;组件中：</p> <pre><code>&lt;!-- 我们希望这个 &lt;button&gt; 内绝大多数情况下都渲染文本“Submit”。为了将“Submit”作为后备内容，我们可以将它放在 &lt;slot&gt; 标签内 --&gt; &lt;button type="submit"&gt;   &lt;slot&gt;Submit&lt;/slot&gt; &lt;/button&gt;  &lt;!-- 现在当我在一个父级组件中使用 &lt;submit-button&gt; 并且不提供任何插槽内容时： --&gt; &lt;submit-button&gt;&lt;/submit-button&gt; &lt;!-- 此时 Submit 就会渲染到父级组件中 --&gt;  &lt;!-- 但是如果我们提供内容时，这个提供的内容将会被渲染从而取代后备内容： --&gt; &lt;submit-button&gt; &lt;!-- Save就会代替Submit渲染到父级组件中 --&gt;   Save &lt;/submit-button&gt;</code></pre> <p><strong># 具名插槽</strong></p> <p>在同一个组件中，我们有时需要多个插槽作为预留区域，此时，应该给每一个插槽取一个不同的name名称</p> <p>如：定义了Article组件，并设置了多个插槽，一个不带&nbsp;<strong><code>name</code></strong>&nbsp;的&nbsp;<strong><code>&lt;slot&gt;</code></strong>&nbsp;出口会带有隐含的名字“default”。</p> <pre><code>&lt;template&gt;   &lt;div class="article-container"&gt;       &lt;!-- 渲染文章的标题 --&gt;       &lt;div class="header-box"&gt;           &lt;slot&gt;&lt;/slot&gt;       &lt;/div&gt;        &lt;!-- 文章的内容 --&gt;       &lt;div class="content-box"&gt;           &lt;slot&gt;&lt;/slot&gt;       &lt;/div&gt;        &lt;!-- 文章的作者 --&gt;       &lt;div class="footer-box"&gt;           &lt;slot&gt;&lt;/slot&gt;       &lt;/div&gt;   &lt;/div&gt; &lt;/template&gt;  &lt;!-- 这时，三个插槽名相同为default，在&lt;Article&gt;&lt;/Article&gt;中写入的内容会同时渲染到名称相同的插槽： --&gt; &lt;template&gt;   &lt;div class="right-container"&gt;     &lt;h3&gt;App 组件&lt;/h3&gt;      &lt;Article&gt;       &lt;h3&gt;一首诗&lt;/h3&gt;       &lt;!-- 上面三个插槽都渲染了内容 “一首诗”--&gt;     &lt;/Article&gt;   &lt;/div&gt; &lt;/template&gt;</code></pre> <p><strong># 作用域插槽</strong></p> <p>有时让插槽内容能够访问子组件中才有的数据是很有用的</p> <p>比如：在子组件Article中设置了 msg，如果插槽内容中要访问到该数据，则：</p> <pre><code>&lt;template&gt;   &lt;div class="right-container"&gt;     &lt;h3&gt;Article 组件&lt;/h3&gt;      &lt;div class="content-box"&gt;       &lt;!-- 在封装组件时,为预留的&lt;slot&gt;提供属性对应的值,这种用法叫做"作用域插槽" --&gt;       &lt;slot name="content" msg="hello vue.js"&gt;&lt;/slot&gt;     &lt;/div&gt;   &lt;/div&gt; &lt;/template&gt;  &lt;!-- 在上块代码中，设置了msg="hello vue.js"，我们此时需要在插槽内容区内拿到该数据： --&gt; &lt;!-- 插槽内容部分 --&gt; &lt;Article&gt;   &lt;!-- #content="obj"中的obj是一个对象，里面包含了Article组件中msg："hello vue.js"等&lt;slot&gt;&lt;/slot&gt;中定义的数据 --&gt;   &lt;template #content="obj"&gt;          &lt;div&gt;           &lt;p&gt;床前明月光,疑是地上霜.&lt;/p&gt;           &lt;p&gt;举头望明月,低头思故乡.&lt;/p&gt;           &lt;p&gt;{<!-- -->{ obj.msg }}&lt;/p&gt;         &lt;/div&gt;       &lt;/template&gt; &lt;/Article&gt; &lt;!-- 这里的msg就能获取到成功渲染 --&gt;</code></pre> <p><span style="color:#faa572;">创作不易，一键三联吧！铁汁们！！！</span></p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-39291.htm">宠物用品批发进货渠道一件代发多少钱（宠物用品怎么批发）</a></p>
+                                        <p>下一个：<a href="/news/article-39789.htm">宠物店的粮适合买吗现在 宠物店的粮适合买吗现在怎么样</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-22254.htm" title="厦门有没有宠物领养中心 厦门有没有宠物领养中心啊">厦门有没有宠物领养中心 厦门有没有宠物领养中心啊</a></li>
+                        <li class="py-2"><a href="/news/article-21798.htm" title="Feign优化之Client选择">Feign优化之Client选择</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-16-latest-vless-node.htm" title="「12月16日」最高速度21.7M/S，2024年Stash Github每天更新免费机场订阅节点链接">「12月16日」最高速度21.7M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-27821.htm" title="上海宠物美容师招聘（上海的宠物美容培训学校）">上海宠物美容师招聘（上海的宠物美容培训学校）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-12-today-vless-node.htm" title="「11月12日」最高速度21.9M/S，2024年Stash Github每天更新免费机场订阅节点链接">「11月12日」最高速度21.9M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-16-free-node-subscribe.htm" title="「11月16日」最高速度21.4M/S，2024年Stash Github每天更新免费机场订阅节点链接">「11月16日」最高速度21.4M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-33494.htm" title="宠物粮食品牌排名榜最新 宠物粮食品牌排名榜最新名单">宠物粮食品牌排名榜最新 宠物粮食品牌排名榜最新名单</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-7-free-node-subscribe.htm" title="「12月7日」最高速度18.3M/S，2024年Stash Github每天更新免费机场订阅节点链接">「12月7日」最高速度18.3M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-24-vless-node-github.htm" title="「10月24日」最高速度19.4M/S，2024年Stash Github每天更新免费机场订阅节点链接">「10月24日」最高速度19.4M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-33010.htm" title="宠物店盈利范围（宠物店利润和成本分析）">宠物店盈利范围（宠物店利润和成本分析）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">39</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fruits Shop End-->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3 mb-md-0">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <span class="text-light">Stash Github机场分享官网 版权所有 Powered by WordPress</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/stashgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
