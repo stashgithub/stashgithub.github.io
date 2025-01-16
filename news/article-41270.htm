@@ -2,11 +2,10 @@
 <html lang="zh-CN">
 
 <head>
-        <link rel="canonical" href="https://stashgithub.github.io" />
+        <link rel="canonical" href="https://stashgithub.github.io/news/article-41270.htm" />
     <meta charset="utf-8">
-    <title>关于我们 - Stash Github机场分享官网</title>
-        <meta name="keywords" content="关于我们 - Stash Github机场分享官网" />
-        <meta name="description" content="关于我们 - Stash Github机场分享官网" />
+    <title>nacos的应用</title>
+        <meta name="description" content="1.1、服务注册发现----【server-bb 如何调用 my-server-aa 的接口】 my-server-aa在a服务器上，server-bb在b服务器上，它俩都注册到nacos了； my-" />
         <link rel="icon" href="/assets/website/img/stashgithub/favicon.ico" type="image/x-icon"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <!-- Google Web Fonts -->
@@ -36,7 +35,7 @@
      crossorigin="anonymous"></script>
 </head>
 
-<body data-page="newly_discovered_nodes">
+<body data-page="detail">
         <!-- Spinner Start -->
     <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
         <div class="spinner-grow text-primary" role="status"></div>
@@ -73,10 +72,11 @@
     <!-- Navbar End -->
     <!-- Single Page Header start -->
     <div class="container-fluid page-header py-5">
-        <h1 class="text-center text-white display-6">关于我们</h1>
+        <h1 class="text-center text-white display-6">nacos的应用</h1>
         <ol class="breadcrumb justify-content-center mb-0">
             <li class="breadcrumb-item"><a href="/">首页</a></li>
-            <li class="breadcrumb-item active text-white">关于我们</li>
+            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+            <li class="breadcrumb-item active text-white">正文</li>
         </ol>
     </div>
     <!-- Single Page Header End -->
@@ -85,14 +85,13 @@
         <div class="container py-2">
             <div class="row">
                 <div class="col-md-9">
-                    <p>在网络的浩瀚宇宙中，有一个名字如同璀璨的星辰，照亮了无数寻求自由网络之路的人们——Stash Github机场分享官网。这不仅仅是一个提供免费节点订阅服务的平台，更是一场关于勇气、智慧与梦想的创业传奇。</p>
-<p>故事的起点，可以追溯到那个网络封锁日益严重的年代。那时，网络世界仿佛被一层无形的墙所隔绝，人们渴望着能够自由穿梭于信息的海洋之中。正是在这样的背景下，Stash Github机场分享官网的创始人，一位名叫李明的年轻工程师，怀揣着对自由的渴望和对技术的热爱，踏上了创业之路。</p>
-<p>李明原本在一家知名互联网公司担任技术骨干，每天面对着繁琐的代码和无尽的压力。然而，他内心深处始终有一个声音在呼唤，那就是打破网络束缚，让每一个人都能享受到自由、平等的网络访问权。于是，他毅然决然地辞去了工作，踏上了创业的征途。</p>
-<p>起初，李明的创业之路并不顺利。他面临着资金短缺、技术难题以及来自各方面的压力和质疑。然而，他并没有放弃，而是凭借着对技术的深厚功底和对梦想的执着追求，一步步克服了一个又一个难关。</p>
-<p>在这个过程中，李明遇到了志同道合的伙伴们。他们有的是经验丰富的程序员，有的是对网络自由充满热情的年轻人。大家汇聚一堂，共同为Stash Github机场分享官网的未来而努力。他们日夜奋战，不断优化平台功能，提升用户体验。终于，在无数个不眠之夜后，Stash Github机场分享官网横空出世，以其稳定、高效的免费节点订阅服务，迅速赢得了广大用户的喜爱和信赖。</p>
-<p>然而，创业的道路从来都不是一帆风顺的。随着Stash Github机场分享官网的知名度越来越高，也引来了不少竞争对手的恶意攻击和诽谤。面对这些挑战，李明和他的团队始终保持着冷静和理智。他们坚信，只要坚持为用户提供优质的服务和真诚的态度，就一定能够赢得用户的信任和支持。</p>
-<p>如今，Stash Github机场分享官网已经成为了一个备受瞩目的创业传奇。它不仅为用户提供了便捷、高效的免费节点订阅服务，更成为了网络自由、信息平等的象征。在这个充满挑战和机遇的时代里，Stash Github机场分享官网将继续秉持着初心和使命，为每一个渴望自由网络的人们保驾护航。</p>
-                </div>
+                                    <input type="hidden" id="share-website-info" data-name="StashNode免费订阅官网" data-url="https://stashnode.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> </h1> <p><img fetchpriority="high" decoding="async" alt="" height="425" src="http://img.555519.xyz/uploads3/20220823/f868d53e1393fc3e21015dce48a41840.jpg"></p> <h2>1.1、服务注册发现----【server-bb 如何调用 my-server-aa 的接口】</h2> <p>my-server-aa在a服务器上，server-bb在b服务器上，它俩都注册到nacos了；</p> <p>my-server-aa提供了【/aa/bb/xx/{id}】和【/aa/bb/cc】接口，server-bb如何调用这俩接口？</p> <p>&nbsp;通过feign调用，在server-bb服务上添加如下代码：</p> <p><img decoding="async" alt="" height="248" src="http://img.555519.xyz/uploads3/20220823/06140702adab774fda3587e929528418.jpg"></p> <p><img decoding="async" alt="" height="301" src="http://img.555519.xyz/uploads3/20220823/efe1ae314d44947cef67f86982b0182e.jpg"></p> <h2>&nbsp;1.2、配置中心----配置路由</h2> <p><img loading="lazy" decoding="async" alt="" height="343" src="http://img.555519.xyz/uploads3/20220823/ddd388a5326e50975786197a1a5e487b.jpg"></p> <p><img loading="lazy" decoding="async" alt="" height="488" src="http://img.555519.xyz/uploads3/20220823/df471affeb905853cc120a1141ecf44e.jpg"></p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-40783.htm">宠物美容店开办和经营的步骤（想开个宠物美容店怎么入行）</a></p>
+                                        <p>下一个：<a href="/news/article-41271.htm">三国杀武将限定技特效（三国杀中武将限定技是什么）</a></p>
+                                    </div>
+                                </div>
                 <div class="col-md-3">
                     <div class="panel panel-default">
     <div class="panel-heading">
@@ -100,16 +99,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-10-9-free-subscribe-node.htm" title="「10月9日」最高速度21.2M/S，2024年Stash Github每天更新免费机场订阅节点链接">「10月9日」最高速度21.2M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-31-today-vless-node.htm" title="「12月31日」最高速度18.9M/S，2025年Stash Github每天更新免费机场订阅节点链接">「12月31日」最高速度18.9M/S，2025年Stash Github每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-3-free-high-speed-nodes.htm" title="「11月3日」最高速度22.1M/S，2024年Stash Github每天更新免费机场订阅节点链接">「11月3日」最高速度22.1M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-24-vless-node-github.htm" title="「10月24日」最高速度19.4M/S，2024年Stash Github每天更新免费机场订阅节点链接">「10月24日」最高速度19.4M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-27-latest-vless-node.htm" title="「11月27日」最高速度19.4M/S，2024年Stash Github每天更新免费机场订阅节点链接">「11月27日」最高速度19.4M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-1-4-vless-github.htm" title="「1月4日」最高速度21.1M/S，2025年Stash Github每天更新免费机场订阅节点链接">「1月4日」最高速度21.1M/S，2025年Stash Github每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-23-free-subscribe-node.htm" title="「11月23日」最高速度18M/S，2024年Stash Github每天更新免费机场订阅节点链接">「11月23日」最高速度18M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-29203.htm" title="Vue中的插槽">Vue中的插槽</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-21-vless-node.htm" title="「10月21日」最高速度20.2M/S，2024年Stash Github每天更新免费机场订阅节点链接">「10月21日」最高速度20.2M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-35107.htm" title="Linux 下清空或删除大文件/大量文件的几种方法">Linux 下清空或删除大文件/大量文件的几种方法</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-8-free-vless-node.htm" title="「1月8日」最高速度19M/S，2025年Shadowrocket/Clash/V2ray/SSRStash免费机场订阅链接">「1月8日」最高速度19M/S，2025年Shadowrocket/Clash/V2ray/SSRStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-21799.htm" title="养狗容易得什么病如何预防（养狗狗容易得什么病）">养狗容易得什么病如何预防（养狗狗容易得什么病）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-14-free-subscribe-node.htm" title="「1月14日」最高速度22M/S，2025年Shadowrocket/V2ray/Clash/SSRStash免费机场订阅链接">「1月14日」最高速度22M/S，2025年Shadowrocket/V2ray/Clash/SSRStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-22254.htm" title="厦门有没有宠物领养中心 厦门有没有宠物领养中心啊">厦门有没有宠物领养中心 厦门有没有宠物领养中心啊</a></li>
+                        <li class="py-2"><a href="/news/article-33494.htm" title="宠物粮食品牌排名榜最新 宠物粮食品牌排名榜最新名单">宠物粮食品牌排名榜最新 宠物粮食品牌排名榜最新名单</a></li>
+                        <li class="py-2"><a href="/news/article-28739.htm" title="最有名的动物医院是哪个（中国最好的动物医学）">最有名的动物医院是哪个（中国最好的动物医学）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-6-node-share-links.htm" title="「11月6日」最高速度20.2M/S，2024年Stash Github每天更新免费机场订阅节点链接">「11月6日」最高速度20.2M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-30-vless-node.htm" title="「11月30日」最高速度18.4M/S，2024年Stash Github每天更新免费机场订阅节点链接">「11月30日」最高速度18.4M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-29-latest-vless-node.htm" title="「10月29日」最高速度18.9M/S，2024年Stash Github每天更新免费机场订阅节点链接">「10月29日」最高速度18.9M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-4-vless-github.htm" title="「11月4日」最高速度21.7M/S，2024年Stash Github每天更新免费机场订阅节点链接">「11月4日」最高速度21.7M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
                     </ul>
     </div>
 </div>
