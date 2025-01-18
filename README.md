@@ -1,4 +1,4 @@
-# 「1月17日」最高速度19.4M/S，2025年Clash/SSR/V2ray/ShadowrocketStash免费机场订阅链接  更新时间 2025-01-17 09:43:38
+# 「1月18日」最高速度22.6M/S，2025年Clash/SSR/Shadowrocket/V2rayStash免费机场订阅链接  更新时间 2025-01-18 07:35:15
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://stashgithub.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
@@ -9,23 +9,23 @@
 
 ### Clash订阅链接
 
-- https://stashgithub.github.io/uploads/2025/01/0-20250117.yaml
-- https://stashgithub.github.io/uploads/2025/01/1-20250117.yaml
-- https://stashgithub.github.io/uploads/2025/01/2-20250117.yaml
-- https://stashgithub.github.io/uploads/2025/01/3-20250117.yaml
-- https://stashgithub.github.io/uploads/2025/01/4-20250117.yaml
+- https://stashgithub.github.io/uploads/2025/01/0-20250118.yaml
+- https://stashgithub.github.io/uploads/2025/01/1-20250118.yaml
+- https://stashgithub.github.io/uploads/2025/01/2-20250118.yaml
+- https://stashgithub.github.io/uploads/2025/01/3-20250118.yaml
+- https://stashgithub.github.io/uploads/2025/01/4-20250118.yaml
 
 ### V2ray订阅链接
 
-- https://stashgithub.github.io/uploads/2025/01/0-20250117.txt
-- https://stashgithub.github.io/uploads/2025/01/1-20250117.txt
-- https://stashgithub.github.io/uploads/2025/01/2-20250117.txt
-- https://stashgithub.github.io/uploads/2025/01/3-20250117.txt
-- https://stashgithub.github.io/uploads/2025/01/4-20250117.txt
+- https://stashgithub.github.io/uploads/2025/01/0-20250118.txt
+- https://stashgithub.github.io/uploads/2025/01/1-20250118.txt
+- https://stashgithub.github.io/uploads/2025/01/2-20250118.txt
+- https://stashgithub.github.io/uploads/2025/01/3-20250118.txt
+- https://stashgithub.github.io/uploads/2025/01/4-20250118.txt
 
 ### Sing-box订阅链接
 
-- https://stashgithub.github.io/uploads/2025/01/20250117.json
+- https://stashgithub.github.io/uploads/2025/01/20250118.json
 
 ## 更多clash节点订阅 ：
 
