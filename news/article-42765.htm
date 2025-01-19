@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://stashgithub.github.io/news/article-42765.htm" />
+    <meta charset="utf-8">
+    <title>Java数据结构之单向环形链表（解决Josephu约瑟夫环问题）</title>
+        <meta name="description" content="1.Josephu（约瑟夫、约瑟夫环）问题： 设编号为1，2，… n的n个人围坐一圈，约定编号为k（1&lt;=k&lt;=n）的人从1开始报数，数到m 的那个人出列，它的下一位又从1开始报数，数到m" />
+        <link rel="icon" href="/assets/website/img/stashgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Stash Github机场分享官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://stashgithub.github.io/news/article-42765.htm" />
+    <meta property="og:site_name" content="Stash Github机场分享官网" />
+    <meta property="og:title" content="Java数据结构之单向环形链表（解决Josephu约瑟夫环问题）" />
+    <meta property="og:image" content="https://stashgithub.github.io/uploads/20240903-1/812aa426b2667c05f5030dcb3b4c5b56.webp" />
+        <meta property="og:release_date" content="2025-01-19T07:08:53" />
+    <meta property="og:updated_time" content="2025-01-19T07:08:53" />
+        <meta property="og:description" content="1.Josephu（约瑟夫、约瑟夫环）问题： 设编号为1，2，… n的n个人围坐一圈，约定编号为k（1&lt;=k&lt;=n）的人从1开始报数，数到m 的那个人出列，它的下一位又从1开始报数，数到m" />
+        
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/assets/website/js/frontend/stashgithub/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/stashgithub/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/stashgithub/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/stashgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNXJ21P00N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NNXJ21P00N');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+        <div class="container topbar bg-primary d-none d-lg-block">
+            <div class="d-flex justify-content-between">
+                
+            </div>
+        </div>
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                                <a href="/" class="navbar-brand">
+                    <span class="text-primary display-6">Stash Github</span>
+                </a>
+                                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                                <a href="#" class="nav-item nav-link">关于</a>
+                        <a href="#" class="nav-item nav-link">联系</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">Java数据结构之单向环形链表（解决Josephu约瑟夫环问题）</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+            <li class="breadcrumb-item active text-white">正文</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+    <!-- Fruits Shop Start-->
+    <div class="container-fluid fruite py-5">
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="StashNode免费订阅官网" data-url="https://stashnode.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <div id="cnblogs_post_body"> <p><strong>1.Josephu（约瑟夫、约瑟夫环）问题：</strong></p> <p>设编号为1，2，… n的n个人围坐一圈，约定编号为k（1&lt;=k&lt;=n）的人从1开始报数，数到m 的那个人出列，它的下一位又从1开始报数，数到m的那个人又出列，依次类推，直到所有人出列为止，由此产生一个出队编号的序列。</p> <p><strong>提示：</strong></p> <p>用一个不带头结点的循环链表来处理Josephu 问题：先构成一个有n个结点的单循环链表，然后由k结点起从1开始计数，计到m时，对应结点从链表中删除，然后再从被删除结点的下一个结点又从1开始计数，直到最后一个结点从链表中删除算法结束。</p> <p>2.单向环形链表示意图</p> <p><img decoding="async" alt="" class="has" src="http://img.555519.xyz/uploads/20230108/50cd9f19dce07f7b683a1ba51a65ad87.jpg"></p> <p>3.约瑟夫问题的示意图</p> <p><img fetchpriority="high" decoding="async" alt="" class="has" height="482" src="http://img.555519.xyz/uploads/20230108/11d8f31c72fa699574d637c4207e21b2.jpg"></p> <p>4.创建环形链表的思路</p> <p><img decoding="async" alt="" class="has" height="214" src="http://img.555519.xyz/uploads/20230108/e6f7c54e56eea936fdcc1273ba2e9dc9.jpg"></p> <p>1）构建一个单向的环形链表思路</p> <ul> <li>先创建第一个节点，让first指向该节点，并形成环形</li> <li>后面当我们每创建一个新的节点，就把该节点加入到已有的环形链表中即可。</li> </ul> <p>2）遍历环形链表</p> <ul> <li>先让一个辅助指针（变量）curBoy，指向first节点</li> <li>然后通过一个while循环遍历该环形链表即可，curBoy.next == first结束</li> </ul> <p>5. 约瑟夫问题小孩出圈的思路分析</p> <p><img decoding="async" alt="" class="has" height="425" src="http://img.555519.xyz/uploads/20230108/6e8050ec6a82ab63210689c6f61b11e7.jpg"></p> <p>6.代码实现</p> <div> <pre><code class="language-html hljs">public class Josepfu {      public static void main(String[] args) {         // 测试一把看看构建环形链表，和遍历是否ok         CircleSingleLinkedList circleSingleLinkedList = new CircleSingleLinkedList();         circleSingleLinkedList.addBoy(125);// 加入5个小孩节点         circleSingleLinkedList.showBoy();                  //测试一把小孩出圈是否正确         circleSingleLinkedList.countBoy(10, 20, 125); // 2-&gt;4-&gt;1-&gt;5-&gt;3         //String str = "7*2*2-5+1-5+3-3";     }  }  // 创建一个环形的单向链表 class CircleSingleLinkedList {     // 创建一个first节点,当前没有编号     private Boy first = null;      // 添加小孩节点，构建成一个环形的链表     public void addBoy(int nums) {         // nums 做一个数据校验         if (nums &lt; 1) {             System.out.println("nums的值不正确");             return;         }         Boy curBoy = null; // 辅助指针，帮助构建环形链表         // 使用for来创建我们的环形链表         for (int i = 1; i &lt;= nums; i++) {             // 根据编号，创建小孩节点             Boy boy = new Boy(i);             // 如果是第一个小孩             if (i == 1) {                 first = boy;                 first.setNext(first); // 构成环                 curBoy = first; // 让curBoy指向第一个小孩             } else {                 curBoy.setNext(boy);//                 boy.setNext(first);//                 curBoy = boy;             }         }     }      // 遍历当前的环形链表     public void showBoy() {         // 判断链表是否为空         if (first == null) {             System.out.println("没有任何小孩~~");             return;         }         // 因为first不能动，因此我们仍然使用一个辅助指针完成遍历         Boy curBoy = first;         while (true) {             System.out.printf("小孩的编号 %d \n", curBoy.getNo());             if (curBoy.getNext() == first) {// 说明已经遍历完毕                 break;             }             curBoy = curBoy.getNext(); // curBoy后移         }     }      // 根据用户的输入，计算出小孩出圈的顺序     /**      *       * @param startNo      *            表示从第几个小孩开始数数      * @param countNum      *            表示数几下      * @param nums      *            表示最初有多少小孩在圈中      */     public void countBoy(int startNo, int countNum, int nums) {         // 先对数据进行校验         if (first == null || startNo &lt; 1 || startNo &gt; nums) {             System.out.println("参数输入有误， 请重新输入");             return;         }         // 创建要给辅助指针,帮助完成小孩出圈         Boy helper = first;         // 需求创建一个辅助指针(变量) helper , 事先应该指向环形链表的最后这个节点         while (true) {             if (helper.getNext() == first) { // 说明helper指向最后小孩节点                 break;             }             helper = helper.getNext();         }         //小孩报数前，先让 first 和  helper 移动 k - 1次         for(int j = 0; j &lt; startNo - 1; j++) {             first = first.getNext();             helper = helper.getNext();         }         //当小孩报数时，让first 和 helper 指针同时 的移动  m  - 1 次, 然后出圈         //这里是一个循环操作，知道圈中只有一个节点         while(true) {             if(helper == first) { //说明圈中只有一个节点                 break;             }             //让 first 和 helper 指针同时 的移动 countNum - 1             for(int j = 0; j &lt; countNum - 1; j++) {                 first = first.getNext();                 helper = helper.getNext();             }             //这时first指向的节点，就是要出圈的小孩节点             System.out.printf("小孩%d出圈\n", first.getNo());             //这时将first指向的小孩节点出圈             first = first.getNext();             helper.setNext(first); //                      }         System.out.printf("最后留在圈中的小孩编号%d \n", first.getNo());              } }  // 创建一个Boy类，表示一个节点 class Boy {     private int no;// 编号     private Boy next; // 指向下一个节点,默认null      public Boy(int no) {         this.no = no;     }      public int getNo() {         return no;     }      public void setNo(int no) {         this.no = no;     }      public Boy getNext() {         return next;     }      public void setNext(Boy next) {         this.next = next;     } }</code></pre> </p></div> <p>&nbsp;</p> </div></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-42266.htm">STM8S103F3P6 的开发, 烧录和Debug笔记 &#8211; Milton _在线工具</a></p>
+                                        <p>下一个：<a href="/news/article-42766.htm">动物防疫所电话 动物防疫所电话号码</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-22717.htm" title="动物疫苗打到人身上有事吗视频讲解（动物疫苗打到人身上有事吗视频讲解下载）">动物疫苗打到人身上有事吗视频讲解（动物疫苗打到人身上有事吗视频讲解下载）</a></li>
+                        <li class="py-2"><a href="/news/article-24571.htm" title="素数最多为n">素数最多为n</a></li>
+                        <li class="py-2"><a href="/news/article-26884.htm" title="宠物粮价格表（宠物粮***）">宠物粮价格表（宠物粮***）</a></li>
+                        <li class="py-2"><a href="/news/article-30629.htm" title="宠物店利润大吗（宠物店盈利模式是什么）">宠物店利润大吗（宠物店盈利模式是什么）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-28-free-vless-node.htm" title="「10月28日」最高速度20.7M/S，2024年Stash Github每天更新免费机场订阅节点链接">「10月28日」最高速度20.7M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-23-vless-node-share.htm" title="「12月23日」最高速度22.6M/S，2024年Stash Github每天更新免费机场订阅节点链接">「12月23日」最高速度22.6M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-35106.htm" title="如何在MySQL DATEDIFF()函数中使用两位数的年份值？">如何在MySQL DATEDIFF()函数中使用两位数的年份值？</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-9-today-vless-node.htm" title="「11月9日」最高速度20.3M/S，2024年Stash Github每天更新免费机场订阅节点链接">「11月9日」最高速度20.3M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-2-today-vless-node.htm" title="「12月2日」最高速度19.3M/S，2024年Stash Github每天更新免费机场订阅节点链接">「12月2日」最高速度19.3M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-11-vless-node.htm" title="「10月11日」最高速度21.7M/S，2024年Stash Github每天更新免费机场订阅节点链接">「10月11日」最高速度21.7M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fruits Shop End-->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3 mb-md-0">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <span class="text-light">Stash Github机场分享官网 版权所有 Powered by WordPress</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/stashgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
