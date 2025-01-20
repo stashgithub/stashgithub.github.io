@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://stashgithub.github.io/news/article-43263.htm" />
+    <meta charset="utf-8">
+    <title>Citus 分布式 PostgreSQL 集群 &#8211; SQL Reference(查询分布式表 SQL)</title>
+        <meta name="description" content="如前几节所述，Citus 是一个扩展，它扩展了最新的PostgreSQL 以进行分布式执行。这意味着您可以在Citus 协调器上使用标准 PostgreSQLSELECT 查询进行查询。Citus 将" />
+        <link rel="icon" href="/assets/website/img/stashgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Stash Github机场分享官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://stashgithub.github.io/news/article-43263.htm" />
+    <meta property="og:site_name" content="Stash Github机场分享官网" />
+    <meta property="og:title" content="Citus 分布式 PostgreSQL 集群 &#8211; SQL Reference(查询分布式表 SQL)" />
+    <meta property="og:image" content="https://stashgithub.github.io/uploads/20240903-1/5a30f8aeaec7802a2b4e0aa13fef44ae.webp" />
+        <meta property="og:release_date" content="2025-01-20T07:10:44" />
+    <meta property="og:updated_time" content="2025-01-20T07:10:44" />
+        <meta property="og:description" content="如前几节所述，Citus 是一个扩展，它扩展了最新的PostgreSQL 以进行分布式执行。这意味着您可以在Citus 协调器上使用标准 PostgreSQLSELECT 查询进行查询。Citus 将" />
+        
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/assets/website/js/frontend/stashgithub/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/stashgithub/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/stashgithub/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/stashgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNXJ21P00N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NNXJ21P00N');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+        <div class="container topbar bg-primary d-none d-lg-block">
+            <div class="d-flex justify-content-between">
+                
+            </div>
+        </div>
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                                <a href="/" class="navbar-brand">
+                    <span class="text-primary display-6">Stash Github</span>
+                </a>
+                                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                                <a href="#" class="nav-item nav-link">关于</a>
+                        <a href="#" class="nav-item nav-link">联系</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">Citus 分布式 PostgreSQL 集群 &#8211; SQL Reference(查询分布式表 SQL)</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+            <li class="breadcrumb-item active text-white">正文</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+    <!-- Fruits Shop Start-->
+    <div class="container-fluid fruite py-5">
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="StashNode免费订阅官网" data-url="https://stashnode.github.io">
+                  				  				  				<p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/c17cc09c29c06ef011f60be5ec5d00ed.jpg" alt="Citus 分布式 PostgreSQL 集群 - SQL Reference(查询分布式表 SQL)"></p> <p>如前几节所述，<code>Citus</code> 是一个扩展，它扩展了最新的<code>PostgreSQL</code> 以进行分布式执行。这意味着您可以在<code>Citus</code> 协调器上使用标准 PostgreSQL<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://www.postgresql.org/docs/current/static/sql-select.html"  target="_blank" rel="nofollow">SELECT</a> 查询进行查询。<code>Citus</code> 将并行化涉及复杂选择、分组和排序以及<code>JOIN</code> 的<code>SELECT</code> 查询，以加快查询性能。在高层次上，<code>Citus</code> 将<code>SELECT</code> 查询划分为更小的查询片段，将这些查询片段分配给<code>worker</code>，监督他们的执行，合并他们的结果（如果需要，对它们进行排序），并将最终结果返回给用户。</p> <ul> <li><small>SELECT</small> <ul> <li><small><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://www.postgresql.org/docs/current/static/sql-select.html"  target="_blank" rel="nofollow">http://www.postgresql.org/docs/current/static/sql-select.html</a></small></li> </ul> </li> </ul> <p>在以下部分中，我们将讨论您可以使用<code>Citus</code> 运行的不同类型的查询。</p> <h2 id="聚合函数">聚合函数</h2> <p><code>Citus</code> 支持和并行化<code>PostgreSQL</code> 支持的大多数聚合函数，包括自定义用户定义的聚合。 聚合使用以下三种方法之一执行，优先顺序如下：</p> <ol> <li> <p>当聚合按表的分布列分组时，<code>Citus</code> 可以将整个查询的执行下推到每个<code>worker</code>。 在这种情况下支持所有聚合，并在<code>worker</code> 上并行执行。（任何正在使用的自定义聚合都必须安装在<code>worker</code> 身上。）</p> </li> <li> <p>当聚合没有按表的分布列分组时，<code>Citus</code> 仍然可以根据具体情况进行优化。<code>Citus</code> 对<code>sum()</code>、<code>avg()</code> 和<code>count(distinct)</code> 等某些聚合有内部规则，允许它重写查询以对<code>worker</code> 进行部分聚合。例如，为了计算平均值，<code>Citus</code> 从每个<code>worker</code> 那里获得一个总和和一个计数，然后<code>coordinator</code> 节点计算最终的平均值。特殊情况聚合的完整列表：</p> <blockquote> <p>avg, min, max, sum, count, array_agg, jsonb_agg, jsonb_object_agg, json_agg, json_object_agg, bit_and, bit_or, bool_and, bool_or, every, hll_add_agg, hll_union_agg, topn_add_agg, topn_union_agg, any_value, var_pop(float4), var_pop(float8), var_samp(float4), var_samp(float8), variance(float4), variance(float8) stddev_pop(float4), stddev_pop(float8), stddev_samp(float4), stddev_samp(float8) stddev(float4), stddev(float8) tdigest(double precision, int), tdigest_percentile(double precision, int, double precision), tdigest_percentile(double precision, int, double precision[]), tdigest_percentile(tdigest, double precision), tdigest_percentile(tdigest, double precision[]), tdigest_percentile_of(double precision, int, double precision), tdigest_percentile_of(double precision, int, double precision[]), tdigest_percentile_of(tdigest, double precision), tdigest_percentile_of(tdigest, double precision[])</p> </blockquote> </li> <li> <p>最后的手段：从<code>worker</code> 中提取所有行并在<code>coordinator</code> 节点上执行聚合。 如果聚合未在分布列上分组，并且不是预定义的特殊情况之一，则<code>Citus</code> 会退回到这种方法。 它会导致网络开销，并且如果要聚合的数据集太大，可能会耗尽<code>coordinator</code> 的资源。（可以禁用此回退，见下文。）</p> </li> </ol> <p>请注意，查询中的微小更改可能会改变执行模式，从而导致潜在的令人惊讶的低效率。例如，按非分布列分组的<code>sum(x)</code> 可以使用分布式执行，而<code>sum(distinct x)</code> 必须将整个输入记录集拉到<code>coordinator</code>。</p> <pre><code class="language-sql">SELECT sum(value1), sum(distinct value2) FROM distributed_table;</code></pre> <p>为避免意外将数据拉到<code>coordinator</code>，可以设置一个<code>GUC</code>：</p> <pre><code class="language-sql">SET citus.coordinator_aggregation_strategy TO 'disabled';</code></pre> <p>请注意，禁用<code>coordinator</code> 聚合策略将完全阻止<code>“类型三”(最后的手段)</code> 聚合查询工作。</p> <h3 id="count-distinct-聚合">Count (Distinct) 聚合</h3> <p><code>Citus</code> 以多种方式支持<code>count(distinct)</code> 聚合。<br /> 如果<code>count(distinct)</code> 聚合在分布列上，<code>Citus</code> 可以直接将查询下推给<code>worker</code>。<br /> 如果不是，<code>Citus</code> 对每个<code>worker</code> 运行<code>select distinct</code> 语句，<br /> 并将列表返回给<code>coordinator</code>，从中获取最终计数。</p> <p>请注意，当<code>worker</code> 拥有更多<code>distinct</code> 项时，传输此数据会变得更慢。<br /> 对于包含多个<code>count(distinct)</code> 聚合的查询尤其如此，例如：</p> <pre><code class="language-sql">-- multiple distinct counts in one query tend to be slow SELECT count(distinct a), count(distinct b), count(distinct c) FROM table_abc;</code></pre> <p>对于这类查询，<code>worker</code> 上产生的<code>select distinct</code> 语句本质上会产生要传输到<code>coordinator</code> 的行的<code>cross-product(叉积)</code>。</p> <p>为了提高性能，您可以选择进行近似计数。请按照以下步骤操作：</p> <ol> <li>在所有<code>PostgreSQL</code> 实例（<code>coordinator</code> 和所有<code>worker</code>）上下载并安装<code>hll</code> 扩展。有关获取扩展的详细信息，请访问<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/citusdata/postgresql-hll"  target="_blank" rel="nofollow">PostgreSQL hll github</a> 存储库。 <ul> <li><small><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/citusdata/postgresql-hll"  target="_blank" rel="nofollow">https://github.com/citusdata/postgresql-hll</a></small></li> </ul> </li> <li>只需从<code>coordinator</code> 运行以下命令，即可在所有<code>PostgreSQL</code> 实例上创建<code>hll</code> 扩展 <pre><code class="language-sql">CREATE EXTENSION hll;</code></pre> </li> <li>通过设置<code>Citus.count_distinct_error_rate</code> 配置值启用计数不同的近似值。 此配置设置的较低值预计会提供更准确的结果，但需要更多时间进行计算。我们建议将其设置为<code>0.005</code>。 <pre><code class="language-sql">SET citus.count_distinct_error_rate to 0.005;</code></pre> <p>在这一步之后，<code>count(distinct)</code> 聚合会自动切换到使用<code>HLL</code>，而无需对您的查询进行任何更改。 您应该能够在表的任何列上运行近似<code>count distinct</code> 查询。</li> </ol> <h4 id="hyperloglog-列">HyperLogLog 列</h4> <p>某些用户已经将他们的数据存储为<code>HLL</code> 列。在这种情况下，他们可以通过调用<code>hll_union_agg(hll_column)</code> 动态汇总这些数据。</p> <h3 id="估计-top-n-个项">估计 Top N 个项</h3> <p>通过应用<code>count</code>、<code>sort</code> 和<code>limit</code> 来计算集合中的前<code>n</code> 个元素很简单。 然而，随着数据大小的增加，这种方法变得缓慢且资源密集。使用近似值更有效。</p> <p><code>Postgres</code> 的开源<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/citusdata/postgresql-topn"  target="_blank" rel="nofollow">TopN 扩展</a>可以快速获得<code>“top-n”</code> 查询的近似结果。该扩展将<code>top</code> 值具体化为<code>JSON</code> 数据类型。<code>TopN</code> 可以增量更新这些<code>top</code> 值，或者在不同的时间间隔内按需合并它们。</p> <ul> <li><small>TopN 扩展</small> <ul> <li><small><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/citusdata/postgresql-topn"  target="_blank" rel="nofollow">https://github.com/citusdata/postgresql-topn</a></small></li> </ul> </li> </ul> <h4 id="基本操作">基本操作</h4> <p>在查看<code>TopN</code> 的实际示例之前，让我们看看它的一些原始操作是如何工作的。首先<code>topn_add</code> 更新一个<code>JSON</code> 对象，其中包含一个<code>key</code> 被看到的次数：</p> <pre><code class="language-sql">select topn_add('{}', 'a'); -- =&gt; {"a": 1}  -- record the sighting of another "a" select topn_add(topn_add('{}', 'a'), 'a'); -- =&gt; {"a": 2}</code></pre> <p>该扩展还提供聚合以扫描多个值：</p> <pre><code class="language-sql">-- for normal_rand create extension tablefunc;  -- count values from a normal distribution SELECT topn_add_agg(floor(abs(i))::text)   FROM normal_rand(1000, 5, 0.7) i; -- =&gt; {"2": 1, "3": 74, "4": 420, "5": 425, "6": 77, "7": 3}</code></pre> <p>如果<code>distinct</code> 值的数量超过阈值，则聚合会丢弃那些最不常见的信息。<br /> 这可以控制空间使用。阈值可以由<code>topn.number_of_counters</code> GUC 控制。它的默认值为<code>1000</code>。</p> <h4 id="现实例子">现实例子</h4> <p>现在来看一个更现实的例子，说明<code>TopN</code> 在实践中是如何工作的。让我们提取<code>2000</code> 年的亚马逊产品评论，并使用<code>TopN</code> 快速查询。首先下载数据集：</p> <pre><code class="language-sh">curl -L https://examples.citusdata.com/customer_reviews_2000.csv.gz | \   gunzip &gt; reviews.csv</code></pre> <p>接下来，将其摄取到分布式表中：</p> <pre><code class="language-sql">CREATE TABLE customer_reviews (     customer_id TEXT,     review_date DATE,     review_rating INTEGER,     review_votes INTEGER,     review_helpful_votes INTEGER,     product_id CHAR(10),     product_title TEXT,     product_sales_rank BIGINT,     product_group TEXT,     product_category TEXT,     product_subcategory TEXT,     similar_product_ids CHAR(10)[] );  SELECT create_distributed_table('customer_reviews', 'product_id');  \COPY customer_reviews FROM 'reviews.csv' WITH CSV</code></pre> <p>接下来我们将添加扩展，创建一个目标表来存储<code>TopN</code> 生成的<code>json</code> 数据，并应用我们之前看到的<code>topn_add_agg</code> 函数。</p> <pre><code class="language-sql">-- run below command from coordinator, it will be propagated to the worker nodes as well CREATE EXTENSION topn;  -- a table to materialize the daily aggregate CREATE TABLE reviews_by_day (   review_date date unique,   agg_data jsonb );  SELECT create_reference_table('reviews_by_day');  -- materialize how many reviews each product got per day per customer INSERT INTO reviews_by_day   SELECT review_date, topn_add_agg(product_id)   FROM customer_reviews   GROUP BY review_date;</code></pre> <p>现在，我们无需在<code>customer_reviews</code> 上编写复杂的窗口函数，只需将<code>TopN</code> 应用于<code>reviews_by_day</code>。 例如，以下查询查找前五天中每一天最常被评论的产品：</p> <pre><code class="language-sql">SELECT review_date, (topn(agg_data, 1)).* FROM reviews_by_day ORDER BY review_date LIMIT 5;</code></pre> <pre><code>┌─────────────┬────────────┬───────────┐ │ review_date │    item    │ frequency │ ├─────────────┼────────────┼───────────┤ │ 2000-01-01  │ 0939173344 │        12 │ │ 2000-01-02  │ B000050XY8 │        11 │ │ 2000-01-03  │ 0375404368 │        12 │ │ 2000-01-04  │ 0375408738 │        14 │ │ 2000-01-05  │ B00000J7J4 │        17 │ └─────────────┴────────────┴───────────┘</code></pre> <p><code>TopN</code> 创建的<code>json</code> 字段可以与<code>topn_union</code> 和<code>topn_union_agg</code> 合并。 我们可以使用后者来合并整个第一个月的数据，并列出该期间最受好评的五个产品。</p> <pre><code class="language-sql">SELECT (topn(topn_union_agg(agg_data), 5)).* FROM reviews_by_day WHERE review_date &gt;= '2000-01-01' AND review_date &lt; '2000-02-01' ORDER BY 2 DESC;</code></pre> <pre><code>┌────────────┬───────────┐ │    item    │ frequency │ ├────────────┼───────────┤ │ 0375404368 │       217 │ │ 0345417623 │       217 │ │ 0375404376 │       217 │ │ 0375408738 │       217 │ │ 043936213X │       204 │ └────────────┴───────────┘</code></pre> <p>有关更多详细信息和示例，请参阅<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/citusdata/postgresql-topn/blob/master/README.md"  target="_blank" rel="nofollow"><code>TopN readme</code></a>。</p> <h3 id="百分位计算">百分位计算</h3> <p>在大量行上找到精确的百分位数可能会非常昂贵，<br /> 因为所有行都必须转移到<code>coordinator</code> 以进行最终排序和处理。<br /> 另一方面，找到近似值可以使用所谓的<code>sketch</code> 算法在<code>worker</code> 节点上并行完成。<code>coordinator</code> 节点然后将压缩摘要组合到最终结果中，而不是读取完整的行。</p> <p>一种流行的百分位数<code>sketch</code> 算法使用称为<code>t-digest</code> 的压缩数据结构，可在<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/tvondra/tdigest"  target="_blank" rel="nofollow">tdigest 扩展</a>中用于<code>PostgreSQL</code>。<code>Citus</code> 集成了对此扩展的支持。</p> <p>以下是在<code>Citus</code> 中使用<code>t-digest</code> 的方法：</p> <ol> <li>在所有<code>PostgreSQL</code> 节点（<code>coordinator</code> 和所有<code>worker</code>）上下载并安装<code>tdigest</code> 扩展。<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/tvondra/tdigest"  target="_blank" rel="nofollow">tdigest 扩展 github 存储库</a>有安装说明。 <ul> <li><small><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/tvondra/tdigest"  target="_blank" rel="nofollow">https://github.com/tvondra/tdigest</a></small></li> </ul> </li> <li>在数据库中创建<code>tdigest</code> 扩展。在<code>coordinator</code> 上运行以下命令： <pre><code class="language-sql">CREATE EXTENSION tdigest;</code></pre> <p><code>coordinator</code> 也会将命令传播给<code>worker</code>。</li> </ol> <p>当在查询中使用扩展中定义的任何聚合时，<code>Citus</code> 将重写查询以将部分<code>tdigest</code> 计算下推到适用的<code>worker</code>。</p> <p><code>T-digest</code> 精度可以通过传递给聚合的<code>compression</code> 参数来控制。<br /> 权衡是准确性与<code>worker</code> 和<code>coordinator</code> 之间共享的数据量。<br /> 有关如何在<code>tdigest</code> 扩展中使用聚合的完整说明，请查看官方<code>tdigest</code> github 存储库中的文档。</p> <h2 id="限制下推">限制下推</h2> <p><code>Citus</code> 还尽可能将限制条款下推到<code>worker</code> 的分片，以最大限度地减少跨网络传输的数据量。</p> <p>但是，在某些情况下，带有<code>LIMIT</code> 子句的<code>SELECT</code> 查询可能需要从每个分片中获取所有行以生成准确的结果。 例如，如果查询需要按聚合列排序，则需要所有分片中该列的结果来确定最终聚合值。 由于大量的网络数据传输，这会降低<code>LIMIT</code> 子句的性能。 在这种情况下，如果近似值会产生有意义的结果，<code>Citus</code> 提供了一种用于网络高效近似<code>LIMIT</code> 子句的选项。</p> <p><code>LIMIT</code> 近似值默认禁用，可以通过设置配置参数<code>citus.limit_clause_row_fetch_count</code> 来启用。<br /> 在这个配置值的基础上，<code>Citus</code> 会限制每个任务返回的行数，用于在<code>coordinator</code> 上进行聚合。 由于这个<code>limit</code>，最终结果可能是近似的。增加此<code>limit</code> 将提高最终结果的准确性，同时仍提供从<code>worker</code> 中提取的行数的上限。</p> <pre><code class="language-sql">SET citus.limit_clause_row_fetch_count to 10000;</code></pre> <h2 id="分布式表的视图">分布式表的视图</h2> <p><code>Citus</code> 支持分布式表的所有视图。有关视图的语法和功能的概述，请参阅<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.postgresql.org/docs/current/static/sql-createview.html"  target="_blank" rel="nofollow">CREATE VIEW</a> 的<code>PostgreSQL</code> 文档。</p> <ul> <li><small><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.postgresql.org/docs/current/static/sql-createview.html"  target="_blank" rel="nofollow">https://www.postgresql.org/docs/current/static/sql-createview.html</a></small></li> </ul> <p>请注意，某些视图导致查询计划的效率低于其他视图。<br /> 有关检测和改进不良视图性能的更多信息，请参阅<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.citusdata.com/en/v11.0-beta/performance/performance_tuning.html#subquery-perf"  target="_blank" rel="nofollow">子查询/CTE 网络开销</a>。<br /> （视图在内部被视为子查询。）</p> <ul> <li><small><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.citusdata.com/en/v11.0-beta/performance/performance_tuning.html#subquery-perf"  target="_blank" rel="nofollow">https://docs.citusdata.com/en/v11.0-beta/performance/performance_tuning.html#subquery-perf</a></small></li> </ul> <p><code>Citus</code> 也支持物化视图，并将它们作为本地表存储在<code>coordinator</code> 节点上。</p> <h2 id="连接join">连接(Join)</h2> <p><code>Citus</code> 支持任意数量的表之间的<code>equi-JOIN</code>，无论它们的大小和分布方法如何。<br /> 查询计划器根据表的分布方式选择最佳连接方法和<code>join</code> 顺序。<br /> 它评估几个可能的<code>join</code> 顺序并创建一个<code>join</code> 计划，该计划需要通过网络传输最少的数据。</p> <h3 id="共置连接">共置连接</h3> <p>当两个表<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.citusdata.com/en/v11.0-beta/sharding/data_modeling.html#colocation"  target="_blank" rel="nofollow">共置</a>时，它们可以在它们的公共分布列上有效地<code>join</code>。<code>co-located join(共置连接)</code> 是<code>join</code> 两个大型分布式表的最有效方式。</p> <ul> <li><small><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.citusdata.com/en/v11.0-beta/sharding/data_modeling.html#colocation"  target="_blank" rel="nofollow">https://docs.citusdata.com/en/v11.0-beta/sharding/data_modeling.html#colocation</a></small></li> </ul> <blockquote> <p>注意</p> <p><small><br /> 确保表分布到相同数量的分片中，并且每个表的分布列具有完全匹配的类型。尝试加入类型略有不同的列（例如 `int` 和 `bigint`）可能会导致问题。</small></p></blockquote> <h3 id="引用表连接">引用表连接</h3> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.citusdata.com/en/v11.0-beta/develop/reference_ddl.html#reference-tables"  target="_blank" rel="nofollow">引用表</a>可以用作<code>“维度”</code>表，<br /> 以有效地与大型<code>“事实”</code>表连接。因为引用表在所有<code>worker</code> 上完全复制，<br /> 所以<code>reference join</code> 可以分解为每个<code>worker</code> 上的本地连接并并行执行。<br /><code>reference join</code> 就像一个更灵活的<code>co-located join</code> 版本，<br /> 因为引用表没有分布在任何特定的列上，并且可以自由地<code>join</code> 到它们的任何列上。</p> <ul> <li><small><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.citusdata.com/en/v11.0-beta/develop/reference_ddl.html#reference-tables"  target="_blank" rel="nofollow">https://docs.citusdata.com/en/v11.0-beta/develop/reference_ddl.html#reference-tables</a></small></li> </ul> <p>引用表也可以与<code>coordinator</code> 节点本地的表连接。</p> <h3 id="重新分区连接">重新分区连接</h3> <p>在某些情况下，您可能需要在除分布列之外的列上连接两个表。<br /> 对于这种情况，<code>Citus</code> 还允许通过动态重新分区查询的表来连接非分布<code>key</code> 列。</p> <p>在这种情况下，要分区的表由查询优化器根据分布列、连接键和表的大小来确定。<br /> 使用重新分区的表，可以确保只有相关的分片对相互连接，从而大大减少了通过网络传输的数据量。</p> <p>通常，<code>co-located join</code> 比<code>repartition join</code> 更有效，因为<code>repartition join</code> 需要对数据进行混洗。<br /> 因此，您应该尽可能通过<code>common join</code> 键来分布表。</p> <h2 id="更多">更多</h2> <ol> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://mp.weixin.qq.com/s/SElF3WkEBfrPub72OjlQJg"  target="_blank" rel="nofollow">Citus 分布式 PostgreSQL 集群 - SQL Reference(创建和修改分布式表 DDL)</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://mp.weixin.qq.com/s/yfBI9vgDj4TTmML2BOjlzw"  target="_blank" rel="nofollow">Citus 分布式 PostgreSQL 集群 - SQL Reference(摄取、修改数据 DML)</a></li> </ol> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-42766.htm">动物防疫所电话 动物防疫所电话号码</a></p>
+                                        <p>下一个：<a href="/news/article-43264.htm">动物疫苗生产厂家排名榜最新名单 动物疫苗生产厂家排名榜最新名单图片</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-10-8-vless-windows.htm" title="「10月8日」最高速度22M/S，2024年Stash Github每天更新免费机场订阅节点链接">「10月8日」最高速度22M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-32057.htm" title="动物防疫站打狂犬疫苗要钱吗 动物防疫站打狂犬疫苗要钱吗多少钱">动物防疫站打狂犬疫苗要钱吗 动物防疫站打狂犬疫苗要钱吗多少钱</a></li>
+                        <li class="py-2"><a href="/news/article-20887.htm" title="Redis的内存淘汰机制和删除策略">Redis的内存淘汰机制和删除策略</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-30-today-vless-node.htm" title="「12月30日」最高速度21.9M/S，2024年Stash Github每天更新免费机场订阅节点链接">「12月30日」最高速度21.9M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-11-today-vless-node.htm" title="「11月11日」最高速度22.7M/S，2024年Stash Github每天更新免费机场订阅节点链接">「11月11日」最高速度22.7M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-14-node-share-links.htm" title="「10月14日」最高速度18.2M/S，2024年Stash Github每天更新免费机场订阅节点链接">「10月14日」最高速度18.2M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-22254.htm" title="厦门有没有宠物领养中心 厦门有没有宠物领养中心啊">厦门有没有宠物领养中心 厦门有没有宠物领养中心啊</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-14-vless-node-github.htm" title="「11月14日」最高速度20.3M/S，2024年Stash Github每天更新免费机场订阅节点链接">「11月14日」最高速度20.3M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-24096.htm" title="宠物医师网官网（宠物医师论坛）">宠物医师网官网（宠物医师论坛）</a></li>
+                        <li class="py-2"><a href="/news/article-22716.htm" title="宠物寄养合同协议书（宠物寄养合同协议书模板）">宠物寄养合同协议书（宠物寄养合同协议书模板）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fruits Shop End-->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3 mb-md-0">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <span class="text-light">Stash Github机场分享官网 版权所有 Powered by WordPress</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/stashgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
