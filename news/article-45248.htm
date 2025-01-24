@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://stashgithub.github.io/news/article-45248.htm" />
+    <meta charset="utf-8">
+    <title>如何在idea上部署tomcat&amp;项目</title>
+        <meta name="description" content="撰文环境  开发工具：IDEA enterprise-2019.1 tomcat版本：9.0.16 Java环境： jdk8(默认)、jdk11 系统环境：Windows10专业版(1809)  设置" />
+        <link rel="icon" href="/assets/website/img/stashgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Stash Github机场分享官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://stashgithub.github.io/news/article-45248.htm" />
+    <meta property="og:site_name" content="Stash Github机场分享官网" />
+    <meta property="og:title" content="如何在idea上部署tomcat&amp;项目" />
+    <meta property="og:image" content="https://stashgithub.github.io/uploads/20240903-1/2349b67d05b32c4b514099101832ee0e.webp" />
+        <meta property="og:release_date" content="2025-01-24T09:26:08" />
+    <meta property="og:updated_time" content="2025-01-24T09:26:08" />
+        <meta property="og:description" content="撰文环境  开发工具：IDEA enterprise-2019.1 tomcat版本：9.0.16 Java环境： jdk8(默认)、jdk11 系统环境：Windows10专业版(1809)  设置" />
+        
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="如何在idea上部署tomcat&amp;项目">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/assets/website/js/frontend/stashgithub/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/stashgithub/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/stashgithub/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/stashgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNXJ21P00N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NNXJ21P00N');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+        <div class="container topbar bg-primary d-none d-lg-block">
+            <div class="d-flex justify-content-between">
+                
+            </div>
+        </div>
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                                <a href="/" class="navbar-brand">
+                    <span class="text-primary display-6">Stash Github</span>
+                </a>
+                                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                                <a href="#" class="nav-item nav-link">关于</a>
+                        <a href="#" class="nav-item nav-link">联系</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">如何在idea上部署tomcat&amp;项目</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+            <li class="breadcrumb-item active text-white">正文</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+    <!-- Fruits Shop Start-->
+    <div class="container-fluid fruite py-5">
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="StashNode免费订阅官网" data-url="https://stashnode.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p id="main-toc"><span style="font-size: 1.5em;">撰文环境</span></p> <ol> <li>开发工具：IDEA enterprise-2019.1</li> <li>tomcat版本：9.0.16</li> <li>Java环境： jdk8(默认)、jdk11</li> <li>系统环境：Windows10专业版(1809)</li> </ol> <h2 id="%E8%AE%BE%E7%BD%AE%E8%A6%81%E7%82%B9">设置要点</h2> <ol> <li>官网下载tomcat软件：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://tomcat.apache.org/"  rel="nofollow">tomcat官方网站链接</a></li> <li>配置tomcat到电脑上：自行搜索，这里不再做赘述</li> <li>设置模板run-&gt;edit configurations-&gt;templates-&gt;tomcat Server-&gt;local-&gt;server</li> <li>部署模板run-&gt;edit configurations-&gt;左上‘+’号-&gt;tomcat Server-&gt;local</li> <li>部署项目run-&gt;edit configuractions-&gt;(你设置的tomcat服务名称)-&gt;Deployment-&gt;右上部分'+'号部署项目</li> </ol> <h2 id="%E7%90%86%E8%A7%A3%E8%A6%81%E7%82%B9">理解要点</h2> <ol> <li>idea需要先设置模板，然后再进行添加项目</li> <li>application无法运行或者提示找不到xxxx大多是因为环境配置错误</li> <li>idea与eclipse的项目管理模式不一样：eclipse是统一管理，而idea是为每个项目独立管理。比如：如果你建立了一个新项目，那么这个项目的所有设置跟之前的项目设置没有任何关联，新项目的设置一切都是初始化的。而eclipse是对项目实行统一管理，即：如果你创建了一个新的项目，新项目的设置与之前的项目配置之间有公用的设置，即存在设置交集。</li> </ol> <h2 id="%E6%AD%A3%E6%96%87%E5%BC%80%E5%A7%8B">正文开始</h2> <p style="text-indent:50px;">作为一个才入门idea不久的初学者，在工具使用上还是遇到了不少坑，同时也填了不少坑，就部署上面也花费了不少时间，就好像换了一个工具就无法写代码一样的难受。。。本文将详细解析博主在部署路上曾遇到的各种坑，希望能帮助到才入门的新手</p> </h1> <h2 id="1.%E8%AE%BE%E7%BD%AEtomcat%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E4%B8%80">1.设置tomcat模板方法一</h2> <h3 id="1.1.%E9%80%89%E6%8B%A9%E8%8F%9C%E5%8D%95%E6%A0%8F%E7%9A%84run-%3Eedit%20configurations">1.1.选择菜单栏的run-&gt;edit configurations</h3> <div style="text-align:center;"> <figure class="image"><img alt="run-/>edit confgrations" src="http://img.555519.xyz/uploads3/20220604/9e1c172fb37e3f082216f5d6fc18b402.jpg"><figcaption>    run-&gt;edit confgrations</figcaption></figure> </div> <h3 id="1.2.%E9%80%89%E6%8B%A9templates">1.2.选择templates</h3> <div style="text-align:center;"> <figure class="image"><img decoding="async" alt="templtes" src="http://img.555519.xyz/uploads3/20220604/940352e792326be93b81c86652b870a6.jpg"><figcaption>    templates</figcaption></figure> </div> <h3 id="1.3.%E9%80%89%E6%8B%A9tomcat%20server%20-%3Elocal%20-%3E%20server%20-%3E%20configure">1.3.选择tomcat server -&gt;local -&gt; server -&gt; configure</h3> <div style="text-align:center;"> <figure class="image"><img alt="tomcat serwver -/> local -> server->configure" src="http://img.555519.xyz/uploads3/20220604/581332f709b194f468a7c9865808e18a.jpg"><figcaption>    tomcat serwver -&gt; local -&gt; server-&gt;configure</figcaption></figure> </div> <h3 id="1.4.%E9%80%89%E6%8B%A9tomcat%E7%9A%84'%E5%AE%B6'%E7%9B%AE%E5%BD%95">1.4.选择tomcat的'家'目录</h3> <div style="text-align:center;"> <figure class="image"><img decoding="async" alt="选择tomcat的‘家’目录" src="http://img.555519.xyz/uploads3/20220604/7cecd31926abcaadef991f90b9a34728.jpg"><figcaption>    选择tomcat的‘家’目录</figcaption></figure> </div> <h3 id="1.5.%E9%85%8D%E7%BD%AEtomcat%E8%AF%A6%E7%BB%86%E5%8F%82%E6%95%B0">1.5.配置tomcat详细参数</h3> <ul> <li><span style="color:#f33b45;">注意：</span></li> </ul> <p style="text-indent:50px;">在本节中存在一个可能出现问题的小插曲：即选择运行环境的时候可能出现无法选择的情况，请参考其他有关'设置idea设置默认jre'的博客，这里就不再赘述</p> <div style="text-align:center;"> <figure class="image"><img decoding="async" alt="配置tomcat" src="http://img.555519.xyz/uploads3/20220604/73ac3df94c92b9eb1baeae219de3c883.jpg"><figcaption>    配置tomcat</figcaption></figure> </div> <h3 id="%E6%B3%A8%E6%84%8F%EF%BC%9A"><span style="color:#f33b45;">注意：</span></h3> <ul> <li>1.6步骤中能成功添加，是因为博主已经创建了一个web项目了，如果你之前没有创建项目，在1.6设置中，将不会存在artifact这选项，所以，在设置之前没有创建web项目不要执行1.6步。这一步是考虑到，在部署项目的时候可以更加快捷的部署。</li> <li>再次提醒，如果当前项目中不存在web项目，请不要执行1.6步</li> <li></li> </ul> <h3 id="1.6.deployment%20-%3E%20'%2B'%E6%B7%BB%E5%8A%A0%E9%A1%B9%E7%9B%AE">1.6.deployment -&gt; '+'添加项目</h3> <div style="text-align:center;"> <figure class="image"><img decoding="async" alt="部署项目" src="http://img.555519.xyz/uploads3/20220604/5029c9e274604ac1fabeabb5474bc99b.jpg"><figcaption>    部署项目</figcaption></figure> </div> <div style="text-align:center;"> <figure class="image"><img fetchpriority="high" decoding="async" alt="项目部署" height="173" src="http://img.555519.xyz/uploads3/20220604/bafbdb2f601370921f3362d3535e94ae.jpg"><figcaption>    项目部署</figcaption></figure> </div> <div style="text-align:center;"> <figure class="image"><img decoding="async" alt="部署成功点击确认" src="http://img.555519.xyz/uploads3/20220604/08e7c87af00ff5685ec4bff21f8e7568.jpg"><figcaption>    部署成功点击确认</figcaption></figure> </div> <h3></h3> <h2 id="2.%E8%AE%BE%E7%BD%AEtomcat%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E4%BA%8C">2.设置tomcat模板方法二</h2> <h3 id="2.1.%E6%89%93%E5%BC%80%E8%AE%BE%E7%BD%AE%20CTRL%20%2B%20ALT%20%2B%20S%20%E6%88%96%E8%80%85%20%E7%82%B9%E5%87%BBfile-%3Esettings">2.1.打开设置 CTRL + ALT + S 或者 点击file-&gt;settings</h3> <div style="text-align:center;"> <figure class="image"><img decoding="async" alt="配置tomcat" src="http://img.555519.xyz/uploads3/20220604/f3baeece1f79e34fc0c475e383fc61ff.jpg"><figcaption>    配置tomcat</figcaption></figure> </div> <h3 id="2.2.%E6%90%9C%E7%B4%A2server%20-%3E%20application%20server%20-%3E%20'%2B'">2.2.搜索server -&gt; application server -&gt; '+'</h3> <div style="text-align:center;"> <figure class="image"><img alt="搜索server -/> application server -> +" src="http://img.555519.xyz/uploads3/20220604/25eb13371775165e3e23c273dbf84312.jpg"><figcaption>    搜索server -&gt; application server -&gt; +</figcaption></figure> </div> <h3 id="2.3.%E9%80%89%E6%8B%A9Tomcat%20'%E5%AE%B6'%E7%9B%AE%E5%BD%95">2.3.选择Tomcat '家'目录</h3> <p style="text-align:center;"><img decoding="async" alt="" class="has" src="http://img.555519.xyz/uploads3/20220604/ed870ef3cc690a59b6ad487567f6da12.jpg"></p> <h3 id="2.4.%E4%BA%8C%E6%AC%A1%E7%A1%AE%E8%AE%A4">2.4.二次确认</h3> <p style="text-align:center;"><img decoding="async" alt="二次确认" class="has" src="http://img.555519.xyz/uploads3/20220604/ae23114336acd4397c5e0d470afd5f56.jpg"></p> </h1> <h2 id="1.%E6%B7%BB%E5%8A%A0%E9%A1%B9%E7%9B%AE%E7%9A%84%E8%BF%90%E8%A1%8C%E6%9C%8D%E5%8A%A1">1.添加项目的运行服务</h2> <p style="text-align:center;"><img decoding="async" alt="为项目添加运行服务" class="has" src="http://img.555519.xyz/uploads3/20220604/a3b290d7e3afab1f09bf10c894bc5abf.jpg"></p> <h2 id="2.'%2B'%20-%3E%20tomcat%20server%20-%3E%20local">2.'+' -&gt; tomcat server -&gt; local</h2> <p style="text-align:center;"><img decoding="async" alt="" class="has" src="http://img.555519.xyz/uploads3/20220604/141ad3218341250a564f609c19fa53fa.jpg"></p> <h2 id="3.%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE">3.部署项目</h2> <p style="text-align:center;"><img decoding="async" alt="确认" class="has" src="http://img.555519.xyz/uploads3/20220604/6afc0654971034c877e59ea89b0d951c.jpg"></p> <p style="text-indent:50px;">4.点击确认后，我们可以看到web项目可以运行了</p> <p style="text-align:center;"><img decoding="async" alt="" class="has" src="http://img.555519.xyz/uploads3/20220604/e2c357f1854b4c25a5b980c2116ea8d3.jpg"></p> </h1> <h2 id="1.%E9%97%AE%E9%A2%98%E4%B8%80">1.问题一</h2> <h3 id="%E6%97%A0%E6%95%88%E7%9A%84%E5%8E%9F%E5%8F%91%E8%A1%8C%E7%89%88%E9%94%99%E8%AF%AF%EF%BC%9A">无效的原发行版错误：</h3> <p style="text-align:center;"><img decoding="async" alt="" class="has" src="http://img.555519.xyz/uploads3/20220604/4623d3898a91acdea330cad276c6a842.jpg"></p> <h3 id="%E8%BF%99%E4%B8%AA%E9%94%99%E8%AF%AF%E7%9A%84%E5%8E%9F%E5%9B%A0%E5%9C%A8%E4%BA%8E%EF%BC%9A%E9%A1%B9%E7%9B%AE%E7%9A%84sdk%E7%89%88%E6%9C%AC%E5%92%8C%E9%A1%B9%E7%9B%AE%E8%AF%AD%E8%A8%80%E7%AD%89%E7%BA%A7%E4%B8%8D%E4%B8%80%E8%87%B4%E5%AF%BC%E8%87%B4%E7%9A%84">这个错误的原因在于：项目的sdk版本和项目语言等级不一致导致的</h3> <p style="text-align:center;"><img decoding="async" alt="" class="has" src="http://img.555519.xyz/uploads3/20220604/0a333e87a646225ec438da83802364f5.jpg"></p> <h3 id="%E6%88%91%E4%BB%AC%E8%AE%BE%E7%BD%AE%E4%B8%80%E4%B8%8B%E9%A1%B9%E7%9B%AE%E9%85%8D%E7%BD%AE%E5%B0%B1%E5%A5%BD%E4%BA%86">我们设置一下项目配置就好了</h3> <ol> <li>按shift + alt + CTRL + S 进入项目设置</li> <li>点击project</li> <li>将Project sdk与Project language level 版本保持一直就好了</li> </ol> <p style="text-align:center;"><img decoding="async" alt="" class="has" src="http://img.555519.xyz/uploads3/20220604/dc1eebc18858aa5d2cb65e8b9eaf3221.jpg"></p> <h3 id="%E8%BF%90%E8%A1%8C%E6%AD%A3%E5%B8%B8">运行正常</h3> <p style="text-align:center;"><img decoding="async" alt="" class="has" src="http://img.555519.xyz/uploads3/20220604/8f295193a78578a815d4d24e4b3367f4.jpg"></p> </h1> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-44744.htm">太原哪有宠物粮批发电话的（太原宠物用品批发市场在哪里）</a></p>
+                                        <p>下一个：<a href="/news/article-45249.htm">如何快速实现一个颜色选择器_在线工具</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-37319.htm" title="利用JavaScript实现秒表功能">利用JavaScript实现秒表功能</a></li>
+                        <li class="py-2"><a href="/news/article-26428.htm" title="【厦门领养猫咪】 厦门 领养猫">【厦门领养猫咪】 厦门 领养猫</a></li>
+                        <li class="py-2"><a href="/news/article-43264.htm" title="动物疫苗生产厂家排名榜最新名单 动物疫苗生产厂家排名榜最新名单图片">动物疫苗生产厂家排名榜最新名单 动物疫苗生产厂家排名榜最新名单图片</a></li>
+                        <li class="py-2"><a href="/news/article-38301.htm" title="动物医院好评语怎么写啊 动物医院好评语怎么写啊英语">动物医院好评语怎么写啊 动物医院好评语怎么写啊英语</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-16-free-high-speed-nodes.htm" title="「1月16日」最高速度19.4M/S，2025年V2ray/Clash/SSR/ShadowrocketStash免费机场订阅链接">「1月16日」最高速度19.4M/S，2025年V2ray/Clash/SSR/ShadowrocketStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-1-node-share-links.htm" title="「11月1日」最高速度22M/S，2024年Stash Github每天更新免费机场订阅节点链接">「11月1日」最高速度22M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-13-vless-node-github.htm" title="「1月13日」最高速度21.6M/S，2025年Shadowrocket/V2ray/SSR/ClashStash免费机场订阅链接">「1月13日」最高速度21.6M/S，2025年Shadowrocket/V2ray/SSR/ClashStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-21-vless-node.htm" title="「10月21日」最高速度20.2M/S，2024年Stash Github每天更新免费机场订阅节点链接">「10月21日」最高速度20.2M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-45249.htm" title="如何快速实现一个颜色选择器_在线工具">如何快速实现一个颜色选择器_在线工具</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-24-vless-node-github.htm" title="「12月24日」最高速度22.2M/S，2024年Stash Github每天更新免费机场订阅节点链接">「12月24日」最高速度22.2M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">72</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fruits Shop End-->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3 mb-md-0">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <span class="text-light">Stash Github机场分享官网 版权所有 Powered by WordPress</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/stashgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
