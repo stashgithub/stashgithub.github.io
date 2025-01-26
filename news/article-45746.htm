@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://stashgithub.github.io/news/article-45746.htm" />
+    <meta charset="utf-8">
+    <title>DjangoRestFramework框架三种分页功能的实现 &#8211; 在DjangoStarter项目模板中封装</title>
+        <meta name="description" content="前言 继续Django后端开发系列文章。刚好遇到一个分页的需求，就记录一下。 Django作为一个“全家桶”型的框架，本身啥都有，分页组件也是有的，但默认的分页组件没有对API开发做优化，所以Djan" />
+        <link rel="icon" href="/assets/website/img/stashgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Stash Github机场分享官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://stashgithub.github.io/news/article-45746.htm" />
+    <meta property="og:site_name" content="Stash Github机场分享官网" />
+    <meta property="og:title" content="DjangoRestFramework框架三种分页功能的实现 &#8211; 在DjangoStarter项目模板中封装" />
+    <meta property="og:image" content="https://stashgithub.github.io/uploads/20240903-1/a736b00132e13f8a8b8b7db87b1f97a0.webp" />
+        <meta property="og:release_date" content="2025-01-25T09:51:09" />
+    <meta property="og:updated_time" content="2025-01-25T09:51:09" />
+        <meta property="og:description" content="前言 继续Django后端开发系列文章。刚好遇到一个分页的需求，就记录一下。 Django作为一个“全家桶”型的框架，本身啥都有，分页组件也是有的，但默认的分页组件没有对API开发做优化，所以Djan" />
+        
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="DjangoRestFramework框架三种分页功能的实现 &#8211; 在DjangoStarter项目模板中封装">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/assets/website/js/frontend/stashgithub/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/stashgithub/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/stashgithub/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/stashgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNXJ21P00N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NNXJ21P00N');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+        <div class="container topbar bg-primary d-none d-lg-block">
+            <div class="d-flex justify-content-between">
+                
+            </div>
+        </div>
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                                <a href="/" class="navbar-brand">
+                    <span class="text-primary display-6">Stash Github</span>
+                </a>
+                                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                                <a href="#" class="nav-item nav-link">关于</a>
+                        <a href="#" class="nav-item nav-link">联系</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">DjangoRestFramework框架三种分页功能的实现 &#8211; 在DjangoStarter项目模板中封装</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+            <li class="breadcrumb-item active text-white">正文</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+    <!-- Fruits Shop Start-->
+    <div class="container-fluid fruite py-5">
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="StashNode免费订阅官网" data-url="https://stashnode.github.io">
+                  				  				  				<h2 id="前言">前言</h2> <p>继续Django后端开发系列文章。刚好遇到一个分页的需求，就记录一下。</p> <p>Django作为一个“全家桶”型的框架，本身啥都有，分页组件也是有的，但默认的分页组件没有对API开发做优化，所以DjangoRestFramework这个专门写API的框架又把Django的分页组件包装了一层，集成在<code>viewsets</code>里的时候会更方便。</p> <p>不过我们不可能一直用<code>viewsets</code>，有一部分API还是要用自由度更高的<code>ApiView</code>的，但<code>ApiView</code>里又没办法直接使用默认的分页组件，这时我们就需要封装一下。</p> <p>并且DjangoRestFramework默认的分页信息也不够全，比如没有总页数，这点我们也可以在封装的时候魔改一下。</p> <h2 id="drf中的分页方式">DRF中的分页方式</h2> <p>DRF中为我们封装了三种分页方式，分别是：</p> <ul> <li><code>PageNumberPagination</code>：顾名思义，不解释</li> <li><code>LimitOffsetPagination</code>：Offset分页</li> <li><code>CursorPagination</code>：加密分页</li> </ul> <p>本文打算只介绍最常用的第一种，后面两种同时也会做封装，但篇幅关系就不介绍了，有兴趣的同学可以尝试使用一下。</p> <h2 id="开始代码">开始代码</h2> <p>首先还是在我们的<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/Deali-Axy/DjangoStarter"  target="_blank" rel="nofollow">「DjangoStarter」</a>项目中，在<code>utils</code>目录下新建一个名为<code>paginator</code>的Python Package。</p> <p>因为代码不多，我们直接写在<code>utils/paginator/__init__.py</code>文件下就好。</p> <pre><code class="language-python">from collections import OrderedDict  from django.core.paginator import Paginator from rest_framework.pagination import PageNumberPagination, LimitOffsetPagination, CursorPagination from rest_framework.response import Response   class NumberPaginator(PageNumberPagination):     """页码分页"""     def __init__(             self,             page_size,             page_size_query_param='page_size',             page_query_param='page',             max_page_size=None     ):         """         初始化分页          :param page_size: 每页显示多少条         :param page_size_query_param: URL中每页显示条数的参数         :param page_query_param: URL中页码的参数         :param max_page_size: 最大页码数限制         """         self.page_size = page_size         self.page_size_query_param = page_size_query_param         self.page_query_param = page_query_param         self.max_page_size = max_page_size      def get_paginated_response(self, data):         paginator: Paginator = self.page.paginator          return Response(OrderedDict([             ('total_item_count', paginator.count),             ('page_count', paginator.num_pages),             ('page_number', self.page.number),             ('page_size', self.page_size),             ('next', self.get_next_link()),             ('previous', self.get_previous_link()),             ('results', data)         ]))   class LimitOffsetPaginator(LimitOffsetPagination):     """Offset分页"""     default_limit = 1     limit_query_param = 'limit'     offset_query_param = 'offset'     max_limit = 999   class CursorPaginator(CursorPagination):     """加密分页"""     cursor_query_param = 'cursor'     page_size = 1     ordering = '-id'  # 重写要排序的字段</code></pre> <p>针对前面说的“DjangoRestFramework默认的分页信息也不够全”问题，我重写了<code>get_paginated_response</code>方法，在返回值中加入这几个参数</p> <ul> <li><code>page_count</code>：总页数</li> <li><code>page_number</code>：当前页码</li> <li><code>page_size</code>：每页数量</li> </ul> <p>然后另外两个参数也改了名字，更直观，更符合我们平时的开发习惯。</p> <p><code>...</code></p> <p>这样就完成了封装，我们接下来在代码里测试一下</p> <h2 id="测试接口">测试接口</h2> <p>来写个测试接口看看效果</p> <pre><code class="language-python">from utils.paginator import NumberPaginator  @swagger_auto_schema(     method='get', operation_summary='测试分页功能',     manual_parameters=[         openapi.Parameter('page', openapi.IN_QUERY, type=openapi.TYPE_NUMBER),         openapi.Parameter('page_size', openapi.IN_QUERY, type=openapi.TYPE_NUMBER),     ]) @api_view() def test_page(request):     # 测试数据     data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]     paginator = NumberPaginator(request.query_params.get('page_size', 10))     return paginator.get_paginated_response({         'data': paginator.paginate_queryset(queryset=data, request=request)     })</code></pre> <p>配置一下路由</p> <pre><code class="language-python">urlpatterns = [     path('test_page', views.test_page), ]</code></pre> <h2 id="测试效果">测试效果</h2> <p>写完的接口接受两个参数，<code>page</code>和<code>page_size</code>，我在<code>@swagger_auto_schema</code>装饰器里声明了这两个参数，方便我们在Swagger文档中做测试。</p> <p>我们设定<code>page_size=5</code>，拿到的JSON数据是这样的：</p> <pre><code class="language-json">{   "message": "请求成功",   "code": 200,   "data": {     "total_item_count": 10,     "page_count": 2,     "page_number": 1,     "page_size": "5",     "next": "http://127.0.0.1:8005/core/test_page?page=2&amp;page_size=5",     "previous": null,     "results": {       "data": [         1,         2,         3,         4,         5       ]     }   } }</code></pre> <p>效果不错，很清晰。</p> <p>收工。</p> <h2 id="参考资料">参考资料</h2> <ul> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/liwenzhou/p/9398959.html"  target="_blank" rel="nofollow">https://www.cnblogs.com/liwenzhou/p/9398959.html</a></li> </ul> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-45249.htm">如何快速实现一个颜色选择器_在线工具</a></p>
+                                        <p>下一个：<a href="/news/article-45747.htm">动物疫苗批号查询网官网入口 动物疫苗批号查询网官网入口下载</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-12-13-vless-node-github.htm" title="「12月13日」最高速度20M/S，2024年Stash Github每天更新免费机场订阅节点链接">「12月13日」最高速度20M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-36834.htm" title="农大动物医院是24小时吗 农大宠物医院地址电话">农大动物医院是24小时吗 农大宠物医院地址电话</a></li>
+                        <li class="py-2"><a href="/news/article-25960.htm" title="猫汪清宠（喵汪清宠驱虫药怎么样）">猫汪清宠（喵汪清宠驱虫药怎么样）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-15-vless-node-github.htm" title="「12月15日」最高速度22.7M/S，2024年Stash Github每天更新免费机场订阅节点链接">「12月15日」最高速度22.7M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-14-vless-windows.htm" title="「12月14日」最高速度22.2M/S，2024年Stash Github每天更新免费机场订阅节点链接">「12月14日」最高速度22.2M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-24-vless-node.htm" title="「1月24日」最高速度21.5M/S，2025年SSR/Shadowrocket/Clash/V2rayStash免费机场订阅链接">「1月24日」最高速度21.5M/S，2025年SSR/Shadowrocket/Clash/V2rayStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-25488.htm" title="宠物粮食加工厂需要投资多少钱呢知乎文章推荐（宠物粮食加工厂好做吗）">宠物粮食加工厂需要投资多少钱呢知乎文章推荐（宠物粮食加工厂好做吗）</a></li>
+                        <li class="py-2"><a href="/news/article-25961.htm" title="简述动物疫苗免疫失败的原因 简述动物疫苗免疫失败的原因有哪些">简述动物疫苗免疫失败的原因 简述动物疫苗免疫失败的原因有哪些</a></li>
+                        <li class="py-2"><a href="/news/article-44743.htm" title="动物疫苗和人体疫苗的区别是什么呢图片（动物疫苗对人体有害吗）">动物疫苗和人体疫苗的区别是什么呢图片（动物疫苗对人体有害吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-9-today-vless-node.htm" title="「11月9日」最高速度20.3M/S，2024年Stash Github每天更新免费机场订阅节点链接">「11月9日」最高速度20.3M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">78</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fruits Shop End-->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3 mb-md-0">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <span class="text-light">Stash Github机场分享官网 版权所有 Powered by WordPress</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/stashgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
