@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://stashgithub.github.io/news/article-48189.htm" />
+    <meta charset="utf-8">
+    <title>SSM三大框架工作流程与原理详解</title>
+        <meta name="description" content="作者：网络笨猪 blog.csdn.net/lyfqyr/article/details/84552278   1、Spring的运行流程 第一步：加载配置文件ApplicationContext a" />
+        <link rel="icon" href="/assets/website/img/stashgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Stash Github机场分享官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://stashgithub.github.io/news/article-48189.htm" />
+    <meta property="og:site_name" content="Stash Github机场分享官网" />
+    <meta property="og:title" content="SSM三大框架工作流程与原理详解" />
+    <meta property="og:image" content="https://stashgithub.github.io/uploads/20240903-1/d87a3c8982a4e3b337559b65c39810d5.webp" />
+        <meta property="og:release_date" content="2025-01-30T06:44:37" />
+    <meta property="og:updated_time" content="2025-01-30T06:44:37" />
+        <meta property="og:description" content="作者：网络笨猪 blog.csdn.net/lyfqyr/article/details/84552278   1、Spring的运行流程 第一步：加载配置文件ApplicationContext a" />
+        
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="SSM三大框架工作流程与原理详解">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/assets/website/js/frontend/stashgithub/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/stashgithub/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/stashgithub/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/stashgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNXJ21P00N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NNXJ21P00N');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+        <div class="container topbar bg-primary d-none d-lg-block">
+            <div class="d-flex justify-content-between">
+                
+            </div>
+        </div>
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                                <a href="/" class="navbar-brand">
+                    <span class="text-primary display-6">Stash Github</span>
+                </a>
+                                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                                <a href="#" class="nav-item nav-link">关于</a>
+                        <a href="#" class="nav-item nav-link">联系</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">SSM三大框架工作流程与原理详解</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+            <li class="breadcrumb-item active text-white">正文</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+    <!-- Fruits Shop Start-->
+    <div class="container-fluid fruite py-5">
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="StashNode免费订阅官网" data-url="https://stashnode.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <div id="js_content"> <p style="text-align: center"><img decoding="async" src="http://img.555519.xyz/uploads3/20220905/b649992a49a747db54c4ff85469d6dcf.jpg" alt="SSM三大框架工作流程与原理详解"/></p> <blockquote> <p>作者：网络笨猪</p> <p>blog.csdn.net/lyfqyr/article/details/84552278</p> </blockquote> </h1> <h2>1、Spring的运行流程</h2> <p>第一步：加载配置文件<code>ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");</code>，ApplicationContext接口，它由BeanFactory接口派生而来，因而提供了BeanFactory所有的功能。配置文件中的bean的信息是被加载在HashMap中的，一个bean通常包括，id，class，property等，bean的id对应HashMap中的key，value呢就是bean</p> <p>具体如何加载？源码如下:</p> <pre class="has"><code class="language-go">if&nbsp;(beanProperty.element("map")&nbsp;!=&nbsp;null){&nbsp;&nbsp; Map&lt;String,&nbsp;Object&gt;&nbsp;propertiesMap&nbsp;=&nbsp;new&nbsp;HashMap&lt;String,&nbsp;Object&gt;();&nbsp;&nbsp; Element&nbsp;propertiesListMap&nbsp;=&nbsp;(Element)beanProperty.elements().get(0);&nbsp;&nbsp; Iterator&lt;?&gt;&nbsp;propertiesIterator&nbsp;=&nbsp;propertiesListMap&nbsp;.elements().iterator();&nbsp;&nbsp; while&nbsp;(propertiesIterator.hasNext())&nbsp;{&nbsp;&nbsp; &nbsp;Element&nbsp;vet&nbsp;=&nbsp;(Element)&nbsp;propertiesIterator.next();&nbsp;&nbsp; &nbsp;if(vet.getName().equals("entry"))&nbsp;{&nbsp;&nbsp; &nbsp;&nbsp;String&nbsp;key&nbsp;=&nbsp;vet.attributeValue("key");&nbsp;&nbsp; &nbsp;&nbsp;Iterator&lt;?&gt;&nbsp;valuesIterator&nbsp;=&nbsp;vet.elements()&nbsp;&nbsp;.iterator();&nbsp;&nbsp; &nbsp;&nbsp;while&nbsp;(valuesIterator.hasNext())&nbsp;{&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;Element&nbsp;value&nbsp;=&nbsp;(Element)&nbsp;valuesIterator.next();&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;if&nbsp;(value.getName().equals("value")){&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;propertiesMap.put(key,&nbsp;value.getText());&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;}&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;if&nbsp;(value.getName().equals("ref"))&nbsp;{&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;propertiesMap.put(key,&nbsp;new&nbsp;String[]{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value.attributeValue("bean")&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;}&nbsp;&nbsp; &nbsp;&nbsp;}&nbsp;&nbsp; &nbsp;}&nbsp;&nbsp; }&nbsp;&nbsp; bean.getProperties().put(name,&nbsp;propertiesMap);&nbsp;&nbsp; //看完反正我是默默放弃了。。。 }&nbsp; 12345678910111213141516171819202122232425</code></pre> <p>第二步：调用getBean方法，getBean是用来获取applicationContext.xml文件里bean的，（）写的是bean的id。一般情况都会强转成我们对应的业务层（接口）。例如<code>SpringService springService =(SpringService)ac.getBean("Service");</code></p> <p>第三步：这样我们就可以调用业务层(接口实现)的方法。</p> <p>具体如下：<img decoding="async" src="http://img.555519.xyz/uploads3/20220905/b3bc883ec56930a32c2ee3c00ca60a4c.jpg" alt="SSM三大框架工作流程与原理详解"/>Java反射博大精深，我也不很懂，具体请查看Java基础之—反射</p> <p>那么bean中的东西到底是怎么注入进去的？**简单来讲，就是在实例化一个bean时，实际上就实例化了类，它通过**反射调用类中set方法将事先保存在HashMap中的类属性注入到类中。这样就回到了我们Java最原始的地方，对象.方法，对象.属性</p> <h2>2、Spring的原理</h2> <ul> <li> <p>什么是spring？spring是一个容器框架，它可以接管web层，业务层，dao层，持久层的各个组件，并且可以配置各种bean， 并可以维护bean与bean的关系，当我们需要使用某个bean的时候，我们可以直接getBean(id)，使用即可</p> </li> <li> <p>Spring目的：就是让对象与对象（模块与模块）之间的关系没有通过代码来关联，都是通过配置类说明管理的（Spring根据这些配置 内部通过反射去动态的组装对象） ，Spring是一个容器，凡是在容器里的对象才会有Spring所提供的这些服务和功能。</p> </li> <li> <p>层次框架图：<img decoding="async" src="http://img.555519.xyz/uploads3/20220905/777ec91f6863facd6971d52a15eec535.jpg" alt="SSM三大框架工作流程与原理详解"/>说明：web层： struts充当web层，接管jsp，action，表单，主要体现出mvc的数据输入，数据的处理，数据的显示分离。<br />model层： model层在概念上可以理解为包含了业务层，dao层，持久层，需要注意的是，一个项目中，不一定每一个层次都有。<br />持久层： 体现oop，主要解决关系模型和对象模型之间的*<em>阻抗</em>*</p> </li> </ul> <h2>3、Spring的核心技术</h2> <ul> <li> <p>IOC</p> </li> </ul> <p>ioc（inverse of control）控制反转： 所谓反转就是把创建对象（bean）和维护对象（bean）之间的关系的权利从程序转移到spring的容器（spring-config.xml）<img decoding="async" src="http://img.555519.xyz/uploads3/20220905/274a9dc7232250b2df2940f735205391.jpg" alt="SSM三大框架工作流程与原理详解"/>说明：<code>&lt;bean&gt;&lt;/bean&gt;</code>这对标签元素的作用：当我们加载spring框架时，spring就会自动创建一个bean对象，并放入内存相当于我们常规的new一个对象，而<code>&lt;property&gt;&lt;/property&gt;</code>中的value则是实现了“对象.set方法”，这里也体现了注入了概念</p> <ul> <li> <p>DI</p> </li> </ul> <p>di（dependency injection）依赖注入： 实际上di和ioc是同一个概念，spring的设计者，认为di更准确的表示spring的核心</p> <p>spring提倡接口编程，在配合di技术就可以达到层与层解耦的目的，为什么呢？因为层与层之间的关联，由框架帮我们做了，这样代码之间的耦合度降低，代码的复用性提高</p> <p>接口编程的好处请访问(https://blog.csdn.net/Song_JiangTao/article/details/82389905)</p> <ul> <li> <p>AOPaspect oriented programming（面向切面编程）</p> <p>核心：在不增加代码的基础上，还增加新功能</p> <p>理解：面向切面：其实是，把一些公共的“东西”拿出来，比如说，事务，安全，日志，这些方面，如果你用的到，你就引入。也就是说：当你需要在执行一个操作（方法）之前想做一些事情（比如，开启事务，记录日志等等），那你就用before，如果想在操作之后做点事情（比如，关闭一些连接等等），那你就用after。其他类似</p> </li> </ul> <h2>4、Spring整体架构图</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220905/c1c86e840ed0c0a0549a76dc05d57fbf.jpg" alt="SSM三大框架工作流程与原理详解"/>1、core container（核心容器）</p> <p>核心容器包含了core，beans，context和expression language四个模块，core和beans模块是框架的基础部分，提供IOC和依赖注入特性。这里的基础概念是BeanFactory，它提供对Factory模式的经典实现来消除对程序性单例模式的需要，并真正地允许你从程序逻辑中分离出依赖关系和配置。</p> <ul> <li> <p>core模块主要包含了spring框架基本的黑犀牛工具类，spring的其他组建都要用到这个包里的类，core模块是其他组件的基本核心。当然你也可以在自己应用系统中使用这些工具类。</p> </li> <li> <p>beans模块是所有应用都要用到的，它包含访问配置文件，创建和管理bean以及进行ioc，di操作相关的所有类</p> </li> <li> <p>context模块构建与core和beans模块基础之上，提供了一种类似于JNDI注册器的框架式的对象访问方法。context模块继承了beans的特性，为spring核心提供了大量扩展，添加了对国际化（例如资源绑定）、事件传播、资源加载和对context的透明创建的支持。context模块同事也支持j2ee的一些特性，例如EJB，JMX和基础的远程处理，applicationContext接口是context模块的关键。</p> </li> <li> <p>ExpressionLanguage模块提供了强大的表达式语言，用于在运行时查询和操纵对象。他是jsp2.1规范中定义的unifed expression language的扩展。该语言支持设置/获取属性的值，属性的分配，方法的调用 ，访问数组上下文，容器和索引器，逻辑和算数运算符，命名变量以及从spring的ioc容器中根据名称检索对象。它也支持list投影，选择和一般的list聚合</p> </li> </ul> <p>2、Date Access/Integration</p> <p>Date Access/Integration层包含JDBC，ORM，OXM,JMS和Transaction模块</p> <ul> <li> <p>jdbc模块提供了一个jdbc抽象层，他可以消除冗长的jdbc编码和解析数据厂商特有的错误代码。这个模块包含了spring对jdbc数据访问进行封装的所有类。</p> </li> <li> <p>orm模块为流行的对象-关系映射API，如JPA，JDO，Hibernate，iBatis等，提供了一个交互层。利用ORM封装包，可以混合使用所有spring提供的特性进行O/R映射，如前边提到的简单声明性事务管理。spring框架插入了若干个ORM框架 ，从而提供了ORM的对象关系工具，其中包括JDO，hibernate和iBatisSQl Map。所有这些都遵从spring的通用事务和DAO异常层次结构。</p> </li> <li> <p>OXM模块提供了一个对Object/XML映射实现的抽象层，Object/XML映射实现包括JAXB，Castor，XMLBeans，JiBX和XStream。</p> </li> <li> <p>JMS（java massage service）模块主要包含了一些制造和消费消息的特性</p> </li> <li> <p>Transaction模块支持编程和声明性的事务管理，这些事务类必须实现特地的接口。并且对多有的POJO都适用</p> </li> </ul> <p>3、web</p> <p>web上下文模块建立在应用程序上下文模块之上，为基于web的应用程序提供了上下文。所以，spring框架支持与Jakarta struts的集成。web模块还简化了处理大部分请求以及将请求参数绑定到域对象的工作。web层包含了web，web-servlet，web-Struts 和web-porlet</p> <ul> <li> <p>web模块，提供了基础的面向web的集成特性。例如：多文件上传，使用servlet listeners初始化 Ioc容器已经一个面向web的应用上下文。它还包含spring远程支持中的web的相关部分。</p> </li> <li> <p>web-servlet模块web.servlet.jar：该模块包含spring的model-view-controller（mvc）实现。spring的mbc框架使得模型范围内的代码和webforms之间能够清楚地分离出来。并与spring框架的其他特性集成在一起。</p> </li> <li> <p>web-Struts模块，该模块提供了对struts的支持，使得类在spring应用中能够与一个典型的struts web层集成在一起。注意，该支持在spring3.0中已被弃用。</p> </li> <li> <p>web-portlet模块，提供了用于portlet环境和web-servlet模块的MVC的实现。</p> </li> </ul> <p>4、AOP</p> <p>aop模块提供了一个符合aop联盟标准的面向切面编程的实现，它让你可以定义例如方法拦截器和切点，从而将逻辑代码分开，降低它们之间的耦合性。利用source-level的元数据功能，还可以将各种行为信息合并到你的代码中，这有点像.Net技术中的attribute概念</p> <p>通过配置管理特性，springAop模块直接将面向界面的编程功能集成到了spring框架中，所以可以很容易地使用spring框架管理的任何对象支持aop，springAop模块为基于spring的应用程序中的对象提供了事务管理服务。通过使用springAop，不用历来EJB组件，就可以将声明性事务管理集成到应用程序中。</p> <ul> <li> <p>Aspects模块提供了AspectJ的集成支持。</p> </li> <li> <p>Instrumentation模块提供了class Instrumentation支持和classloader实现，使用可以再特定的应用服务器上使用。</p> </li> </ul> <p>5、Test</p> <p>test模块支持使用JUnit和TestNG对spring组件进行测试。</p> </h1> <h2>1、Spring MVC的运行流程</h2> <ul> <li> <p>springMVC框架</p> <p>框架执行流程（面试必问）</p> </li> <li> <ul> <li> <p>1、用户发送请求至前端控制器DispatcherServlet</p> </li> <li> <p>2、DispatcherServlet收到请求调用HandlerMapping处理器映射器。</p> </li> <li> <p>3、处理器映射器根据请求url找到具体的处理器，生成处理器对象及处理器拦截器(如果有则生成)一并返回给DispatcherServlet。</p> </li> <li> <p>4、DispatcherServlet通过HandlerAdapter处理器适配器调用处理器</p> </li> <li> <p>5、执行处理器(Controller，也叫后端控制器)。</p> </li> <li> <p>6、Controller执行完成返回ModelAndView</p> </li> <li> <p>7、HandlerAdapter将controller执行结果ModelAndView返回给DispatcherServlet</p> </li> <li> <p>8、DispatcherServlet将ModelAndView传给ViewResolver视图解析器</p> </li> <li> <p>9、ViewResolver解析后返回具体View</p> </li> <li> <p>10、DispatcherServlet对View进行渲染视图（即将模型数据填充至视图中）。</p> </li> <li> <p>11、DispatcherServlet响应用户</p> </li> </ul> </li> </ul> <h2>2、Spring MVC的原理</h2> <ul> <li> <p>1、什么是SpringMVC？</p> </li> <li> <p>springmvc是spring框架的一个模块，springmvc和spring无需通过中间整合层进行整合。</p> </li> <li> <p>springmvc是一个基于mvc的web框架。<img decoding="async" src="http://img.555519.xyz/uploads3/20220905/f7a9c8e674ce8a7501bdaaede9376cd4.jpg" alt="SSM三大框架工作流程与原理详解"/></p> </li> <li> <p>mvc</p> </li> <li> <ul> <li> <p>View是一个接口，实现类支持不同的View类型（jsp、freemarker、pdf…）</p> </li> <li> <p>作用：进行视图解析，根据逻辑视图名解析成真正的视图（view）</p> </li> <li> <p>注意：编写Handler时按照HandlerAdapter的要求去做，这样适配器才可以去正确执行Handler</p> </li> <li> <p>作用：按照特定规则（HandlerAdapter要求的规则）去执行Handler</p> </li> <li> <p>作用：根据请求的url查找Handler</p> </li> <li> <p>作用接收请求，响应结果，相当于转发器，中央处理器。有了DispatcherServlet减少了其它组件之间的耦合度。</p> </li> <li> <p>mvc在b/s系统 下的应用：<img decoding="async" src="http://img.555519.xyz/uploads3/20220905/54a697600b07ab93280ceae35f2af55f.jpg" alt="SSM三大框架工作流程与原理详解"/></p> </li> <li> <p>前端控制器DispatcherServlet（不需要程序员开发）</p> </li> <li> <p>处理器映射器HandlerMapping(不需要程序员开发)</p> </li> <li> <p>处理器适配器HandlerAdapter</p> </li> <li> <p>处理器Handler</p> <p>(需要程序员开发)</p> </li> <li> <p>视图解析器View resolver(不需要程序员开发)</p> </li> <li> <p>视图View</p> <p>(需要程序员开发)</p> </li> </ul> </li> <li> <p>struts2与springMVC的区别？</p> </li> </ul> <p>1、Struts2是类级别的拦截，一个类对应一个request 上下文, SpringMVC是方法级别的拦截,一个方法对应一个request上下文,而方法同时又跟一个url对应，,所以说从架构本身上SpringMVC就容易实现restful url,而struts2的架构实现起来要费劲,因为Struts2中Action的一个方法可以对应一个url ,而其类属性却被所有方法共享，这也就无法用注解或其他方式标识其所属方法了。</p> <p>2、由上边原因, SpringMVC的方法之间基本上独立的,**独享request response数据,*<em>请求数据通过参数获取,处理结果通过ModelMap交回给框架,方法之间不共享变量,而Struts2搞的就比较乱,虽然方法之间也是独立的,但其*<em>所有Action变量是共享的</em></em>,这不会影响程序运行,却给我们编码读程序时带来麻烦,每次来了请求就创建一个Action ,一个Action对象对应一个request 上下文。</p> <p>3、由于Struts2需要针对每个request进行封装,把request , session等servlet生命周期的变量封装成一个一 个Map ,供给每个Action使用,并保证线程安全,所以在原则上,是比较耗费内存的。</p> <p>4、拦截器实现机制上， Struts2有以自己的interceptor机制, SpringMVC用的是独立的AOP方式,这样导致Struts2的配置文件量还是比SpringMVC大。</p> <p>5、SpringMVC的入口是servlet ,而Struts2是filter (这里要指出, filter和servlet是不同的。以前认为filter是servlet的一种特殊),这就导致 了二者的机制不同,这里就牵涉到servlet和filter的区别了。</p> <p>6、SpringMVC集成了Ajax ,使用非常方便，只需一个注解@ResponseBody就可以实现，然后直接返回响应文本即可,而Struts2拦截器集成了Ajax ,在Action中处理时一般必须安装插件或者自己写代码集成进去,使用起来也相对不方便。</p> <p>7、**SpringMVC验证支持JSR303 ,*<em>处理起来相对更加灵活方便,而*<em>Struts2验证比较繁琐,感觉太烦乱。</em></em></p> <p>8、Spring MVC和Spring是无缝的。从这个项目的管理和安全上也比Struts2高(当然Struts2也可以通过不同的目录结构和相关配置做到SpringMVC-样的效果,但是需要xml配置的地方不少)。</p> <p>9、设计思想上, Struts2更加符合0OP的编程思想，SpringMVC就比较谨慎,在servlet上扩展。</p> <p>10、SpringMVC开发效率和性能高于Struts2。</p> <p>11、SpringMVC可以认为已经100%零配置。</p> <h2>3、Spring MVC的核心技术</h2> <ul> <li> <p>注解开发（@Controller,@RequestMapping,@ResponseBody。。。。）还有Spring的诸多注解，这两者是不需要整合的~</p> </li> <li> <p>传参，接参（request）</p> </li> <li> <p>基本配置</p> </li> <li> <p>文件上传与下载。Spring MVC中文件上传需要添加Apache Commons FileUpload相关的jar包;基于该jar, Spring中提供了MultipartResolver实现类: CommonsMultipartResolver.</p> </li> <li> <p>拦截器其实最核心的还是SpringMVC的执行流程，各个点的作用得搞清楚。</p> </li> </ul> <hr/> </h1> <h2>1、Mybatis的运行流程</h2> <ul> <li> <p>Mybatis运行流程图：<img decoding="async" src="http://img.555519.xyz/uploads3/20220905/f3ee5a41224f6ccb4dcb379cbefb8fec.jpg" alt="SSM三大框架工作流程与原理详解"/></p> </li> </ul> <p>第一步：配置文件mybatis.xml，大体如下，</p> <pre class="has"><code class="language-go">&lt;?xml&nbsp;version="1.0"&nbsp;encoding="UTF-8"?&gt; &lt;!DOCTYPE&nbsp;configuration&nbsp;PUBLIC&nbsp;"-//mybatis.org//DTD&nbsp;Config&nbsp;3.0//EN" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"http://mybatis.org/dtd/mybatis-3-config.dtd"&gt; &lt;configuration&gt; &nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;引入外部文件 &nbsp;&nbsp;resource:引入项目中配置文件 &nbsp;&nbsp;url:引入网络中或者路径文件 &nbsp;--&gt; &nbsp;&nbsp;&nbsp;&nbsp;&lt;properties&nbsp;resource="jdbc.properties"/&gt; &nbsp;&nbsp;&nbsp;&nbsp;&lt;settings&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&lt;setting&nbsp;name="mapUnderscoreToCamelCase"&nbsp;value="true"&nbsp;/&gt;--&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;setting&nbsp;name="lazyLoadingEnabled"&nbsp;value="true"&nbsp;/&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;setting&nbsp;name="aggressiveLazyLoading"&nbsp;&nbsp;value="false"&nbsp;/&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;setting&nbsp;name="cacheEnabled"&nbsp;value="true"/&gt; &nbsp;&nbsp;&nbsp;&nbsp;&lt;/settings&gt; &nbsp;&nbsp;&nbsp;&nbsp;&lt;typeAliases&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;package&nbsp;name="com.nuc.entity"&gt;&lt;/package&gt; &nbsp;&nbsp;&nbsp;&nbsp;&lt;/typeAliases&gt; &nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;-&nbsp;-&nbsp;-&nbsp;-&nbsp;-&nbsp;-&nbsp;数据库环境配置-&nbsp;-&nbsp;-&nbsp;-&nbsp;-&nbsp;-&nbsp;-&nbsp;-&nbsp;-&nbsp;--&gt; &nbsp;&nbsp;&nbsp;&nbsp;&lt;environments&nbsp;default="environments"&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;environment&nbsp;id="environments"&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;transactionManager&nbsp;type="JDBC"/&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;dataSource&nbsp;type="POOLED"&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="driver"&nbsp;value="${jdbc.driverClass}"/&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="url"&nbsp;value="${jdbc.jdbcUrl}"/&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="username"&nbsp;value="${jdbc.user}"/&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="password"&nbsp;value="${jdbc.password}"/&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/dataSource&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/environment&gt; &nbsp;&nbsp;&nbsp;&nbsp;&lt;/environments&gt; &nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;-&nbsp;-&nbsp;-&nbsp;-&nbsp;-&nbsp;-&nbsp;-映射文件路径-&nbsp;-&nbsp;-&nbsp;-&nbsp;-&nbsp;-&nbsp;--&gt; &nbsp;&nbsp;&nbsp;&nbsp;&lt;mappers&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--自动扫描包下的映射文件，要求：同名，同目录--&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;package&nbsp;name="com.nuc.mapper"&nbsp;/&gt; &nbsp;&nbsp;&nbsp;&nbsp;&lt;/mappers&gt; &lt;/configuration&gt;</code></pre> <p>第二步：加载我们的xml文件 第三步：创建SqlSessionFactoryBuilder 第四步：创建SqlSessionFactory 第五步：调用openSession()，开启sqlSession 第六步：getMapper()来获取我们的mapper（接口），mapper对应的映射文件，在加载mybatis.xml时就会加载 第七步：使用我们自己的mapper和它对应的xml来完成我们和数据库交互。即增删改查。第八步：提交session，关闭session。</p> <p>代码如下：</p> <pre class="has"><code class="language-go">String&nbsp;resource&nbsp;=&nbsp;"mybatis-config.xml"; SqlSession&nbsp;sqlSession&nbsp;=&nbsp;null; InputStream&nbsp;inputStream&nbsp;=&nbsp;Resources.getResourceAsStream(resource);//读取mybatis配置文件 //SqlSessionFactoryBuilder这个类的作用就是为了创建SqlSessionFactory的 SqlSessionFactoryBuilder&nbsp;builder&nbsp;=&nbsp;new&nbsp;SqlSessionFactoryBuilder(); SqlSessionFactory&nbsp;factory&nbsp;=&nbsp;builder.build(inputStream); /** &nbsp;*&nbsp;&nbsp;factory.openSession();&nbsp;//需手动提交事务 &nbsp;*&nbsp;&nbsp;&nbsp;factory.openSession(true);&nbsp;//系统自动提交事务 &nbsp;*/ sqlSession&nbsp;=&nbsp;factory.openSession(); CustomerMapper&nbsp;mapper&nbsp;=&nbsp;sqlSession.getMapper(CustomerMapper.class); //增删改查的操作 sqlSession.commit();//如果没有提交，数据库的数据不会改变 sqlSession.close(); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 12345678910111213141516</code></pre> <p>需要注意的是，sqlSession也自带一些数据交互的操作</p> <h2>2、Mybatis的原理</h2> <ul> <li> <p>什么是Mybatis？</p> </li> <li> <ul> <li> <p>mybatis专注sql本身，需要程序员自己编写sql语句，sql修改、优化比较方便。mybatis是一个不完全 的ORM框架，虽然程序员自己写sql，mybatis 也可以实现映射（输入映射、输出映射）。</p> </li> <li> <p>mybatis是一个持久层的框架，是apache下的顶级项目。</p> </li> <li> <p>mybatis托管到goolecode下，后来托管到github下:mybatis Github地址</p> </li> <li> <p>mybatis让程序将主要精力放在sql上，通过mybatis提供的映射方式，自由灵活生成（半自动化，大部分需要程序员编写sql）满足需要sql语句。</p> </li> <li> <p>mybatis可以将向 preparedStatement中的输入参数自动进行输入映射，将查询结果集灵活映射成java对象。（输出映射）</p> </li> </ul> </li> <li> <p>mybatis底层实现</p> </li> <li> <ul> <li> <p>mybatis底层还是采用原生jdbc来对数据库进行操作的，只是通过 SqlSessionFactory，SqlSession Executor,StatementHandler，ParameterHandler,ResultHandler和TypeHandler等几个处理器封装了这些过程</p> </li> </ul> </li> <li> <p>对原生态jdbc程序（单独使用jdbc开发）问题总结：</p> <p>解决：使用数据库连接池管理数据库连接</p> <p>解决：将sql语句设置在xml配置文件中，即使sql变化，也无需重新编译</p> <p>解决：将sql语句及占位符，参数全部配置在xml文件中</p> <p>解决：将查询的结果集，自动映射成java对象</p> </li> <li> <ul> <li> <p>4、从resutSet中遍历结果集数据时，存在硬编码，将获取表的字段进行硬编码，不利于系统维护。</p> </li> <li> <p>3、向preparedStatement中设置参数，对占位符位置和设置参数值，硬编码到Java文件中，不利于系统维护</p> </li> <li> <p>2、将sql 语句硬编码到Java代码中，如果sql语句修改，需要对java代码重新编译，不利于系统维护</p> </li> <li> <p>1、数据库连接，使用时创建，不使用就关闭，对数据库进行频繁连接开启和关闭，造成数据库资源的浪费</p> </li> </ul> </li> <li> <p>mybatis工作原理</p> </li> <li> <ul> <li> <p>mybatis通过配置文件创建sqlsessionFactory，sqlsessionFactory根据配置文件，配置文件来源于两个方面:一个是xml，一个是Java中的注解，获取sqlSession。SQLSession包含了执行sql语句的所有方法，可以通过SQLSession直接运行映射的sql语句，完成对数据的增删改查和事物的提交工作，用完之后关闭SQLSession。</p> </li> </ul> </li> </ul> <h2>3、Mybatis的核心技术</h2> <ul> <li> <p>Mybatis输入映射</p> </li> <li> <ul> <li> <p>通过parameterType指定输入参数的类型，类型可以是简单类型、hashmap、pojo的包装类型</p> </li> </ul> </li> <li> <p>Mybatis输出映射</p> </li> <li> <ul> <li> <p>使用association和collection完成一对一和一对多高级映射（对结果有特殊的映射要求）。</p> </li> <li> <p>association：</p> </li> <li> <p>collection：</p> </li> <li> <p>作用：将关联查询信息映射到一个pojo对象中。</p> </li> <li> <p>场合：为了方便查询关联信息可以使用association将关联订单信息映射为用户对象的pojo属性中，比如：查询订单及关联用户信息。</p> </li> <li> <p>使用resultType无法将查询结果映射到pojo对象的pojo属性中，根据对结果集查询遍历的需要选择使用resultType还是resultMap。</p> </li> <li> <p>作用：将关联查询信息映射到一个list集合中。</p> </li> <li> <p>场合：为了方便查询遍历关联信息可以使用collection将关联信息映射到list集合中，比如：查询用户权限范围模块及模块下的菜单，可使用collection将模块映射到模块list中，将菜单列表映射到模块对象的菜单list属性中，这样的作的目的也是方便对查询结果集进行遍历查询。如果使用resultType无法将查询结果映射到list集合中。</p> </li> <li> <p>作用:将查询结果按照sql列名pojo属性名一致性映射到pojo中。</p> </li> <li> <p>使用resultType进行输出映射，只有查询出来的列名和pojo中的属性名一致，该列才可以映射成功。</p> </li> <li> <p>如果查询出来的列名和pojo中的属性名全部不一致，则不会创建pojo对象。</p> </li> <li> <p>只要查询出来的列名和pojo中的属性有一个一致，就会创建pojo对象</p> </li> <li> <p>如果查询出来的列名和pojo的属性名不一致，通过定义一个resultMap对列名和pojo属性名之间作一个映射关系。</p> </li> <li> <p>1、resultType</p> </li> <li> <p>2、resultMap**</p> </li> </ul> </li> <li> <p>Mybatis的动态sql</p> </li> <li> <p>什么是动态sql？</p> </li> <li> <ul> <li> <p>mybatis核心 对sql语句进行灵活操作，通过表达式进行判断，对sql进行灵活拼接、组装。</p> </li> <li> <p>包括， where ，if，foreach，choose，when，otherwise，set，trim等标签的使用</p> </li> </ul> </li> <li> <p>数据模型分析思路</p> </li> <li> <ul> <li> <p>非空字段、外键字段</p> </li> <li> <p>分模块对每张表记录的内容进行熟悉，相当 于你学习系统 需求（功能）的过程</p> </li> <li> <p>1、每张表记录的数据内容</p> </li> <li> <p>2、每张表重要的字段设置</p> </li> </ul> </li> <li> <p>3、数据库级别表与表之间的关系</p> </li> <li> <ul> <li> <p>外键关系</p> </li> </ul> </li> <li> <p>4、表与表之间的业务关系</p> </li> <li> <ul> <li> <p>在分析表与表之间的业务关系时一定要建立 在 某 个 业 务 意 义 基 础 上 去 分 析 。\color{red}{在某个业务意义基础上去分析。}在某个业务意义基础上去分析。</p> </li> </ul> </li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220905/136aa20ba059cf582ba3d943c7427be5.jpg" alt="SSM三大框架工作流程与原理详解"/></p> <ul> <li> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://mp.weixin.qq.com/s?__biz=MzIxMjU5NjEwMA%3D%3D&amp;chksm=974112d9a0369bcfc514834e10d6faa224ab93b4a6acabd87bf6d9363136e0ebe950dd0595ed&amp;idx=1&amp;mid=2247497266&amp;scene=21&amp;sn=e059aa1a42ccbc9e48607d5565e628d4#wechat_redirect"  rel="nofollow">面试官：String长度有限制吗？是多少？还好我看过</a></p> </li> <li> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://mp.weixin.qq.com/s?__biz=MzIxMjU5NjEwMA%3D%3D&amp;chksm=97411019a036990fa1feeb79036a18253ee489d3de0ba96188ec03eb120c1defd982b2b16775&amp;idx=1&amp;mid=2247496946&amp;scene=21&amp;sn=f3e58c7c17794952b66e18454deae047#wechat_redirect"  rel="nofollow">SpringBoot 的jar包为什么可以直接运行？</a></p> </li> <li> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://mp.weixin.qq.com/s?__biz=MzIxMjU5NjEwMA%3D%3D&amp;chksm=974111c9a03698df1c840a7d053d364a42c4db21421a3366a01c18a4175f9927614bf35bbe58&amp;idx=1&amp;mid=2247496994&amp;scene=21&amp;sn=5f47a802e6d64e133ec995b156a43692#wechat_redirect"  rel="nofollow">一份 Spring Boot 项目搭建模板</a></p> </li> <li> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://mp.weixin.qq.com/s?__biz=MzIxMjU5NjEwMA%3D%3D&amp;chksm=97410a1ea0368308d1e5e7512d032bfb99577893ce962fe455d0475b9f4961066b342d2e1292&amp;idx=1&amp;mid=2247495413&amp;scene=21&amp;sn=25b9feef5ad4e69db208886f098fba63#wechat_redirect"  rel="nofollow">Maven虐我千百遍，我待Maven如初恋！</a></p> </li> <li> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://mp.weixin.qq.com/s?__biz=MzIxMjU5NjEwMA%3D%3D&amp;chksm=97410a36a036832048c693734e6f9c66f75dd8517751cf6fcd56472c65fc46a30f98d1e2e155&amp;idx=1&amp;mid=2247495389&amp;scene=21&amp;sn=abb1d1df2b8366fdde4d9bf2dd93f050#wechat_redirect"  rel="nofollow">MySQL面试高频100问（工程师方向）</a></p> </li> <li> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://mp.weixin.qq.com/s?__biz=MzIxMjU5NjEwMA%3D%3D&amp;chksm=97410afba03683ed88381a9343f7053d0ef915dae7588310809de47ba8da06e8e5ea1e03da6e&amp;idx=1&amp;mid=2247495184&amp;scene=21&amp;sn=bddaa74ec057891477273777c0150f4a#wechat_redirect"  rel="nofollow">亲身经历：一次sql缺少where条件的惨案…</a></p> </li> <li> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://mp.weixin.qq.com/s?__biz=MzIxMjU5NjEwMA%3D%3D&amp;chksm=9741090ca036801a2e330a1e5a8a5fccd3f224c08737ccd5e8d31bedc4d27c8ca8a8994c610c&amp;idx=1&amp;mid=2247495143&amp;scene=21&amp;sn=c913e9b8dc73fb2439930048fb28ad14#wechat_redirect"  rel="nofollow">基于netty手写Tomcat</a></p> </li> </ul> </h1> </h1> </div> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-47696.htm">宠物粮食市场前景如何发展 宠物粮食市场前景如何发展起来</a></p>
+                                        <p>下一个：<a href="/news/article-48191.htm">北京排名第一的宠物医院（北京最厉害的宠物医院）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-40783.htm" title="宠物美容店开办和经营的步骤（想开个宠物美容店怎么入行）">宠物美容店开办和经营的步骤（想开个宠物美容店怎么入行）</a></li>
+                        <li class="py-2"><a href="/news/article-42266.htm" title="STM8S103F3P6 的开发, 烧录和Debug笔记 &#8211; Milton _在线工具">STM8S103F3P6 的开发, 烧录和Debug笔记 &#8211; Milton _在线工具</a></li>
+                        <li class="py-2"><a href="/news/article-46727.htm" title="python 接受ctrl c结束子进程，subprocess.Popen杀死子进程">python 接受ctrl c结束子进程，subprocess.Popen杀死子进程</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-29-today-vless-node.htm" title="「12月29日」最高速度19.6M/S，2024年Stash Github每天更新免费机场订阅节点链接">「12月29日」最高速度19.6M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-43752.htm" title="郑州动物卫生防疫站（郑州市动物疫病预防控制中心电话）">郑州动物卫生防疫站（郑州市动物疫病预防控制中心电话）</a></li>
+                        <li class="py-2"><a href="/news/article-45248.htm" title="如何在idea上部署tomcat&amp;项目">如何在idea上部署tomcat&amp;项目</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-23-vless-node-share.htm" title="「1月23日」最高速度20.6M/S，2025年SSR/V2ray/Clash/ShadowrocketStash免费机场订阅链接">「1月23日」最高速度20.6M/S，2025年SSR/V2ray/Clash/ShadowrocketStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-23-vless-node-share.htm" title="「12月23日」最高速度22.6M/S，2024年Stash Github每天更新免费机场订阅节点链接">「12月23日」最高速度22.6M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-27350.htm" title="五八同城领养宠物可信吗（五八同城领养宠物可信吗）">五八同城领养宠物可信吗（五八同城领养宠物可信吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-20-vless-node-share.htm" title="「11月20日」最高速度21.6M/S，2024年Stash Github每天更新免费机场订阅节点链接">「11月20日」最高速度21.6M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">89</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fruits Shop End-->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3 mb-md-0">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <span class="text-light">Stash Github机场分享官网 版权所有 Powered by WordPress</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/stashgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
