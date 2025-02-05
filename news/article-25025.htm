@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://stashgithub.github.io/news/article-25025.htm" />
@@ -7,10 +7,38 @@
     <title>DDL —— 数据定义语言</title>
         <meta name="description" content="目录 一、数据库操作 查询数据库&nbsp;&nbsp; 创建数据库 删除数据库 使用数据库 二、表操作 查询当前数据库所有表 查询表的结构 查询指定表的建表语句 创建表 修改表名 向表中添加字段 修" />
         <link rel="icon" href="/assets/website/img/stashgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Stash Github机场分享官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://stashgithub.github.io/news/article-25025.htm" />
+    <meta property="og:site_name" content="Stash Github机场分享官网" />
+    <meta property="og:title" content="DDL —— 数据定义语言" />
+    <meta property="og:image" content="https://stashgithub.github.io/uploads/20240903-1/abbc81df77ac136bed5bce6cc577fc03.webp" />
+        <meta property="og:release_date" content="2024-12-13T12:03:41" />
+    <meta property="og:updated_time" content="2024-12-13T12:03:41" />
+        <meta property="og:description" content="目录 一、数据库操作 查询数据库&nbsp;&nbsp; 创建数据库 删除数据库 使用数据库 二、表操作 查询当前数据库所有表 查询表的结构 查询指定表的建表语句 创建表 修改表名 向表中添加字段 修" />
+        
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="DDL —— 数据定义语言">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
     <!-- Icon Font Stylesheet -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
@@ -89,7 +117,7 @@
                   				  				  				<div id="content_views" class="htmledit_views"> <p><strong>目录</strong></p> <p style="margin-left:40px;"><a href="#%E4%B8%80%E3%80%81%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C" rel="nofollow">一、数据库操作</a></p> <p style="margin-left:80px;"><a href="#%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE%E5%BA%93%C2%A0%C2%A0%C2%A0%E6%9F%A5%E8%AF%A2%E6%89%80%E6%9C%89%E6%95%B0%E6%8D%AE%E5%BA%93" rel="nofollow">查询数据库&nbsp;&nbsp;</a></p> <p style="margin-left:80px;"><a href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93" rel="nofollow">创建数据库</a></p> <p style="margin-left:80px;"><a href="#%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E5%BA%93" rel="nofollow">删除数据库</a></p> <p style="margin-left:80px;"><a href="#%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE%E5%BA%93" rel="nofollow">使用数据库</a></p> <p style="margin-left:40px;"><a href="#%E4%BA%8C%E3%80%81%E8%A1%A8%E6%93%8D%E4%BD%9C" rel="nofollow">二、表操作</a></p> <p style="margin-left:80px;"><a href="#%E6%9F%A5%E8%AF%A2%E5%BD%93%E5%89%8D%E6%95%B0%E6%8D%AE%E5%BA%93%E6%89%80%E6%9C%89%E8%A1%A8" rel="nofollow">查询当前数据库所有表</a></p> <p style="margin-left:80px;"><a href="#%E6%9F%A5%E8%AF%A2%E8%A1%A8%E7%9A%84%E7%BB%93%E6%9E%84" rel="nofollow">查询表的结构</a></p> <p style="margin-left:80px;"><a href="#%E6%9F%A5%E8%AF%A2%E6%8C%87%E5%AE%9A%E8%A1%A8%E7%9A%84%E5%BB%BA%E8%A1%A8%E8%AF%AD%E5%8F%A5" rel="nofollow">查询指定表的建表语句</a></p> <p style="margin-left:80px;"><a href="#%E5%88%9B%E5%BB%BA%E8%A1%A8" rel="nofollow">创建表</a></p> <p style="margin-left:80px;"><a href="#%E4%BF%AE%E6%94%B9%E8%A1%A8%E5%90%8D" rel="nofollow">修改表名</a></p> <p style="margin-left:80px;"><a href="#%E5%90%91%E8%A1%A8%E4%B8%AD%E6%B7%BB%E5%8A%A0%E5%AD%97%E6%AE%B5" rel="nofollow">向表中添加字段</a></p> <p style="margin-left:80px;"><a href="#%E4%BF%AE%E6%94%B9%E8%A1%A8%E4%B8%AD%E5%AD%97%E6%AE%B5" rel="nofollow">修改表中字段</a></p> <p style="margin-left:80px;"><a href="#%E5%88%A0%E9%99%A4%E8%A1%A8%E4%B8%AD%E5%AD%97%E6%AE%B5" rel="nofollow">删除表中字段</a></p> <p style="margin-left:80px;"><a href="#%E5%88%A0%E9%99%A4%E8%A1%A8" rel="nofollow">删除表</a></p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DDL（Data Definition Language），即数据定义语言，用来定义数据库对象（数据库，表，字段）。</p> <h2><span style="color:#fe2c24;"><strong>一、数据库操作</strong></span></h2> <ul> <li style="text-align:justify;"> <h3><span style="color:#4da8ee;">查询数据库&nbsp;&nbsp;</span></h3> </li> </ul> <blockquote> <p style="text-align:justify;"><span style="color:#956fe7;">show databases;</span> &nbsp; &nbsp;#查询所有数据库<br /><span style="color:#956fe7;">select database();</span> #查询当前所使用的数据库</p> </blockquote> <ul> <li style="text-align:justify;"> <h3><span style="color:#4da8ee;">创建数据库</span></h3> </li> </ul> <blockquote> <p style="text-align:justify;"><span style="color:#956fe7;">create database </span>[<span style="color:#956fe7;">if not exists</span>] 数据库名 [<span style="color:#956fe7;">character set</span>&nbsp;字符集] [<span style="color:#956fe7;">collate</span> 排序规则]<span style="color:#956fe7;">;</span></p> </blockquote> <p style="text-align:justify;"> <p><span style="color:#fe2c24;"><span style="background-color:#d7d8d9;">注：</span></span><span style="color:#0d0016;">[ ]内的内容可以省略。</span><br /> &nbsp; &nbsp; &nbsp; &nbsp; <span style="color:#fe2c24;">上述语句中</span><span style="color:#956fe7;">紫色字体</span><span style="color:#fe2c24;">为固定内容，</span><span style="color:#0d0016;">黑色字体</span><span style="color:#fe2c24;">改为数据库中的信息。</span><br /> &nbsp; &nbsp; &nbsp; &nbsp;<span style="color:#fe2c24;"><span style="background-color:#fbd4d0;">if not exists</span></span>意为如果不存在该数据库的话则创建，存在该数据库则不创建。当缺少if not exists且已存在该数据库时，会报错：Can't create database 'test'; database exists（不能创建名为test的数据库，数据库已存在）。详情如下图所示。</p> <p><img decoding="async" alt="4c243c79bc0e43c2a5d5e12cf3fe5389.png" src="http://img.555519.xyz/uploads/20230110/6967c056bbc4295ddc18672ee30306b2.jpg"></p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#fe2c24;"><span style="background-color:#fbd4d0;">character set&nbsp;字符集</span></span>：为数据库指定字符集。当缺少<span style="color:#fe2c24;"><span style="background-color:#fbd4d0;">character set 字符集</span></span>时采用默认字符集。MySQL8.0版本之前默认字符集为latin1，从MySQL8.0版本开始数据库的默认字符集为utf8mb4。<br /><strong>&nbsp; &nbsp; &nbsp; &nbsp;</strong><span style="color:#fe2c24;"><span style="background-color:#fbd4d0;">排序规则概念：</span></span>是指对指定字符集下不同字符的比较规则。排序规则有以下特征：它和字符集（<code>CHARSET</code>）相关；每种字符集都有多种它支持的排序规则；每种字符集都会默认指定一种排序规则为默认值。</p> <ul> <li> <h3><span style="color:#4da8ee;">删除数据</span></h3> </li> </ul> <blockquote> <p><span style="color:#956fe7;">drop database </span>[<span style="color:#956fe7;">if exists</span>] 数据库名<span style="color:#956fe7;">;</span></p> </blockquote> <p><span style="color:#fe2c24;"><span style="background-color:#d7d8d9;">注：</span></span>[ ]内的内容可以省略。<br /> &nbsp; &nbsp; &nbsp; <span style="color:#fe2c24;">上述语句中</span><span style="color:#956fe7;">紫色字体</span><span style="color:#fe2c24;">为固定内容，</span><span style="color:#0d0016;">黑色字体</span><span style="color:#fe2c24;">改为数据库中的信息。</span><br /> &nbsp; &nbsp; &nbsp; <span style="color:#fe2c24;"><span style="background-color:#fbd4d0;">&nbsp;if&nbsp;exists</span></span>意为如果存在该数据库的话则删除，不存在该数据库则不删除。当缺少<span style="color:#fe2c24;"><span style="background-color:#fbd4d0;">if&nbsp;exists</span></span>且不存在该数据库时，会报错：&nbsp;Can't drop database 'blog'; database doesn't exist（不能删除名为blog的数据库，数据库不存在）。详情如下图所示。<br /><img decoding="async" alt="3c6d404d80064160a39a8a0adb1bfc58.png" src="http://img.555519.xyz/uploads/20230110/c1249cddb36ad59bf9a310e7a4d7e64b.jpg"></p> <div></div> <ul> <li style="text-align:justify;"> <h3><span style="color:#4da8ee;">使用数据库</span></h3> </li> </ul> <blockquote> <p style="text-align:justify;"><span style="color:#956fe7;">use </span>数据库名<span style="color:#956fe7;">;</span></p> </blockquote> <h2 style="text-align:left;"><span style="color:#fe2c24;"><strong>二、表操作</strong></span></h2> <ul> <li style="text-align:left;"> <h3><span style="color:#4da8ee;">查询当前数据库所有表</span></h3> <blockquote><p>    <span style="color:#956fe7;">show tables;</span>   </p></blockquote> </li> <li style="text-align:left;"> <h3><span style="color:#4da8ee;">查询表的结构</span></h3> <blockquote><p>    <span style="color:#956fe7;">desc </span>表名<br />    <span style="color:#956fe7;">;</span>   </p></blockquote> <p><img decoding="async" alt="74aa640849704c4c890ac996cd8c6df2.png" src="http://img.555519.xyz/uploads/20230110/c20996c1828ea95c31ad4296ae9a7c42.jpg"><br /><span style="color:#fe2c24;"><span style="background-color:#d7d8d9;">注：</span><span style="background-color:#fbd4d0;">desc</span></span>可以换成<span style="color:#fe2c24;"><span style="background-color:#fbd4d0;">describe</span></span>,desc是describe的缩写。</p> </li> <li style="text-align:left;"> <h3><span style="color:#4da8ee;">查询指定表的建表语句</span></h3> <blockquote><p>    <span style="color:#956fe7;">show create table </span><br />    <span style="color:#0d0016;">表名</span><br />    <span style="color:#956fe7;">;</span>   </p></blockquote> <p><img decoding="async" alt="7e23e1fc25954310a468e47238712c63.png" src="http://img.555519.xyz/uploads/20230110/5e150b9202e404307e05e1b01068b386.jpg"></p> </li> <li style="text-align:left;"> <h3><span style="color:#4da8ee;">创建表</span></h3> <blockquote><p>    <span style="color:#956fe7;">create table</span> 表名<br />    <span style="color:#956fe7;">（</span><br />    <br /> &nbsp; &nbsp; 字段1 字段1数据类型 [<br />    <span style="color:#956fe7;">comment </span>字段1注释]<br />    <span style="color:#956fe7;">,</span><br />    <br /> &nbsp; &nbsp; 字段2 字段2数据类型 [<br />    <span style="color:#956fe7;">comment </span>字段2注释]<br />    <span style="color:#956fe7;">,</span><br />    <br /> &nbsp; &nbsp; 字段3 字段3数据类型 [<br />    <span style="color:#956fe7;">comment </span>字段3注释]<br />    <span style="color:#956fe7;">,</span><br />    <br /> &nbsp; &nbsp; &nbsp;……&nbsp;<br />    <br /> &nbsp; &nbsp; 字段n 字段n数据类型 [<br />    <span style="color:#956fe7;">comment </span>字段n注释]<br />    <br /> ）[<br />    <span style="color:#956fe7;">comment </span>表注释]<br />    <span style="color:#956fe7;">;</span>   </p></blockquote> <p><span style="color:#fe2c24;"><span style="background-color:#d7d8d9;">注：</span></span>[ ]内的内容可以省略。<br /> &nbsp; &nbsp; &nbsp; &nbsp;<span style="color:#fe2c24;">上述语句中</span><span style="color:#956fe7;">紫色字体</span><span style="color:#fe2c24;">为固定内容，</span><span style="color:#0d0016;">黑色字体</span><span style="color:#fe2c24;">改为数据库中的信息。</span><br /><span style="color:#fe2c24;"><strong>※</strong>最后一个字段后面没有逗号</span></p> </li> <li style="text-align:left;"> <h3><span style="color:#4da8ee;">修改表名</span></h3> <blockquote><p>    <span style="color:#956fe7;">alter table</span> 旧表名<br />    <span style="color:#956fe7;">rename</span> 新表名<br />    <span style="color:#956fe7;">;</span>&nbsp;   </p></blockquote> </li> <li style="text-align:left;"> <h3><span style="color:#4da8ee;">向表中添加字段</span></h3> <blockquote><p>    <span style="color:#956fe7;">alter table </span>表名<br />    <span style="color:#956fe7;">add</span> 字段名 字段的数据类型 [<br />    <span style="color:#956fe7;">commen</span>t 注释] [约束]<br />    <span style="color:#956fe7;">;</span>   </p></blockquote> <p><span style="color:#fe2c24;"><span style="background-color:#d7d8d9;">注：</span></span>[ ]内的内容可以省略。约束用于规定表中的数据规则。</p> </li> <li style="text-align:left;"> <h3><span style="color:#4da8ee;">修改表中字段</span></h3> </li> </ul> <p style="text-align:left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;修改字段的数据类型&nbsp;</p> <blockquote><p>  <span style="color:#956fe7;">alter table </span>表名<br />  <span style="color:#956fe7;">modify</span> 字段名 新数据类型<br />  <span style="color:#956fe7;">;</span> </p></blockquote> <p style="text-align:left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;修改字段名和数据类型</p> <blockquote><p>  <span style="color:#956fe7;">alter table</span> 表名<br />  <span style="color:#956fe7;">change</span> 旧字段名 新字段名 新字段名的数据类型 [<br />  <span style="color:#956fe7;">comment</span> 注释] [约束]<br />  <span style="color:#956fe7;">;</span> </p></blockquote> <p style="text-align:left;"><span style="color:#fe2c24;"><span style="background-color:#d7d8d9;">注：</span></span>[ ]内的内容可以省略。约束用于规定表中的数据规则。</p> <ul> <li style="text-align:left;"> <h3><span style="color:#4da8ee;">删除表中字段</span></h3> <blockquote><p>    <span style="color:#956fe7;">alter table</span> 表名<br />    <span style="color:#956fe7;">drop</span> 字段名<br />    <span style="color:#956fe7;">;</span>   </p></blockquote> </li> <li style="text-align:left;"> <h3><span style="color:#4da8ee;">删除表</span></h3> <blockquote><p>    <span style="color:#956fe7;">drop table </span><br />    <span style="color:#0d0016;">表名</span><br />    <span style="color:#956fe7;">;</span>   </p></blockquote> </li> </ul></div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-24572.htm">动物防疫疫苗与接种的区别 动物防疫疫苗与接种的区别是什么</a></p>
-                                        <p>下一个：<a href="/news/article-25026.htm">天津市宠物领养 天津市宠物领养中心</a></p>
+                                        <p>下一个：<a href="/news/article-28278.htm">给牲畜打疫苗的重要性（牲畜注射疫苗简报）</a></p>
                                     </div>
                                 </div>
                 <div class="col-md-3">
@@ -99,16 +127,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-25026.htm" title="天津市宠物领养 天津市宠物领养中心">天津市宠物领养 天津市宠物领养中心</a></li>
-                        <li class="py-2"><a href="/news/article-21799.htm" title="养狗容易得什么病如何预防（养狗狗容易得什么病）">养狗容易得什么病如何预防（养狗狗容易得什么病）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-20-vless-node-share.htm" title="「11月20日」最高速度21.6M/S，2024年Stash Github每天更新免费机场订阅节点链接">「11月20日」最高速度21.6M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-43751.htm" title="宠物口粮利润有多大 宠物口粮利润有多大啊">宠物口粮利润有多大 宠物口粮利润有多大啊</a></li>
+                        <li class="py-2"><a href="/news/article-35107.htm" title="Linux 下清空或删除大文件/大量文件的几种方法">Linux 下清空或删除大文件/大量文件的几种方法</a></li>
+                        <li class="py-2"><a href="/news/article-32539.htm" title="抖音领养宠物是真的吗（抖音领养宠物是真的吗还是假的）">抖音领养宠物是真的吗（抖音领养宠物是真的吗还是假的）</a></li>
                         <li class="py-2"><a href="/free-nodes/2024-11-23-free-subscribe-node.htm" title="「11月23日」最高速度18M/S，2024年Stash Github每天更新免费机场订阅节点链接">「11月23日」最高速度18M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-25961.htm" title="简述动物疫苗免疫失败的原因 简述动物疫苗免疫失败的原因有哪些">简述动物疫苗免疫失败的原因 简述动物疫苗免疫失败的原因有哪些</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-25-vless-github.htm" title="「10月25日」最高速度18.5M/S，2024年Stash Github每天更新免费机场订阅节点链接">「10月25日」最高速度18.5M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-27350.htm" title="五八同城领养宠物可信吗（五八同城领养宠物可信吗）">五八同城领养宠物可信吗（五八同城领养宠物可信吗）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-4-vless-github.htm" title="「12月4日」最高速度18.5M/S，2024年Stash Github每天更新免费机场订阅节点链接">「12月4日」最高速度18.5M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-26427.htm" title="【c语言】杨氏矩阵  有一个二维数组. 数组的每行从左到右是递增的，每列从上到下是递增的. 在这样的数组中查找一个数字是否存在。 时间复杂度小于O(N);">【c语言】杨氏矩阵  有一个二维数组. 数组的每行从左到右是递增的，每列从上到下是递增的. 在这样的数组中查找一个数字是否存在。 时间复杂度小于O(N);</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-15-vless-node-github.htm" title="「12月15日」最高速度22.7M/S，2024年Stash Github每天更新免费机场订阅节点链接">「12月15日」最高速度22.7M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-24572.htm" title="动物防疫疫苗与接种的区别 动物防疫疫苗与接种的区别是什么">动物防疫疫苗与接种的区别 动物防疫疫苗与接种的区别是什么</a></li>
+                        <li class="py-2"><a href="/news/article-20887.htm" title="Redis的内存淘汰机制和删除策略">Redis的内存淘汰机制和删除策略</a></li>
+                        <li class="py-2"><a href="/news/article-25026.htm" title="天津市宠物领养 天津市宠物领养中心">天津市宠物领养 天津市宠物领养中心</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-25-latest-vless-node.htm" title="「1月25日」最高速度20.9M/S，2025年Shadowrocket/SSR/V2ray/ClashStash免费机场订阅链接">「1月25日」最高速度20.9M/S，2025年Shadowrocket/SSR/V2ray/ClashStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-30159.htm" title="如何在 Java 中实现 Dijkstra 最短路算法">如何在 Java 中实现 Dijkstra 最短路算法</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-17-node-share-links.htm" title="「12月17日」最高速度22.3M/S，2024年Stash Github每天更新免费机场订阅节点链接">「12月17日」最高速度22.3M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
                     </ul>
     </div>
 </div>
@@ -120,19 +148,16 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">28</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
             </li>
                     </ul>
     </div>
