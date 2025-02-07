@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://stashgithub.github.io/news/article-52329.htm" />
+    <meta charset="utf-8">
+    <title>vue项目的excel的导入与导出</title>
+        <meta name="description" content="在做人力资源管理的后台项目时，实现了excel表的导入导出功能。用到了vue-element-admin提供的框架（链接地址&nbsp;），我们只需要在自己的项目中封装改造即可。 下面，来讲一下在项目" />
+        <link rel="icon" href="/assets/website/img/stashgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Stash Github机场分享官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://stashgithub.github.io/news/article-52329.htm" />
+    <meta property="og:site_name" content="Stash Github机场分享官网" />
+    <meta property="og:title" content="vue项目的excel的导入与导出" />
+    <meta property="og:image" content="https://stashgithub.github.io/uploads/20240903-1/01286d8ab49cdc2aeefc23b7e7607d5d.webp" />
+        <meta property="og:release_date" content="2025-02-07T07:17:45" />
+    <meta property="og:updated_time" content="2025-02-07T07:17:45" />
+        <meta property="og:description" content="在做人力资源管理的后台项目时，实现了excel表的导入导出功能。用到了vue-element-admin提供的框架（链接地址&nbsp;），我们只需要在自己的项目中封装改造即可。 下面，来讲一下在项目" />
+        
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="vue项目的excel的导入与导出">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/assets/website/js/frontend/stashgithub/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/stashgithub/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/stashgithub/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/stashgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNXJ21P00N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NNXJ21P00N');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+        <div class="container topbar bg-primary d-none d-lg-block">
+            <div class="d-flex justify-content-between">
+                
+            </div>
+        </div>
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                <a href="/" class="navbar-brand">
+                                <span class="text-primary display-6">Stash Github</span>
+                                </a>
+                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                                <a href="#" class="nav-item nav-link">关于</a>
+                        <a href="#" class="nav-item nav-link">联系</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">vue项目的excel的导入与导出</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+            <li class="breadcrumb-item active text-white">正文</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+    <!-- Fruits Shop Start-->
+    <div class="container-fluid fruite py-5">
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="StashNode免费订阅官网" data-url="https://stashnode.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>在做人力资源管理的后台项目时，实现了excel表的导入导出功能。用到了vue-element-admin提供的框架（<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/PanJiaChen/vue-element-admin/blob/master/src/components/UploadExcel/index.vue"  rel="nofollow">链接地址</a>&nbsp;），我们只需要在自己的项目中封装改造即可。</p> <p>下面，来讲一下在项目中实现excel表的导入与导出的步骤。</p> <h2>一、excel的导入</h2> <h3>1.excel导入功能需要使用npm包<strong><code>xlsx</code></strong>，所以需要安装<strong><code>xlsx</code></strong>插件</h3> <pre><code>npm i xlsx</code></pre> <h3>2.将vue-element-admin提供的导入功能新建一个公共组件 ，将组件引入到我们的页面中</h3> <p>（为了让我们的项目每次跳转都跳转到一个统一的页面，我们的项目中封装了单独的路由和页面组件@/views/import/index.vue来放excel导入）</p> <p>注意：这个页面结构用到了element-ui框架，但是如果用的是其他框架只需要改页面结构，逻辑代码是通用的。</p> <p>@/components/UploadExcel/index.vue</p> <p>代码到链接中复制即可，要改动的只有页面结构和样式。（<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/PanJiaChen/vue-element-admin/blob/master/src/components/UploadExcel/index.vue"  rel="nofollow">代码地址</a>）</p> <h3>3.实现excel的导入</h3> <p>在我们的import/index.vue组件中，传给UploadExcel/index.vue一个<strong><span style="color:#0d0016;">onsuccess</span></strong>方法，在这个方法里面我们可以拿到excel表的header表头和results表格数据。拿到这些数据就可以根据我们的业务需求来转换数据，来实现我们的业务需求逻辑代码。</p> <p>拿到的数据大概是如下这种：</p> <pre><code>      // 拿到的数据是如下这种，我们要将它转化成我们请求接口中所需要的数据       console.log(header)       // ["手机号", "姓名", "入职日期", "转正日期", "工号", ...]       console.log(results)       // [{入职日期: 'xxx', 姓名: 'xxx', 工号: 'xxx', ...}, {入职日期: 'xxx', 姓名: 'xxx', 工号: 'xxx', ...}]       // 我们需要的数据是如下这种       // [{timeOfEntry: 'xxx', username: 'xxx', workNumber: 'xxx', ...}, {timeOfEntry: 'xxx', username: 'xxx', workNumber: 'xxx', ...}]</code></pre> <p>&nbsp;下面附上整个代码：</p> <pre><code>&lt;template&gt;   &lt;upload-excel :on-success="success" /&gt; &lt;/template&gt;  &lt;script&gt; // 导入封装的导入excel表组件 import UploadExcel from '@/components/UploadExcel/index' import { importEmployee } from '@/api/employees' export default {   components: {     UploadExcel   },   data() {   },   methods: {     // 要使用这个组件，可以传入beforeUpload和onSuccess这两个函数     // beforeUpload要注意要return一个布尔值     // onSuccess这里面可以拿到表格的header(表头)和results(表格内容)     // 在我们自己的onSuccess函数里，可以拼接出我们需要的结构的数据     async success({ header, results }) {       // 拿到的数据是如下这种，我们要将它转化成我们请求接口中所需要的数据       console.log(header)       // ["手机号", "姓名", "入职日期", "转正日期", "工号", ...]       console.log(results)       // [{入职日期: 'xxx', 姓名: 'xxx', 工号: 'xxx', ...}]        // 1.定义我们需要的表头的映射关系（表头的字段其实就是我们接口中所需要的参数）       const userRelations = {         '入职日期': 'timeOfEntry',         '手机号': 'mobile',         '姓名': 'username',         '转正日期': 'correctionTime',         '工号': 'workNumber'       }       // 2.进行数据转换，实现业务需求       var newArr = results.map(item =&gt; {         const userInfo = {}         Object.keys(item).forEach(k =&gt; {           // key是当前的中文名 找到对应的英文名           if (userRelations[k] === 'timeOfEntry' || userRelations[k] === 'correctionTime') {             userInfo[userRelations[k]] = new Date(this.formatDate(item[k], '/')) // 只有这样, 才能入库             return           }           userInfo[userRelations[k]] = item[k]         })         return userInfo       })       await importEmployee(newArr)       this.$message.success('导入成功')       this.$router.back() // 回到上一页     },     formatDate(numb, format) {       const time = new Date((numb - 1) * 24 * 3600000 + 1)       time.setYear(time.getFullYear() - 70)       const year = time.getFullYear() + ''       const month = time.getMonth() + 1 + ''       const date = time.getDate() - 1 + ''       if (format &amp;&amp; format.length === 1) {         return year + format + month + format + date       }       return year + (month &lt; 10 ? '0' + month : month) + (date &lt; 10 ? '0' + date : date)     }   } } &lt;/script&gt;</code></pre> <h2>二、excel的导出</h2> <h3>1.下载所需js文件</h3> <p>Excel 的导入导出都是依赖于<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/SheetJS/js-xlsx"  rel="nofollow">js-xlsx</a>来实现的。</p> <p>在<code>js-xlsx</code>的基础上又封装了<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/PanJiaChen/vue-element-admin/blob/master/src/vendor/Export2Excel.js"  rel="nofollow">Export2Excel.js</a>来方便导出数据。所以我们可以先下载该js文件到我们的项目目录下（<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/PanJiaChen/vue-element-admin/blob/master/src/vendor/Export2Excel.js"  rel="nofollow">链接地址</a>）</p> <p>src/vendor/Export2Excel.js</p> <h3>2.安装导出excel所需依赖</h3> <p>由于<code>Export2Excel</code>不仅依赖<code>js-xlsx</code>还依赖<code>file-saver</code>和<code>script-loader，所以我们要再下载两个依赖包。</code></p> <pre><code>npm install xlsx file-saver -S npm install script-loader -S -D</code></pre> <h3>3.按需导入引用方法</h3> <p>由于下载的Export2Excel.js文件还挺大的，我们可以用按需导入的方法导入到我们的组件中。然后调用导入文件的导出对象上的方法，这个方法需要我们传入一些参数。</p> <pre><code>// 懒加载 import('@/vendor/Export2Excel').then(excel =&gt; {   // excel是引入文件（也就是@/ventor/Export2Excel）的导出对象   excel.export_json_to_excel({     header: tHeader, // 表头 必填  []     data, // 具体数据 必填  [[], [], ...]     filename: 'excel-list', // 导出文件名 非必填      autoWidth: true, // 单元格是否要自适应宽度 非必填  true / false     bookType: 'xlsx' // 导出文件类型 非必填  'xlsx'/'csv'/'txt'等   }) })</code></pre> <p>在导出的函数我们，我们需要将我们项目中拿到的数据转化成参数所需要的数据格式</p> <pre><code>        // 拿到的数据是这种         //  [{ username: 'xxx', mobile: 'xxx', ... }, { username: 'xxx', mobile: 'xxx', ... }]         // 要转化的是如下这种         // header: ['姓名', '手机号', '入职日期', ...]         // data: [['张三', '138xxxxxxxx', '1992-08-04', ...], ['李四', '135xxxxxxxx', '1992-08-04', ...]]</code></pre> <p>下面附上整个代码</p> <pre><code>    // 导出数据     exportData() {       // 1.定义表头对应关系       const headers = {         '姓名': 'username',         '手机号': 'mobile',         '入职日期': 'timeOfEntry',         '聘用形式': 'formOfEmployment',         '转正日期': 'correctionTime',         '工号': 'workNumber',         '部门': 'departmentName'       }       // 懒加载       import('@/vendor/Export2Excel').then(async excel =&gt; {         // excel是引入文件（也就是@/ventor/Export2Excel）的导出对象         // 获取所有的数据         const { rows } = await getEmployeeList({ page: 1, size: this.page.total })         const data = this.formatJson(headers, rows) // 返回的data就是我们转化后的数据         excel.export_json_to_excel({           // 要求转出的表头是中文           header: Object.keys(headers), // 表头 必填           data, // //具体数据 必填           filename: 'excel-list', // 非必填           autoWidth: true, // 非必填           bookType: 'xlsx' // 非必填         })         // 拿到的数据是这种         //  [{ username: 'xxx', mobile: 'xxx', ... }, { username: 'xxx', mobile: 'xxx', ... }]         // 要转化的是如下这种         // header: ['姓名', '手机号', '入职日期', ...]         // data: [['张三', '138xxxxxxxx', '1992-08-04', ...], ['李四', '135xxxxxxxx', '1992-08-04', ...]]       })     },     formatJson(headers, rows) {       return rows.map(item =&gt; {         console.log(item)         return Object.keys(headers).map(k =&gt; {           if (headers[k] === 'timeOfEntry' || headers[k] === 'correctionTime') {             return formatDate(item[headers[k]]) // 返回格式化之前的时间           } else if (headers[k] === 'formOfEmployment') {             return EmployeeEnum.hireType[item.formOfEmployment] ? EmployeeEnum.hireType[item.formOfEmployment] : '未知'           }           return item[headers[k]]         })       })     }</code></pre> <p>好啦，以上就是excel表导入导出的步骤啦，有不对的地方欢迎指正哦！~</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-51798.htm">北京看动物的博物馆叫什么（北京看动物的公园）</a></p>
+                                        <p>下一个：<a href="/news/article-52330.htm">宠物粮食哪里批发最便宜又好卖的（宠物粮食批发市场）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-21798.htm" title="Feign优化之Client选择">Feign优化之Client选择</a></li>
+                        <li class="py-2"><a href="/news/article-39789.htm" title="宠物店的粮适合买吗现在 宠物店的粮适合买吗现在怎么样">宠物店的粮适合买吗现在 宠物店的粮适合买吗现在怎么样</a></li>
+                        <li class="py-2"><a href="/news/article-19053.htm" title="element-plus  一个vue3.xUI框架 （element-ui的3.x 版初体验）">element-plus  一个vue3.xUI框架 （element-ui的3.x 版初体验）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-19-vless-node.htm" title="「12月19日」最高速度18.3M/S，2024年Stash Github每天更新免费机场订阅节点链接">「12月19日」最高速度18.3M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-9-vless-node-share.htm" title="「1月9日」最高速度19.2M/S，2025年V2ray/Shadowrocket/Clash/SSRStash免费机场订阅链接">「1月9日」最高速度19.2M/S，2025年V2ray/Shadowrocket/Clash/SSRStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-23-vless-node-share.htm" title="「12月23日」最高速度22.6M/S，2024年Stash Github每天更新免费机场订阅节点链接">「12月23日」最高速度22.6M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-29-today-vless-node.htm" title="「12月29日」最高速度19.6M/S，2024年Stash Github每天更新免费机场订阅节点链接">「12月29日」最高速度19.6M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-25-today-vless-node.htm" title="「11月25日」最高速度21.5M/S，2024年Stash Github每天更新免费机场订阅节点链接">「11月25日」最高速度21.5M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-25488.htm" title="宠物粮食加工厂需要投资多少钱呢知乎文章推荐（宠物粮食加工厂好做吗）">宠物粮食加工厂需要投资多少钱呢知乎文章推荐（宠物粮食加工厂好做吗）</a></li>
+                        <li class="py-2"><a href="/news/article-45248.htm" title="如何在idea上部署tomcat&amp;项目">如何在idea上部署tomcat&amp;项目</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fruits Shop End-->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3 mb-md-0">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <span class="text-light">Stash Github机场分享官网 版权所有 Powered by WordPress</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/stashgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
