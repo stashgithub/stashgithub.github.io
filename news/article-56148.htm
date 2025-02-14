@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://stashgithub.github.io/news/article-56148.htm" />
+    <meta charset="utf-8">
+    <title>k8s单节点部署mysql_k8s deployment部署单个mysql容器实例 + service</title>
+        <meta name="description" content="k8s deployment yaml，源于从网上找到的一个版本 apiVersion: apps/v1 # apiserver的版本 kind: Deployment # 副本控制器deployme" />
+        <link rel="icon" href="/assets/website/img/stashgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Stash Github机场分享官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://stashgithub.github.io/news/article-56148.htm" />
+    <meta property="og:site_name" content="Stash Github机场分享官网" />
+    <meta property="og:title" content="k8s单节点部署mysql_k8s deployment部署单个mysql容器实例 + service" />
+    <meta property="og:image" content="https://stashgithub.github.io/uploads/20240903-1/18819e91a63ecaef0ba0978cea4c1e1d.webp" />
+        <meta property="og:release_date" content="2025-02-14T10:00:10" />
+    <meta property="og:updated_time" content="2025-02-14T10:00:10" />
+        <meta property="og:description" content="k8s deployment yaml，源于从网上找到的一个版本 apiVersion: apps/v1 # apiserver的版本 kind: Deployment # 副本控制器deployme" />
+        
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="k8s单节点部署mysql_k8s deployment部署单个mysql容器实例 + service">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/assets/website/js/frontend/stashgithub/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/stashgithub/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/stashgithub/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/stashgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNXJ21P00N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NNXJ21P00N');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+        <div class="container topbar bg-primary d-none d-lg-block">
+            <div class="d-flex justify-content-between">
+                
+            </div>
+        </div>
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                <a href="/" class="navbar-brand">
+                                <span class="text-primary display-6">Stash Github</span>
+                                </a>
+                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/client.htm" class="nav-item nav-link">客户端</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                            </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">k8s单节点部署mysql_k8s deployment部署单个mysql容器实例 + service</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+            <li class="breadcrumb-item active text-white">正文</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+    <!-- Fruits Shop Start-->
+    <div class="container-fluid fruite py-5">
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="StashNode免费订阅官网" data-url="https://stashnode.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <div style="font-size:16px;"> <p>k8s deployment yaml，源于从网上找到的一个版本</p> <p>apiVersion: apps/v1 # apiserver的版本</p> <p>kind: Deployment # 副本控制器deployment，管理pod和RS</p> <p>metadata:</p> <p>name: mysql # deployment的名称，全局唯一</p> <p>spec:</p> <p>replicas: 1 # Pod副本期待数量</p> <p>selector:</p> <p>matchLabels: # 定义RS的标签</p> <p>app: mysql # 符合目标的Pod拥有此标签</p> <p>strategy: # 定义升级的策略</p> <p>type: RollingUpdate # 滚动升级，逐步替换的策略</p> <p>template: # 根据此模板创建Pod的副本(实例)</p> <p>metadata:</p> <p>labels:</p> <p>app: mysql # Pod副本的标签，对应RS的Selector</p> <p>spec:</p> <p>nodeName: ysp1 # 指定pod运行在的node</p> <p>containers: # Pod里容器的定义部分</p> <p>- name: mysql # 容器的名称</p> <p>image: mysql:5.7 # 容器对应的docker镜像</p> <p>volumeMounts: # 容器内挂载点的定义部分</p> <p>- name: time-zone # 容器内挂载点名称</p> <p>mountPath: /etc/localtime # 容器内挂载点路径，可以是文件或目录</p> <p>- name: mysql-data</p> <p>mountPath: /var/lib/mysql # 容器内mysql的数据目录</p> <p>- name: mysql-logs</p> <p>mountPath: /var/log/mysql # 容器内mysql的日志目录</p> <p>ports:</p> <p>- containerPort: 3306 # 容器暴露的端口号</p> <p>env: # 写入到容器内的环境容量</p> <p>- name: MYSQL_ROOT_PASSWORD # 定义了一个mysql的root密码的变量</p> <p>value: "456789"</p> <p>volumes: # 本地需要挂载到容器里的数据卷定义部分</p> <p>- name: time-zone # 数据卷名称，需要与容器内挂载点名称一致</p> <p>hostPath:</p> <p>path: /etc/localtime # 挂载到容器里的路径，将localtime文件挂载到容器里，可让容器使用本地的时区</p> <p>- name: mysql-data</p> <p>hostPath:</p> <p>path: /data/mysql/data # 本地存放mysql数据的目录</p> <p>- name: mysql-logs</p> <p>hostPath:</p> <p>path: /data/mysql/logs # 本地存入mysql日志的目录</p> <p>如果pod正常running，没有mysql 也是可以进入的，不过得使用命令&nbsp; kubectl get pod -o wide, 然后你看到的pod ip + 上面定义的容器端口号3306。</p> <p>然后可以对接一个service，让外部访问。</p> <p>apiVersion: v1</p> <p>kind: Service</p> <p>metadata:</p> <p>name: mysql-service</p> <p>spec:</p> <p>type: NodePort</p> <p>ports:</p> <p>- port: 3306</p> <p>targetPort: 3306</p> <p>nodePort: 30006</p> <p>selector:</p> <p>app: mysql</p> <p>可以通过 kubectl get svc，查看你的service ip， 便可以通过service ip + port进行访问，但如果你用的nat虚拟机部署的，你的宿主及无法访问service ip， 上午中我也加了一个nodeport，暴露30007端口。</p> <p>那么让你的宿主机访问虚拟机ip + nodeport 也是可以访问的了。</p> </div> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-56147.htm">java8在日常开发中使用LocalDate和LocalTime</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-35640.htm" title="动物疫苗厂家有多少家上市公司 动物疫苗厂家有多少家上市公司呢">动物疫苗厂家有多少家上市公司 动物疫苗厂家有多少家上市公司呢</a></li>
+                        <li class="py-2"><a href="/news/article-43752.htm" title="郑州动物卫生防疫站（郑州市动物疫病预防控制中心电话）">郑州动物卫生防疫站（郑州市动物疫病预防控制中心电话）</a></li>
+                        <li class="py-2"><a href="/news/article-44253.htm" title="被猫咬了6天了打针还有用吗（孩子10几天后才说被猫咬了）">被猫咬了6天了打针还有用吗（孩子10几天后才说被猫咬了）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-1-node-share-links.htm" title="「2月1日」最高速度20.3M/S，2025年SSR/V2ray/Shadowrocket/ClashStash免费机场订阅链接">「2月1日」最高速度20.3M/S，2025年SSR/V2ray/Shadowrocket/ClashStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-50741.htm" title="宠物粮食批发市场地址在哪里（宠物粮食批发市场地址在哪里啊）">宠物粮食批发市场地址在哪里（宠物粮食批发市场地址在哪里啊）</a></li>
+                        <li class="py-2"><a href="/news/article-34433.htm" title="东北农业大学动物医学学院院长（东北农业大学动物科学与技术学院）">东北农业大学动物医学学院院长（东北农业大学动物科学与技术学院）</a></li>
+                        <li class="py-2"><a href="/news/article-38301.htm" title="动物医院好评语怎么写啊 动物医院好评语怎么写啊英语">动物医院好评语怎么写啊 动物医院好评语怎么写啊英语</a></li>
+                        <li class="py-2"><a href="/news/article-38794.htm" title="宠物店从哪进货（宠物店从哪进货好）">宠物店从哪进货（宠物店从哪进货好）</a></li>
+                        <li class="py-2"><a href="/news/article-19052.htm" title="JAVA程序进阶——LocalDate、LocalTime、LocalDateTime">JAVA程序进阶——LocalDate、LocalTime、LocalDateTime</a></li>
+                        <li class="py-2"><a href="/news/article-53388.htm" title="关于Jeecg uniapp 使用 mescroll 无法上拉加载">关于Jeecg uniapp 使用 mescroll 无法上拉加载</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">42</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fruits Shop End-->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3 mb-md-0">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <span class="text-light">Stash Github机场分享官网 版权所有 Powered by WordPress</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/stashgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

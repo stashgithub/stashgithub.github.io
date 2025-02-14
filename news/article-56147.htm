@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://stashgithub.github.io/news/article-56147.htm" />
+    <meta charset="utf-8">
+    <title>java8在日常开发中使用LocalDate和LocalTime</title>
+        <meta name="description" content="原先的Date and Calendar 类的api比较复杂，不易于理解，应用起来不是很灵活。 Calendar 是个线程不安全的类会导致SimpleDateFormat线程不安全。 java.tim" />
+        <link rel="icon" href="/assets/website/img/stashgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Stash Github机场分享官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://stashgithub.github.io/news/article-56147.htm" />
+    <meta property="og:site_name" content="Stash Github机场分享官网" />
+    <meta property="og:title" content="java8在日常开发中使用LocalDate和LocalTime" />
+    <meta property="og:image" content="https://stashgithub.github.io/uploads/20240903-1/9bbf5c57351d3faa7bfa2da93377e6dc.webp" />
+        <meta property="og:release_date" content="2025-02-14T10:00:10" />
+    <meta property="og:updated_time" content="2025-02-14T10:00:10" />
+        <meta property="og:description" content="原先的Date and Calendar 类的api比较复杂，不易于理解，应用起来不是很灵活。 Calendar 是个线程不安全的类会导致SimpleDateFormat线程不安全。 java.tim" />
+        
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="java8在日常开发中使用LocalDate和LocalTime">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/assets/website/js/frontend/stashgithub/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/stashgithub/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/stashgithub/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/stashgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNXJ21P00N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NNXJ21P00N');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+        <div class="container topbar bg-primary d-none d-lg-block">
+            <div class="d-flex justify-content-between">
+                
+            </div>
+        </div>
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                <a href="/" class="navbar-brand">
+                                <span class="text-primary display-6">Stash Github</span>
+                                </a>
+                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/client.htm" class="nav-item nav-link">客户端</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                            </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">java8在日常开发中使用LocalDate和LocalTime</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+            <li class="breadcrumb-item active text-white">正文</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+    <!-- Fruits Shop Start-->
+    <div class="container-fluid fruite py-5">
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="StashNode免费订阅官网" data-url="https://stashnode.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atelier-sulphurpool-light"> </h1> <ol> <li>原先的Date and Calendar 类的api比较复杂，不易于理解，应用起来不是很灵活。</li> <li>Calendar 是个线程不安全的类会导致SimpleDateFormat线程不安全。</li> <li>java.time是JSR 310: Date and Time API.规范所开发，其所有类都是线程安全的或者是枚举类型的类</li> <li>java.time 的API 使用简单，能够灵活计算时间，矫正时间。</li> </ol> </h1> <p>LocalDate 是 日期，在java.time 中 日期和时间是可以分开和组合的。</p> <h2><a id="21_date_11" rel="nofollow"></a>2.1 创建date的方式</h2> <pre><code> // 创建date的方式     @Test     public void LocalDateTest(){         // 1当前日期 常用         LocalDate now = LocalDate.now();         System.out.println(now);//2019-10-27         // 2指定年月 日 方式 常用         LocalDate ofDate = LocalDate.of(2018, 8, 8);         System.out.println(ofDate);//2018-08-08         // 3使用Clock方式创建 不常用         Clock clock = Clock.systemDefaultZone();         LocalDate date = LocalDate.now(clock);         System.out.println(date);// 2019-10-27         // 4 指定年份 和 一年的天数进行创建         LocalDate localDate = LocalDate.ofYearDay(2018, 256);         System.out.println(localDate);// 2018-09-13              }</code></pre> <h2><a id="22_LocalDatedate_33" rel="nofollow"></a>2.2 使用LocalDate读取date</h2> <pre><code> @Test     public void LocalDateTest2(){         // 创建时间         LocalDate date = LocalDate.of(2019,10,27);         // 获得年份 2019         date.getYear();         System.out.println(date.getYear());         // 获得一个月中的第几天 27         date.getDayOfMonth();         System.out.println(date.getDayOfMonth());         // 获得星期 SUNDAY         date.getDayOfWeek();         System.out.println(date.getDayOfWeek());         // 获得一年中的第几天 300         date.getDayOfYear();         System.out.println(date.getDayOfYear());         // 获得月份值 10         date.getMonthValue();         System.out.println(date.getMonthValue());         // 获得月份长度 31         date.lengthOfMonth();         System.out.println(date.lengthOfMonth());         // 是否是闰年 false         date.isLeapYear();         System.out.println(date.isLeapYear());      }</code></pre> <h2><a id="23_TemporalField__LocalDate__66" rel="nofollow"></a>2.3 TemporalField 读取 LocalDate 的值</h2> <p>ChronoField 是个枚举其实现了TemporalField接口，除了2.2的方式读取date我们还可以使用ChronoField方式读取date.</p> <pre><code>    // 使用 TemporalField 读取 LocalDate 的值     @Test     public void LocalDateTest3() {         // 创建时间         LocalDate date = LocalDate.of(2019, 10, 27);         // 获得年份 2019         date.get(ChronoField.YEAR);         System.out.println(date.get(ChronoField.YEAR));         // 获得月份 10         date.get(ChronoField.MONTH_OF_YEAR);         System.out.println(date.get(ChronoField.MONTH_OF_YEAR));         // 获得这个月中的第几天 27         date.get(ChronoField.DAY_OF_MONTH);         System.out.println(date.get(ChronoField.DAY_OF_MONTH));         // 获得这个星期的第几天 7         date.get(ChronoField.DAY_OF_WEEK);         System.out.println(date.get(ChronoField.DAY_OF_WEEK));         // 其他不再举例自行研究都是字面意思很好理解      }</code></pre> <h2><a id="24__LocalDate_93" rel="nofollow"></a>2.4 解析LocalDate</h2> <pre><code>   @Test     public void LocalDateParse(){         // 默认支持格式解析         String dateStr = "2019-10-27";         LocalDate parse = LocalDate.parse(dateStr);         System.out.println(parse);//2019-10-27         // 指定格式解析         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");         LocalDate date = LocalDate.parse("2019/10/27", dateTimeFormatter);         System.out.println(date);//2019-10-27     }</code></pre> <h2><a id="25___Period__date_108" rel="nofollow"></a>2.5 使用 Period 操纵 date</h2> <p>获得连个日期之间的差值，可以获得年，月，日，判断是否非0等等。</p> <pre><code>    @Test     public void LocalDatePor(){         LocalDate date1 = LocalDate.of(2019, 10, 27);         LocalDate date2 = LocalDate.of(2019, 10, 25);         Period between = Period.between(date2, date1);         System.out.println(between.getDays());// 2     }</code></pre> <h2><a id="26_date_120" rel="nofollow"></a>2.6 修改date</h2> <p>通过withAttribute修改不会改变原来的date，会在原来date的基础上形成新的LocalDate副本。</p> <pre><code>    // 修改     @Test     public void LocalDateWith(){         LocalDate date1 = LocalDate.of(2019, 10, 27);         LocalDate date2 = date1.withMonth(9);//2019-09-27         System.out.println(date2);         LocalDate date3 = date2.withYear(2018);//2018-09-27         System.out.println(date3);         // 2019-10-27         System.out.println(date1);     }</code></pre> <h2><a id="27__TemporalAdjuster__136" rel="nofollow"></a>2.7 使用 TemporalAdjuster 修改日期</h2> <p>TemporalAdjuster 时间矫正器修改时间也是不会改变原来的date,会新生成LocalDate 副本，相比于withAttribute，其API更加丰富，提供大量的静态工厂方法，能满足我们日常开发需求。</p> <pre><code>    //  TemporalAdjuster youku1327     @Test     public void LocalDateTemporalAdjuster(){         LocalDate date1 = LocalDate.of(2019, 10, 27);         LocalDate date2 = date1.with(TemporalAdjusters.firstDayOfMonth());         // 2019-10-01         System.out.println(date2);         LocalDate date3 = date1.with(TemporalAdjusters.firstDayOfYear());         // 2019-01-01         System.out.println(date3);         LocalDate date4 = date1.with(TemporalAdjusters.lastDayOfYear());         // 2019-12-31         System.out.println(date4);      }</code></pre> </h1> <p>如果你已经掌握了上述的LocalDate的基本用法，那么学习LocalTime也是十分简单，原因是LocalTime和LocalDate的API基本差不多。</p> <h2><a id="31_LocalTime_161" rel="nofollow"></a>3.1 创建LocalTime</h2> <pre><code>    @Test     public void localTimeTest1(){         // 1当前时间         LocalTime now = LocalTime.now();         System.out.println(now);//22:49:03.360         // 2指定时间         LocalTime of = LocalTime.of(22, 47);         System.out.println(of);//22:47      }</code></pre> <h2><a id="32__175" rel="nofollow"></a>3.2 读取时间</h2> <pre><code>@Test     public void localTimeRead(){         // 1指定时间         LocalTime tiem = LocalTime.of(22, 50);         // 小时         int hour = tiem.getHour();         // 分钟         int minute = tiem.getMinute();         // 秒         int second = tiem.getSecond();         // 纳秒         int nano = tiem.getNano();              }</code></pre> <h2><a id="33__193" rel="nofollow"></a>3.3 时间解析</h2> <pre><code> // 解析时间     @Test     public void localTimeParse(){         // 默认支持格式解析         LocalTime parse = LocalTime.parse("22:50:00");         System.out.println(parse);// 22:50         // 指定格式解析         LocalTime time = LocalTime.parse("22:50:00", DateTimeFormatter.ISO_TIME);         System.out.println(time);// 22:50      }</code></pre> <h2><a id="34__208" rel="nofollow"></a>3.4 时间修改</h2> <pre><code>    //     @Test     public void localTime(){         // 1时间         LocalTime time = LocalTime.of(22, 50);         LocalTime time1 = time.withHour(2);//02:50         System.out.println(time1);         LocalTime time2 = time.withMinute(10);//22:10         System.out.println(time2);     }</code></pre> <h2><a id="35_Duration_223" rel="nofollow"></a>3.5 使用Duration获得时间差值</h2> <pre><code>  @Test     public void localTime(){         LocalTime time1 = LocalTime.of(22, 50,20,20);         LocalTime time2 = LocalTime.of(23, 10);         // 差值         Duration duration = Duration.between(time1, time2);         long seconds = duration.getSeconds();         int nano = duration.getNano();         System.out.println(seconds);//1179         System.out.println(nano);//999999980      }</code></pre> </h1> <p>LocalDate 和 LocalTime 能相互合并成 LocalDateTime ,LocalDateTime 也可以转为 LocalDate 或者 LocalTime。<br /> LocalDateTime其他的API 跟 LocalTime，LocalDate 差不多，在次不赘述。</p> <pre><code>    // youku1327 谢谢 lsc      @Test     public void LocalDateTimeTest(){         LocalDate date = LocalDate.of(2019, 10, 27);         LocalTime time = LocalTime.of(23, 20, 00);         // 合并为 LocalDateTime         LocalDateTime localDateTime = LocalDateTime.of(date, time);         System.out.println(localDateTime);//2019-10-27T23:20         // 转为LocalDate         LocalDate localDate = localDateTime.toLocalDate();         System.out.println(localDate);//2019-10-27         // 转为 LocalTime         LocalTime localTime = localDateTime.toLocalTime();         System.out.println(localTime);// 23:20     }</code></pre> </h1> <p>java8中 java.time.ZoneId代替了老版本java.util.TimeZone 。</p> <h2><a id="51__266" rel="nofollow"></a>5.1 时区偏移</h2> <p>默认是当前时区和UTC /格林威治的固定偏差值</p> <pre><code>     @Test     public void TimeZoneId(){         // 上海         ZoneId shanghai = ZoneId.of("Asia/Shanghai");         LocalDate date = LocalDate.of(2019, 10, 27);         // 设置时区         ZonedDateTime zonedDateTime = date.atStartOfDay(shanghai);         // 获得偏移         ZoneOffset offset = zonedDateTime.getOffset();         System.out.println(offset);//+08:00     }</code></pre> <h2><a id="52_TimeZone___ZoneId_282" rel="nofollow"></a>5.2 TimeZone 转 ZoneId</h2> <pre><code>    @Test     public void TimeZoneId2(){         ZoneId zoneId = TimeZone.getDefault().toZoneId();         String id = zoneId.getId();         System.out.println(id);//Asia/Shanghai     }</code></pre> <h2><a id="53__292" rel="nofollow"></a>5.3 时区时间计算</h2> <pre><code>    @Test     public void TimeZoneId3(){         ZoneId zoneId = ZoneId.of("America/Chicago");         Instant instant = Instant.now();         // 上海时间 2019-10-27T23:51:27.168         System.out.println(LocalDateTime.ofInstant(instant,ZoneId.of("Asia/Shanghai")));         ZonedDateTime zonedDateTime = instant.atZone(zoneId);         ZoneOffset offset = zonedDateTime.getOffset();         // 美国芝加哥离上海时区差值 -05:00         System.out.println(offset);         LocalDateTime localDateTime = zonedDateTime.toLocalDateTime();         // 芝加哥时间         System.out.println(localDateTime);//2019-10-27T10:51:27.168     }</code></pre> </h1> </h1> <p></p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-55590.htm">三国杀武将列表（三国杀武将列表杀身成仁解锁）</a></p>
+                                        <p>下一个：<a href="/news/article-56148.htm">k8s单节点部署mysql_k8s deployment部署单个mysql容器实例 + service</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-11-18-free-node-subscribe-links.htm" title="「11月18日」最高速度21.2M/S，2024年Stash Github每天更新免费机场订阅节点链接">「11月18日」最高速度21.2M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-46231.htm" title="vue中modal传输数据并刷新部分页面数据方式_vue.js">vue中modal传输数据并刷新部分页面数据方式_vue.js</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-21-free-high-speed-nodes.htm" title="「12月21日」最高速度22.3M/S，2024年Stash Github每天更新免费机场订阅节点链接">「12月21日」最高速度22.3M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-42766.htm" title="动物防疫所电话 动物防疫所电话号码">动物防疫所电话 动物防疫所电话号码</a></li>
+                        <li class="py-2"><a href="/news/article-39789.htm" title="宠物店的粮适合买吗现在 宠物店的粮适合买吗现在怎么样">宠物店的粮适合买吗现在 宠物店的粮适合买吗现在怎么样</a></li>
+                        <li class="py-2"><a href="/news/article-25025.htm" title="DDL —— 数据定义语言">DDL —— 数据定义语言</a></li>
+                        <li class="py-2"><a href="/news/article-19052.htm" title="JAVA程序进阶——LocalDate、LocalTime、LocalDateTime">JAVA程序进阶——LocalDate、LocalTime、LocalDateTime</a></li>
+                        <li class="py-2"><a href="/news/article-42765.htm" title="Java数据结构之单向环形链表（解决Josephu约瑟夫环问题）">Java数据结构之单向环形链表（解决Josephu约瑟夫环问题）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-6-node-share.htm" title="「12月6日」最高速度21M/S，2024年Stash Github每天更新免费机场订阅节点链接">「12月6日」最高速度21M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-10-free-subscribe-node.htm" title="「11月10日」最高速度22.5M/S，2024年Stash Github每天更新免费机场订阅节点链接">「11月10日」最高速度22.5M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">42</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fruits Shop End-->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3 mb-md-0">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <span class="text-light">Stash Github机场分享官网 版权所有 Powered by WordPress</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/stashgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
