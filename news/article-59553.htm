@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://stashgithub.github.io/news/article-59553.htm" />
+    <meta charset="utf-8">
+    <title>vue跳转方式及传参 (包括打开新窗口)</title>
+        <meta name="description" content="本文实例讲述了vue跳转方式（打开新页面）及传参操作。分享给大家供大家参考，具体如下： 1. router-link跳转 // 直接写上跳转的地址&lt;router-linkto="/detail/" />
+        <link rel="icon" href="/assets/website/img/stashgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Stash Github机场分享官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://stashgithub.github.io/news/article-59553.htm" />
+    <meta property="og:site_name" content="Stash Github机场分享官网" />
+    <meta property="og:title" content="vue跳转方式及传参 (包括打开新窗口)" />
+    <meta property="og:image" content="https://stashgithub.github.io/uploads/20240903-1/812aa426b2667c05f5030dcb3b4c5b56.webp" />
+        <meta property="og:release_date" content="2025-02-20T09:54:24" />
+    <meta property="og:updated_time" content="2025-02-20T09:54:24" />
+        <meta property="og:description" content="本文实例讲述了vue跳转方式（打开新页面）及传参操作。分享给大家供大家参考，具体如下： 1. router-link跳转 // 直接写上跳转的地址&lt;router-linkto="/detail/" />
+        
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="vue跳转方式及传参 (包括打开新窗口)">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/assets/website/js/frontend/stashgithub/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/stashgithub/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/stashgithub/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/stashgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNXJ21P00N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NNXJ21P00N');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+        <div class="container topbar bg-primary d-none d-lg-block">
+            <div class="d-flex justify-content-between">
+                
+            </div>
+        </div>
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                <a href="/" class="navbar-brand">
+                                <span class="text-primary display-6">Stash Github</span>
+                                </a>
+                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/client.htm" class="nav-item nav-link">客户端</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                            </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">vue跳转方式及传参 (包括打开新窗口)</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+            <li class="breadcrumb-item active text-white">正文</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+    <!-- Fruits Shop Start-->
+    <div class="container-fluid fruite py-5">
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="StashNode免费订阅官网" data-url="https://stashnode.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>本文实例讲述了vue跳转方式（打开新页面）及传参操作。分享给大家供大家参考，具体如下：</p> <h2><a id="1_routerlink_2" rel="nofollow"></a>1. router-link跳转</h2> <pre><code class="prism language-html">// 直接写上跳转的地址<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-link</span><span class="token attr-name">to</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/detail/one<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>spanfour<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>link跳转<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>router-link</span><span class="token punctuation">&gt;</span></span> // 添加参数<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-link</span><span class="token attr-name">:to</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{path:<span class="token punctuation">'</span>/detail/two<span class="token punctuation">'</span>, query:{id:1，name:<span class="token punctuation">'</span>vue<span class="token punctuation">'</span>}}<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>router-link</span><span class="token punctuation">&gt;</span></span> // 参数获取 id = this.$route.query.id // 新窗口打开<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-link</span><span class="token attr-name">:to</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{path:<span class="token punctuation">'</span>/detail/three<span class="token punctuation">'</span>, query:{id:1，name:<span class="token punctuation">'</span>vue<span class="token punctuation">'</span>}}<span class="token punctuation">"</span></span><span class="token attr-name">target</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>_blank<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>router-link</span><span class="token punctuation">&gt;</span></span></code></pre> <h2><a id="2_thisrouterpush_17" rel="nofollow"></a>2. this.$router.push跳转</h2> <pre><code class="prism language-javascript"><span class="token function">toDeail</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">this</span><span class="token punctuation">.</span>$router<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span>path<span class="token punctuation">:</span><span class="token string">"/detail"</span><span class="token punctuation">,</span> query<span class="token punctuation">:</span><span class="token punctuation">{<!-- --></span>id<span class="token punctuation">:</span> e<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token comment">// 参数获取</span> id<span class="token operator">=</span><span class="token keyword">this</span><span class="token punctuation">.</span>$route<span class="token punctuation">.</span>query<span class="token punctuation">.</span>id<span class="token function">toDeail</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">this</span><span class="token punctuation">.</span>$router<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span>name<span class="token punctuation">:</span><span class="token string">"/detail"</span><span class="token punctuation">,</span> params<span class="token punctuation">:</span><span class="token punctuation">{<!-- --></span>id<span class="token punctuation">:</span> e<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token comment">// 注意地址需写在 name后面</span><span class="token comment">//用params传参时 要填router的name 不能用path</span><span class="token comment">//参数获取，params和query区别，query参数在地址栏显示，params的参数不在地址栏显示</span> id<span class="token operator">=</span><span class="token keyword">this</span><span class="token punctuation">.</span>$route<span class="token punctuation">.</span>params<span class="token punctuation">.</span>id</code></pre> <h2><a id="3_thisrouterreplace_32" rel="nofollow"></a>3. this.$router.replace跳转</h2> <pre><code class="prism language-javascript"><span class="token comment">//和push的区别，push有记录一个history，replace没有</span><span class="token function">toDeail</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">this</span><span class="token punctuation">.</span>$router<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span>name<span class="token punctuation">:</span><span class="token string">'/detail'</span><span class="token punctuation">,</span> params<span class="token punctuation">:</span><span class="token punctuation">{<!-- --></span>id<span class="token punctuation">:</span> e<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">}</span></code></pre> <h2><a id="4_resolve_39" rel="nofollow"></a>4. resolve跳转</h2> <pre><code class="prism language-javascript"><span class="token comment">//resolve页面跳转可用新页面打开</span><span class="token comment">//2.1.0版本后，使用路由对象的resolve方法解析路由，可以得到location、router、href等目标路由的信息。得到href就可以使用window.open开新窗口了（这边应用：https://segmentfault.com/q/1010000009557100下的一个回答）</span><span class="token function">toDeail</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">const</span><span class="token keyword">new</span><span class="token operator">=</span><span class="token keyword">this</span><span class="token punctuation">.</span>$router<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span>name<span class="token punctuation">:</span><span class="token string">'/detail'</span><span class="token punctuation">,</span> params<span class="token punctuation">:</span><span class="token punctuation">{<!-- --></span>id<span class="token punctuation">:</span> e<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span>   window<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token keyword">new</span><span class="token punctuation">.</span>href<span class="token punctuation">,</span><span class="token string">'_blank'</span><span class="token punctuation">)</span><span class="token punctuation">}</span></code></pre> <pre><code class="prism language-javascript">接收方怎么接收参数<span class="token keyword">this</span><span class="token punctuation">.</span>$route<span class="token punctuation">.</span>query<span class="token punctuation">.</span>serid和<span class="token keyword">this</span><span class="token punctuation">.</span>$route<span class="token punctuation">.</span>params<span class="token punctuation">.</span>setid，以下举一个接收的例子 注意接收参数时是 $route 不是 $router<span class="token operator">&lt;</span>template<span class="token operator">&gt;</span><span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>     testDemo<span class="token punctuation">{<!-- --></span><span class="token punctuation">{<!-- --></span><span class="token keyword">this</span><span class="token punctuation">.</span>$route<span class="token punctuation">.</span>query<span class="token punctuation">.</span>setid<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">&gt;</span>  接收的参数<span class="token punctuation">:</span><span class="token operator">&lt;</span>template<span class="token operator">&gt;</span><span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>userlist<span class="token operator">--</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">{<!-- --></span>mallCode<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">&gt;</span><span class="token operator">&lt;</span>script<span class="token operator">&gt;</span><span class="token keyword">export</span><span class="token keyword">default</span><span class="token punctuation">{<!-- --></span>   name<span class="token punctuation">:</span><span class="token string">"UserList"</span><span class="token punctuation">,</span>   date<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">return</span><span class="token punctuation">{<!-- --></span><span class="token string">"mallCode"</span><span class="token punctuation">:</span>mallCode<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token function">created</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getParams</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">,</span>   methods<span class="token punctuation">:</span><span class="token punctuation">{<!-- --></span><span class="token function">getParams</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token comment">// 取到路由带过来的参数</span><span class="token keyword">const</span> routerParams<span class="token operator">=</span><span class="token keyword">this</span><span class="token punctuation">.</span>$route<span class="token punctuation">.</span>query<span class="token punctuation">.</span>mallCode<span class="token punctuation">;</span><span class="token keyword">this</span><span class="token punctuation">.</span>mallCode<span class="token operator">=</span> routerParams<span class="token punctuation">;</span>     console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>$route<span class="token punctuation">.</span>query<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 将数据放在当前组件的数据内</span><span class="token comment">//this.mallInfo.searchMap.mallCode = routerParams;</span><span class="token comment">//this.keyupMallName()</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span><span class="token operator">&lt;</span>style scoped<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>style<span class="token operator">&gt;</span></code></pre> <p>希望本文所述对大家vue.js程序设计有所帮助。</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-58987.htm">生产狗粮利润大吗（狗粮生产赚钱吗）</a></p>
+                                        <p>下一个：<a href="/news/article-59554.htm">动物医院大众点评前台个人简介怎么写啊英语（动物医院大众点评评语）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-19510.htm" title="参观动物医院的实验报告总结（动物医院社会实践报告）">参观动物医院的实验报告总结（动物医院社会实践报告）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-5-free-subscribe-node.htm" title="「12月5日」最高速度18.9M/S，2024年Stash Github每天更新免费机场订阅节点链接">「12月5日」最高速度18.9M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-58986.htm" title="C/C++编程：异常处理(exception handling)的原理">C/C++编程：异常处理(exception handling)的原理</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-30-free-vless-node.htm" title="「1月30日」最高速度20.8M/S，2025年V2ray/Clash/SSR/ShadowrocketStash免费机场订阅链接">「1月30日」最高速度20.8M/S，2025年V2ray/Clash/SSR/ShadowrocketStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-11-today-vless-node.htm" title="「11月11日」最高速度22.7M/S，2024年Stash Github每天更新免费机场订阅节点链接">「11月11日」最高速度22.7M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-15-vless-node-github.htm" title="「12月15日」最高速度22.7M/S，2024年Stash Github每天更新免费机场订阅节点链接">「12月15日」最高速度22.7M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-16-free-vless-node.htm" title="「2月16日」最高速度18.5M/S，2025年SSR/Shadowrocket/V2ray/ClashStash免费机场订阅链接">「2月16日」最高速度18.5M/S，2025年SSR/Shadowrocket/V2ray/ClashStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-24-latest-vless-node.htm" title="「11月24日」最高速度21.1M/S，2024年Stash Github每天更新免费机场订阅节点链接">「11月24日」最高速度21.1M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-20-vless-node-share.htm" title="「11月20日」最高速度21.6M/S，2024年Stash Github每天更新免费机场订阅节点链接">「11月20日」最高速度21.6M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-23631.htm" title="python提供了9个基本的数值运算操作符_Python学习笔记（三）Python基本数字类型及其简单操作（1）&#8230;">python提供了9个基本的数值运算操作符_Python学习笔记（三）Python基本数字类型及其简单操作（1）&#8230;</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fruits Shop End-->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3 mb-md-0">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <span class="text-light">Stash Github机场分享官网 版权所有 Powered by WordPress</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/stashgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
