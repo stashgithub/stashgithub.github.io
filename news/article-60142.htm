@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://stashgithub.github.io/news/article-60142.htm" />
+    <meta charset="utf-8">
+    <title>MySQL 获取系统时间/系统日期/日期时间的函数</title>
+        <meta name="description" content="文章目录  一、获取当前系统日期和时间   （一）now()，返回当前的系统日期和时间 （二）sysdate()，返回当前的系统日期和时间 （三）current_timestamp()，返回当前的系统" />
+        <link rel="icon" href="/assets/website/img/stashgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Stash Github机场分享官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://stashgithub.github.io/news/article-60142.htm" />
+    <meta property="og:site_name" content="Stash Github机场分享官网" />
+    <meta property="og:title" content="MySQL 获取系统时间/系统日期/日期时间的函数" />
+    <meta property="og:image" content="https://stashgithub.github.io/uploads/20240903-1/d8828431b484477719c0f8023f2403c0.webp" />
+        <meta property="og:release_date" content="2025-02-21T09:17:52" />
+    <meta property="og:updated_time" content="2025-02-21T09:17:52" />
+        <meta property="og:description" content="文章目录  一、获取当前系统日期和时间   （一）now()，返回当前的系统日期和时间 （二）sysdate()，返回当前的系统日期和时间 （三）current_timestamp()，返回当前的系统" />
+        
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="MySQL 获取系统时间/系统日期/日期时间的函数">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/assets/website/js/frontend/stashgithub/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/stashgithub/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/stashgithub/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/stashgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNXJ21P00N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NNXJ21P00N');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+        <div class="container topbar bg-primary d-none d-lg-block">
+            <div class="d-flex justify-content-between">
+                
+            </div>
+        </div>
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                <a href="/" class="navbar-brand">
+                                <span class="text-primary display-6">Stash Github</span>
+                                </a>
+                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/client.htm" class="nav-item nav-link">客户端</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                            </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">MySQL 获取系统时间/系统日期/日期时间的函数</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+            <li class="breadcrumb-item active text-white">正文</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+    <!-- Fruits Shop Start-->
+    <div class="container-fluid fruite py-5">
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="StashNode免费订阅官网" data-url="https://stashnode.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <div class="toc"> <h3>文章目录</h3> <ul> <li><a href="#_1" rel="nofollow">一、获取当前系统日期和时间</a></li> <li> <ul> <li><a href="#now_2" rel="nofollow">（一）now()，返回当前的系统日期和时间</a></li> <li><a href="#sysdate_15" rel="nofollow">（二）sysdate()，返回当前的系统日期和时间</a></li> <li><a href="#current_timestamp_29" rel="nofollow">（三）current_timestamp()，返回当前的系统日期和时间</a></li> <li><a href="#localtime_41" rel="nofollow">（四）localtime()，返回当前的系统日期和时间</a></li> </ul> </li> <li><a href="#_52" rel="nofollow">二、获取当前的系统日期</a></li> <li> <ul> <li><a href="#curdate_53" rel="nofollow">（一）curdate()，返回当前的系统日期</a></li> <li><a href="#current_date_66" rel="nofollow">（二）current_date()，返回当前的系统日期</a></li> <li><a href="#current_date_78" rel="nofollow">（三）current_date，返回当前的系统日期</a></li> </ul> </li> <li><a href="#_89" rel="nofollow">三、获取当前的系统时间</a></li> <li> <ul> <li><a href="#curtime_90" rel="nofollow">（一）curtime()，返回当前的系统时间</a></li> <li><a href="#current_time_104" rel="nofollow">（二）current_time()，返回当前的系统时间</a></li> <li><a href="#current_time_105" rel="nofollow">（三）current_time，返回当前的系统时间</a></li> </ul> </li> <li><a href="#_UTC__107" rel="nofollow">四、获取 UTC 时间</a></li> <li> <ul> <li><a href="#utc_date_UTC__110" rel="nofollow">（一）utc_date()，获取 UTC 日期</a></li> <li><a href="#utc_time_UTC__121" rel="nofollow">（二）utc_time()，获取 UTC 时间</a></li> <li><a href="#utc_timestamp_UTC__132" rel="nofollow">（三）utc_timestamp()，获取 UTC 的日期和时间</a></li> </ul> </li> <li><a href="#_145" rel="nofollow">五、日期和时间显示格式说明</a></li> </ul> </div> </h1> <h2> <a id="now_2" rel="nofollow"></a>（一）now()，返回当前的系统日期和时间</h2> <p><code>now()</code> 函数以 <code>YYYY-MM-DD HH:MM:SS</code> 返回系统当前的日期时间，可以直接存到 <code>DATETIME</code> 字段中。下面的 <code>sysdate()</code> 函数也是如此。</p> <pre><code class="prism language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">select</span> <span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">+</span><span class="token comment">---------------------+</span> <span class="token operator">|</span> <span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span>               <span class="token operator">|</span> <span class="token operator">+</span><span class="token comment">---------------------+</span> <span class="token operator">|</span> <span class="token number">2021</span><span class="token operator">-</span><span class="token number">06</span><span class="token operator">-</span><span class="token number">04</span> <span class="token number">08</span>:<span class="token number">24</span>:<span class="token number">51</span> <span class="token operator">|</span> <span class="token operator">+</span><span class="token comment">---------------------+</span> <span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span> </code></pre> <h2> <a id="sysdate_15" rel="nofollow"></a>（二）sysdate()，返回当前的系统日期和时间</h2> <pre><code class="prism language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">select</span> sysdate<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">+</span><span class="token comment">---------------------+</span> <span class="token operator">|</span> sysdate<span class="token punctuation">(</span><span class="token punctuation">)</span>           <span class="token operator">|</span> <span class="token operator">+</span><span class="token comment">---------------------+</span> <span class="token operator">|</span> <span class="token number">2021</span><span class="token operator">-</span><span class="token number">06</span><span class="token operator">-</span><span class="token number">04</span> <span class="token number">08</span>:<span class="token number">27</span>:<span class="token number">35</span> <span class="token operator">|</span> <span class="token operator">+</span><span class="token comment">---------------------+</span> <span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span> </code></pre> <p><code>now()</code> 和 <code>sysdate()</code> 这两个函数都是获取当前日期+时间，不同之处在于：<code>now()</code> 在执行开始时值就得到了，<code>sysdate()</code> 在函数执行时动态得到值。</p> <h2> <a id="current_timestamp_29" rel="nofollow"></a>（三）current_timestamp()，返回当前的系统日期和时间</h2> <pre><code class="prism language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">select</span> <span class="token keyword">current_timestamp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">+</span><span class="token comment">---------------------+</span> <span class="token operator">|</span> <span class="token keyword">current_timestamp</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token operator">+</span><span class="token comment">---------------------+</span> <span class="token operator">|</span> <span class="token number">2021</span><span class="token operator">-</span><span class="token number">06</span><span class="token operator">-</span><span class="token number">04</span> <span class="token number">14</span>:<span class="token number">12</span>:<span class="token number">37</span> <span class="token operator">|</span> <span class="token operator">+</span><span class="token comment">---------------------+</span> <span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span> </code></pre> <h2> <a id="localtime_41" rel="nofollow"></a>（四）localtime()，返回当前的系统日期和时间</h2> <pre><code class="prism language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">select</span> localtime<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">+</span><span class="token comment">---------------------+</span> <span class="token operator">|</span> localtime<span class="token punctuation">(</span><span class="token punctuation">)</span>         <span class="token operator">|</span> <span class="token operator">+</span><span class="token comment">---------------------+</span> <span class="token operator">|</span> <span class="token number">2021</span><span class="token operator">-</span><span class="token number">06</span><span class="token operator">-</span><span class="token number">04</span> <span class="token number">14</span>:<span class="token number">13</span>:<span class="token number">54</span> <span class="token operator">|</span> <span class="token operator">+</span><span class="token comment">---------------------+</span> <span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span> </code></pre> </h1> <h2> <a id="curdate_53" rel="nofollow"></a>（一）curdate()，返回当前的系统日期</h2> <p><code>curdate()</code> 以 <code>YYYY-MM-DD</code> 的格式返回今天的日期，可以直接存到 <code>DATE</code> 字段中。下面函数两个也是如此。</p> <pre><code class="prism language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">select</span> curdate<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">+</span><span class="token comment">------------+</span> <span class="token operator">|</span> curdate<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token operator">|</span> <span class="token operator">+</span><span class="token comment">------------+</span> <span class="token operator">|</span> <span class="token number">2021</span><span class="token operator">-</span><span class="token number">06</span><span class="token operator">-</span><span class="token number">04</span> <span class="token operator">|</span> <span class="token operator">+</span><span class="token comment">------------+</span> <span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span> </code></pre> <h2> <a id="current_date_66" rel="nofollow"></a>（二）current_date()，返回当前的系统日期</h2> <pre><code class="prism language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">select</span> <span class="token keyword">current_date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">+</span><span class="token comment">----------------+</span> <span class="token operator">|</span> <span class="token keyword">current_date</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token operator">+</span><span class="token comment">----------------+</span> <span class="token operator">|</span> <span class="token number">2021</span><span class="token operator">-</span><span class="token number">06</span><span class="token operator">-</span><span class="token number">04</span>     <span class="token operator">|</span> <span class="token operator">+</span><span class="token comment">----------------+</span> <span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span> </code></pre> <h2> <a id="current_date_78" rel="nofollow"></a>（三）current_date，返回当前的系统日期</h2> <pre><code class="prism language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">select</span> <span class="token keyword">current_date</span><span class="token punctuation">;</span> <span class="token operator">+</span><span class="token comment">--------------+</span> <span class="token operator">|</span> <span class="token keyword">current_date</span> <span class="token operator">|</span> <span class="token operator">+</span><span class="token comment">--------------+</span> <span class="token operator">|</span> <span class="token number">2021</span><span class="token operator">-</span><span class="token number">06</span><span class="token operator">-</span><span class="token number">04</span>   <span class="token operator">|</span> <span class="token operator">+</span><span class="token comment">--------------+</span> <span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span> </code></pre> </h1> <h2> <a id="curtime_90" rel="nofollow"></a>（一）curtime()，返回当前的系统时间</h2> <p><code>curtime()</code> 以 <code>HH:MM:SS</code> 的格式返回当前的时间，可以直接存到 <code>TIME</code> 字段中。以下两个函数也是如此。<br /> 举例如下：</p> <pre><code class="prism language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">select</span> curtime<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">+</span><span class="token comment">-----------+</span> <span class="token operator">|</span> curtime<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token operator">+</span><span class="token comment">-----------+</span> <span class="token operator">|</span> <span class="token number">10</span>:<span class="token number">55</span>:<span class="token number">13</span>  <span class="token operator">|</span> <span class="token operator">+</span><span class="token comment">-----------+</span> <span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.03</span> sec<span class="token punctuation">)</span> </code></pre> <h2> <a id="current_time_104" rel="nofollow"></a>（二）current_time()，返回当前的系统时间</h2> <h2> <a id="current_time_105" rel="nofollow"></a>（三）current_time，返回当前的系统时间</h2> </h1> <p>协调世界时，又称世界统一时间，世界标准时间，国际协调时间，简称 UTC。</p> <h2> <a id="utc_date_UTC__110" rel="nofollow"></a>（一）utc_date()，获取 UTC 日期</h2> <pre><code class="prism language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">select</span> utc_date<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">+</span><span class="token comment">------------+</span> <span class="token operator">|</span> utc_date<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token operator">+</span><span class="token comment">------------+</span> <span class="token operator">|</span> <span class="token number">2021</span><span class="token operator">-</span><span class="token number">06</span><span class="token operator">-</span><span class="token number">04</span> <span class="token operator">|</span> <span class="token operator">+</span><span class="token comment">------------+</span> <span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.15</span> sec<span class="token punctuation">)</span> </code></pre> <h2> <a id="utc_time_UTC__121" rel="nofollow"></a>（二）utc_time()，获取 UTC 时间</h2> <pre><code class="prism language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">select</span> utc_time<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">+</span><span class="token comment">------------+</span> <span class="token operator">|</span> utc_time<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token operator">+</span><span class="token comment">------------+</span> <span class="token operator">|</span> <span class="token number">06</span>:<span class="token number">47</span>:<span class="token number">26</span>   <span class="token operator">|</span> <span class="token operator">+</span><span class="token comment">------------+</span> <span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span> </code></pre> <h2> <a id="utc_timestamp_UTC__132" rel="nofollow"></a>（三）utc_timestamp()，获取 UTC 的日期和时间</h2> <pre><code class="prism language-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">select</span> utc_timestamp<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">+</span><span class="token comment">---------------------+</span> <span class="token operator">|</span> utc_timestamp<span class="token punctuation">(</span><span class="token punctuation">)</span>     <span class="token operator">|</span> <span class="token operator">+</span><span class="token comment">---------------------+</span> <span class="token operator">|</span> <span class="token number">2021</span><span class="token operator">-</span><span class="token number">06</span><span class="token operator">-</span><span class="token number">04</span> <span class="token number">07</span>:<span class="token number">04</span>:<span class="token number">35</span> <span class="token operator">|</span> <span class="token operator">+</span><span class="token comment">---------------------+</span> <span class="token number">1</span> <span class="token keyword">row</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span> </code></pre> </h1> <p><title>编程狮(w3cschool.cn)</title></p> <table class="gridtable"> <tbody> <tr> <th>&nbsp;</th> <th>值</th> <th>含义</th> </tr> <tr> <td>秒</td> <td>%S、%s</td> <td>两位数字形式的秒（ 00,01, ..., 59）</td> </tr> <tr> <td>分</td> <td>%I、%i</td> <td>两位数字形式的分（ 00,01, ..., 59）</td> </tr> <tr> <td rowspan="7">小时&nbsp;</td> <td>%H</td> <td>24小时制，两位数形式小时（00,01, ...,23）</td> </tr> <tr> <td>%h</td> <td>12小时制，两位数形式小时（00,01, ...,12）</td> </tr> <tr> <td>%k</td> <td>24小时制，数形式小时（0,1, ...,23）</td> </tr> <tr> <td>%l</td> <td>12小时制，数形式小时（0,1, ...,12）</td> </tr> <tr> <td>%T</td> <td>24小时制，时间形式（HH:mm:ss）</td> </tr> <tr> <td>%r</td> <td>&nbsp;12小时制，时间形式（hh:mm:ss AM 或 PM）</td> </tr> <tr> <td>%p&nbsp;</td> <td>AM上午或PM下午&nbsp;</td> </tr> <tr> <td rowspan="5">&nbsp;&nbsp;周&nbsp;</td> <td>&nbsp;%W</td> <td>一周中每一天的名称（Sunday,Monday, ...,Saturday）</td> </tr> <tr> <td>&nbsp;%a</td> <td>一周中每一天名称的缩写（Sun,Mon, ...,Sat）&nbsp;</td> </tr> <tr> <td>%w&nbsp;</td> <td>以数字形式标识周（0=Sunday,1=Monday, ...,6=Saturday）&nbsp;</td> </tr> <tr> <td>%U</td> <td>数字表示周数，星期天为周中第一天</td> </tr> <tr> <td>%u</td> <td>数字表示周数，星期一为周中第一天</td> </tr> <tr> <td rowspan="4">天</td> <td>%d&nbsp;</td> <td>两位数字表示月中天数（01,02, ...,31）</td> </tr> <tr> <td>%e&nbsp;</td> <td>&nbsp;数字表示月中天数（1,2, ...,31）</td> </tr> <tr> <td>&nbsp;%D</td> <td>英文后缀表示月中天数（1st,2nd,3rd ...）&nbsp;</td> </tr> <tr> <td>&nbsp;%j</td> <td>以三位数字表示年中天数（001,002, ...,366）&nbsp;</td> </tr> <tr> <td rowspan="4">月</td> <td>%M&nbsp;</td> <td>英文月名（January,February, ...,December）&nbsp;</td> </tr> <tr> <td>%b&nbsp;</td> <td>英文缩写月名（Jan,Feb, ...,Dec）&nbsp;</td> </tr> <tr> <td>%m&nbsp;</td> <td>两位数字表示月份（01,02, ...,12）</td> </tr> <tr> <td>%c&nbsp;</td> <td>数字表示月份（1,2, ...,12）&nbsp;</td> </tr> <tr> <td rowspan="2">年</td> <td>%Y&nbsp;</td> <td>四位数字表示的年份（2015,2016...）</td> </tr> <tr> <td>%y&nbsp;</td> <td>&nbsp;两位数字表示的年份（15,16...）</td> </tr> <tr> <td>文字输出&nbsp;</td> <td>%文字&nbsp;</td> <td>直接输出文字内容</td> </tr> </tbody> </table> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-60141.htm">Python实现数据透视表</a></p>
+                                        <p>下一个：<a href="/news/article-60726.htm">【ES】springboot使用bulkProcessor定时用quartz同步mysql数据到es中（基本引用即用）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-58987.htm" title="生产狗粮利润大吗（狗粮生产赚钱吗）">生产狗粮利润大吗（狗粮生产赚钱吗）</a></li>
+                        <li class="py-2"><a href="/news/article-40783.htm" title="宠物美容店开办和经营的步骤（想开个宠物美容店怎么入行）">宠物美容店开办和经营的步骤（想开个宠物美容店怎么入行）</a></li>
+                        <li class="py-2"><a href="/news/article-43264.htm" title="动物疫苗生产厂家排名榜最新名单 动物疫苗生产厂家排名榜最新名单图片">动物疫苗生产厂家排名榜最新名单 动物疫苗生产厂家排名榜最新名单图片</a></li>
+                        <li class="py-2"><a href="/news/article-21798.htm" title="Feign优化之Client选择">Feign优化之Client选择</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-13-vless-node-github.htm" title="「12月13日」最高速度20M/S，2024年Stash Github每天更新免费机场订阅节点链接">「12月13日」最高速度20M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-52854.htm" title="动物疫苗和生物疫苗的区别在哪里 动物疫苗和生物疫苗的区别在哪里呢">动物疫苗和生物疫苗的区别在哪里 动物疫苗和生物疫苗的区别在哪里呢</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-13-vless-node-github.htm" title="「1月13日」最高速度21.6M/S，2025年Shadowrocket/V2ray/SSR/ClashStash免费机场订阅链接">「1月13日」最高速度21.6M/S，2025年Shadowrocket/V2ray/SSR/ClashStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-38794.htm" title="宠物店从哪进货（宠物店从哪进货好）">宠物店从哪进货（宠物店从哪进货好）</a></li>
+                        <li class="py-2"><a href="/news/article-23632.htm" title="人用疫苗和兽用疫苗区别在哪（兽用和人用针剂的区别）">人用疫苗和兽用疫苗区别在哪（兽用和人用针剂的区别）</a></li>
+                        <li class="py-2"><a href="/news/article-30159.htm" title="如何在 Java 中实现 Dijkstra 最短路算法">如何在 Java 中实现 Dijkstra 最短路算法</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">69</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fruits Shop End-->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3 mb-md-0">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <span class="text-light">Stash Github机场分享官网 版权所有 Powered by WordPress</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/stashgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

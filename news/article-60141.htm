@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://stashgithub.github.io/news/article-60141.htm" />
+    <meta charset="utf-8">
+    <title>Python实现数据透视表</title>
+        <meta name="description" content="用Python里的Pandas可以实现，虽然感觉Excel更方便  1.groupby + agg 不够直观，不好看 对贷款年份，贷款种类创建数据透视 train_data.groupby(['yea" />
+        <link rel="icon" href="/assets/website/img/stashgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Stash Github机场分享官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://stashgithub.github.io/news/article-60141.htm" />
+    <meta property="og:site_name" content="Stash Github机场分享官网" />
+    <meta property="og:title" content="Python实现数据透视表" />
+    <meta property="og:image" content="https://stashgithub.github.io/uploads/20240903-1/2349b67d05b32c4b514099101832ee0e.webp" />
+        <meta property="og:release_date" content="2025-02-21T09:17:52" />
+    <meta property="og:updated_time" content="2025-02-21T09:17:52" />
+        <meta property="og:description" content="用Python里的Pandas可以实现，虽然感觉Excel更方便  1.groupby + agg 不够直观，不好看 对贷款年份，贷款种类创建数据透视 train_data.groupby(['yea" />
+        
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Python实现数据透视表">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/assets/website/js/frontend/stashgithub/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/stashgithub/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/stashgithub/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/stashgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNXJ21P00N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NNXJ21P00N');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+        <div class="container topbar bg-primary d-none d-lg-block">
+            <div class="d-flex justify-content-between">
+                
+            </div>
+        </div>
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                <a href="/" class="navbar-brand">
+                                <span class="text-primary display-6">Stash Github</span>
+                                </a>
+                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/client.htm" class="nav-item nav-link">客户端</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                            </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">Python实现数据透视表</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+            <li class="breadcrumb-item active text-white">正文</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+    <!-- Fruits Shop Start-->
+    <div class="container-fluid fruite py-5">
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="StashNode免费订阅官网" data-url="https://stashnode.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>用Python里的Pandas可以实现，虽然感觉Excel更方便</p> <h3> <a id="1groupby__agg_1" rel="nofollow"></a>1.groupby + agg</h3> <p><strong>不够直观，不好看</strong><br /> 对贷款年份，贷款种类创建数据透视</p> <pre><code class="prism language-python">train_data<span class="token punctuation">.</span>groupby<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'year_of_loan'</span><span class="token punctuation">,</span> <span class="token string">'class'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span>agg<span class="token punctuation">(</span>d_roat <span class="token operator">=</span><span class="token punctuation">(</span><span class="token string">'isDefault'</span><span class="token punctuation">,</span> <span class="token string">'mean'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> </code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230217/c2e1012f638001b58c9d7944e8b63ec1.jpg" alt="Python实现数据透视表"></p> <h3> <a id="2_crosstab_9" rel="nofollow"></a>2. crosstab</h3> <pre><code class="prism language-python">pandas<span class="token punctuation">.</span>crosstab<span class="token punctuation">(</span>index<span class="token punctuation">,</span> columns<span class="token punctuation">,</span>values<span class="token punctuation">,</span> rownames<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> colnames<span class="token punctuation">,</span>  				aggfunc<span class="token punctuation">,</span> margins<span class="token punctuation">,</span> margins_name<span class="token punctuation">,</span> dropna<span class="token punctuation">,</span> normalize<span class="token punctuation">)</span> </code></pre> <p>主要用到的参数：<br /> index：选哪个变量做数据透视表的行<br /> columns：选哪个变量做数据透视表的列<br /> values：要聚合的值<br /> aggfunc：使用的聚合函数<br /> margins：是否添加汇总列/行<br /> margins_name：汇总行/列的名字</p> <h4> <a id="_22" rel="nofollow"></a>例子</h4> <p>对贷款年份，贷款种类创建数据透视</p> <pre><code class="prism language-python">pd<span class="token punctuation">.</span>crosstab<span class="token punctuation">(</span>train_data<span class="token punctuation">[</span><span class="token string">'year_of_loan'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> train_data<span class="token punctuation">[</span><span class="token string">'class'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> train_data<span class="token punctuation">[</span><span class="token string">'loan_id'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> aggfunc<span class="token operator">=</span><span class="token string">'count'</span><span class="token punctuation">,</span>margins <span class="token operator">=</span> <span class="token boolean">True</span><span class="token punctuation">,</span> margins_name <span class="token operator">=</span> <span class="token string">'合计'</span><span class="token punctuation">)</span> </code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230217/526309472bc88f0faec4c841a9f08fc9.jpg" alt="Python实现数据透视表"><br /> 可以直接看出交叉组合之后违约比例</p> <pre><code class="prism language-python">pd<span class="token punctuation">.</span>crosstab<span class="token punctuation">(</span>train_data<span class="token punctuation">[</span><span class="token string">'year_of_loan'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> train_data<span class="token punctuation">[</span><span class="token string">'class'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> train_data<span class="token punctuation">[</span><span class="token string">'isDefault'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> aggfunc<span class="token operator">=</span><span class="token string">'mean'</span><span class="token punctuation">)</span> </code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230217/45232ccc289a401e59139116678d6649.jpg" alt="Python实现数据透视表"></p> <h3> <a id="3groupby__pivot_33" rel="nofollow"></a>3.groupby + pivot</h3> <pre><code class="prism language-python">train_data<span class="token punctuation">.</span>groupby<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'year_of_loan'</span><span class="token punctuation">,</span> <span class="token string">'class'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> as_index <span class="token operator">=</span> <span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token string">'isDefault'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>mean<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>pivot<span class="token punctuation">(</span><span class="token string">'year_of_loan'</span><span class="token punctuation">,</span> <span class="token string">'class'</span><span class="token punctuation">,</span> <span class="token string">'isDefault'</span><span class="token punctuation">)</span> </code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230217/4dbc21cbed7a933470130fbd950d9af7.jpg" alt="Python实现数据透视表"></p> <h3> <a id="pivot_table_39" rel="nofollow"></a>pivot_table</h3> <pre><code class="prism language-python">pandas<span class="token punctuation">.</span>pivot_table<span class="token punctuation">(</span>data<span class="token punctuation">,</span> values<span class="token punctuation">,</span> index<span class="token punctuation">,</span> columns<span class="token punctuation">,</span> aggfunc<span class="token punctuation">,</span> fill_value<span class="token punctuation">,</span>  					margins<span class="token punctuation">,</span> dropna<span class="token punctuation">,</span> margins_name<span class="token punctuation">,</span> observed<span class="token punctuation">,</span> sort<span class="token punctuation">)</span> </code></pre> <p>常用参数与crosstab一致</p> <h4> <a id="_46" rel="nofollow"></a>例子</h4> <p>实现同样的数据透视表</p> <pre><code class="prism language-python">pd<span class="token punctuation">.</span>pivot_table<span class="token punctuation">(</span>train_data<span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">'year_of_loan'</span><span class="token punctuation">,</span> <span class="token string">'class'</span><span class="token punctuation">,</span> <span class="token string">'isDefault'</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span> 			  values<span class="token operator">=</span><span class="token string">'isDefault'</span><span class="token punctuation">,</span> index<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'year_of_loan'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> columns<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'class'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>  			  aggfunc<span class="token operator">=</span><span class="token string">'count'</span><span class="token punctuation">,</span>  margins <span class="token operator">=</span> <span class="token boolean">True</span><span class="token punctuation">,</span> margins_name <span class="token operator">=</span> <span class="token string">'合计'</span><span class="token punctuation">)</span> </code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230217/75ea8975f6f634ccfb727a9f164d8219.jpg" alt="Python实现数据透视表"></p> <pre><code class="prism language-python">pd<span class="token punctuation">.</span>pivot_table<span class="token punctuation">(</span>train_data<span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token string">'year_of_loan'</span><span class="token punctuation">,</span> <span class="token string">'class'</span><span class="token punctuation">,</span> <span class="token string">'isDefault'</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span> 			   values<span class="token operator">=</span><span class="token string">'isDefault'</span><span class="token punctuation">,</span> index<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'year_of_loan'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> columns<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'class'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>  			   aggfunc<span class="token operator">=</span><span class="token string">'mean'</span><span class="token punctuation">)</span> </code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230217/ffa5a0da5a789491f48cfdd1052a473c.jpg" alt="Python实现数据透视表"></p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-59554.htm">动物医院大众点评前台个人简介怎么写啊英语（动物医院大众点评评语）</a></p>
+                                        <p>下一个：<a href="/news/article-60142.htm">MySQL 获取系统时间/系统日期/日期时间的函数</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-41270.htm" title="nacos的应用">nacos的应用</a></li>
+                        <li class="py-2"><a href="/news/article-54490.htm" title="附近领养宠物小猫的地方（附近领养宠物小狗）">附近领养宠物小猫的地方（附近领养宠物小狗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-26-free-node-subscribe.htm" title="「12月26日」最高速度20.8M/S，2024年Stash Github每天更新免费机场订阅节点链接">「12月26日」最高速度20.8M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-26883.htm" title="SpringBoot项目使用EasyPoi实现导入导出，就是这么的丝滑">SpringBoot项目使用EasyPoi实现导入导出，就是这么的丝滑</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-14-vless-windows.htm" title="「12月14日」最高速度22.2M/S，2024年Stash Github每天更新免费机场订阅节点链接">「12月14日」最高速度22.2M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-25961.htm" title="简述动物疫苗免疫失败的原因 简述动物疫苗免疫失败的原因有哪些">简述动物疫苗免疫失败的原因 简述动物疫苗免疫失败的原因有哪些</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-12-vless-github.htm" title="「2月12日」最高速度21M/S，2025年SSR/Shadowrocket/V2ray/ClashStash免费机场订阅链接">「2月12日」最高速度21M/S，2025年SSR/Shadowrocket/V2ray/ClashStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-55589.htm" title="动物诊疗许可证好办吗多少钱（动物诊疗许可证需要什么材料）">动物诊疗许可证好办吗多少钱（动物诊疗许可证需要什么材料）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-25-node-share-links.htm" title="「12月25日」最高速度22.3M/S，2024年Stash Github每天更新免费机场订阅节点链接">「12月25日」最高速度22.3M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-12-today-vless-node.htm" title="「12月12日」最高速度22.5M/S，2024年Stash Github每天更新免费机场订阅节点链接">「12月12日」最高速度22.5M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">69</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fruits Shop End-->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3 mb-md-0">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <span class="text-light">Stash Github机场分享官网 版权所有 Powered by WordPress</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/stashgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
