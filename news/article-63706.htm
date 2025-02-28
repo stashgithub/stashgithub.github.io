@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://stashgithub.github.io/news/article-63706.htm" />
+    <meta charset="utf-8">
+    <title>站在巨人的肩膀上重新审视C# Span&lt;T&gt;数据结构_在线工具</title>
+        <meta name="description" content="先谈一下我对Span的看法， span是指向任意连续内存空间的类型安全、内存安全的视图。 如果你了解【滑动窗口】， 对Span的操作还可以理解为 针对连续内存空间的 滑动窗口。  Span和Memor" />
+        <link rel="icon" href="/assets/website/img/stashgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Stash Github机场分享官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://stashgithub.github.io/news/article-63706.htm" />
+    <meta property="og:site_name" content="Stash Github机场分享官网" />
+    <meta property="og:title" content="站在巨人的肩膀上重新审视C# Span&lt;T&gt;数据结构_在线工具" />
+    <meta property="og:image" content="https://stashgithub.github.io/uploads/20240903-1/b797386c9bd70ebce4cf7ab774017350.webp" />
+        <meta property="og:release_date" content="2025-02-27T05:55:47" />
+    <meta property="og:updated_time" content="2025-02-27T05:55:47" />
+        <meta property="og:description" content="先谈一下我对Span的看法， span是指向任意连续内存空间的类型安全、内存安全的视图。 如果你了解【滑动窗口】， 对Span的操作还可以理解为 针对连续内存空间的 滑动窗口。  Span和Memor" />
+        
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="站在巨人的肩膀上重新审视C# Span&lt;T&gt;数据结构_在线工具">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/assets/website/js/frontend/stashgithub/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/stashgithub/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/stashgithub/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/stashgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNXJ21P00N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NNXJ21P00N');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+        <div class="container topbar bg-primary d-none d-lg-block">
+            <div class="d-flex justify-content-between">
+                
+            </div>
+        </div>
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                <a href="/" class="navbar-brand">
+                                <span class="text-primary display-6">Stash Github</span>
+                                </a>
+                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/client.htm" class="nav-item nav-link">客户端</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                            </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">站在巨人的肩膀上重新审视C# Span&lt;T&gt;数据结构_在线工具</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+            <li class="breadcrumb-item active text-white">正文</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+    <!-- Fruits Shop Start-->
+    <div class="container-fluid fruite py-5">
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="StashNode免费订阅官网" data-url="https://stashnode.github.io">
+                  				  				  				<p>先谈一下我对Span的看法， span是指向任意连续内存空间的类型安全、内存安全的视图。</p> <p>如果你了解【滑动窗口】， 对Span的操作还可以理解为 针对连续内存空间的 滑动窗口。</p> <blockquote> <p>Span和Memory都是包装了可以在pipeline上使用的结构化数据的内存缓冲器,他们被设计用于在pipeline中高效传递数据。</p> </blockquote> <h2 id="定语解读">定语解读</h2> <ol> <li> <strong>指向任意连续内存空间</strong>： 支持托管堆，原生内存、堆栈， 这个可从Span<t>的几个重载构造函数窥视一二。</t> </li> <li> <strong>类型安全</strong>： Span<t> 是一个泛型</t> </li> <li> <strong>内存安全</strong>： <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/dotnet/runtime/blob/main/src/libraries/System.Private.CoreLib/src/System/Span.cs"  target="_blank"  rel="nofollow">Span<t></t></a>是一个<code>readonly ref struct</code>数据结构, 用于表征一段连续内存的关键属性被设置成只读readonly， 保证了所有的操作只能在这段内存块内，不存在内存越界的风险。</li> </ol> <pre><code>// 截取自Span源码，表征一段连续内存的关键属性 Pointer &amp; Length 都只能从构造函数赋值  public readonly ref struct Span&lt;T&gt; {     /// &lt;summary&gt;A byref or a native ptr.&lt;/summary&gt;     internal readonly ByReference&lt;T&gt; _reference;     /// &lt;summary&gt;The number of elements this Span contains.&lt;/summary&gt;     private readonly int _length;          [MethodImpl(MethodImplOptions.AggressiveInlining)]     public Span(T[]? array)     {        if (array == null)        {            this = default;            return; // returns default        }        if (!typeof(T).IsValueType &amp;&amp; array.GetType() != typeof(T[]))            ThrowHelper.ThrowArrayTypeMismatchException();       _reference = new ByReference&lt;T&gt;(ref MemoryMarshal.GetArrayDataReference(array));       _length = array.Length;    } } </code></pre> <ol start="4"> <li> <strong>视图</strong>：操作结果会直接体现在底层的连续内存。</li> </ol> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/9ae46d3d918149c698860898aed8ed54.jpg" alt="站在巨人的肩膀上重新审视C# Span&lt;T&gt;数据结构_在线工具"></p> <p>至此我们来看一个简单的用法， 利用span操作指向一段堆栈空间。</p> <pre><code>static  void  Main()         {              Span&lt;byte&gt; arraySpan = stackalloc byte[100];  // 包含指针和Length的只读指针, 类似于go里面的切片              byte data = 0;             for (int ctr = 0; ctr &lt; arraySpan.Length; ctr++)                 arraySpan[ctr] = data++;              arraySpan.Fill(1);              var arraySum = Sum(arraySpan);             Console.WriteLine($"The sum is {arraySum}");   // 输出100              arraySpan.Clear();              var slice  =  arraySpan.Slice(0,50); // 因为是只读属性， 内部New Span&lt;&gt;(), 产生新的切片             arraySum = Sum(slice);             Console.WriteLine($"The sum is {arraySum}");  // 输出0         }          [MethodImpl(MethodImplOptions.AggressiveInlining)]         static int  Sum(Span&lt;byte&gt; array)         {             int arraySum = 0;             foreach (var value in array)                 arraySum += value;              return arraySum;         } </code></pre> <ul> <li>此处Span<byte> 指向了特定的堆栈空间， Fill,Clear 等操作的效果直接体现到该段内存。</byte> </li> <li>注意Slice切片方法，内部实质是产生新的Span，也是一个新的视图，对新span的操作会体现到原始底层数据结构。</li> </ul> <pre><code>  [MethodImpl(MethodImplOptions.AggressiveInlining)]         public Span&lt;T&gt; Slice(int start)         {             if ((uint)start &gt; (uint)_length)                 ThrowHelper.ThrowArgumentOutOfRangeException();              return new Span&lt;T&gt;(ref Unsafe.Add(ref _reference.Value, (nint)(uint)start /* force zero-extension */), _length - start);         } </code></pre> <p>从Slice切片源码，看到利用现有的ptr 和length，产生了新的操作视图，ptr的计算有赖于原ptr移动指针，但是依旧是作用在原始数据块上。</p> <h2 id="衍生技能点">衍生技能点</h2> <p>我们再细看Span的定义， 有几个关键词建议大家温故而知新。</p> <ul> <li> <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/struct#readonly-struct"  target="_blank"  rel="nofollow">readonly  strcut</a> ：从C#7.2开始，你可以将readonly作用在struct上，指示该<strong>struct不可改变</strong>。</li> </ul> <blockquote> <p>span<t> 被定义为readonly struct，内部属性自然也是readonly，从上面的分析和实例看我们可以针对Span表征的特定连续内存空间做内容更新操作；<br /> 如果想限制更新该连续内存空间的内容， C#提供了<code>ReadOnlySpan&lt;T&gt;</code>类型， 该类型强调该块内存只读，也就是不存在Span<t> 拥有的Fill，Clear等方法。</t></t></p> </blockquote> <p>一线码农大佬写了文章讲述[使用span对字符串求和]的姿势，大家都说使用span能高效操作内存，我们对该用例BenchmarkDotnet压测。</p> <pre><code>using System; using System.Collections.Generic; using System.Linq; using System.Text; using System.Threading.Tasks; using System.Buffers; using System.Runtime.CompilerServices; using BenchmarkDotNet.Attributes; using BenchmarkDotNet.Running;  namespace ConsoleApp3 {   public class Program   {       static  void Main()       {           var summary = BenchmarkRunner.Run&lt;MemoryBenchmarkerDemo&gt;();       }   }    [MemoryDiagnoser,RankColumn]   public class MemoryBenchmarkerDemo   {       int NumberOfItems = 100000;        // 对字符串切割， 会产生字符串小对象       [Benchmark]       public void  StringSplit()       {           for (int i = 0; i &lt; NumberOfItems; i++)           {               var s = "97 3";                var arr = s.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);               var num1 = int.Parse(arr[0]);               var num2 = int.Parse(arr[1]);                _ = num1 + num2;           }                  }              // 对底层字符串切片       [Benchmark]       public void StringSlice()       {           for (int i = 0; i &lt; NumberOfItems; i++)           {               var s = "97 3";               var position = s.IndexOf(' ');               ReadOnlySpan&lt;char&gt; span = s.AsSpan();               var num1 = int.Parse(span.Slice(0, position));               var num2 = int.Parse(span.Slice(position));                _= num1+ num2;            }       }   } } </code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/9104c68a03fb525442167b2f48783ea8.jpg" alt="站在巨人的肩膀上重新审视C# Span&lt;T&gt;数据结构_在线工具"></p> <p>解读：<br /> 对字符串运行时切分，不会利用驻留池，于是case1会在堆分配大量string小对象，对gc造成压力；<br /> case2对底层字符串切片，虽然会产生不同的透视对象Span， 但是实际还是指向的原始内存块的偏移区间，不存在内存分配。</p> <ul> <li> <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/struct"  target="_blank"  rel="nofollow">ref  struct</a>:从C#7.2开始，ref可以作用在struct，指示<strong>该类型被分配在堆栈上，并且不能转义到托管堆</strong>。</li> </ul> <blockquote> <p>Span<t>,ReadonlySpan<t> 包装了对于任意连续内存快的透视操作，但是只能被存储堆栈上，不适用于一些场景，例如异步调用，.NET Core 2.1为此新增了<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.microsoft.com/en-us/dotnet/standard/memory-and-spans/memory-t-usage-guidelines"  target="_blank"  rel="nofollow">Memory<t></t></a> , ReadOnlyMemory<t>， 可以被存储在托管堆上, 按下不表。</t></t></t></p> </blockquote> <p>最后用一张图总结<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/147a1c4496d6281c62666dba5b43e69a.jpg" alt="站在巨人的肩膀上重新审视C# Span&lt;T&gt;数据结构_在线工具"></p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-63096.htm">简述动物防疫管理的要点是什么（简述动物防疫管理的要点是什么意思）</a></p>
+                                        <p>下一个：<a href="/news/article-63707.htm">动物医院好评语大全怎么写 动物医院好评语大全怎么写啊</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-59554.htm" title="动物医院大众点评前台个人简介怎么写啊英语（动物医院大众点评评语）">动物医院大众点评前台个人简介怎么写啊英语（动物医院大众点评评语）</a></li>
+                        <li class="py-2"><a href="/news/article-61309.htm" title="佳雯宠物医院几点关门（佳雯宠物医院客服电话）">佳雯宠物医院几点关门（佳雯宠物医院客服电话）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-21-free-high-speed-nodes.htm" title="「12月21日」最高速度22.3M/S，2024年Stash Github每天更新免费机场订阅节点链接">「12月21日」最高速度22.3M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-20-vless-node-share.htm" title="「11月20日」最高速度21.6M/S，2024年Stash Github每天更新免费机场订阅节点链接">「11月20日」最高速度21.6M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-20420.htm" title="被猫抓伤了过了24小时怎么办（被猫抓伤了过了24小时怎么办手上的伤口出现了小黑点）">被猫抓伤了过了24小时怎么办（被猫抓伤了过了24小时怎么办手上的伤口出现了小黑点）</a></li>
+                        <li class="py-2"><a href="/news/article-48695.htm" title="成都的宠物领养中心在哪里（成都宠物领养机构电话）">成都的宠物领养中心在哪里（成都宠物领养机构电话）</a></li>
+                        <li class="py-2"><a href="/news/article-42266.htm" title="STM8S103F3P6 的开发, 烧录和Debug笔记 &#8211; Milton _在线工具">STM8S103F3P6 的开发, 烧录和Debug笔记 &#8211; Milton _在线工具</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-18-free-node-subscribe-links.htm" title="「11月18日」最高速度21.2M/S，2024年Stash Github每天更新免费机场订阅节点链接">「11月18日」最高速度21.2M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-8-vless-github.htm" title="「12月8日」最高速度19.4M/S，2024年Stash Github每天更新免费机场订阅节点链接">「12月8日」最高速度19.4M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-5-free-subscribe-node.htm" title="「12月5日」最高速度18.9M/S，2024年Stash Github每天更新免费机场订阅节点链接">「12月5日」最高速度18.9M/S，2024年Stash Github每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">92</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fruits Shop End-->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3 mb-md-0">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <span class="text-light">Stash Github机场分享官网 版权所有 Powered by WordPress</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/stashgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
