@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://stashgithub.github.io/news/article-67429.htm" />
+    <meta charset="utf-8">
+    <title>VsCode调试docker中的NodeJS程序</title>
+        <meta name="description" content="最近在写NodeJS相关的项目，运行在docker容器中，也是想研究一下断点调试，于是查阅相关资料，最终顺利配置好了。 首先我选择了VsCode作为ide，并用VsCode来做NodeJS可视化deb" />
+        <link rel="icon" href="/assets/website/img/stashgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Stash Github机场分享官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://stashgithub.github.io/news/article-67429.htm" />
+    <meta property="og:site_name" content="Stash Github机场分享官网" />
+    <meta property="og:title" content="VsCode调试docker中的NodeJS程序" />
+    <meta property="og:image" content="https://stashgithub.github.io/uploads/20240903-1/01286d8ab49cdc2aeefc23b7e7607d5d.webp" />
+        <meta property="og:release_date" content="2025-03-05T11:10:13" />
+    <meta property="og:updated_time" content="2025-03-05T11:10:13" />
+        <meta property="og:description" content="最近在写NodeJS相关的项目，运行在docker容器中，也是想研究一下断点调试，于是查阅相关资料，最终顺利配置好了。 首先我选择了VsCode作为ide，并用VsCode来做NodeJS可视化deb" />
+        
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="VsCode调试docker中的NodeJS程序">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/assets/website/js/frontend/stashgithub/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/stashgithub/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/stashgithub/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/stashgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNXJ21P00N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NNXJ21P00N');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+        <div class="container topbar bg-primary d-none d-lg-block">
+            <div class="d-flex justify-content-between">
+                
+            </div>
+        </div>
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                <a href="/" class="navbar-brand">
+                                <span class="text-primary display-6">Stash Github</span>
+                                </a>
+                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/client.htm" class="nav-item nav-link">客户端</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                            </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">VsCode调试docker中的NodeJS程序</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+            <li class="breadcrumb-item active text-white">正文</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+    <!-- Fruits Shop Start-->
+    <div class="container-fluid fruite py-5">
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="StashNode免费订阅官网" data-url="https://stashnode.github.io">
+                  				  				  				<p>最近在写NodeJS相关的项目，运行在docker容器中，也是想研究一下断点调试，于是查阅相关资料，最终顺利配置好了。</p> <p>首先我选择了VsCode作为ide，并用VsCode来做NodeJS可视化debug的工作。</p> <p>由于VsCode 已将调试工具内置，所以只需要增加调试配置。应遵循以下步骤：</p> <p>第一步：单击首选项 -&gt; 设置，打开设置选项卡。如下面的屏幕截图。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/6aefb490fd9dc633c0e3836a644710d4.jpg" alt="VsCode调试docker中的NodeJS程序"></p> <p>第二步：在搜索输入中搜索“node debug”，你会看到Debug&gt; JavaScript:Auto Attach Filter选项，选择“smart”作为选项的值。它将启用nodeJs的调试。</p> <p><span id="docs-internal-guid-26a7aeba-7fff-377d-209d-c7868a6196b3"><img fetchpriority="high" decoding="async" src="http://img.555519.xyz/uploads3/20220509/6542dc4b4b4fa9674eb797a84823b939.jpg" alt="VsCode调试docker中的NodeJS程序" width="477" height="226"/></span></p> <p>第三步： 单击左侧工具栏上的调试图标，如图所示<span id="docs-internal-guid-e97b3309-7fff-a295-de34-334772f7f76a"><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/5bc55200c77b69cca9b3126c6438add2.jpg" alt="VsCode调试docker中的NodeJS程序" width="68" height="63"/></span>。然后单击运行和调试按钮，并添加配置。</p> <p>点击Add Configuration将跳转到一个名为 launch.json(./vscode/launch.json) 的文件，编写后的完整配置如下所示。</p> <div class="cnblogs_Highlighter"> <pre class="brush:javascript;gutter:true;">{  // Use IntelliSense to learn about possible attributes.  // Hover to view descriptions of existing attributes.  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387  "version": "0.2.0",  "configurations": [    {      "type": "node",      "request": "attach",      "name": "Debug super api in docker",      "restart": true,      "port": 7676,      "address": "localhost",      "localRoot": "${workspaceFolder}",      "remoteRoot": "/super-api",      "protocol": "inspector"    }  ] }</pre> </div> <p>对上面的配置，我简单介绍一下。由于docker中的容器是被宿主机挂载进来的，所以要单独配置一个remoteRoot配置项，它的值就是实际项目在容器中的目录路径。</p> <p>而port填写的不是项目运行的端口号，而是node命令中--inspect设置的端口号，在我的项目中我在运行该容器的时候会把这个7676的端口暴露给宿主机（真实电脑）</p> <p>编辑好这个配置文件后，就可以设置一下断点，然后点击start debug按钮即可开始debug了。</p> <p>运行的效果，如图所示。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/835046846589e603aad9de1f6cf8dd3a.jpg" alt="VsCode调试docker中的NodeJS程序"></p> <p>&nbsp;可以看到Variables面板里面有显示运行到断点处的相关变量情况，而CALL STACK部分记录调用堆，方便我们追踪整个程序的调用层级和过程。左边最下面显示的是我们设置的所有断点（breakpoint），标记红色的是被执行到的断点。</p> <p>一句话总结：<strong>一个后端程序员最基本的修养是能断点调试程序。</strong></p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-66790.htm">南京有领养宠物的地方吗最近在哪里（南京有领养宠物的地方吗最近在哪里呀）</a></p>
+                                        <p>下一个：<a href="/news/article-67430.htm">宠物医院治仓鼠吗安全吗（一般的宠物医院治仓鼠吗）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-56148.htm" title="k8s单节点部署mysql_k8s deployment部署单个mysql容器实例 + service">k8s单节点部署mysql_k8s deployment部署单个mysql容器实例 + service</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-17-vless-node-share.htm" title="「2月17日」最高速度19M/S，2025年Shadowrocket/SSR/V2ray/ClashStash免费机场订阅链接">「2月17日」最高速度19M/S，2025年Shadowrocket/SSR/V2ray/ClashStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-12-vless-node.htm" title="「1月12日」最高速度22M/S，2025年SSR/Clash/Shadowrocket/V2rayStash免费机场订阅链接">「1月12日」最高速度22M/S，2025年SSR/Clash/Shadowrocket/V2rayStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-46727.htm" title="python 接受ctrl c结束子进程，subprocess.Popen杀死子进程">python 接受ctrl c结束子进程，subprocess.Popen杀死子进程</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-8-vless-node.htm" title="「2月8日」最高速度18.5M/S，2025年SSR/Clash/Shadowrocket/V2rayStash免费机场订阅链接">「2月8日」最高速度18.5M/S，2025年SSR/Clash/Shadowrocket/V2rayStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-60726.htm" title="【ES】springboot使用bulkProcessor定时用quartz同步mysql数据到es中（基本引用即用）">【ES】springboot使用bulkProcessor定时用quartz同步mysql数据到es中（基本引用即用）</a></li>
+                        <li class="py-2"><a href="/news/article-44254.htm" title="一般宠物疫苗多少钱（宠物疫苗多少钱一针猫咪）">一般宠物疫苗多少钱（宠物疫苗多少钱一针猫咪）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-28-vless-windows.htm" title="「2月28日」最高速度20.1M/S，2025年Shadowrocket/V2ray/SSR/ClashStash免费机场订阅链接">「2月28日」最高速度20.1M/S，2025年Shadowrocket/V2ray/SSR/ClashStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-37821.htm" title="中国猫粮生产基地（国内猫粮工厂）">中国猫粮生产基地（国内猫粮工厂）</a></li>
+                        <li class="py-2"><a href="/news/article-56708.htm" title="宠物24小时医院（24小时的宠物医院）">宠物24小时医院（24小时的宠物医院）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">18</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">83</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fruits Shop End-->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3 mb-md-0">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <span class="text-light">Stash Github机场分享官网 版权所有 Powered by WordPress</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/stashgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
