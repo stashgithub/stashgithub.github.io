@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://stashgithub.github.io/news/article-71313.htm" />
+    <meta charset="utf-8">
+    <title>WebSocket协议详解（什么是webSocket）</title>
+        <meta name="description" content="一、WebSocket 协议背景 早期，在网站上推送消息给用户，只能通过轮询的方式或 Comet 技术。轮询就是浏览器每隔几秒钟向服务端发送 HTTP 请求，然后服务端返回消息给客户端。 轮询技术一般" />
+        <link rel="icon" href="/assets/website/img/stashgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Stash Github机场分享官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://stashgithub.github.io/news/article-71313.htm" />
+    <meta property="og:site_name" content="Stash Github机场分享官网" />
+    <meta property="og:title" content="WebSocket协议详解（什么是webSocket）" />
+    <meta property="og:image" content="https://stashgithub.github.io/uploads/20240903-1/036acdd2f602ba92af29b6594b1fa4a5.webp" />
+        <meta property="og:release_date" content="2025-03-11T07:45:48" />
+    <meta property="og:updated_time" content="2025-03-11T07:45:48" />
+        <meta property="og:description" content="一、WebSocket 协议背景 早期，在网站上推送消息给用户，只能通过轮询的方式或 Comet 技术。轮询就是浏览器每隔几秒钟向服务端发送 HTTP 请求，然后服务端返回消息给客户端。 轮询技术一般" />
+        
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="WebSocket协议详解（什么是webSocket）">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/assets/website/js/frontend/stashgithub/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/stashgithub/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/stashgithub/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/stashgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNXJ21P00N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NNXJ21P00N');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+        <div class="container topbar bg-primary d-none d-lg-block">
+            <div class="d-flex justify-content-between">
+                
+            </div>
+        </div>
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                <a href="/" class="navbar-brand">
+                                <span class="text-primary display-6">Stash Github</span>
+                                </a>
+                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/client.htm" class="nav-item nav-link">客户端</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                            </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">WebSocket协议详解（什么是webSocket）</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+            <li class="breadcrumb-item active text-white">正文</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+    <!-- Fruits Shop Start-->
+    <div class="container-fluid fruite py-5">
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="StashNode免费订阅官网" data-url="https://stashnode.github.io">
+                  				  				  				<h2 id="一websocket-协议背景">一、WebSocket 协议背景</h2> <p>早期，在网站上推送消息给用户，只能通过轮询的方式或 Comet 技术。轮询就是浏览器每隔几秒钟向服务端发送 HTTP 请求，然后服务端返回消息给客户端。</p> <pre><code class="language-javascript">轮询技术一般在浏览器上就是使用 setInerval 或 setTimeout</code></pre> <p>这种方式的缺点：</p> <blockquote> <p>需要不断的向服务端发送 HTTP 请求，这种就比较浪费带宽资源。而且发送 HTTP 请求只能由客户端发起，这也是早期 HTTP1.0/1.1 协议的一个缺点。它做不到由服务端向客户端发起请求。</p> </blockquote> <p>为了能实现客户端和服务端的双向通信，经过多年发展于是 WebSocket 协议在 2008 年就诞生了。</p> <p>它最初是在 HTML5 中引入的。经过多年发展后，该协议慢慢被多个浏览器支持，RFC 在 2011 年就把该协议作为一个国际标准，叫<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.rfc-editor.org/rfc/rfc6455.html"  target="_blank" rel="nofollow">rfc6455</a>。</p> <h2 id="二协议简介">二、协议简介</h2> <p>WebSocket 是一种支持双向通信的网络协议。</p> <ul> <li>双向通信：客户端（比如浏览器）可以向服务端发送消息，服务端也可以主动向客户端发送消息。</li> </ul> <p>这样就实现了客户端和服务端的双向通信，那么上面所说的消息推送就比较容易实现了。</p> <p>原先的 HTTP1.0/1.1 只能是客户端向服务端发送消息。</p> <p><strong>协议特点：</strong></p> <ul> <li>建立在 TCP 协议之上。</li> <li>WebSocket 协议是从 HTTP 协议升级而来。</li> <li>与 HTTP 协议良好兼容新。默认端口是 80 和 443，握手阶段采用 HTTP 协议。</li> <li>数据格式比较轻量，通信效率高，性能开销小。</li> <li>可以发送文本，也可以发送二进制数据。</li> <li>没有同源限制，客户端可以与任意服务端通信。</li> <li>协议标识符是 ws（如果加密，则为 wss），服务器网址就是 URL。</li> <li>可以支持扩展，定了扩展协议。</li> <li>保持连接状态，websocket 是一种有状态的协议，通信就可以省略部分状态信息。</li> <li>实时性更强，因为是双向通信协议，所以服务端可以随时向客户端发送数据。</li> </ul> <h2 id="三http-升级到-websocket-过程">三、HTTP 升级到 WebSocket 过程</h2> <p>WebSocket 协议建立复用了 HTTP 的握手请求过程。</p> <p>客户端通过 HTTP 请求与 WebSocket 服务端协商升级协议。协议完成后，后续的数据交互则遵循 WebSocket 的协议。</p> <ol> <li>客户端发起协议升级请求</li> </ol> <pre><code class="language-http">GET / HTTP/1.1 Host: localhost:8080 Origin: http://127.0.0.1:3000 Connection: Upgrade Upgrade: websocket Sec-WebSocket-Version: 13 Sec-WebSocket-Key: w4v7O6xFTi36lq3RNcgctw==</code></pre> <blockquote> <p>说明：上面请求信息忽略了 HTTP 的一些非必要头部请求信息，剔除多余的干扰。</p> </blockquote> <ul> <li>Origin:<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://127.0.0.1:3000"  target="_blank" rel="nofollow">http://127.0.0.1:3000</a> ： 原始的协议和URL</li> <li>Connection: Upgrade：表示要升级协议了</li> <li>Upgrade: websocket：表示要升级到 WebSocket 协议；</li> <li>Sec-WebSocket-Version: 13：表示 WebSocket 的版本。如果服务端不支持该版本，需要返回一个<code>Sec-WebSocket-Versionheader</code> ，里面包含服务端支持的版本号</li> <li>Sec-WebSocket-Key：与后面服务端响应首部的 Sec-WebSocket-Accept 是配套的，提供基本的防护，比如恶意的连接，或者无意的连接</li> </ul> <ol start="2"> <li>服务端响应协议升级</li> </ol> <pre><code class="language-http">HTTP/1.1 101 Switching Protocols Connection:Upgrade Upgrade: websocket Sec-WebSocket-Accept: Oy4NRAQ13jhfONC7bP8dTKb4PTU=</code></pre> <ul> <li> <p>HTTP/1.1 101 Switching Protocols： 状态码 101 表示协议切换</p> </li> <li> <p>Sec-WebSocket-Accept：根据客户端请求首部的 Sec-WebSocket-Key 计算出来</p> <blockquote> <p>将 Sec-WebSocket-Key 跟 258EAFA5-E914-47DA-95CA-C5AB0DC85B11 拼接。</p> <p>通过 SHA1 计算出摘要，并转成 base64 字符串。计算公式如下：</p> <pre><code class="language-js">Base64(sha1(Sec-WebSocket-Key + 258EAFA5-E914-47DA-95CA-C5AB0DC85B11))</code></pre> </blockquote> </li> <li> <p>Connection:Upgrade：表示协议升级</p> </li> <li> <p>Upgrade: websocket：升级到 websocket 协议</p> </li> </ul> <h2 id="四websocket-数据交换">四、WebSocket 数据交换</h2> <h3 id="数据帧格式">数据帧格式</h3> <p>在 WebSocket 协议中，客户端与服务端数据交换的最小信息单位叫做帧（<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.rfc-editor.org/rfc/rfc6455.html#section-5.2"  target="_blank" rel="nofollow">frame</a>），由 1 个或多个帧按照次序组成一条完整的消息（message）。</p> <p>数据传输的格式是由<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.rfc-editor.org/rfc/rfc5234"  target="_blank" rel="nofollow">ABNF</a> 来描述的。</p> <p>WebSocket 数据帧的统一格式如下图：</p> <pre><code class="language-json">0                   1                   2                   3 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 +-+-+-+-+-------+-+-------------+-------------------------------+ |F|R|R|R| opcode|M| Payload len |    Extended payload length    | |I|S|S|S|  (4)  |A|     (7)     |             (16/64)           | |N|V|V|V|       |S|             |   (if payload len==126/127)   | | |1|2|3|       |K|             |                               | +-+-+-+-+-------+-+-------------+ - - - - - - - - - - - - - - - + |     Extended payload length continued, if payload len == 127  | + - - - - - - - - - - - - - - - +-------------------------------+ |                               |Masking-key, if MASK set to 1  | +-------------------------------+-------------------------------+ | Masking-key (continued)       |          Payload Data         | +-------------------------------- - - - - - - - - - - - - - - - + :                     Payload Data continued ...                : + - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - + |                     Payload Data continued ...                | +---------------------------------------------------------------+</code></pre> <p>（<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.rfc-editor.org/rfc/rfc6455.html#section-5.2"  target="_blank" rel="nofollow">https://www.rfc-editor.org/rfc/rfc6455.html#section-5.2</a> Base Framing Protocol）</p> <p>上面图中名词解释：</p> <table> <thead> <tr> <th>名词</th> <th>说明</th> <th>大小</th> </tr> </thead> <tbody> <tr> <td>FIN</td> <td>如果是 1，表示这是消息（message）的最后一个分片（fragment）；如果是 0，表示不是是消息（message）的最后一个分片（fragment）</td> <td>1 个比特</td> </tr> <tr> <td>RSV1, RSV2, RSV3</td> <td>一般情况下全为 0。当客户端、服务端协商采用 WebSocket 扩展时，这三个标志位可以非 0，且值的含义由扩展进行定义。如果出现非零的值，且并没有采用 WebSocket 扩展，连接出错</td> <td>各占 1 个比特</td> </tr> <tr> <td>opcode</td> <td>操作代码，Opcode 的值决定了应该如何解析后续的数据载荷（data payload）。如果操作代码是不认识的，那么接收端应该断开连接（fail the connection）</td> <td>4 个比特</td> </tr> <tr> <td>mask</td> <td>表示是否要对数据载荷进行掩码操作。从客户端向服务端发送数据时，需要对数据进行掩码操作；从服务端向客户端发送数据时，不需要对数据进行掩码操作。<br />如果服务端接收到的数据没有进行过掩码操作，服务端需要断开连接。<br />如果 Mask 是 1，那么在 Masking-key 中会定义一个掩码键（masking key），并用这个掩码键来对数据载荷进行反掩码。所有客户端发送到服务端的数据帧，Mask 都是 1。</td> <td>1 个比特</td> </tr> <tr> <td>Payload length</td> <td>数据载荷的长度，单位是字节。假设数 Payload length === x，如果：<br />x 为 0~126：数据的长度为 x 字节。<br />x 为 126：后续 2 个字节代表一个 16 位的无符号整数，该无符号整数的值为数据的长度。<br />x 为 127：后续 8 个字节代表一个 64 位的无符号整数（最高位为 0），该无符号整数的值为数据的长度。<br />此外，如果 payload length 占用了多个字节的话，payload length 的二进制表达采用网络序（big endian，重要的位在前）。</td> <td>为 7 位，或 7+16 位，或 1+64 位。</td> </tr> <tr> <td>Masking-key</td> <td>所有从客户端传送到服务端的数据帧，数据载荷都进行了掩码操作，Mask 为 1，且携带了 4 字节的 Masking-key。如果 Mask 为 0，则没有 Masking-key。<br /><strong>备注</strong>：载荷数据的长度，不包括 mask key 的长度。</td> <td>0 或 4 字节（32 位</td> </tr> <tr> <td>Payload data</td> <td><strong>载荷数据</strong>：包括了扩展数据、应用数据。其中，扩展数据 x 字节，应用数据 y 字节。The "Payload data" is defined as "Extension data" concatenated with "Application data".<br /><strong>扩展数据</strong>：如果没有协商使用扩展的话，扩展数据数据为 0 字节。所有的扩展都必须声明扩展数据的长度，或者可以如何计算出扩展数据的长度。此外，扩展如何使用必须在握手阶段就协商好。如果扩展数据存在，那么载荷数据长度必须将扩展数据的长度包含在内。<br /><strong>应用数据</strong>：任意的应用数据，在扩展数据之后（如果存在扩展数据），占据了数据帧剩余的位置。载荷数据长度 减去 扩展数据长度，就得到应用数据的长度。</td> <td>(x+y) 字节</td> </tr> </tbody> </table> <p>表中<strong>opcode</strong> 操作码：</p> <blockquote> <ul> <li>%x0：表示一个延续帧（continuation frame）。当 Opcode 为 0 时，表示本次数据传输采用了数据分片，当前收到的数据帧为其中一个数据分片。</li> <li>%x1：表示这是一个文本帧（frame），text frame</li> <li>%x2：表示这是一个二进制帧（frame），binary frame</li> <li>%x3-7：保留的操作代码，用于后续定义的非控制帧。</li> <li>%x8：表示连接断开。connection close</li> <li>%x9：表示这是一个 ping 操作。a ping</li> <li>%xA：表示这是一个 pong 操作。a pong</li> <li>%xB-F：保留的操作代码，用于后续定义的控制帧。</li> </ul> </blockquote> <h3 id="数据帧另外一种表达方式">数据帧另外一种表达方式</h3> <pre><code class="language-shell">    ws-frame                = frame-fin           ; 1 bit in length                               frame-rsv1          ; 1 bit in length                               frame-rsv2          ; 1 bit in length                               frame-rsv3          ; 1 bit in length                               frame-opcode        ; 4 bits in length                               frame-masked        ; 1 bit in length                               frame-payload-length   ; either 7, 7+16,                                                      ; or 7+64 bits in                                                      ; length                               [ frame-masking-key ]  ; 32 bits in length                               frame-payload-data     ; n*8 bits in                                                      ; length, where                                                      ; n &gt;= 0      frame-fin               = %x0 ; more frames of this message follow                             / %x1 ; final frame of this message                                   ; 1 bit in length      frame-rsv1              = %x0 / %x1                               ; 1 bit in length, MUST be 0 unless                               ; negotiated otherwise      frame-rsv2              = %x0 / %x1                               ; 1 bit in length, MUST be 0 unless                               ; negotiated otherwise      frame-rsv3              = %x0 / %x1                               ; 1 bit in length, MUST be 0 unless                               ; negotiated otherwise      frame-opcode            = frame-opcode-non-control /                               frame-opcode-control /                               frame-opcode-cont      frame-opcode-cont       = %x0 ; frame continuation      frame-opcode-non-control= %x1 ; text frame                             / %x2 ; binary frame                             / %x3-7                             ; 4 bits in length,                             ; reserved for further non-control frames      frame-opcode-control    = %x8 ; connection close                             / %x9 ; ping                             / %xA ; pong                             / %xB-F ; reserved for further control                                     ; frames                                     ; 4 bits in length                                          frame-masked            = %x0                             ; frame is not masked, no frame-masking-key                             / %x1                             ; frame is masked, frame-masking-key present                             ; 1 bit in length      frame-payload-length    = ( %x00-7D )                             / ( %x7E frame-payload-length-16 )                             / ( %x7F frame-payload-length-63 )                             ; 7, 7+16, or 7+64 bits in length,                             ; respectively      frame-payload-length-16 = %x0000-FFFF ; 16 bits in length      frame-payload-length-63 = %x0000000000000000-7FFFFFFFFFFFFFFF                             ; 64 bits in length      frame-masking-key       = 4( %x00-FF )                               ; present only if frame-masked is 1                               ; 32 bits in length      frame-payload-data      = (frame-masked-extension-data                                frame-masked-application-data)                             ; when frame-masked is 1                               / (frame-unmasked-extension-data                                 frame-unmasked-application-data)                             ; when frame-masked is 0      frame-masked-extension-data     = *( %x00-FF )                             ; reserved for future extensibility                             ; n*8 bits in length, where n &gt;= 0      frame-masked-application-data   = *( %x00-FF )                             ; n*8 bits in length, where n &gt;= 0      frame-unmasked-extension-data   = *( %x00-FF )                             ; reserved for future extensibility                             ; n*8 bits in length, where n &gt;= 0      frame-unmasked-application-data = *( %x00-FF )                             ; n*8 bits in length, where n &gt;= 0</code></pre> <h3 id="客户端到服务端的掩码算法">客户端到服务端的掩码算法</h3> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.rfc-editor.org/rfc/rfc6455.html#section-5.3"  target="_blank" rel="nofollow">https://www.rfc-editor.org/rfc/rfc6455.html#section-5.3</a> Client-to-Server Masking</p> <p>掩码键（Masking-key）是由客户端挑选出来的 32 位的随机数。掩码操作不会影响数据载荷的长度。掩码、反掩码操作都采用如下算法：</p> <p>举例说明：</p> <blockquote> <pre><code>Octet i of the transformed data ("transformed-octet-i") is the XOR of octet i of the original data ("original-octet-i") with octet at index i modulo 4 of the masking key ("masking-key-octet-j"):       j                   = i MOD 4      transformed-octet-i = original-octet-i XOR masking-key-octet-j</code></pre> <ul> <li>original-octet-i：为原始数据的第 i 字节。</li> <li>transformed-octet-i：为转换后的数据的第 i 字节。</li> <li>j：为i mod 4的结果。</li> <li>masking-key-octet-j：为 mask key 第 j 字节。</li> </ul> </blockquote> <p>算法描述为： original-octet-i 与 masking-key-octet-j 异或后，得到 transformed-octet-i。</p> <pre><code class="language-abnf">j  = i MOD 4 transformed-octet-i = original-octet-i XOR masking-key-octet-j</code></pre> <h3 id="数据分片">数据分片</h3> <p>分片的目的：</p> <ul> <li>有了消息分片，发送一个消息的时候，就可以发送未知大小的信息。如果消息不能被分片，那么就不得不缓冲整个消息，以便计算长度。而有了分片就可以选择合适大小缓冲区来缓冲分片。</li> <li>第二个目的是可以使用多路复用。</li> </ul> <p>WebSocket 的每条消息（message）可能被切分为多个数据帧。</p> <p>当 WebSocket 的接收方接收到一个数据帧时，会根据 FIN 值来判断是否收到消息的最后一个数据帧。</p> <p>从上图可以看出，FIN = 1 时，表示为消息的最后一个数据帧；FIN = 0 时，则不是消息的最后一个数据帧，接收方还要继续监听接收剩余数据帧。</p> <p>opcode 表示数据传输的类型，0x01 表示文本类型的数据；0x02 表示二进制类型的数据；0x00 比较特殊，表示延续帧（continuation frame），意思就是完整数据对应的数据帧还没有接收完。</p> <p>更多分片内容请看这里：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.rfc-editor.org/rfc/rfc6455.html#section-5.4"  target="_blank" rel="nofollow">https://www.rfc-editor.org/rfc/rfc6455.html#section-5.4</a></p> <p>消息分片example：</p> <pre><code class="language-shell">Client: FIN=1, opcode=0x1, msg="hello" Server: (process complete message immediately) Hi. Client: FIN=0, opcode=0x1, msg="and a" Server: (listening, new message containing text started) Client: FIN=0, opcode=0x0, msg="happy new" Server: (listening, payload concatenated to previous message) Client: FIN=1, opcode=0x0, msg="year!" Server: (process complete message) Happy new year to you too!</code></pre> <p>(具体例子见：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_servers"  target="_blank" rel="nofollow">https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_servers</a>)</p> <h2 id="五怎么保持连接">五：怎么保持连接</h2> <p>在第二小结中我们介绍了 websocket 的特点，其中有一个是保持连接状态。</p> <p>websocket 是建立在 tcp 之上，那也就是客户端与服务端的 tcp 通道要保持连接不断开。</p> <p>怎么保持呢？可以用心跳来实现。</p> <p>其实 websocket 协议早就想到了，它的帧数据格式中有一个字段 opcode，定义了 2 种类型操作， ping 和 pong，opcode 分别是<code>0x9、0xA</code>。</p> <blockquote> <p>说明：对于长时间没有数据往来的连接，如果依旧长时间保持连接的状态，那么就会浪费连接资源。</p> </blockquote> <p>[完]</p> <h2 id="六参考">六、参考</h2> <ul> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.rfc-editor.org/rfc/rfc6455.html"  target="_blank" rel="nofollow">https://www.rfc-editor.org/rfc/rfc6455.html</a> WebScoket RFC6455</li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.rfc-editor.org/rfc/rfc5234"  target="_blank" rel="nofollow">https://www.rfc-editor.org/rfc/rfc5234</a>  ABNF 格式</li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.ruanyifeng.com/blog/2017/05/websocket.html"  target="_blank" rel="nofollow">https://www.ruanyifeng.com/blog/2017/05/websocket.html</a> websocket 教程，阮一峰</li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_servers"  target="_blank" rel="nofollow">https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_servers</a></li> </ul> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-70652.htm">宠物饲料加工厂家电话（宠物饲料生产基地）</a></p>
+                                        <p>下一个：<a href="/news/article-71314.htm">给动物医院的好评语 给动物医院的好评语怎么写</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-37821.htm" title="中国猫粮生产基地（国内猫粮工厂）">中国猫粮生产基地（国内猫粮工厂）</a></li>
+                        <li class="py-2"><a href="/news/article-63095.htm" title="java8日期常用API，日期详解">java8日期常用API，日期详解</a></li>
+                        <li class="py-2"><a href="/news/article-60142.htm" title="MySQL 获取系统时间/系统日期/日期时间的函数">MySQL 获取系统时间/系统日期/日期时间的函数</a></li>
+                        <li class="py-2"><a href="/news/article-58987.htm" title="生产狗粮利润大吗（狗粮生产赚钱吗）">生产狗粮利润大吗（狗粮生产赚钱吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-6-vless-node-github.htm" title="「1月6日」最高速度22M/S，2025年SSR/Shadowrocket/Clash/V2rayStash免费机场订阅链接">「1月6日」最高速度22M/S，2025年SSR/Shadowrocket/Clash/V2rayStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-65545.htm" title="12306宠物托运价格表（12306宠物托运官网）">12306宠物托运价格表（12306宠物托运官网）</a></li>
+                        <li class="py-2"><a href="/news/article-36139.htm" title="win11系统如何安装藏文输入法">win11系统如何安装藏文输入法</a></li>
+                        <li class="py-2"><a href="/news/article-71313.htm" title="WebSocket协议详解（什么是webSocket）">WebSocket协议详解（什么是webSocket）</a></li>
+                        <li class="py-2"><a href="/news/article-68707.htm" title="C#基于自定义事件EventArgs实现发布订阅模式_C#教程">C#基于自定义事件EventArgs实现发布订阅模式_C#教程</a></li>
+                        <li class="py-2"><a href="/news/article-58567.htm" title="美联众合动物医院可以加盟吗 美联众合动物医院是加盟吗">美联众合动物医院可以加盟吗 美联众合动物医院是加盟吗</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">36</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">83</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fruits Shop End-->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3 mb-md-0">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <span class="text-light">Stash Github机场分享官网 版权所有 Powered by WordPress</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/stashgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
