@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://stashgithub.github.io/news/article-73281.htm" />
+    <meta charset="utf-8">
+    <title>python常见漏洞总结_在线工具</title>
+        <meta name="description" content="总结一下python里面常见安全问题，文章大部分内容来自MisakiKata师傅的python_code_audit项目，对原文进行了一些修改，后续会使用编写了规则对代码里面是否用到这些危险函数进行相" />
+        <link rel="icon" href="/assets/website/img/stashgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Stash Github机场分享官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://stashgithub.github.io/news/article-73281.htm" />
+    <meta property="og:site_name" content="Stash Github机场分享官网" />
+    <meta property="og:title" content="python常见漏洞总结_在线工具" />
+    <meta property="og:image" content="https://stashgithub.github.io/uploads/20240903-1/6a0df60e08aa4c70cb899694e971c4b0.webp" />
+        <meta property="og:release_date" content="2025-03-14T07:04:09" />
+    <meta property="og:updated_time" content="2025-03-14T07:04:09" />
+        <meta property="og:description" content="总结一下python里面常见安全问题，文章大部分内容来自MisakiKata师傅的python_code_audit项目，对原文进行了一些修改，后续会使用编写了规则对代码里面是否用到这些危险函数进行相" />
+        
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="python常见漏洞总结_在线工具">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/assets/website/js/frontend/stashgithub/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/stashgithub/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/stashgithub/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/stashgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNXJ21P00N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NNXJ21P00N');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+        <div class="container topbar bg-primary d-none d-lg-block">
+            <div class="d-flex justify-content-between">
+                
+            </div>
+        </div>
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                <a href="/" class="navbar-brand">
+                                <span class="text-primary display-6">Stash Github</span>
+                                </a>
+                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/client.htm" class="nav-item nav-link">客户端</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                            </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">python常见漏洞总结_在线工具</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+            <li class="breadcrumb-item active text-white">正文</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+    <!-- Fruits Shop Start-->
+    <div class="container-fluid fruite py-5">
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="StashNode免费订阅官网" data-url="https://stashnode.github.io">
+                  				  				  				<p>总结一下python里面常见安全问题，文章大部分内容来自<code>MisakiKata</code>师傅的<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/MisakiKata/python_code_audit"  target="_blank" rel="nofollow">python_code_audit</a>项目，对原文进行了一些修改，后续会使用编写了规则对代码里面是否用到这些危险函数进行相应检测</p> <h2 id="sql注入">SQL注入</h2> <p>SQL注入漏洞的原因是用户输入直接拼接到了SQL查询语句里面，在<code>python Web</code>应用中一般都是用orm库来进行数据库相关操作，比如<code>Flask</code>和<code>Tornado</code>经常使用<code>Sqlalchemy</code>，而<code>Django</code>有自己自带的orm引擎。</p> <p>但是如果没有使用orm，而直接拼接sql语句的话就会存在SQL注入的风险</p> <pre><code class="language-python">sql = "SELECT * FROM user WHERE id=%s;" %id con.execute(sql)</code></pre> <p>在Django中的示例代码，此处就存在SQL注入</p> <pre><code class="language-python">username = c.execute('SELECT username FROM auth_user WHERE id = %s;' %str(id)).fetchall()</code></pre> <p>Flask中使用SQLAlchemy进行数据库操作</p> <pre><code class="language-python">user = User.query.filter(User.id == id)</code></pre> <p>对应的原始SQL语句如下</p> <pre><code class="language-sql">SELECT users.id AS users_id, users.name AS users_name, users.email AS users_email FROM users WHERE users.id = ?</code></pre> <p>一般来说这种情况下就不会出现SQL注入了，但在某些我们没有正确使用API操作的时候还是会存在SQL注入漏洞，例如phithon的<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.leavesongs.com/PENETRATION/pwnhub-web-classroom-django-sql-injection.html"  target="_blank" rel="nofollow">Pwnhub Web题Classroom题解与分析</a><br /> 其中最关键的部分<code>view.py</code>的代码如下</p> <pre><code class="language-python">class LoginView(JsonResponseMixin, generic.TemplateView):     template_name = 'login.html'      def post(self, request, *args, **kwargs):         data = json.loads(request.body.decode())         stu = models.Student.objects.filter(**data).first()         if not stu or stu.passkey != data['passkey']:             return self._jsondata('账号或密码错误', 403)         else:             request.session['is_login'] = True             return self._jsondata('登录成功', 200)</code></pre> <p>可以看到这一行代码<code>stu = models.Student.objects.filter(**data).first()</code></p> <p>我们传入的data数据直接被带入了<code>filter</code>语句，在前面的介绍中，<code>filter</code>的操作是这样的<code>.filter(User.id == id)</code>，这两者的不同之处在于前者的参数名被我们所控制，进而可以查询我们想要的数据</p> <p>另外虽然ORM框架能防御SQL注入，但使用不当的情况下还会造成二次注入，例如</p> <pre><code class="language-python">def files(request):     if request.GET.get('url'):         url = request.GET.get('url')         File.objects.create(filename=url)         return HttpResponse('保存成功')     else:         filename = File.objects.get(pk=23).filename         cur = connection.cursor()         cur.execute("""select * from code_audit_file where filename='%s'""" %(filename))         str = cur.fetchall()         cur.close()         return HttpResponse(str)</code></pre> <p>当我们保存字段<code>filename</code>的时候，如果filename的值是<code>' or '1'='1</code>，则会被转义为<code>\' or \'1\'=\'1</code>，但是其中的单引号并不会被去除，而是被当作字符串被保存到数据库中，在后续的过程中被触发SQL注入漏洞<br /><code>cur.execute("""select * from code_audit_file where filename='%s'""" %(filename))</code></p> <p>因为正则匹配规则的死板，二次注入或者<code>Django</code>的历史漏洞想要在正则匹配中写出通用的规则是非常困难的，也需要有庞大的规则库才能实现</p> <p>借鉴``代码中<code>select</code>查询正则如下，删改查操作的正则匹配也类似<br /> "select\s{1,4}.{1,60}from.{1,50}where\s{1,3}.{1,50}=["\s\.]{0,10}\$\w{1,20}((\[["']|\[)\${0,1}[\w\[\]"']{0,30}){0,1}"</p> <h2 id="rce">RCE</h2> <p>常见的执行命令模块和函数有</p> <ul> <li>os</li> <li>subprocess</li> <li>pty</li> <li>codecs</li> <li>popen</li> <li>eval</li> <li>exec</li> <li>...</li> </ul> <p>包括我自己在最开始写爬虫的时候也会有这种不规范：</p> <pre><code class="language-python">os.system('python exp.py -u http://evil.com')</code></pre> <p>如果反制爬虫的URL为<code>"http://evil.com|rm -rf / &amp;</code>，进一步也可以控制服务器权限</p> <p>CTF题目里面常见的命令执行操作<code>ping</code></p> <pre><code class="language-python">os.system('ping -n 4 %s' %ip)</code></pre> <p>动态调用实现</p> <pre><code class="language-python">oper_type=__import__('os').system('sleep 5')</code></pre> <p>又比如使用<code>eval</code>将字符串转字典</p> <pre><code class="language-python">&gt;&gt;&gt; json1="{'a':1}" &gt;&gt;&gt; eval(json1) {'a': 1}</code></pre> <p>如果<code>json1</code>可控也会造成RCE</p> <p><code>subprocess.run</code>的案例</p> <pre><code class="language-python">def COMMAND(request):     if request.GET.get('ip'):         ip = request.GET.get('ip')         cmd = 'ping -n 4 %s' %shlex.quote(ip)         flag = subprocess.run(cmd, shell=False, stdout=subprocess.PIPE)         stdout = flag.stdout         return HttpResponse('&lt;p&gt;%s&lt;/p&gt;' %str(stdout, encoding=chardet.detect(stdout)['encoding']))     else:         return HttpResponse('&lt;p&gt;请输入IP地址&lt;/p&gt;')</code></pre> <p><code>subprocess</code>是一个为了代替os其中的命令执行库而出现的，python3.5以后的版本，建议是使用<code>subprocess.run</code>来操作，3.5之前的可以使用库中你认为合适的函数。不过实际上都是基于<code>subprocess.Popen</code>的封装实现的，也可以执行使用<code>subprocess.Popen</code>来执行较复杂的操作，在<code>shell=False</code>的时候，第一个字符是列表，或者传入字符串。当使用<code>shell=True</code>的时候，python会调用<code>/bin/sh</code>来执行命令，届时会造成命令执行。</p> <pre><code class="language-python">cmd = request.values.get('cmd') s = subprocess.Popen('ping -n 4 '+cmd, shell=True, stdout=subprocess.PIPE) stdout = s.communicate() return Response('&lt;p&gt;输入的值为：%s&lt;/p&gt;' %str(stdout[0], encoding=chardet.detect(stdout[0])['encoding']))</code></pre> <h2 id="xss">XSS</h2> <p>XSS和SQL注入相同点都是对用户的输入参数没有过滤和正确引用，导致输出的时候造成代码注入到页面上</p> <p>示例如下</p> <pre><code class="language-python">name = request.GET.get('name') return HttpResponse("&lt;p&gt;name: %s&lt;/p&gt;" %name)</code></pre> <p>Django上的XSS示例</p> <pre><code class="language-python">def XSS(request):     if request.GET.get('name'):         name = request.GET.get('name')         return HttpResponse("&lt;p&gt;name: %s&lt;/p&gt;" %name)</code></pre> <p>Flask上的XSS示例</p> <pre><code class="language-python">@app.route('/xss') def XSS():     if request.args.get('name'):         name = request.args.get('name')         return Response("&lt;p&gt;name: %s&lt;/p&gt;" %name)</code></pre> <p>在<code>flask</code>中使用<code>render_template</code>能够防御XSS漏洞，但在使用<code>safe</code>过滤器的情况下还是会导致XSS</p> <pre><code class="language-python">return render_template('xss.html', name=name)</code></pre> <p>前端代码为</p> <pre><code class="language-html">&lt;h1&gt;Hello {{ name|safe }}!&lt;/h1&gt;</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/836830f4198c6cec7218058bc95ffa80.jpg" alt="python常见漏洞总结_在线工具"></p> <h2 id="xxe">XXE</h2> <p>XML外部实体注入。当允许引用外部实体时，通过构造恶意内容，就可能导致任意文件读取、系统命令执行、内网端口探测、攻击内网网站等危害</p> <p>在python中有三种方法解析XML：</p> <ul> <li>SAX <ul> <li><code>xml.sax.parse()</code></li> </ul> </li> <li>DOM <ul> <li><code>xml.dom.minidom.parse()</code></li> <li><code>xml.dom.pulldom.parse()</code></li> </ul> </li> <li>ElementTree <ul> <li><code>xml.etree.ElementTree()</code></li> </ul> </li> </ul> <p>另外python中第三方xml解析库也很多，<code>libxml2</code>是使用C语言开发的xml解析器，而<code>lxml</code>是python基于<code>libxml2</code>开发的，该库存在XXE漏洞</p> <p>存在漏洞的示例代码</p> <pre><code class="language-python">def xxe():     # tree = etree.parse('xml.xml')     # tree = lxml.objectify.parse('xml.xml')     # return etree.tostring(tree.getroot())     xml = b"""&lt;?xml version="1.0" encoding="UTF-8"?&gt;             &lt;!DOCTYPE title [ &lt;!ELEMENT title ANY &gt;             &lt;!ENTITY xxe SYSTEM "file:///c:/windows/win.ini" &gt;]&gt;             &lt;channel&gt;                 &lt;title&gt;&amp;xxe;&lt;/title&gt;                 &lt;description&gt;A blog about things&lt;/description&gt;             &lt;/channel&gt;"""     tree = etree.fromstring(xml)     return etree.tostring(tree)</code></pre> <p>此处利用<code>file</code>协议读取服务器上的敏感文件，漏洞存在的原因是<code>XMLparse</code>方法中<code>resolve_entities</code>默认设置为<code>True</code>，导致可以解析外部实体</p> <p>下表概述了标准库XML已知的攻击以及各种模块是否容易受到攻击。</p> <table> <thead> <tr> <th style="text-align: left">种类</th> <th style="text-align: left">sax</th> <th style="text-align: left">etree</th> <th style="text-align: left">minidom</th> <th style="text-align: left">pulldom</th> <th style="text-align: left">xmlrpc</th> </tr> </thead> <tbody> <tr> <td style="text-align: left">billion laughs</td> <td style="text-align: left"><strong>易受攻击</strong></td> <td style="text-align: left"><strong>易受攻击</strong></td> <td style="text-align: left"><strong>易受攻击</strong></td> <td style="text-align: left"><strong>易受攻击</strong></td> <td style="text-align: left"><strong>易受攻击</strong></td> </tr> <tr> <td style="text-align: left">quadratic blowup</td> <td style="text-align: left"><strong>易受攻击</strong></td> <td style="text-align: left"><strong>易受攻击</strong></td> <td style="text-align: left"><strong>易受攻击</strong></td> <td style="text-align: left"><strong>易受攻击</strong></td> <td style="text-align: left"><strong>易受攻击</strong></td> </tr> <tr> <td style="text-align: left">external entity expansion</td> <td style="text-align: left">安全 (4)</td> <td style="text-align: left">安全 (1)</td> <td style="text-align: left">安全 (2)</td> <td style="text-align: left">安全 (4)</td> <td style="text-align: left">安全 (3)</td> </tr> <tr> <td style="text-align: left"><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://en.wikipedia.org/wiki/Document_type_definition"  target="_blank" rel="nofollow">DTD</a> retrieval</td> <td style="text-align: left">安全 (4)</td> <td style="text-align: left">安全</td> <td style="text-align: left">安全</td> <td style="text-align: left">安全 (4)</td> <td style="text-align: left">安全</td> </tr> <tr> <td style="text-align: left">decompression bomb</td> <td style="text-align: left">安全</td> <td style="text-align: left">安全</td> <td style="text-align: left">安全</td> <td style="text-align: left">安全</td> <td style="text-align: left"><strong>易受攻击</strong></td> </tr> </tbody> </table> <p>一些版本比较低的第三方解析excel库内部是使用lxml模块实现的，采用的也是默认配置，导致存在XXE漏洞，例如<code>openpyxl&lt;=2.3.5</code></p> <h2 id="csrf">CSRF</h2> <p>因为<code>flask</code>的设计哲学，所以在<code>flask</code>中默认没有<code>csrf</code>的防护</p> <pre><code class="language-python">@app.route('/csrf', methods=["GET","POST"]) def CSRF():     if request.method == "POST":         name = request.values.get('name')         email = request.values.get('email')</code></pre> <p>但是用户可以自行选择使用扩展插件<code>flask_wtf.csrf</code>实现让所有模块接受csrf防护</p> <pre><code class="language-python">from flask_wtf.csrf import CSRFProtect CSRFPortect(app) #保护全部视图</code></pre> <p>如果想要取消某个路由的csrf防护，则使用装饰器</p> <pre><code class="language-python">@csrf.exempt</code></pre> <p>Django中默认存在csrf中间件<code>django.middleware.csrf.CsrfViewMiddleware</code>，但是也可以通过<code>@csrf_exempt</code>进行某个视图的取消保护</p> <pre><code class="language-Python">@csrf_exempt def CSRF(request):     if request.method == "POST":</code></pre> <p>如果设置中取消了默认的中间件，也可以通过<code>@csrf_protect</code>对路由进行token防护</p> <pre><code class="language-Python">@csrf_protect def CSRF(request):     if request.method == "POST":</code></pre> <h2 id="ssrf">SSRF</h2> <p>代码中存在网络请求的时候就可能有SSRF漏洞</p> <p>python的可以造成这种问题的常用请求库：</p> <ul> <li>pycurl</li> <li>urllib</li> <li>urllib3</li> <li>requests</li> </ul> <p>因为我个人用<code>requests</code>比较多，这里就以<code>requests</code>为案例</p> <pre><code class="language-python">@app.route('/ssrf') def SSRF():     if request.values.get('file'):         file = request.values.get('file')         req = requests.get(file)         return render_template('ssrf.html', file=req.content.decode('utf-8'))     else:         return Response('&lt;p&gt;请输入file地址&lt;/p&gt;')</code></pre> <p>不过<code>requests</code>有一个Adapter的字典，请求类型为<code>http://</code>或者<code>https://</code>，在某种程度上也算有限制</p> <pre><code class="language-python">self.mount('https://', HTTPAdapter()) self.mount('http://', HTTPAdapter())</code></pre> <p>要是需要利用来读取文件，可以配合<code>requests_file</code>来增加对file协议的支持。</p> <pre><code class="language-python">from requests_file import FileAdapter  s = requests.Session() s.mount('file://', FileAdapter()) req = s.get(file)</code></pre> <p>python中另外两个URL请求的库相比就没有这么多限制，能够构造的SSRF payload就更多</p> <p>关于python SSRF的防御，P师傅早年写过一篇文章<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.leavesongs.com/PYTHON/defend-ssrf-vulnerable-in-python.html"  target="_blank" rel="nofollow">谈一谈如何在Python开发中拒绝SSRF漏洞</a>，虽然有的方法现在已经不适用了，但可以进行思路上的启发</p> <h2 id="ssti">SSTI</h2> <p>不同语言在使用模板渲染的时候都有可能存在模板注入漏洞，python中以flask为例：</p> <pre><code class="language-python">def ssti():     if request.values.get('name'):         name = request.values.get('name')         template = "&lt;p&gt;%s&lt;p1&gt;" %name         return render_template_string(template)                  #template = Template('&lt;p&gt;%s&lt;p1&gt;' %name)         #return template.render()     else:         return render_template_string('&lt;p&gt;输入name值&lt;/p&gt;')</code></pre> <p>其中大概有两个点是值得在意的，一个是格式化字符串，另一个是函数<code>render_template_string</code>。其是这两个更像是配合利用，像这么使用就不会有这个问题</p> <pre><code class="language-python">def ssti():     if request.values.get('name'):         name = request.values.get('name')         template = "&lt;p&gt;{{ name }}&lt;p1&gt;"         return render_template_string(template, name=name)     else:         return render_template_string('&lt;p&gt;输入name值&lt;/p&gt;')</code></pre> <p>这么看的话，问题出在格式化字符串上面，而非某个函数<code>render_template_string</code>上，当前者传入<code>{{config}}</code>时，会被模板当作合法语句来执行，而后者会把参数当作字符串处理而不进行相关解析。</p> <p>为了安全模板引擎基本上都拥有沙盒环境，模板注入并不会直接解析python代码造成任意代码执行，所以想要利用SSTI一般还需要配合沙箱逃逸，例如</p> <pre><code class="language-python">().__class__.__mro__[-1].__subclasses__()[72].__init__.__globals__['os'].system('whoami')</code></pre> <p>沙箱逃逸不是我们这里的重点，就不进一步阐述了。</p> <p>在django中，使用一些IDE创建项目的时候可以很明显看到，使用的模板是<code>Django</code>模板，当然我们也可以使用jinja2模板，不过django自己的模板并是很少见过ssti这种问题，倒是由于格式化字符串导致信息泄露，如下使用两种格式化字符串才造成问题的情况。</p> <pre><code class="language-python">def SSTI(request):     if request.GET.get('name'):         name = request.GET.get('name')         template = "&lt;p&gt;user:{user}, name:%s&lt;p1&gt;" %name         return HttpResponse(template.format(user=request.user))     else:         return HttpResponse('&lt;p&gt;输入name值&lt;/p&gt;')</code></pre> <p>其中，当name传入<code>{user.password}</code>会读取到登陆用户的密码，此处使用管理员账号。那么为什么会传入的参数是name，而下面解析的时候被按照变量来读取了。</p> <p>使用<code>format</code>来格式化字符串的时候，我们设定的user是等于<code>request.user</code>，而传入的是<code>{user.password}</code>，相当于template是<code>&lt;p&gt;user:{user}, name:{user.password}&lt;p1&gt;</code>，这样再去格式化字符串就变成了，<code>name:request.user.password</code>，导致被读取到信息。</p> <p>在<code>format</code>格式符的情况下，出现ssti的情况也极少，比如使用如下代码，只能获得一个eval函数调用，<code>format</code>只能使用点和中括号，导致执行受到了限制。</p> <pre><code class="language-python">{user.__init__.__globals__[__builtins__][eval]}</code></pre> <p>p牛给过两个代码用来利用django读取信息</p> <ul> <li><code>http://localhost:8000/?email={user.groups.model._meta.app_config.module.admin.settings.SECRET_KEY}</code></li> <li><code>http://localhost:8000/?email={user.user_permissions.model._meta.app_config.module.admin.settings.SECRET_KEY}</code></li> </ul> <p>再找几个也可以使用的，上面都是直接使用auth模块来执行，因此可以先使用<code>{user.groups.model._meta.apps.app_configs}</code>找到包含的APP。</p> <ul> <li><code>{user.groups.model._meta.apps.app_configs[auth].module.middleware.settings.SECRET_KEY}</code></li> <li><code>{user.groups.model._meta.apps.app_configs[sessions].module.middleware.settings.SECRET_KEY}</code></li> <li><code>{user.groups.model._meta.apps.app_configs[staticfiles].module.utils.settings.SECRET_KEY}</code></li> </ul> <h2 id="文件操作">文件操作</h2> <p>文件操作即文件的增删查改</p> <p>增和改都可以利用<code>write</code>方法</p> <pre><code class="language-python">fo = open("foo.txt", "a") fo.write( "testfile\n") fo.close()</code></pre> <p>当使用<code>write</code>的时候就容易出现任意文件上传漏洞</p> <pre><code class="language-python">@app.route('/upload', methods=['GET','POST']) def upload():     if request.files.get('filename'):         file = request.files.get('filename')         upload_dir = os.path.join(os.path.dirname(__file__), 'uploadfile')         dir = os.path.join(upload_dir, file.filename)         with open(dir, 'wb') as f:             f.write(file.read())         # file.save(dir)         return render_template('upload.html', file='上传成功')     else:         return render_template('upload.html', file='选择文件')</code></pre> <p>django中的一个文件上传样例：</p> <pre><code class="language-python">def UPLOADFILE(request):     if request.method == 'GET':         return render(request, 'upload.html', {'file':'选择文件'})     elif request.method == 'POST':         dir = os.path.join(os.path.dirname(__file__), '../static/upload')         file = request.FILES.get('filename')         name = os.path.join(dir, file.name)         with open(name, 'wb') as f:             f.write(file.read())         return render(request, 'upload.html', {'file':'上传成功'})</code></pre> <p>在这些样例代码中都存在未限制文件大小，未限制文件后缀等问题，但上传上去的python文件会像例如php一句话木马一样被解析吗</p> <p>我们知道<code>flask</code>,<code>Django</code>都是通过路由来进行请求，如果我们单纯上传一个<code>python</code>文件，并不会造成常规的文件上传利用，除非后续处理用使用了<code>eval</code></p> <p>但如果使用<code>Apache</code>和<code>python</code>的环境开发，那就跟常规的网站类似了，例如在httpd.conf中配置了对python的解析存在一段<code>AddHandler mod_python .py</code>。那么通过链接请求的时候，比如<code>http://www.xxx.com/test.py</code>，python文件就会被正常解析。</p> <p>还有一种是文件名的文件覆盖，例如功能需要批量上传，允许压缩包形式上传文件，然后解压到用户资源目录，如果此处存在问题，可能会覆盖关键文件来造成代码执行。比如<code>__init__.py</code>文件。</p> <pre><code class="language-python">@app.route('/zip', methods=['GET','POST']) def zip():     if request.files.get('filename'):         zip_file = request.files.get('filename')         files = []         with zipfile.ZipFile(zip_file, "r") as z:             for fileinfo in z.infolist():                 filename = fileinfo.filename                 dat = z.open(filename, "r")                 files.append(filename)                 outfile = os.path.join(app.config['UPLOAD_FOLDER'], filename)                 if not os.path.exists(os.path.dirname(outfile)):                     try:                         os.makedirs(os.path.dirname(outfile))                     except OSError as exc:                         if exc.errno != errno.EEXIST:                             print("\n[WARN] OS Error: Race Condition")                 if not outfile.endswith("/"):                     with io.open(outfile, mode='wb') as f:                         f.write(dat.read())                 dat.close()         return render_template('upload.html', file=files)     else:         return render_template('upload.html', file='选择文件')</code></pre> <p>以上就是一个上传压缩包并且解压到目录的代码，他会按照解压出来的文件夹和文件进行写入目录。构造一个存在问题的压缩包，上传后可以看到文件并不在uploadfile目录，而在根目录下</p> <pre><code>&gt;&gt;&gt; z_info = zipfile.ZipInfo(r"../__init__.py") &gt;&gt;&gt; z_file = zipfile.ZipFile("C:/Users/user/Desktop/bad.zip", mode="w") &gt;&gt;&gt; z_file.writestr(z_info, "print('test')") &gt;&gt;&gt; z_file.close()</code></pre> <p>项目如果被重新启动，就会看到界面输出了test字段。</p> <p><code>python</code>中也提供了一种安全的方法来解压，``zipfile.extract<code>替换</code>zipfile.ZipFile<code>，但是并不代表</code>extractall`也是安全的。</p> <p>使用<code>os.remove</code>对文件进行删除</p> <pre><code class="language-python">import os os.remove("test2.txt")</code></pre> <p>任意文件删除的案例如下，这个方法是用来删除七天后的文件，通过<code>django</code>的文件系统来获取目录下的文件，然后根据时间来删除。唯一的问题是<code>dir_path</code>，但是原系统中不存在问题，只是因为使用的时候这个目录是硬编码进去的。</p> <pre><code class="language-python">def directory_cleanup(dir_path, ndays):     if not default_storage.exists(dir_path):         return      foldernames, filenames = default_storage.listdir(dir_path)     for filename in filenames:         if not filename:             continue         file_path = os.path.join(dir_path, filename)         modified_dt = default_storage.get_modified_time(file_path)         if modified_dt + timedelta(days=ndays) &lt; datetime.now():             # the file is older than ndays, delete it             default_storage.delete(file_path)     for foldername in foldernames:         folder_path = os.path.join(dir_path, foldername)         directory_cleanup(folder_path, ndays)</code></pre> <p>当传入参数为<code>file</code>协议的形式就可以读取系统上任意文件</p> <pre><code class="language-python">@app.route('/read') def readfile():     if request.values.get('file'):         file = request.values.get('file')         req = urllib.request.urlopen(file)         return Response(req.read().decode('utf-8'))     else:         return Response('&lt;p&gt;请输入file地址&lt;/p&gt;')</code></pre> <p>当然也可以用刚才的文件读取模块来读取</p> <pre><code class="language-python">def READFILE(request):     if request.GET.get('file'):         file = request.GET.get('file')         file = open(file)         return HttpResponse(file)     else:         return HttpResponse('&lt;p&gt;请输入file地址&lt;/p&gt;')</code></pre> <p>flask中还有一个文件读取下载的方法<code>send_from_directory</code>，操作不当的时候也能够进行敏感文件读取</p> <pre><code class="language-python">return send_from_directory(os.path.join(os.path.dirname(__file__), 'uploadfile'), file)</code></pre> <h2 id="反序列化">反序列化</h2> <p>Python 的序列化的目的也是为了保存、传递和恢复对象的方便性，在众多传递对象的方式中，序列化和反序列化可以说是最简单和最容易实现的方式</p> <p><code>Python</code> 为我们提供了两个比较重要的库<code>pickle</code> 和<code>cPickle</code>以及几个比较重要的函数来实现序列化和反序列化，这里以<code>pickle</code>为例</p> <ul> <li>序列化 <ul> <li>pickle.dump(文件)</li> <li>pickle.dumps(字符串)</li> </ul> </li> <li>反序列化 <ul> <li>pickle.load(文件)</li> <li>pickle.loads(字符串)</li> </ul> </li> </ul> <p>其中可造成威胁的一般是<code>pickle.load</code>和<code>pickle.loads</code>，或者面向对象的反序列化类<code>pickle.Unpickler</code>。</p> <p>python官方认为并不没有义务保证你传入反序列化函数的内容是安全的，官方只负责反序列化，如果你传入不安全的内容那么自然就是不安全的</p> <pre><code class="language-python">def ser():     ser = request.values.get('ser')     s = pickle.loads(ser)</code></pre> <p>这里不得不提一下<code>__reduce__</code>魔术方法：</p> <blockquote> <p>当序列化以及反序列化的过程中中碰到一无所知的扩展类型(这里指的就是新式类)的时候，可以通过类中定义的<code>__reduce__</code>方法来告知如何进行序列化或者反序列化</p> </blockquote> <p>我们只要在新式类中定义一个<code>__reduce__</code> 方法，就能在序列化的使用让这个类根据我们在<code>__reduce__</code> 中指定的方式进行序列化,当<code>__reduce__</code>返回值是一个元祖的时候，可以提供2到5个参数，我们重点利用的是前两个，第一个参数是一个callable object(可调用的对象)，第二个参数可以是一个元祖为这个可调用对象提供必要的参数，示例代码如下</p> <pre><code class="language-python">import pickle import os class A(object):     def __reduce__(self):         a = 'whoami'         return (os.system,(a,)) a = A() test = pickle.dumps(a) pickle.loads(test)</code></pre> <p>成功执行命令<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/d96081278e6c9b3ec0c506f99b72a33c.jpg" alt="python常见漏洞总结_在线工具"></p> <p><code>Marshal</code>库序列化code对象，使用的<code>load</code>和<code>loads</code>方法会导致问题</p> <pre><code class="language-python">import pickle,builtins,pickletools,base64 import marshal import urllib def foo():     import os     def fib(n):         if n &lt;= 2:             return n         return fib(n-1) + fib(n-2)     print (fib(5)) try:     pickle.dumps(foo.__code__) except Exception as e:     print(e) code_serialized = base64.b64encode(marshal.dumps(foo.__code__)) code_unserialized = types.FunctionType(marshal.loads(base64.b64decode(code_serialized)), globals(), '')() print(code_unserialized)</code></pre> <p><code>PyYAML</code>库是yaml标记语言的python实现库，支持yaml格式的语言，有自己的实现来进行yaml格式的解析。yaml有一套对象转化规则，pyyaml在解析数据的时候遇到特定格式数据会自动转换。</p> <p>比如，使用如下转换，实际是使用python模块执行了命令</p> <pre><code class="language-python">cp = "!!python/object/apply:subprocess.check_output [[ls]]" yaml.load(cp)</code></pre> <p>可以构造命令的python语法，有<code>!!python/object/apply</code>和<code>!!python/object/new</code>两种。<code>!!python/object</code>接收的是一个dict类型的对象属性。并不接收args的列表参数。</p> <p><code>jsonpickle</code>用于将任意对象序列化为JSON的Python库。该对象必须可以通过模块进行全局访问，并且必须继承自对象（又称新类）。</p> <p>创建一个对象：</p> <pre><code class="language-python">class Thing(object):     def __init__(self, name):         self.name = name  obj = Thing('Awesome')</code></pre> <p>使用<code>Jsonpickle</code>将对象转换为JSON字符串：</p> <pre><code class="language-python">import jsonpickle frozen = jsonpickle.encode(obj)</code></pre> <p>使用<code>Jsonpickle</code>从JSON字符串重新创建Python对象：</p> <pre><code class="language-python">thawed = jsonpickle.decode(frozen)</code></pre> <p>可以使用类似的利用方式：</p> <pre><code class="language-python">&gt;&gt;&gt; class Person(object): ...     def __reduce__(self): ...          return (__import__('os').system, ('whoami',)) ... &gt;&gt;&gt; admin = Person() jsonpickle.encode(admin) '{"py/reduce": [{"py/function": "nt.system"}, {"py/tuple": ["whoami"]}]}' &gt;&gt;&gt; s = jsonpickle.encode(admin) &gt;&gt;&gt; jsonpickle.decode(s) misaki\user</code></pre> <p><code>Shelve</code>是对象持久化保存方法，将对象保存到文件里面，缺省（即默认）的数据存储文件是二进制的。</p> <p>由于shelve是使用pickle来序列化数据，所以可以使用pickle的方式来执行命令</p> <pre><code class="language-python">import shelve import os class exp(object):     def __reduce__(self):         return (os.system('whoami')) file = shelve.open("test") file['exp'] = exp()</code></pre> <h2 id="任意url跳转">任意URL跳转</h2> <p>任意URL的跳转案例</p> <pre><code class="language-python">def urlbypass():     if request.values.get('url'):         url = request.values.get('url')         return redirect(url)</code></pre> <h2 id="总结">总结</h2> <p>python里面的安全问题还有很多，这里也只是列举了一些常见并且危害较大的漏洞，还需要在后续不断总结。如何在自动化白盒审计中检测到这些漏洞？使用传统的正则表达式匹配危险函数局限性非常大，误报导致代码审计人员花费大量时间回溯危险函数的调用；利用AST语法树的方式辅助代码审计现在逐步成为主流，以<code>CodeQL</code>为例，需要自己先学习QL语言，然后编写匹配规则，不同语言的规则库不同这些问题无形之中拉高了学习门槛，其本身也有标准库覆盖不完全等问题</p> <p>所以编写一个python的白盒代码审计系统就是后续的工作啦:-)</p> <h2 id="参考链接">参考链接</h2> <ul> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/bit4woo/python_sec"  target="_blank" rel="nofollow">https://github.com/bit4woo/python_sec</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://xxlegend.com/2015/07/30/Python%E5%AE%89%E5%85%A8%E7%BC%96%E7%A0%81%E5%92%8C%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/"  target="_blank" rel="nofollow">http://xxlegend.com/2015/07/30/Python安全编码和代码审计/</a></li> <li>Python_Hack_知道创宇_北北(孙博)</li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://blog.neargle.com/2016/07/22/pythonweb-framework-dev-vulnerable/"  target="_blank" rel="nofollow">http://blog.neargle.com/2016/07/22/pythonweb-framework-dev-vulnerable/</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://xxlegend.com/2015/07/31/Python%20eval%E7%9A%84%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%E5%B0%81%E8%A3%85%E5%8F%8A%E5%88%A9%E7%94%A8%E5%8E%9F%E7%90%86/"  target="_blank" rel="nofollow">http://xxlegend.com/2015/07/31/Python eval的常见错误封装及利用原理/</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.k0rz3n.com/2018/11/12/%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E5%B8%A6%E4%BD%A0%E7%90%86%E8%A7%A3%E6%BC%8F%E6%B4%9E%E4%B9%8BPython%20%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/"  target="_blank" rel="nofollow">https://www.k0rz3n.com/2018/11/12/一篇文章带你理解漏洞之Python 反序列化漏洞/</a></li> </ul> <h2 id="end">END</h2> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-72615.htm">米乐宠物生活馆 米乐宠物生活馆怎么样</a></p>
+                                        <p>下一个：<a href="/news/article-73282.htm">安泰动物诊所电话 安泰动物诊所电话号码</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-71314.htm" title="给动物医院的好评语 给动物医院的好评语怎么写">给动物医院的好评语 给动物医院的好评语怎么写</a></li>
+                        <li class="py-2"><a href="/news/article-44254.htm" title="一般宠物疫苗多少钱（宠物疫苗多少钱一针猫咪）">一般宠物疫苗多少钱（宠物疫苗多少钱一针猫咪）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-22-node-share.htm" title="「1月22日」最高速度20.1M/S，2025年SSR/Shadowrocket/V2ray/ClashStash免费机场订阅链接">「1月22日」最高速度20.1M/S，2025年SSR/Shadowrocket/V2ray/ClashStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-37821.htm" title="中国猫粮生产基地（国内猫粮工厂）">中国猫粮生产基地（国内猫粮工厂）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-4-free-subscribe-node.htm" title="「3月4日」最高速度18.8M/S，2025年SSR/Clash/Shadowrocket/V2rayStash免费机场订阅链接">「3月4日」最高速度18.8M/S，2025年SSR/Clash/Shadowrocket/V2rayStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-46727.htm" title="python 接受ctrl c结束子进程，subprocess.Popen杀死子进程">python 接受ctrl c结束子进程，subprocess.Popen杀死子进程</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-19-vless-node.htm" title="「1月19日」最高速度21.5M/S，2025年Shadowrocket/SSR/V2ray/ClashStash免费机场订阅链接">「1月19日」最高速度21.5M/S，2025年Shadowrocket/SSR/V2ray/ClashStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-17-free-subscribe-node.htm" title="「1月17日」最高速度21.3M/S，2025年Shadowrocket/V2ray/SSR/ClashStash免费机场订阅链接">「1月17日」最高速度21.3M/S，2025年Shadowrocket/V2ray/SSR/ClashStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-40783.htm" title="宠物美容店开办和经营的步骤（想开个宠物美容店怎么入行）">宠物美容店开办和经营的步骤（想开个宠物美容店怎么入行）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-24-vless-node.htm" title="「1月24日」最高速度21.5M/S，2025年SSR/Shadowrocket/Clash/V2rayStash免费机场订阅链接">「1月24日」最高速度21.5M/S，2025年SSR/Shadowrocket/Clash/V2rayStash免费机场订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">45</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">83</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fruits Shop End-->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3 mb-md-0">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <span class="text-light">Stash Github机场分享官网 版权所有 Powered by WordPress</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/stashgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
