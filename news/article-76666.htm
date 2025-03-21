@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://stashgithub.github.io/news/article-76666.htm" />
+    <meta charset="utf-8">
+    <title>k8s灰度发布、滚动更新与探针详解</title>
+        <meta name="description" content="3.2.1 存活探针 LivenessProbe  2、TCPSocketAction  3、HTTPGetAction 目录  			 一、灰度发布 　　灰度发布是一种发布方式，也叫金丝雀发布，起源" />
+        <link rel="icon" href="/assets/website/img/stashgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Stash Github机场分享官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://stashgithub.github.io/news/article-76666.htm" />
+    <meta property="og:site_name" content="Stash Github机场分享官网" />
+    <meta property="og:title" content="k8s灰度发布、滚动更新与探针详解" />
+    <meta property="og:image" content="https://stashgithub.github.io/uploads/20240903-1/71f4448ec89d9e2782624e593b1fd35a.webp" />
+        <meta property="og:release_date" content="2025-03-19T09:07:27" />
+    <meta property="og:updated_time" content="2025-03-19T09:07:27" />
+        <meta property="og:description" content="3.2.1 存活探针 LivenessProbe  2、TCPSocketAction  3、HTTPGetAction 目录  			 一、灰度发布 　　灰度发布是一种发布方式，也叫金丝雀发布，起源" />
+        
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="k8s灰度发布、滚动更新与探针详解">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/assets/website/js/frontend/stashgithub/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/stashgithub/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/stashgithub/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/stashgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNXJ21P00N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NNXJ21P00N');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+        <div class="container topbar bg-primary d-none d-lg-block">
+            <div class="d-flex justify-content-between">
+                
+            </div>
+        </div>
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                <a href="/" class="navbar-brand">
+                                <span class="text-primary display-6">Stash Github</span>
+                                </a>
+                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/client.htm" class="nav-item nav-link">客户端</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                            </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">k8s灰度发布、滚动更新与探针详解</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+            <li class="breadcrumb-item active text-white">正文</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+    <!-- Fruits Shop Start-->
+    <div class="container-fluid fruite py-5">
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="StashNode免费订阅官网" data-url="https://stashnode.github.io">
+                  				  				  				  			 <div id="log-box">  				<div id="catalog"><ul id="catalog-ul"> <li><i class="be be-arrowright"></i> <a href="#title-0" title="3.2.1 存活探针 LivenessProbe">3.2.1 存活探针 LivenessProbe</a></li> <li><i class="be be-arrowright"></i> <a href="#title-1" title="2、TCPSocketAction">2、TCPSocketAction</a></li> <li><i class="be be-arrowright"></i> <a href="#title-2" title="3、HTTPGetAction">3、HTTPGetAction</a></li> </ul><span class="log-zd"><span class="log-close"><a title="隐藏目录"><i class="be be-cross"></i><strong>目录</strong></a></span></span></div>  			</div> <h2>一、灰度发布</h2> <p>　　灰度发布是一种发布方式，也叫金丝雀发布，起源是矿工在下井之前会先放一只金丝雀到井里，如果金丝雀不叫了，就代表瓦斯浓度高。原因是金丝雀对瓦斯气体很敏感。灰度发布的做法是：会在现存旧应用的基础上，启动一个新版应用，但是新版应用并不会直接让用户访问。而是先让测试同学去进行测试。如果没有问题，则可以将真正的用户流量慢慢导入到新版，在这中间，持续对新版本运行状态做观察，直到慢慢切换过去，这就是所谓的A/B测试。当然，你也可以招募一些灰度用户，给他们设置独有的灰度标示（Cookie，Header），来让他们可以访问到新版应用，当然，如果中间切换出现问题，也应该将流量迅速地切换到老应用上。</p> <h3>1）准备新版本的service</h3> <p>　　拷贝一份deployment文件：</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 255, 1)">cp</span> deployment-user-v1.yaml deployment-user-v2.yaml</pre> </div> <p>　　修改之前写过的内容：</p> <div class="cnblogs_code"> <pre>apiVersion: apps/<span style="color: rgba(0, 0, 0, 1)">v1  #API 配置版本 kind: Deployment     #资源类型 metadata:</span>+  name: user-<span style="color: rgba(0, 0, 0, 1)">v2     #资源名称 spec:   selector:     matchLabels:</span>+      app: user-<span style="color: rgba(0, 0, 0, 1)">v2 #告诉deployment根据规则匹配相应的Pod进行控制和管理，matchLabels字段匹配Pod的label值   replicas:</span><span style="color: rgba(128, 0, 128, 1)">3</span><span style="color: rgba(0, 0, 0, 1)"> #声明一个 Pod,副本的数量   template:     metadata:       labels:</span>+        app: user-<span style="color: rgba(0, 0, 0, 1)">v2 #Pod的名称     spec:   #组内创建的 Pod 信息       containers:</span>-<span style="color: rgba(0, 0, 0, 1)"> name: nginx #容器的名称</span>+        image: registry.cn-beijing.aliyuncs.com/zhangrenyang/nginx:user-<span style="color: rgba(0, 0, 0, 1)">v2         ports:</span>- containerPort:<span style="color: rgba(128, 0, 128, 1)">80</span> #容器内映射的端口</pre> </div> <p>　　然后service的文件内容是这样的：</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 0, 1)">apiVersion: v1 kind: Service metadata:</span>+  name: service-user-<span style="color: rgba(0, 0, 0, 1)">v2 spec:   selector:</span>+    app: user-<span style="color: rgba(0, 0, 0, 1)">v2   ports:</span>-<span style="color: rgba(0, 0, 0, 1)"> protocol: TCP     port:</span><span style="color: rgba(128, 0, 128, 1)">80</span><span style="color: rgba(0, 0, 0, 1)">     targetPort:</span><span style="color: rgba(128, 0, 128, 1)">80</span><span style="color: rgba(0, 0, 0, 1)">   type: NodePort</span></pre> </div> <p>　　启动：</p> <div class="cnblogs_code"> <pre>kubectl apply -f deployment-user-v2.yaml service-user-v2.yaml</pre> </div> <h3>2）根据cookie切分流量</h3> <p>　　基于 Cookie 切分流量。这种实现原理主要根据用户请求中的 Cookie 是否存在灰度标示 Cookie去判断是否为灰度用户，再决定是否返回灰度版本服务</p> <ul> <li><code>nginx.ingress.kubernetes.io/canary</code>：可选值为 true / false 。代表是否开启灰度功能</li> <li><code>nginx.ingress.kubernetes.io/canary-by-cookie</code>：灰度发布 cookie 的 key。当 key 值等于 always 时，灰度触发生效。等于其他值时，则不会走灰度环境 ingress-gray.yaml</li> </ul> <p>　　我们创建一个ingress-gray.yaml文件：</p> <div class="cnblogs_code"> <pre>apiVersion: extensions/<span style="color: rgba(0, 0, 0, 1)">v1beta1 kind: Ingress metadata: name: user</span>-<span style="color: rgba(0, 0, 0, 1)">canary annotations:   kubernetes.io</span>/<span style="color: rgba(0, 0, 0, 1)">ingress.class: nginx   nginx.ingress.kubernetes.io</span>/rewrite-target: /<span style="color: rgba(0, 0, 0, 1)">   nginx.ingress.kubernetes.io</span>/canary:<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">true</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)">   nginx.ingress.kubernetes.io</span>/canary-by-cookie:<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">vip_user</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)"> spec: rules:</span>-<span style="color: rgba(0, 0, 0, 1)"> http:     paths:</span>-<span style="color: rgba(0, 0, 0, 1)"> backend:         serviceName: service</span>-user-<span style="color: rgba(0, 0, 0, 1)">v2         servicePort:</span><span style="color: rgba(128, 0, 128, 1)">80</span><span style="color: rgba(0, 0, 0, 1)"> backend:    serviceName: service</span>-user-<span style="color: rgba(0, 0, 0, 1)">v2    servicePort:</span><span style="color: rgba(128, 0, 128, 1)">80</span></pre> </div> <p>　　使文件生效：</p> <div class="cnblogs_code"> <pre>kubectl apply -f ./ingress-gray.yaml</pre> </div> <p>　　获取外部接口：</p> <div class="cnblogs_code"> <pre>kubectl -n ingress-nginx get svc</pre> </div> <p>　　测试：</p> <div class="cnblogs_code"> <pre>curl http:<span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">172.31.178.169:31234/user</span> curl http:<span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">118.190.156.138:31234/user</span> curl --cookie<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">vip_user=always</span><span style="color: rgba(128, 0, 0, 1)">"</span>  http:<span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">172.31.178.169:31234/user</span></pre> </div> <h3>3）基于header切分流量</h3> <p>　　基于 Header 切分流量，这种实现原理主要根据用户请求中的 header 是否存在灰度标示 header去判断是否为灰度用户，再决定是否返回灰度版本服务。</p> <p>　　修改下上面的ingress-gray.yml文件即可：</p> <div class="cnblogs_code"> <pre>apiVersion: extensions/<span style="color: rgba(0, 0, 0, 1)">v1beta1 kind: Ingress metadata:   name: user</span>-<span style="color: rgba(0, 0, 0, 1)">canary   annotations:     kubernetes.io</span>/<span style="color: rgba(0, 0, 0, 1)">ingress.class: nginx     nginx.ingress.kubernetes.io</span>/rewrite-target: /<span style="color: rgba(0, 0, 0, 1)">     nginx.ingress.kubernetes.io</span>/canary:<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">true</span><span style="color: rgba(128, 0, 0, 1)">"</span> +    nginx.ingress.kubernetes.io/canary-by-header:<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">name</span><span style="color: rgba(128, 0, 0, 1)">"</span> +    nginx.ingress.kubernetes.io/canary-by-header-value:<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">vip</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)"> spec:   rules:</span>-<span style="color: rgba(0, 0, 0, 1)"> http:       paths:</span>-<span style="color: rgba(0, 0, 0, 1)"> backend:           serviceName: service</span>-user-<span style="color: rgba(0, 0, 0, 1)">v2           servicePort:</span><span style="color: rgba(128, 0, 128, 1)">80</span><span style="color: rgba(0, 0, 0, 1)">   backend:      serviceName: service</span>-user-<span style="color: rgba(0, 0, 0, 1)">v2      servicePort:</span><span style="color: rgba(128, 0, 128, 1)">80</span></pre> </div> <p>　　同样的：</p> <div class="cnblogs_code"> <pre>kubectl apply -f ingress-<span style="color: rgba(0, 0, 0, 1)">gray.yaml curl</span>--header<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">name:vip</span><span style="color: rgba(128, 0, 0, 1)">"</span>  http:<span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">172.31.178.169:31234/user</span></pre> </div> <h3>4）基于权重切分流量</h3> <p>　　这种实现原理主要是根据用户请求，通过根据灰度百分比决定是否转发到灰度服务环境中</p> <ul> <li><code>nginx.ingress.kubernetes.io/canary-weight</code>：值是字符串，为 0-100 的数字，代表灰度环境命中概率。如果值为 0，则表示不会走灰度。值越大命中概率越大。当值 = 100 时，代表全走灰度。</li> </ul> <p>　　一样一样的，修改下配置参数罢了：</p> <div class="cnblogs_code"> <pre>apiVersion: extensions/<span style="color: rgba(0, 0, 0, 1)">v1beta1 kind: Ingress metadata:   name: user</span>-<span style="color: rgba(0, 0, 0, 1)">canary   annotations:     kubernetes.io</span>/<span style="color: rgba(0, 0, 0, 1)">ingress.class: nginx     nginx.ingress.kubernetes.io</span>/rewrite-target: /<span style="color: rgba(0, 0, 0, 1)">     nginx.ingress.kubernetes.io</span>/canary:<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">true</span><span style="color: rgba(128, 0, 0, 1)">"</span> +   nginx.ingress.kubernetes.io/canary-weight:<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">50</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(0, 0, 0, 1)"> spec:   rules:</span>-<span style="color: rgba(0, 0, 0, 1)"> http:       paths:</span>-<span style="color: rgba(0, 0, 0, 1)"> backend:           serviceName: service</span>-user-<span style="color: rgba(0, 0, 0, 1)">v2           servicePort:</span><span style="color: rgba(128, 0, 128, 1)">80</span><span style="color: rgba(0, 0, 0, 1)">   backend:      serviceName: service</span>-user-<span style="color: rgba(0, 0, 0, 1)">v2      servicePort:</span><span style="color: rgba(128, 0, 128, 1)">80</span></pre> </div> <p>　　测试下：</p> <div class="cnblogs_code"> <pre>kubectl apply -f ingress-<span style="color: rgba(0, 0, 0, 1)">gray.yaml</span><span style="color: rgba(0, 0, 255, 1)">for</span> ((i=<span style="color: rgba(128, 0, 128, 1)">1</span>; i&lt;=<span style="color: rgba(128, 0, 128, 1)">10</span>; i++));<span style="color: rgba(0, 0, 255, 1)">do</span> curl http:<span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">172.31.178.169:31234/user; done</span></pre> </div> <p>　　k8s 会优先去匹配 header ，如果未匹配则去匹配 cookie ，最后是 weight。</p> <h2>二、滚动发布</h2> <p>　　滚动发布，则是我们一般所说的无宕机发布。其发布方式如同名称一样，一次取出一台/多台服务器（看策略配置）进行新版本更新。当取出的服务器新版确保无问题后，接着采用同等方式更新后面的服务器。k8s创建副本应用程序的最佳方法就是部署(Deployment)，部署自动创建副本集(ReplicaSet)，副本集可以精确地控制每次替换的Pod数量，从而可以很好的实现滚动更新。k8s每次使用一个新的副本控制器(replication controller)来替换已存在的副本控制器，从而始终使用一个新的Pod模板来替换旧的pod模板</p> <ul> <li>创建一个新的replication controller</li> <li>增加或减少pod副本数量，直到满足当前批次期望的数量</li> <li>删除旧的replication controller</li> </ul> <p>　　滚动发布的优缺点如下：</p> <ul> <li>优点 <ul> <li>不需要停机更新，无感知平滑更新。</li> <li>版本更新成本小,不需要新旧版本共存</li> </ul> </li> <li>缺点 <ul> <li>更新时间长：每次只更新一个/多个镜像，需要频繁连续等待服务启动缓冲</li> <li>旧版本环境无法得到备份：始终只有一个环境存在</li> <li>回滚版本异常痛苦：如果滚动发布到一半出了问题，回滚时需要使用同样的滚动策略回滚旧版本</li> </ul> </li> </ul> <p>　　我们下面来尝试下，先扩容为10个副本：</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 0, 1)">kubectl get deploy kubectl scale deployment user</span>-v1  --replicas=<span style="color: rgba(128, 0, 128, 1)">10</span></pre> </div> <p>　　修改deployment-user-v1.yaml文件：</p> <div class="cnblogs_code"> <pre>apiVersion: apps/<span style="color: rgba(0, 0, 0, 1)">v1  #API 配置版本 kind: Deployment     #资源类型 metadata:   name: user</span>-<span style="color: rgba(0, 0, 0, 1)">v1     #资源名称 spec:   minReadySeconds:</span><span style="color: rgba(128, 0, 128, 1)">1</span> +<span style="color: rgba(0, 0, 0, 1)"> strategy:</span>+<span style="color: rgba(0, 0, 0, 1)">   type: RollingUpdate</span>+<span style="color: rgba(0, 0, 0, 1)">   rollingUpdate:</span>+     maxSurge:<span style="color: rgba(128, 0, 128, 1)">1</span> +     maxUnavailable:<span style="color: rgba(128, 0, 128, 1)">0</span> +<span style="color: rgba(0, 0, 0, 1)"> selector:</span>+<span style="color: rgba(0, 0, 0, 1)">   matchLabels:</span>+     app: user-<span style="color: rgba(0, 0, 0, 1)">v1 #告诉deployment根据规则匹配相应的Pod进行控制和管理，matchLabels字段匹配Pod的label值   replicas:</span><span style="color: rgba(128, 0, 128, 1)">10</span><span style="color: rgba(0, 0, 0, 1)"> #声明一个 Pod,副本的数量   template:     metadata:       labels:         app: user</span>-<span style="color: rgba(0, 0, 0, 1)">v1 #Pod的名称     spec:   #组内创建的 Pod 信息       containers:</span>-<span style="color: rgba(0, 0, 0, 1)"> name: nginx #容器的名称</span>+       image: registry.cn-beijing.aliyuncs.com/zhangrenyang/nginx:user-<span style="color: rgba(0, 0, 0, 1)">v3 #使用哪个镜像         ports:</span>- containerPort:<span style="color: rgba(128, 0, 128, 1)">80</span> #容器内映射的端口</pre> </div> <table> <thead> <tr> <th>参数</th> <th>含义</th> </tr> </thead> <tbody> <tr> <td>minReadySeconds</td> <td>容器接受流量延缓时间：单位为秒，默认为0。如果没有设置的话，k8s会认为容器启动成功后就可以用了。设置该值可以延缓容器流量切分</td> </tr> <tr> <td>strategy.type = RollingUpdate</td> <td>ReplicaSet 发布类型，声明为滚动发布，默认也为滚动发布</td> </tr> <tr> <td>strategy.rollingUpdate.maxSurge</td> <td>最多Pod数量：为数字类型/百分比。如果 maxSurge 设置为1，replicas 设置为10，则在发布过程中pod数量最多为10 + 1个（多出来的为旧版本pod，平滑期不可用状态）。maxUnavailable 为 0 时，该值也不能设置为0</td> </tr> <tr> <td>strategy.rollingUpdate.maxUnavailable</td> <td>升级中最多不可用pod的数量：为数字类型/百分比。当 maxSurge 为 0 时，该值也不能设置为0</td> </tr> </tbody> </table> <p>　　启动：</p> <div class="cnblogs_code"> <pre>kubectl apply -f ./deployment-user-<span style="color: rgba(0, 0, 0, 1)">v1.yaml deployment.apps</span>/user-v1 configured</pre> </div> <p>　　然后查看状态：</p> <div class="cnblogs_code"> <pre>kubectl rollout status deployment/user-v1</pre> </div> <h2>三、服务可用性探针</h2> <p>　　当 Pod 的状态为 Running 时，该 Pod 就可以被分配流量(可以访问到)了。一个后端容器启动成功，不一定不代表服务启动成功。</p> <span class="directory"></span><h4 id="title-0">3.2.1 存活探针 LivenessProbe</h4> <p>　　第一种是存活探针。存活探针是对运行中的容器检测的。如果想检测你的服务在运行中有没有发生崩溃，服务有没有中途退出或无响应，可以使用这个探针。如果探针探测到错误， Kubernetes 就会杀掉这个 Pod；否则就不会进行处理。如果默认没有配置这个探针， Pod 不会被杀死。</p> <h4 id="t133.2.2 可用探针 ReadinessProbe">3.2.2 可用探针 ReadinessProbe</h4> <p>　　第二种是可用探针。作用是用来检测 Pod 是否允许被访问到（是否准备好接受流量）。如果你的服务加载很多数据，或者有其他需求要求在特定情况下不被分配到流量，那么可以用这个探针。如果探针检测失败，流量就不会分配给该 Pod。在没有配置该探针的情况下，会一直将流量分配给 Pod。当然，探针检测失败，Pod 不会被杀死。</p> <h4 id="t143.2.3 启动探针 StartupProbe">3.2.3 启动探针 StartupProbe</h4> <p>　　第三种是启动探针。作用是用来检测 Pod 是否已经启动成功。如果你的服务启动需要一些加载时长（例如初始化日志，等待其他调用的服务启动成功）才代表服务启动成功，则可以用这个探针。如果探针检测失败，该 Pod 就会被杀死重启。在没有配置该探针的情况下，默认不会杀死 Pod 。在启动探针运行时，其他所有的探针检测都会失效。</p> <table> <thead> <tr> <th>探针名称</th> <th>在哪个环节触发</th> <th>作用</th> <th>检测失败对Pod的反应</th> </tr> </thead> <tbody> <tr> <td>启动探针</td> <td>Pod 运行时</td> <td>检测服务是否启动成功</td> <td>杀死 Pod 并重启</td> </tr> <tr> <td>存活探针</td> <td>Pod 运行时</td> <td>检测服务是否崩溃，是否需要重启服务</td> <td>杀死 Pod 并重启</td> </tr> <tr> <td>可用探针</td> <td>Pod 运行时</td> <td>检测服务是不是允许被访问到</td> <td>停止Pod的访问调度，不会被杀死重启</td> </tr> </tbody> </table> <h3>检测方式</h3> <h4 id="t163.3.1 ExecAction">1、ExecAction</h4> <p>　　通过在 Pod 的容器内执行预定的 Shell 脚本命令。如果执行的命令没有报错退出（返回值为0），代表容器状态健康。否则就是有问题的</p> <p>　　我们来新建一个文件,vi shell-probe.yaml，内容如下：</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 0, 1)">apiVersion: v1 kind: Pod metadata:   labels:     test: shell</span>-<span style="color: rgba(0, 0, 0, 1)">probe   name: shell</span>-<span style="color: rgba(0, 0, 0, 1)">probe spec:   containers:</span>- name: shell-<span style="color: rgba(0, 0, 0, 1)">probe     image: registry.aliyuncs.com</span>/google_containers/<span style="color: rgba(0, 0, 0, 1)">busybox     args:</span>- /bin/<span style="color: rgba(0, 0, 255, 1)">sh</span>     - -<span style="color: rgba(0, 0, 0, 1)">c</span>-<span style="color: rgba(0, 0, 255, 1)">touch</span> /tmp/healthy;<span style="color: rgba(0, 0, 255, 1)">sleep</span><span style="color: rgba(128, 0, 128, 1)">30</span>;<span style="color: rgba(0, 0, 255, 1)">rm</span> -rf /tmp/healthy;<span style="color: rgba(0, 0, 255, 1)">sleep</span><span style="color: rgba(128, 0, 128, 1)">600</span><span style="color: rgba(0, 0, 0, 1)">     livenessProbe:       exec:         command:</span>-<span style="color: rgba(0, 0, 255, 1)">cat</span>         - /tmp/<span style="color: rgba(0, 0, 0, 1)">healthy       initialDelaySeconds:</span><span style="color: rgba(128, 0, 128, 1)">5</span><span style="color: rgba(0, 0, 0, 1)">       periodSeconds:</span><span style="color: rgba(128, 0, 128, 1)">5</span></pre> </div> <p>　　然后执行下面的命令，查看情况：</p> <div class="cnblogs_code"> <pre>kubectl apply -<span style="color: rgba(0, 0, 0, 1)">f liveness.yaml  kubectl get pods</span>|<span style="color: rgba(0, 0, 255, 1)">grep</span> liveness-<span style="color: rgba(0, 0, 0, 1)">exec kubectl describe pods liveness</span>-exec</pre> </div> <span class="directory"></span><h4 id="title-1">2、TCPSocketAction</h4> <p>　　这种方式是使用 TCP 套接字检测。 Kubernetes 会尝试在 Pod 内与指定的端口进行连接。如果能建立连接（Pod的端口打开了），这个容器就代表是健康的，如果不能，则代表这个 Pod 就是有问题的。</p> <p>　　创建文件如下，tcp-probe.yaml：</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 0, 1)">apiVersion: v1 kind: Pod metadata:   name: tcp</span>-<span style="color: rgba(0, 0, 0, 1)">probe   labels:     app: tcp</span>-<span style="color: rgba(0, 0, 0, 1)">probe spec:   containers:</span>- name: tcp-<span style="color: rgba(0, 0, 0, 1)">probe     image: nginx     ports:</span>- containerPort:<span style="color: rgba(128, 0, 128, 1)">80</span><span style="color: rgba(0, 0, 0, 1)">     readinessProbe:       tcpSocket:         port:</span><span style="color: rgba(128, 0, 128, 1)">80</span><span style="color: rgba(0, 0, 0, 1)">       initialDelaySeconds:</span><span style="color: rgba(128, 0, 128, 1)">5</span><span style="color: rgba(0, 0, 0, 1)">       periodSeconds:</span><span style="color: rgba(128, 0, 128, 1)">10</span></pre> </div> <p>　　类似的：</p> <div class="cnblogs_code"> <pre>kubectl apply -f tcp-<span style="color: rgba(0, 0, 0, 1)">probe.yaml  kubectl get pods</span>|<span style="color: rgba(0, 0, 255, 1)">grep</span> tcp-<span style="color: rgba(0, 0, 0, 1)">probe kubectl describe pods tcp</span>-probe</pre> </div> <p>　　进入到容器内部：</p> <div class="cnblogs_code"> <pre>kubectl exec -it tcp-probe  -- /bin/<span style="color: rgba(0, 0, 255, 1)">sh</span></pre> </div> <p>　　更新apt-get并安装vim：</p> <div class="cnblogs_code"> <pre>apt-<span style="color: rgba(0, 0, 0, 1)">get update apt</span>-get<span style="color: rgba(0, 0, 255, 1)">install</span> vim -<span style="color: rgba(0, 0, 0, 1)">y</span><span style="color: rgba(0, 0, 255, 1)">vi</span>  /etc/nginx/conf.d/default.conf</pre> </div> <p>　　修改nginx文件配置，把80端口修改为8080，然后重载一下nginx：</p> <div class="cnblogs_code"> <pre>nginx -s reload</pre> </div> <p>　　看一下状态：</p> <div class="cnblogs_code"> <pre>kubectl describe pod tcp-probe</pre> </div> <span class="directory"></span><h4 id="title-2">3、HTTPGetAction</h4> <p>　　这种方式是使用 HTTP GET 请求。Kubernetes 会尝试访问 Pod 内指定的API路径。如果返回200，代表容器就是健康的。如果不能，代表这个 Pod 是有问题的。</p> <p>　　添加http-probe.yaml文件：</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 0, 1)">apiVersion: v1 kind: Pod metadata:   labels:     test: http</span>-<span style="color: rgba(0, 0, 0, 1)">probe   name: http</span>-<span style="color: rgba(0, 0, 0, 1)">probe spec:   containers:</span>- name: http-<span style="color: rgba(0, 0, 0, 1)">probe     image: registry.cn</span>-beijing.aliyuncs.com/zhangrenyang/http-probe:<span style="color: rgba(128, 0, 128, 1)">1.0</span>.<span style="color: rgba(128, 0, 128, 1)">0</span><span style="color: rgba(0, 0, 0, 1)">     livenessProbe:       httpGet:         path:</span>/<span style="color: rgba(0, 0, 0, 1)">liveness         port:</span><span style="color: rgba(128, 0, 128, 1)">80</span><span style="color: rgba(0, 0, 0, 1)">         httpHeaders:</span>-<span style="color: rgba(0, 0, 0, 1)"> name: source           value: probe       initialDelaySeconds:</span><span style="color: rgba(128, 0, 128, 1)">3</span><span style="color: rgba(0, 0, 0, 1)">       periodSeconds:</span><span style="color: rgba(128, 0, 128, 1)">3</span></pre> </div> <p>　　然后，运行并查看状态：</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 0, 1)">kubectl apply</span>-f ./http-<span style="color: rgba(0, 0, 0, 1)">probe.yaml kubectl describe pods http</span>-<span style="color: rgba(0, 0, 0, 1)">probe kubectl replace</span>--force -f http-probe.yaml</pre> </div> <p>　　Dockerfile内容如下：</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 0, 1)">FROM node COPY .</span>/app /<span style="color: rgba(0, 0, 0, 1)">app WORKDIR</span>/<span style="color: rgba(0, 0, 0, 1)">app EXPOSE</span><span style="color: rgba(128, 0, 128, 1)">3000</span><span style="color: rgba(0, 0, 0, 1)"> CMD node index.js</span></pre> </div> <p>　　node服务文件如下：</p> <div class="cnblogs_code"> <pre>let http = require(<span style="color: rgba(128, 0, 0, 1)">'</span><span style="color: rgba(128, 0, 0, 1)">http</span><span style="color: rgba(128, 0, 0, 1)">'</span><span style="color: rgba(0, 0, 0, 1)">); let start</span>=<span style="color: rgba(0, 0, 0, 1)"> Date.now(); http.createServer(</span><span style="color: rgba(0, 0, 255, 1)">function</span><span style="color: rgba(0, 0, 0, 1)">(req,res){</span><span style="color: rgba(0, 0, 255, 1)">if</span>(req.url ===<span style="color: rgba(128, 0, 0, 1)">'</span><span style="color: rgba(128, 0, 0, 1)">/liveness</span><span style="color: rgba(128, 0, 0, 1)">'</span><span style="color: rgba(0, 0, 0, 1)">){     let value</span>= req.headers[<span style="color: rgba(128, 0, 0, 1)">'</span><span style="color: rgba(128, 0, 0, 1)">source</span><span style="color: rgba(128, 0, 0, 1)">'</span><span style="color: rgba(0, 0, 0, 1)">];</span><span style="color: rgba(0, 0, 255, 1)">if</span>(value ===<span style="color: rgba(128, 0, 0, 1)">'</span><span style="color: rgba(128, 0, 0, 1)">probe</span><span style="color: rgba(128, 0, 0, 1)">'</span><span style="color: rgba(0, 0, 0, 1)">){      let duration</span>= Date.now()-<span style="color: rgba(0, 0, 0, 1)">start;</span><span style="color: rgba(0, 0, 255, 1)">if</span>(duration&gt;<span style="color: rgba(128, 0, 128, 1)">10</span>*<span style="color: rgba(128, 0, 128, 1)">1000</span><span style="color: rgba(0, 0, 0, 1)">){           res.statusCode</span>=<span style="color: rgba(128, 0, 128, 1)">500</span><span style="color: rgba(0, 0, 0, 1)">;           res.end(</span><span style="color: rgba(128, 0, 0, 1)">'</span><span style="color: rgba(128, 0, 0, 1)">error</span><span style="color: rgba(128, 0, 0, 1)">'</span><span style="color: rgba(0, 0, 0, 1)">);       }</span><span style="color: rgba(0, 0, 255, 1)">else</span><span style="color: rgba(0, 0, 0, 1)">{           res.statusCode</span>=<span style="color: rgba(128, 0, 128, 1)">200</span><span style="color: rgba(0, 0, 0, 1)">;           res.end(</span><span style="color: rgba(128, 0, 0, 1)">'</span><span style="color: rgba(128, 0, 0, 1)">success</span><span style="color: rgba(128, 0, 0, 1)">'</span><span style="color: rgba(0, 0, 0, 1)">);       }     }</span><span style="color: rgba(0, 0, 255, 1)">else</span><span style="color: rgba(0, 0, 0, 1)">{      res.statusCode</span>=<span style="color: rgba(128, 0, 128, 1)">200</span><span style="color: rgba(0, 0, 0, 1)">;      res.end(</span><span style="color: rgba(128, 0, 0, 1)">'</span><span style="color: rgba(128, 0, 0, 1)">liveness</span><span style="color: rgba(128, 0, 0, 1)">'</span><span style="color: rgba(0, 0, 0, 1)">);     }   }</span><span style="color: rgba(0, 0, 255, 1)">else</span><span style="color: rgba(0, 0, 0, 1)">{      res.statusCode</span>=<span style="color: rgba(128, 0, 128, 1)">200</span><span style="color: rgba(0, 0, 0, 1)">;      res.end(</span><span style="color: rgba(128, 0, 0, 1)">'</span><span style="color: rgba(128, 0, 0, 1)">liveness</span><span style="color: rgba(128, 0, 0, 1)">'</span><span style="color: rgba(0, 0, 0, 1)">);   } }).listen(</span><span style="color: rgba(128, 0, 128, 1)">3000</span>,<span style="color: rgba(0, 0, 255, 1)">function</span>(){console.log(<span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">http server started on 3000</span><span style="color: rgba(128, 0, 0, 1)">"</span>)});</pre> </div> <p>　　好了今天的内容就到这里了。</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-75994.htm">疫苗进行动物试验的重要性 疫苗进行动物试验的重要性和意义</a></p>
+                                        <p>下一个：<a href="/news/article-76667.htm">python入门基础字典及相关操作详解</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-3-5-vless-node.htm" title="「3月5日」最高速度21.4M/S，2025年Clash/SSR/Shadowrocket/V2rayStash免费机场订阅链接">「3月5日」最高速度21.4M/S，2025年Clash/SSR/Shadowrocket/V2rayStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-15-vless-node-share.htm" title="「3月15日」最高速度22.4M/S，2025年Clash/V2ray/SSR/ShadowrocketStash免费机场订阅链接">「3月15日」最高速度22.4M/S，2025年Clash/V2ray/SSR/ShadowrocketStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-73951.htm" title="猫咪驱虫应该用什么药（猫咪驱虫什么药最好）">猫咪驱虫应该用什么药（猫咪驱虫什么药最好）</a></li>
+                        <li class="py-2"><a href="/news/article-42265.htm" title="spring boot web项目">spring boot web项目</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-23-vless-node-share.htm" title="「1月23日」最高速度20.6M/S，2025年SSR/V2ray/Clash/ShadowrocketStash免费机场订阅链接">「1月23日」最高速度20.6M/S，2025年SSR/V2ray/Clash/ShadowrocketStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-69989.htm" title="JavaScript-页面布局-div布局-盒子模型">JavaScript-页面布局-div布局-盒子模型</a></li>
+                        <li class="py-2"><a href="/news/article-40782.htm" title="C语言：float、double表示范围">C语言：float、double表示范围</a></li>
+                        <li class="py-2"><a href="/news/article-76666.htm" title="k8s灰度发布、滚动更新与探针详解">k8s灰度发布、滚动更新与探针详解</a></li>
+                        <li class="py-2"><a href="/news/article-53389.htm" title="tensorflow学习笔记（二）：tensor 变换">tensorflow学习笔记（二）：tensor 变换</a></li>
+                        <li class="py-2"><a href="/news/article-53938.htm" title="宠物领养协议押金 宠物领养协议押金多少">宠物领养协议押金 宠物领养协议押金多少</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">62</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">83</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fruits Shop End-->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3 mb-md-0">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <span class="text-light">Stash Github机场分享官网 版权所有 Powered by WordPress</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/stashgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
