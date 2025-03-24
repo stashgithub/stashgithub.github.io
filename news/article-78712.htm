@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://stashgithub.github.io/news/article-78712.htm" />
+    <meta charset="utf-8">
+    <title>一篇文章带你彻底吃透Spring</title>
+        <meta name="description" content="框架的意义 对于程序员来说，我们通常知道很多概念，例如组件、模块、系统、框架、架构等，而本文我们重点说框架。   框架，本质上是一些实用经验集合。即是前辈们在实际开发过程中积攒下来的实战经验，累积成一" />
+        <link rel="icon" href="/assets/website/img/stashgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Stash Github机场分享官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://stashgithub.github.io/news/article-78712.htm" />
+    <meta property="og:site_name" content="Stash Github机场分享官网" />
+    <meta property="og:title" content="一篇文章带你彻底吃透Spring" />
+    <meta property="og:image" content="https://stashgithub.github.io/uploads/20240903-1/6a0df60e08aa4c70cb899694e971c4b0.webp" />
+        <meta property="og:release_date" content="2025-03-22T08:45:22" />
+    <meta property="og:updated_time" content="2025-03-22T08:45:22" />
+        <meta property="og:description" content="框架的意义 对于程序员来说，我们通常知道很多概念，例如组件、模块、系统、框架、架构等，而本文我们重点说框架。   框架，本质上是一些实用经验集合。即是前辈们在实际开发过程中积攒下来的实战经验，累积成一" />
+        
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="一篇文章带你彻底吃透Spring">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/assets/website/js/frontend/stashgithub/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/stashgithub/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/stashgithub/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/stashgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNXJ21P00N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NNXJ21P00N');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+        <div class="container topbar bg-primary d-none d-lg-block">
+            <div class="d-flex justify-content-between">
+                
+            </div>
+        </div>
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                <a href="/" class="navbar-brand">
+                                <span class="text-primary display-6">Stash Github</span>
+                                </a>
+                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/client.htm" class="nav-item nav-link">客户端</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                            </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">一篇文章带你彻底吃透Spring</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+            <li class="breadcrumb-item active text-white">正文</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+    <!-- Fruits Shop Start-->
+    <div class="container-fluid fruite py-5">
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="StashNode免费订阅官网" data-url="https://stashnode.github.io">
+                  				  				  				<p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/31a42c43e474a7395f48fb734f048031.jpg" alt="一篇文章带你彻底吃透Spring"></p> <h2 id="框架的意义">框架的意义</h2> <p>对于程序员来说，我们通常知道很多概念，例如组件、模块、系统、框架、架构等，而本文我们重点说<strong>框架</strong>。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/456f6bf7eb8421fed0e9b684c0667c4d.jpg" alt="一篇文章带你彻底吃透Spring"></p> <ul> <li><strong>框架</strong>，本质上是一些实用经验集合。即是前辈们在实际开发过程中积攒下来的实战经验，累积成一套实用工具，避免你在开发过程中重复去造轮子，特别是帮你把日常中能遇到的场景或问题都给屏蔽掉，框架的意义在于屏蔽掉开发的基础复杂度、屏蔽掉此类共性的东西，同时建立严格的编码规范，让框架使用者开箱即用，并且只需要关注差异面，即业务层面的实现。简而言之，框架只干一件事，那就是<strong>简化开发</strong>。然后在此基础上，可能会再考虑一些安全性、效率、性能、弹性、管理、拓展、解耦等等。</li> </ul> <h2 id="理解-spring-核心">理解 Spring 核心</h2> <p>Spring 作为一个框架，目的也是：<strong>简化开发</strong> ，只不过在简化开发的过程中 Spring 做了一个特别的设计，那就是<strong>Bean管理</strong>，这也是 Spring 的设计核心，而 Bean 生命周期管理的设计巧妙的<strong>解耦</strong> 了 Bean 之间的关系。</p> <p>因此 Spring 核心特性就是<strong>解耦</strong> 和<strong>简化</strong>。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/7f8be95a9aabca1782560a6562171c7f.jpg" alt="一篇文章带你彻底吃透Spring"></p> <p>Spring 框架图示展示得很清晰，基本描绘出 Spring 框架的核心：</p> <ul> <li><strong>内核</strong></li> <li><strong>外延</strong></li> </ul> <p>简单说，就是 Spring 设计了一个<strong>核心容器</strong> Core Container，这里头主要就是管理 Bean 生命周期，然后为了服务这些业务 Bean ，引入了 Core , Context , SpEL 等工具到核心容器中。然后在核心容器基础上，又为了把更多的能力集成进来，例如为了拓展<strong>数据访问</strong> 能力加入了 JDBC 、ORM 、OXM 、JMS 、Transactions 等，为了拓展<strong>Web</strong> 能力加入了 WebSocket 、Servlet、Web、Portlet 等，其中为了把 RequestMapping 或 Servlet 等这些使用集成到业务 Bean 上，引入了 AOP ，包括还有引入（最终是提供） Aspects、Instrumentation、Messageing 等增强方式。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/5023dc1aeac54747ba8048a01cf7de68.jpg" alt="一篇文章带你彻底吃透Spring"></p> <p>所以仔细一看，Spring 就是把像数据库访问、Web支持、缓存、消息发送等等这些能力集成到业务 Bean 上，并提供一些测试支持。总结来说理解 Spring 就两点：</p> <ol> <li> <p><strong>Bean管理：</strong> 解耦Bean关系。理解为内核，从 Bean 的定义、创建、管理等，这是业务Bean。</p> </li> <li> <p><strong>功能增强：</strong> 解耦功能、声明式简化。理解为外延，在业务Bean基础上，需要访库等能力，那就是功能增强。</p> </li> </ol> <p>基本体现的就是两个核心特性，一个<strong>解耦</strong>、一个<strong>简化</strong>。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/d6ae40741f1db195beaf0b0dd2056ea2.jpg" alt="一篇文章带你彻底吃透Spring"></p> <p><strong>Bean管理</strong> 本身就是在做<strong>解耦</strong>，解除耦合，这个解耦指 Bean 和 Bean 之间的关联关系，Bean 之间通过接口协议互相串联起来的，至于每个接口有多少个实现类，那都不会有任何影响，Bean 之间只保留单点通道，通过接口相互隔离，关系都交给 Spring 管理，这样就避免了实现类和实现类之间出现一些耦合，就算方法增减了、引用变更了也不至于互相污染。</p> <p><strong>功能增强</strong> 本身就是在做<strong>简化</strong>，例如声明式简化，像声明式编程，使用者只需要告诉框架他要什么，不用管框架是如何实现的。另外简化方面还有<strong>约定优于配置</strong> （当然这个确切的说是 SpringBoot 里的设计），约定优于配置其实就是约定好了无需去做复杂的配置，例如你引入一个什么组件或能力就像 redis 或 kafka，你不需要提前配置，因为 springboot 已经为你默认配置，开箱即用。</p> <blockquote> <p>因此 Spring 框架特性怎么理解？就<strong>解耦</strong> 和<strong>简化</strong> 。</p> </blockquote> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/91592b450790ab2d9fbe0cdcb516bf51.jpg" alt="一篇文章带你彻底吃透Spring"></p> <p>而 SpringBoot，简单理解就是在 Spring 框架基础上添加了一个<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.baidu.com/s?wd=Service%20Provider%20Interface"  target="_blank" rel="nofollow"><strong>SPI 可拓展机制</strong></a> 和<strong>版本管理</strong>，让易用性更高，简化升级。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/3264e90bdf68a779093f7d16c1ba8297.jpg" alt="一篇文章带你彻底吃透Spring"></p> <p>而 SpringCloud，简单理解就是，由于 SpringBoot 的<strong>依赖</strong> 可以被很好的管理，<strong>拓展</strong> 可以被可插拔的拓展，因此在 SpringBoot 基础上集成了很多跟微服务架构相关的能力，例如集成了很多组件，便有了 SpringCloud 全生态。</p> <p><strong>基本了解了 Spring 特性之后，我们回到 Spring 的核心设计 IoC 与 AOP</strong> 。</p> <h2 id="ioc">IoC</h2> <p>我们说了 Spring 的其一特性是<strong>解耦</strong>，那到底是使用什么来解耦？</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/035f272a75a059d2ed6d2463eb6d79c4.jpg" alt="一篇文章带你彻底吃透Spring"></p> <p>控制反转（Inversion of Control，缩写为<strong>IoC</strong>），是面向对象编程中的一种设计原则，可以用来减低计算机代码之间的耦合度。其中最常见的方式叫做依赖注入（Dependency Injection，简称<strong>DI</strong>），还有一种方式叫“依赖查找”（Dependency Lookup，EJB 和 Apache Avalon 都使用这种方式）。通过控制反转，对象在被创建的时候，由一个调控系统内所有对象的外界实体将其所依赖的对象的引用传递给它。也可以说，依赖被注入到对象中。</p> <p>简单来说，就是原本 Bean 与 Bean 之间的这种互相调用，变成了由<strong>IoC</strong> 容器去统一调配。如果没使用<strong>IoC</strong> 容器统一管理业务 Bean，你的应用在部署、修改、迭代的时候，业务 Bean 是会侵入代码实现并互相调用的。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/57676ff02844096322a9dbacfab880a3.jpg" alt="一篇文章带你彻底吃透Spring"></p> <h3 id="那么问题来了所有系统都需要引入-ioc-吗">那么问题来了，所有系统都需要引入 IOC 吗？</h3> <p><strong>IoC</strong> 容器是面向<strong>迭代</strong> 起作用，如果你的应用就<strong>不存在迭代</strong> 的情况，即系统是万年不变的，那没必要引入<strong>IoC</strong>，因为你每引入一项技术，都势必会增加复杂度，所以额外引入<strong>IoC</strong> 也一样会增加你整体应用的复杂度，所以假如<strong>不存在迭代</strong>，大可直接写死A类引用B类，B类又写死引用C类，无需引入<strong>IoC</strong>。一定要理解每一项技术背后是为了解决什么问题，同时在做架构设计的时候记住两个原则：<strong>合适</strong> 、<strong>简单</strong>。当然，实际上我们大部分应用是<strong>持续迭代</strong> 的，在类实现上、互相引用上、甚至接口协议上都有可能变化，所以一般引入<strong>IoC</strong> 是合适的（如果是接口协议变化，即参数或返回值发生变化，那还是需要改动类间的代码的）。</p> <p>具体的，<strong>IoC</strong> 相当于是把 Bean 实例的创建过程交给 Spring 管理，无论是通过 XML、JavaConfig，还是注解方式，最终都是把实例化的工作交给 Spring 负责，之后 Bean 之间通过接口相互调用，而实例化过程中就涉及到<strong>注入</strong>，无论采用什么方式来实例化 Bean，<strong>注入</strong> 的类别就两种：</p> <ul> <li><strong>Setter注入</strong> ： 通过 setter 来设置，发生在对象<strong>实例化之后</strong> 设置。</li> <li><strong>构造器注入</strong> ： 通过构造器注入，发生在对象<strong>实例化之前</strong> 就得把参数/实例准备好。</li> </ul> <p><strong>setter注入：</strong></p> <ol> <li>与传统的 JavaBean 的写法更相似，程序开发人员更容易理解、接受。通过 setter 方法设定依赖关系显得更加直观、自然。</li> <li>对于复杂的依赖关系，如果采用构造注入，会导致构造器过于臃肿，难以阅读。Spring 在创建 Bean 实例时，需要同时实例化其依赖的全部实例，因而导致性能下降。而使用设值注入，则能避免这些问题。</li> <li>尤其在某些成员变量可选的情况下，多参数的构造器更加笨重。</li> </ol> <p><strong>构造器注入：</strong></p> <ol> <li>构造器注入可以在构造器中决定依赖关系的注入顺序，优先依赖的优先注入。</li> <li>对于依赖关系无需变化的 Bean ，构造注入更有用处。因为没有<strong>setter</strong> 方法，所有的依赖关系全部在构造器内设定，无须担心后续的代码对依赖关系产生破坏。</li> <li>依赖关系只能在构造器中设定，则只有组件的创建者才能改变组件的依赖关系，对组件的调用者而言，组件内部的依赖关系完全透明，更符合高内聚的原则。</li> </ol> <p>而这两种方式的注入方式都使用了<strong>反射</strong>。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/595a57111c58b29f7bbe670c27672959.jpg" alt="一篇文章带你彻底吃透Spring"></p> <h2 id="反射">反射</h2> <p>了解反射相关类以及含义：</p> <ul> <li><strong>java.lang.Class：</strong> 代表整个字节码。代表一个类型，代表整个类。</li> <li><strong>java.lang.reflect.Method：</strong> 代表字节码中的方法字节码。代表类中的方法。</li> <li><strong>java.lang.reflect.Constructor：</strong> 代表字节码中的构造方法字节码。代表类中的构造方法。</li> <li><strong>java.lang.reflect.Field：</strong> 代表字节码中的属性字节码。代表类中的成员变量（静态变量+实例变量）。</li> </ul> <p><strong>java.lang.reflect</strong> 包提供了许多反射类，用于获取或设置实例对象。简单来说，反射能够：</p> <ol> <li><strong>在运行时</strong> 判断任意一个对象所属的类；</li> <li>在运行时构造任意一个类的对象；</li> <li>在运行时判断任意一个类所具有的成员变量和方法；</li> <li>在运行时调用任意一个对象的方法；</li> <li><strong>生成动态代理</strong>。</li> </ol> <p><strong>IoC</strong> 和<strong>反射</strong>，只是把 Bean 的实例创建处理完，而后续还有<strong>功能增强</strong>，功能增强靠的就是<strong>AOP</strong>。</p> <h2 id="aop">AOP</h2> <p>AOP全名 Aspect-Oriented Programming ，中文直译为面向切面编程，当前已经成为一种比较成熟的编程思想，可以用来很好的解决应用系统中分布于各个模块的交叉关注点问题。在轻量级的J2EE中应用开发中，使用AOP来灵活处理一些具有<strong>横切性质</strong> 的系统级服务，如事务处理、安全检查、缓存、对象池管理等，已经成为一种非常适用的解决方案。</p> <h3 id="为什么需要aop">为什么需要AOP</h3> <p>当我们要进行一些日志记录、权限控制、性能统计等时，在传统应用程序当中我们可能在需要的对象或方法中进行编码，而且比如权限控制、性能统计大部分是重复的，这样代码中就存在大量<strong>重复代码</strong>，即使有人说我把通用部分提取出来，那必然存在调用还是存在重复，像性能统计我们可能只是在必要时才进行，在诊断完毕后要删除这些代码；还有日志记录，比如记录一些方法访问日志、数据访问日志等等，这些都会渗透到各个要访问方法中；还有权限控制，必须在方法执行开始进行审核，想想这些是多么可怕而且是多么无聊的工作。如果采用 Spring，这些日志记录、权限控制、性能统计从业务逻辑中分离出来，通过 Spring 支持的面向切面编程，在需要这些功能的地方动态添加这些功能，无需渗透到各个需要的方法或对象中；有人可能说了，我们可以使用“代理设计模式”或“包装器设计模式”，你可以使用这些，但还是需要通过编程方式来创建代理对象，还是要<strong>耦合</strong> 这些代理对象，而采用 Spring 面向<strong>切面</strong> 编程能提供一种更好的方式来完成上述功能，一般通过<strong>配置</strong> 方式，而且不需要在现有代码中添加任何额外代码，现有代码专注业务逻辑。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/77f933548a0153d24f28a88e2af76556.jpg" alt="一篇文章带你彻底吃透Spring"></p> <p>所以，AOP 以横截面的方式插入到主流程中，<strong>Spring AOP 面向切面编程能帮助我们无耦合的实现：</strong></p> <ul> <li>性能监控，在方法调用前后记录调用时间，方法执行太长或超时报警。</li> <li>缓存代理，缓存某方法的返回值，下次执行该方法时，直接从缓存里获取。</li> <li>软件破解，使用 AOP 修改软件的验证类的判断逻辑。</li> <li>记录日志，在方法执行前后记录系统操作日志。</li> <li>工作流系统，工作流系统需要将业务代码和流程引擎代码混合在一起执行，那么我们可以使用AOP将其分离，并动态挂接业务。</li> <li>权限验证，方法执行前验证是否有权限执行当前方法，没有则抛出没有权限执行异常，有业务代码捕捉。</li> <li>等等</li> </ul> <p>AOP 其实就是从应用中划分出来了一个切面，然后在这个切面里面插入一些<strong>“增强”</strong>，最后产生一个增加了新功能的<strong>代理对象</strong>，注意，是代理对象，这是Spring AOP 实现的基础。这个代理对象只不过比原始对象（Bean）多了一些功能而已，比如<strong>Bean预处理</strong>、<strong>Bean后处理</strong>、<strong>异常处理</strong> 等。 AOP 代理的目的就是<strong>将切面织入到目标对象</strong>。</p> <h3 id="aop如何实现">AOP如何实现</h3> <p><strong>前面我们说 IoC 的实现靠反射，然后解耦，那 AOP 靠啥实现？</strong></p> <p>AOP，简单来说就是给对象增强一些功能，我们需要看 Java 给我们预留了哪些口或者在哪些阶段，允许我们去织入某些增强功能。</p> <p>我们可以从几个层面来实现AOP。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/5d765fe45a196ebea384694dc9973dc8.jpg" alt="一篇文章带你彻底吃透Spring"></p> <ul> <li> <p><strong>编译期</strong></p> <ul> <li>原理：在编译器编译之前注入源代码，源代码被编译之后的字节码自然会包含这部分注入的逻辑。</li> <li>代表作如：lombok, mapstruct（编译期通过 pluggable annotation processing API 修改的）。</li> </ul> </li> <li> <p><strong>运行期，字节码加载前</strong></p> <ul> <li>原理：字节码要经过 classloader（<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://jvm.panshenlian.com/#/zh-cn/06-class-loader"  target="_blank" rel="nofollow">类加载器</a>）加载，那我们可以通过<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://jvm.panshenlian.com/#/zh-cn/06-define-class-loader"  target="_blank" rel="nofollow">自定义类加载器</a> 的方式，在字节码被自定义类加载器<strong>加载前</strong> 给它修改掉。</li> <li>代表作如：javasist, java.lang.instrument ,ASM（操纵字节码）。</li> <li>许多 agent 如 Skywaking, Arthas 都是这么搞，注意区分<strong>静态agent</strong> 与<strong>动态agent</strong>。</li> <li><strong>JVMTI</strong> 是 JVM 提供操作 native 方法的工具，<strong>Instrument</strong> 就是提供给你操纵<strong>JVMTI</strong> 的 java 接口，详情见<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.oracle.com/javase/8/docs/api/java/lang/instrument/package-summary.html"  target="_blank" rel="nofollow">java.lang.instrument.Instrumentation</a></li> </ul> </li> <li> <p><strong>运行期，字节码加载后</strong></p> <ul> <li>原理：字节码被类加载器加载后，动态构建字节码文件生成目标类的<strong>子类</strong>，将切面逻辑加入到子类中。</li> <li>代表作如：jdk proxy, cglib。</li> </ul> </li> </ul> <blockquote> <p>按照类别分类，基本可以理解为：</p> </blockquote> <table> <thead> <tr> <th>类别</th> <th>原理</th> <th>优点</th> <th>缺点</th> </tr> </thead> <tbody> <tr> <td>静态AOP</td> <td><strong>在编译期</strong>，切面直接以字节码的形式编译到目标字节码文件中</td> <td>对系统无性能影响</td> <td>灵活度不够</td> </tr> <tr> <td>动态AOP</td> <td><strong>在运行期</strong>，目标类加载后，为接口动态生成代理类，将切面织入到代理类中</td> <td><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://spring.panshenlian.com/#/zh-cn/02-java-dynamic-proxy"  target="_blank" rel="nofollow">动态代理</a>方式，相对于静态AOP更加灵活</td> <td>切入的关注点需要实现接口，对系统有一点性能影响</td> </tr> <tr> <td>动态字节码生成</td> <td><strong>在运行期</strong>，目标类加载后，动态构建字节码文件生成目标类的<strong>子类</strong>，将切面逻辑加入到子类中</td> <td>没有接口也可以织入</td> <td>扩展类的实例方法为final时，则无法进行织入。性能基本是最差的，因为需要生成子类嵌套一层，spring用的cglib就是这么搞的，所以性能比较差</td> </tr> <tr> <td>自定义类加载器</td> <td><strong>在运行期</strong>，在字节码被自定义类加载器加载前，将切面逻辑加到目标字节码里，例如阿里的Pandora</td> <td>可以对绝大部分类进行织入</td> <td>代码中如果使用了其他类加载器，则这些类将不会被织入</td> </tr> <tr> <td>字节码转换</td> <td><strong>在运行期</strong>，所有类加载器加载字节码前，进行拦截</td> <td>可以对所有类进行织入</td> <td>-</td> </tr> </tbody> </table> <p><strong>当然</strong>，理论上是越早织入，性能越好，像<strong>lombok</strong>,<strong>mapstruct</strong> 这类静态AOP，基本在编译期之前都修改完，所以性能很好，但是灵活性方面当然会比较差，获取不到运行时的一些信息情况，所以需要权衡比较。</p> <h3 id="简单说明5种类别">简单说明5种类别：</h3> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/b19238cf167f494a4e1afadd6e07b774.jpg" alt="一篇文章带你彻底吃透Spring"></p> <p>当然我整理了一份详细的脑图，可以直接在网页上打开。</p> <p>《脑图：Java实现AOP思路》:</p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.processon.com/embed/62333d1ce0b34d074452eec2"  target="_blank" rel="nofollow">https://www.processon.com/embed/62333d1ce0b34d074452eec2</a></p> <h3 id="1静态aop">1、静态AOP</h3> <p>发生在<strong>编译期</strong>，通过 Pluggable Annotation Processing API 修改源码。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/721483514a7d27fa4bbf3792777b456e.jpg" alt="一篇文章带你彻底吃透Spring"></p> <p>在 javac 进行编译的时候，会根据源代码生成抽象语法树（AST），而 java 通过开放 Pluggable Annotation Processing API 允许你参与修改源代码，最终生成字节码。典型的代表就是<strong>lombok</strong>。</p> <h3 id="2动态aop-动态代理">2、动态AOP （<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://spring.panshenlian.com/#/zh-cn/02-java-dynamic-proxy"  target="_blank" rel="nofollow">动态代理</a>）</h3> <p>发生在<strong>运行期</strong>，于<strong>字节码加载后</strong>，类、方法已经都被加载到方法区中了。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/f7eed21a01279f480f89410c60eeddb9.jpg" alt="一篇文章带你彻底吃透Spring"></p> <p>典型的代表就是<strong>JDK Proxy</strong>。</p> <pre><code class="language-java">     public static void main(String[] args) {          // 需要代理的接口，被代理类实现的多个接口，都必须在这里定义         Class[] proxyInterface = new Class[]{IBusiness.class,IBusiness2.class};                  // 构建AOP的Advice，这里需要传入业务类的实例         LogInvocationHandler handler = new LogInvocationHandler(new Business());                  // 生成代理类的字节码加载器         ClassLoader classLoader = DynamicProxyDemo.class.getClassLoader();                  // 织入器，织入代码并生成代理类         IBusiness2 proxyBusiness =              (IBusiness2)Proxy.newProxyInstance(classLoader, proxyInterface, handler);                  // 使用代理类的实例来调用方法         proxyBusiness.doSomeThing2();         ((IBusiness)proxyBusiness).doSomeThing();     }</code></pre> <p>其中代理实现<strong>InvocationHandler</strong> 接口，最终实现逻辑在<strong>invoke</strong> 方法中。生成代理类之后，只要目标对象的方法被调用了，都会优先进入代理类<strong>invoke</strong> 方法，进行增强验证等行为。</p> <pre><code class="language-java">     public class LogInvocationHandler implements InvocationHandler{          private Object target;  // 目标对象          LogInvocationHandler(Object target){             this.target = target;         }          @Override         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {              // 执行原有逻辑             Object rev = method.invoke(target,args);              // 执行织入的日志，你可以控制那些方法执行切入逻辑             if (method.getName().equals("doSomeThing2")){                 // 记录日志             }             return rev;         }     }</code></pre> <p>当然动态代理相对也是性能差，毕竟也多走了一层代理，每多走一层就肯定是越难以优化。</p> <p>虽然，动态代理在运行期通过接口动态生成代理类，这为其带来了一定的灵活性，但这个灵活性却带来了两个问题：</p> <ol> <li>第一代理类必须实现一个接口，如果没实现接口会抛出一个异常。</li> <li>第二性能影响，因为动态代理使用反射的机制实现的，首先反射肯定比直接调用要慢，经过测试大概每个代理类比静态代理多出10几毫秒的消耗。其次使用反射大量生成类文件可能引起<strong>Full GC</strong> 造成性能影响，因为字节码文件加载后会存放在JVM运行时区的方法区（或者叫持久代，<strong>JDK1.8</strong> 之后已经在元空间）中，当方法区满的时候，会引起<strong>Full GC</strong> ，所以当你大量使用动态代理时，可以将持久代设置大一些，减少<strong>Full GC</strong> 次数。</li> </ol> <p>关于动态代理的详细原理和流程，推荐阅读<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://spring.panshenlian.com/#/zh-cn/02-java-dynamic-proxy"  target="_blank" rel="nofollow">《一文读懂Java动态代理》</a>。</p> <h3 id="3动态字节码生成">3、动态字节码生成</h3> <p>发生在<strong>运行期</strong>，于<strong>字节码加载后</strong> ，生成目标类的子类，将切面逻辑加入到子类中，所以使用Cglib实现AOP不需要基于接口。</p> <p>此时类、方法同样已经都被加载到方法区中了。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/f7eed21a01279f480f89410c60eeddb9.jpg" alt="一篇文章带你彻底吃透Spring"></p> <p>典型的代表就是<strong>Cglib</strong>（底层也是基于ASM操作字节码），<strong>Cglib</strong> 是一个强大的,高性能的<strong>Code</strong> 生成类库，它可以在运行期间扩展Java类和实现Java接口，它封装了<strong>Asm</strong>，所以使用<strong>Cglib</strong> 前需要引入<strong>Asm</strong> 的jar。</p> <pre><code class="language-java">    public static void main(String[] args) {            byteCodeGe();        }           /**        * 动态字节码生成        */       public static void byteCodeGe() {            //创建一个织入器            Enhancer enhancer = new Enhancer();            //设置父类            enhancer.setSuperclass(Business.class);            //设置需要织入的逻辑            enhancer.setCallback(new LogIntercept());            //使用织入器创建子类            IBusiness2 newBusiness = (IBusiness2) enhancer.create();            newBusiness.doSomeThing2();        }           /**        * 记录日志        */        public static class LogIntercept implements MethodInterceptor {               @Override            public Object intercept( 			Object target,  			Method method,  			Object[] args,  			MethodProxy proxy) throws Throwable {                 			//执行原有逻辑，注意这里是invokeSuper                Object rev = proxy.invokeSuper(target, args);                //执行织入的日志                if (method.getName().equals("doSomeThing")) {                    System.out.println("recordLog");                }                return rev;            }        }</code></pre> <p><strong>Spring</strong> 默认采取<strong>JDK 动态代理</strong> 机制实现<strong>AOP</strong>，当动态代理不可用时（代理类无接口）会使用<strong>CGlib</strong> 机制，缺点是：</p> <ol> <li> <p>只能对方法进行切入，不能对接口、字段、static静态代码块、private私有方法进行切入。</p> </li> <li> <p>同类中的互相调用方法将不会使用代理类。因为要使用代理类必须从Spring容器中获取Bean。同类中的互相调用方法是通过<strong>this</strong> 关键字来调用，<strong>spring</strong> 基本无法去修改<strong>jvm</strong> 里面的逻辑。</p> </li> <li> <p>使用<strong>CGlib</strong> 无法对 final 类进行代理，因为无法生成子类了。</p> </li> </ol> <h3 id="4自定义类加载器">4、自定义类加载器</h3> <p>发生在<strong>运行期</strong>，于<strong>字节码加载前</strong>，在类加载到JVM之前直接修改某些类的<strong>方法</strong>，并将<strong>切入逻辑</strong> 织入到这个方法里，然后将修改后的字节码文件交给虚拟机运行。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/6d76f42b248cddab80ce67997d48e4f3.jpg" alt="一篇文章带你彻底吃透Spring"></p> <p>典型的代表就是<strong>javasist</strong>，它可以获得指定方法名的方法、执行前后插入代码逻辑。</p> <p>Javassist是一个编辑字节码的框架，可以让你很简单地操作字节码。它可以在运行期定义或修改Class。使用Javassist实现AOP的原理是在字节码加载前直接修改需要切入的方法。这比使用Cglib实现AOP更加高效，并且没太多限制，实现原理如下图：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/363cf2af8f478ea3f6e71df9c8fafb40.jpg" alt="一篇文章带你彻底吃透Spring"></p> <p>我们使用系统类加载器启动我们自定义的类加载器，在这个类加载器里加一个类加载监听器，监听器发现目标类被加载时就织入切入逻辑，我们再看看使用Javassist 实现 AOP 的代码：</p> <pre><code class="language-java">/***启动自定义的类加载器****/  //获取存放CtClass的容器ClassPool    ClassPool cp = ClassPool.getDefault();    //创建一个类加载器    Loader cl = new Loader();    //增加一个转换器    cl.addTranslator(cp, new MyTranslator());    //启动MyTranslator的main函数    cl.run("jsvassist.JavassistAopDemo$MyTranslator", args);</code></pre> <pre><code class="language-java">// 类加载监听器 public static class MyTranslator implements Translator {    	public void start(ClassPool pool) throws  				NotFoundException, CannotCompileException {    	}             /**        * 类装载到JVM前进行代码织入        */   	public void onLoad(ClassPool pool, String classname) {    		if (!"model$Business".equals(classname)) {    			return;    		}    		//通过获取类文件    		try {    			CtClass  cc = pool.get(classname);    			//获得指定方法名的方法    			CtMethod m = cc.getDeclaredMethod("doSomeThing");    			//在方法执行前插入代码    			m.insertBefore("{ System.out.println(\"recordLog\"); }");    		} catch (NotFoundException e) {    		} catch (CannotCompileException e) {    		}    	}     	public static void main(String[] args) {    		Business b = new Business();    		b.doSomeThing2();    		b.doSomeThing();    	}    }</code></pre> <p><strong>CtClass</strong> 是一个class文件的抽象描述。也可以使用<strong>insertAfter()</strong> 在方法的末尾插入代码，或者使用<strong>insertAt()</strong> 在指定行插入代码。</p> <p>使用自定义的类加载器实现AOP在性能上要优于动态代理和Cglib，因为它不会产生新类，但是它仍然存在一个问题，就是如果其他的类加载器来加载类的话，这些类将不会被拦截。</p> <h3 id="5字节码转换">5、字节码转换</h3> <p>自定义的类加载器实现AOP只能拦截自己加载的字节码，那么有没有一种方式能够监控所有类加载器加载字节码呢？有，使用Instrumentation，它是<strong>Java 5</strong> 提供的新特性，使用<strong>Instrumentation</strong>，开发者可以构建一个字节码转换器，在字节码加载前进行转换。</p> <p>发生在<strong>运行期</strong> ，于<strong>字节码加载前</strong>，<strong>Java 1.5</strong> 开始提供的<strong>Instrumentation API</strong> 。<strong>Instrumentation API</strong> 就像是<strong>JVM</strong> 预先放置的后门，它可以拦截在JVM上运行的程序，修改字节码。</p> <p>这种方式是 Java API 天然提供的，在<strong>java.lang.instrumentation</strong> ，就算<strong>javasist</strong> 也是基于此实现。</p> <p>一个代理实现<strong>ClassFileTransformer</strong> 接口用于改变运行时的字节码（<strong>class File</strong>），这个改变发生在<strong>jvm</strong> 加载这个类之前，对所有的类加载器有效。<strong>class File</strong> 这个术语定义于虚拟机规范<strong>3.1</strong>，指的是字节码的<strong>byte</strong> 数组，而不是文件系统中的<strong>class</strong> 文件。接口中只有一个方法：</p> <pre><code class="language-java">	/**        * 字节码加载到虚拟机前会进入这个方法        */        @Override        public byte[] transform(   		        ClassLoader         loader,                 String              className,                 Class&lt;?&gt;            classBeingRedefined,                 ProtectionDomain    protectionDomain,                 byte[]              classfileBuffer)         throws IllegalClassFormatException;  // 把 classBeingRedefined 重定义之后再交还回去</code></pre> <p><strong>ClassFileTransformer</strong> 需要添加到<strong>Instrumentation</strong> 实例中才能生效。</p> <h3 id="安全点注意">安全点注意</h3> <p>当对 JVM 中的字节码进行修改的时候，虚拟机也会通知所有线程通过安全点的方式停下来，因为修改会影响到类结构。</p> <h2 id="启动流程">启动流程</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/e9a97ed71ac9c8ced7c8fa84b15f47ea.jpg" alt="一篇文章带你彻底吃透Spring"></p> <p>Bean生命周期管理，基本从无到有（IoC），从有到增强（AOP）。</p> <p>任何Bean在Spring容器中只有三种形态，<strong>定义</strong>、<strong>实例</strong>、<strong>增强</strong>。</p> <p>从Bean定义信息观察，通过<strong>xml</strong> 定义<strong>bean关系</strong>，<strong>properties</strong>、<strong>yaml</strong>、<strong>json</strong>定义<strong>属性</strong>，bean关系和属性就构成Bean的定义，其中<strong>BeanDefinitionReader</strong>负责扫描定义信息生成Bean定义对象<strong>BeanDefinition</strong>。在此基础上，允许对<strong>BeanDefinition</strong> 定义进行增强（Mybatis与Spring存在很多使用场景）。</p> <p>Bean定义完成之后，开始通过反射实例化对象、填充属性等，同时又再次预留了很多增强的口，最终生成一个完整的对象。</p> <h3 id="实例化流程与三级缓存">实例化流程与三级缓存</h3> <p>从定义到扩展，然后反射实例化，到增强，每种状态都会存在引用。</p> <p>所以Spring设计<strong>三级缓存</strong>，说白了是对应存储Bean生命周期的三种形态:</p> <ul> <li>定义</li> <li>实例</li> <li>增强</li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/b6610a545ca7279f3496c8bb8d953981.jpg" alt="一篇文章带你彻底吃透Spring"></p> <h2 id="总结">总结</h2> <p>Spring 就是<strong>反射</strong> +<strong>字节码增强</strong>。</p> <ul> <li> <p>反射，为了 IoC 和<strong>解耦</strong></p> </li> <li> <p>字节码增强，为了<strong>简化</strong> 和声明式编程</p> </li> </ul> <p>深刻理解 Spring 这两部分核心特性，关于 spring、springboot、springcloud 的所有语法糖设计与使用，就自然清楚。</p> <h2 id="参考">参考</h2> <ul> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://dzone.com/articles/java-agent-1"  target="_blank" rel="nofollow">Understanding Java Agents</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.oracle.com/javase/1.5.0/docs/api/java/lang/instrument/package-summary.html"  target="_blank" rel="nofollow">Java 1.5-java.lang.instrument</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.jianshu.com/p/26e9f410235f"  target="_blank" rel="nofollow">ASM 字节码插桩</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/alibaba/arthas"  target="_blank" rel="nofollow">arthas</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://asm.ow2.io/"  target="_blank" rel="nofollow">ASM</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/cglib/cglib"  target="_blank" rel="nofollow">cglib</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://www.javassist.org/"  target="_blank" rel="nofollow">javassist</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://jse.readthedocs.io/en/latest/jdk8/javassistLog.html"  target="_blank" rel="nofollow">Javassist/ASM Audit Log</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://bytebuddy.net/#/tutorial"  target="_blank" rel="nofollow">bytebuddy tutorial</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.jrebel.com/blog/java-code-generation-libraries-comparison"  target="_blank" rel="nofollow">Performance Comparison of cglib, Javassist, JDK Proxy and Byte Buddy</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://baike.baidu.com/item/%E6%8E%A7%E5%88%B6%E5%8F%8D%E8%BD%AC"  target="_blank" rel="nofollow">控制反转</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.iteye.com/topic/1116696"  target="_blank" rel="nofollow">AOP 的实现机制</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.jianshu.com/p/41632f76dd62"  target="_blank" rel="nofollow">Spring AOP 总结</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://zhuanlan.zhihu.com/p/448871215"  target="_blank" rel="nofollow">javaAgent、ASM、javassist、ByteBuddy 是什么？</a></li> </ul> <h2 id="首发订阅">首发订阅</h2> <p>这里记录技术内容，不定时发布，首发在</p> <ul> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.panshenlian.com"  target="_blank" rel="nofollow">潘深练个人网站</a></li> <li>微信公众号：潘潘和他的朋友们</li> </ul> <p>（本篇完）</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-78022.htm">美丽的菊花</a></p>
+                                        <p>下一个：<a href="/news/article-78713.htm">天义宠物医院电话号码多少（天福宠物医院）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-45746.htm" title="DjangoRestFramework框架三种分页功能的实现 &#8211; 在DjangoStarter项目模板中封装">DjangoRestFramework框架三种分页功能的实现 &#8211; 在DjangoStarter项目模板中封装</a></li>
+                        <li class="py-2"><a href="/news/article-78713.htm" title="天义宠物医院电话号码多少（天福宠物医院）">天义宠物医院电话号码多少（天福宠物医院）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-18-vless-node-github.htm" title="「2月18日」最高速度20.9M/S，2025年V2ray/Shadowrocket/SSR/ClashStash免费机场订阅链接">「2月18日」最高速度20.9M/S，2025年V2ray/Shadowrocket/SSR/ClashStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-36346.htm" title="URLDNS反序列化链学习">URLDNS反序列化链学习</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-4-vless-github.htm" title="「1月4日」最高速度21.1M/S，2025年Stash Github每天更新免费机场订阅节点链接">「1月4日」最高速度21.1M/S，2025年Stash Github每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-28-vless-windows.htm" title="「2月28日」最高速度20.1M/S，2025年Shadowrocket/V2ray/SSR/ClashStash免费机场订阅链接">「2月28日」最高速度20.1M/S，2025年Shadowrocket/V2ray/SSR/ClashStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-49705.htm" title="猫瘟疫苗价格多少（猫瘟疫苗价格多少钱）">猫瘟疫苗价格多少（猫瘟疫苗价格多少钱）</a></li>
+                        <li class="py-2"><a href="/news/article-38301.htm" title="动物医院好评语怎么写啊 动物医院好评语怎么写啊英语">动物医院好评语怎么写啊 动物医院好评语怎么写啊英语</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-8-vless-node.htm" title="「2月8日」最高速度18.5M/S，2025年SSR/Clash/Shadowrocket/V2rayStash免费机场订阅链接">「2月8日」最高速度18.5M/S，2025年SSR/Clash/Shadowrocket/V2rayStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-43263.htm" title="Citus 分布式 PostgreSQL 集群 &#8211; SQL Reference(查询分布式表 SQL)">Citus 分布式 PostgreSQL 集群 &#8211; SQL Reference(查询分布式表 SQL)</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">71</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">83</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fruits Shop End-->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3 mb-md-0">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <span class="text-light">Stash Github机场分享官网 版权所有 Powered by WordPress</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/stashgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
