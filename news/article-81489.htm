@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://stashgithub.github.io/news/article-81489.htm" />
+    <meta charset="utf-8">
+    <title>整理了25个Pandas实用技巧（上）</title>
+        <meta name="description" content="本文一共为大家分享25个pandas技巧，分为两篇分享给大家。  显示已安装的版本 输入下面的命令查询pandas版本： In&nbsp;[7]:pd.__version__ Out[7]:'0.24" />
+        <link rel="icon" href="/assets/website/img/stashgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Stash Github机场分享官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://stashgithub.github.io/news/article-81489.htm" />
+    <meta property="og:site_name" content="Stash Github机场分享官网" />
+    <meta property="og:title" content="整理了25个Pandas实用技巧（上）" />
+    <meta property="og:image" content="https://stashgithub.github.io/uploads/20240903-1/d87a3c8982a4e3b337559b65c39810d5.webp" />
+        <meta property="og:release_date" content="2025-03-26T08:53:38" />
+    <meta property="og:updated_time" content="2025-03-26T08:53:38" />
+        <meta property="og:description" content="本文一共为大家分享25个pandas技巧，分为两篇分享给大家。  显示已安装的版本 输入下面的命令查询pandas版本： In&nbsp;[7]:pd.__version__ Out[7]:'0.24" />
+        
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="整理了25个Pandas实用技巧（上）">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/assets/website/js/frontend/stashgithub/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/stashgithub/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/stashgithub/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/stashgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNXJ21P00N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NNXJ21P00N');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+        <div class="container topbar bg-primary d-none d-lg-block">
+            <div class="d-flex justify-content-between">
+                
+            </div>
+        </div>
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                <a href="/" class="navbar-brand">
+                                <span class="text-primary display-6">Stash Github</span>
+                                </a>
+                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/client.htm" class="nav-item nav-link">客户端</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                            </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">整理了25个Pandas实用技巧（上）</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+            <li class="breadcrumb-item active text-white">正文</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+    <!-- Fruits Shop Start-->
+    <div class="container-fluid fruite py-5">
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="StashNode免费订阅官网" data-url="https://stashnode.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <div id="js_content"> <p style="text-align: left">本文一共为大家分享25个pandas技巧，分为两篇分享给大家。</p> <h3></h3> <p><strong>显示已安装的版本</strong></p> <p>输入下面的命令查询pandas版本：</p> <pre class="has"><code class="language-css">In&nbsp;[7]:pd.__version__ Out[7]:'0.24.2' </code></pre> <p>如果你还想知道pandas所依赖的模块的版本，你可以使用<strong>show_versions()函数</strong>:</p> <pre class="has"><code class="language-makefile">In [9]： pd.show_versions()   INSTALLED VERSIONS  ------------------  commit: None  python: 3.7.3.final.0  python-bits: 64  OS: Darwin  OS-release: 18.6.0  machine: x86_64  processor: i386  byteorder: little  LC_ALL: None  LANG: en_US.UTF-8  LOCALE: en_US.UTF-8    pandas: 0.24.2  pytest: None  pip: 19.1.1  setuptools: 41.0.1  Cython: None  numpy: 1.16.4  scipy: None  pyarrow: None  xarray: None  IPython: 7.5.0  sphinx: None  patsy: None  dateutil: 2.8.0  pytz: 2019.1  blosc: None  bottleneck: None  tables: None  numexpr: None  feather: None  matplotlib: 3.1.0  openpyxl: None  xlrd: None  xlwt: None  xlsxwriter: None  lxml.etree: None  bs4: None  html5lib: None  sqlalchemy: None  pymysql: None  psycopg2: None  jinja2: 2.10.1  s3fs: None  fastparquet: None  pandas_gbq: None  pandas_datareader: None  gcsfs: None </code></pre> <p>你可以查看到Python，pandas, Numpy, matplotlib等的版本信息。</p> <p><strong>创建示例DataFrame</strong></p> <p>假设你需要创建一个示例DataFrame。有很多种实现的途径，我最喜欢的方式是传一个字典给DataFrame constructor，其中字典中的<strong>keys为列名，values为列的取值。</strong></p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221229/807258ef313584b8a4fb78daac9b687c.jpg" alt="整理了25个Pandas实用技巧（上）"/></p> <p>现在如果你需要创建一个更大的DataFrame，上述方法则需要太多的输入。在这种情况下，你可以使用<strong>Numpy的random.rand()函数</strong>，告诉它行数和列数，将它传递给DataFrame constructor：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221229/811a1ae09b964ed62c132a242213c2cc.jpg" alt="整理了25个Pandas实用技巧（上）"/></p> <p>这种方式很好，但如果你还想把列名变为非数值型的，你可以强制地<strong>将一串字符赋值给</strong><strong>columns参数</strong>：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221229/3e71abf673fd1149adedcf6d9363d40e.jpg" alt="整理了25个Pandas实用技巧（上）"/></p> <p>你可以想到，你传递的字符串的长度必须与列数相同。</p> <h3></h3> <p><strong>更改列名</strong></p> <p>让我们来看一下刚才我们创建的示例DataFrame:</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221229/e740c4ef324516a0cb800ca5a4c982af.jpg" alt="整理了25个Pandas实用技巧（上）"/></p> <p>我更喜欢在选取pandas列的时候使用点（.），但是这对那么列名中含有空格的列不会生效。让我们来修复这个问题。</p> <p>更改列名最灵活的方式是使用rename()函数。你可以传递一个字典，其中<strong>keys为原列名，values为新列名</strong>，还可以指定axis:</p> <pre class="has"><code class="language-powershell">In&nbsp;[14]: df = df.rename({'col one':'col_one', 'col two':'col_two'}, axis='columns') </code></pre> <p>使用这个函数最好的方式是你需要更改任意数量的列名，不管是一列或者全部的列。</p> <p>如果你需要一次性重新命令所有的列名，更简单的方式就是<strong>重写DataFrame的columns属性</strong>：</p> <pre class="has"><code class="language-nginx">In&nbsp;[15]: df.columns&nbsp;=&nbsp;['col_one',&nbsp;'col_two'] </code></pre> <p>如果你需要做的仅仅是将空格换成下划线，那么更好的办法是使用<strong>str.replace()方法</strong>，这是因为你都不需要输入所有的列名：</p> <pre class="has"><code class="language-nginx">In&nbsp;[16]: df.columns&nbsp;=&nbsp;df.columns.str.replace('&nbsp;',&nbsp;'_') </code></pre> <p>上述三个函数的结果都一样，可以更改列名使得列名中不含有空格：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221229/91754981176a686f65fe168e1ebf3974.jpg" alt="整理了25个Pandas实用技巧（上）"/></p> <p>最后，如果你需要在列名中添加前缀或者后缀，你可以使用<strong>add_prefix()函数</strong>：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221229/a4fd3a47de19db26e3a2607f328538ca.jpg" alt="整理了25个Pandas实用技巧（上）"/></p> <p>或者使用<strong>add_suffix()函数</strong>：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221229/a0bfcfc23d15881d8062936111e22804.jpg" alt="整理了25个Pandas实用技巧（上）"/></p> <h3></h3> <p><strong>行序反转</strong></p> <p>让我们来看一下drinks这个DataFame:</p> <pre class="has"><code class="language-css">In [20]: drinks.head()   Out[20]: </code></pre> <table> <thead> <tr> <th></th> <th>country</th> <th>beer_servings</th> <th>spirit_servings</th> <th>wine_servings</th> <th>total_litres_of_pure_alcohol</th> <th>continent</th> </tr> </thead> <tbody> <tr> <th>0</th> <td>Afghanistan</td> <td>0</td> <td>0</td> <td>0</td> <td>0.0</td> <td>Asia</td> </tr> <tr> <th>1</th> <td>Albania</td> <td>89</td> <td>132</td> <td>54</td> <td>4.9</td> <td>Europe</td> </tr> <tr> <th>2</th> <td>Algeria</td> <td>25</td> <td>0</td> <td>14</td> <td>0.7</td> <td>Africa</td> </tr> <tr> <th>3</th> <td>Andorra</td> <td>245</td> <td>138</td> <td>312</td> <td>12.4</td> <td>Europe</td> </tr> <tr> <th>4</th> <td>Angola</td> <td>217</td> <td>57</td> <td>45</td> <td>5.9</td> <td>Africa</td> </tr> </tbody> </table> <p>该数据集描述了每个国家的平均酒消费量。如果你想要将行序反转呢？</p> <p>最直接的办法是使用<strong>loc函数并传递::-1</strong>，跟Python中列表反转时使用的切片符号一致：</p> <pre class="has"><code class="language-css">In [21]: drinks.loc[::-1].head()   Out[21]: </code></pre> <table> <thead> <tr> <th></th> <th>country</th> <th>beer_servings</th> <th>spirit_servings</th> <th>wine_servings</th> <th>total_litres_of_pure_alcohol</th> <th>continent</th> </tr> </thead> <tbody> <tr> <th>192</th> <td>Zimbabwe</td> <td>64</td> <td>18</td> <td>4</td> <td>4.7</td> <td>Africa</td> </tr> <tr> <th>191</th> <td>Zambia</td> <td>32</td> <td>19</td> <td>4</td> <td>2.5</td> <td>Africa</td> </tr> <tr> <th>190</th> <td>Yemen</td> <td>6</td> <td>0</td> <td>0</td> <td>0.1</td> <td>Asia</td> </tr> <tr> <th>189</th> <td>Vietnam</td> <td>111</td> <td>2</td> <td>1</td> <td>2.0</td> <td>Asia</td> </tr> <tr> <th>188</th> <td>Venezuela</td> <td>333</td> <td>100</td> <td>3</td> <td>7.7</td> <td>South America</td> </tr> </tbody> </table> <p>如果你还想重置索引使得它从0开始呢？</p> <p>你可以使用<strong>reset_index()函数</strong>，告诉他去<strong>掉完全抛弃之前的索引</strong>：</p> <pre class="has"><code class="language-sql">In&nbsp;[22]: drinks.loc[::-1].reset_index(drop=True).head()   Out[22]: </code></pre> <table> <thead> <tr> <th></th> <th>country</th> <th>beer_servings</th> <th>spirit_servings</th> <th>wine_servings</th> <th>total_litres_of_pure_alcohol</th> <th>continent</th> </tr> </thead> <tbody> <tr> <th>0</th> <td>Zimbabwe</td> <td>64</td> <td>18</td> <td>4</td> <td>4.7</td> <td>Africa</td> </tr> <tr> <th>1</th> <td>Zambia</td> <td>32</td> <td>19</td> <td>4</td> <td>2.5</td> <td>Africa</td> </tr> <tr> <th>2</th> <td>Yemen</td> <td>6</td> <td>0</td> <td>0</td> <td>0.1</td> <td>Asia</td> </tr> <tr> <th>3</th> <td>Vietnam</td> <td>111</td> <td>2</td> <td>1</td> <td>2.0</td> <td>Asia</td> </tr> <tr> <th>4</th> <td>Venezuela</td> <td>333</td> <td>100</td> <td>3</td> <td>7.7</td> <td>South America</td> </tr> </tbody> </table> <p>你可以看到，行序已经反转，索引也被重置为默认的整数序号。</p> <h3></h3> <p><strong>列序反转</strong></p> <p>跟之前的技巧一样，你也可以使用loc函数将列从左至右反转：</p> <pre class="has"><code class="language-css">In&nbsp;[23]: drinks.loc[:, ::-1].head()   Out[23]: </code></pre> <table> <thead> <tr> <th></th> <th>continent</th> <th>total_litres_of_pure_alcohol</th> <th>wine_servings</th> <th>spirit_servings</th> <th>beer_servings</th> <th>country</th> </tr> </thead> <tbody> <tr> <th>0</th> <td>Asia</td> <td>0.0</td> <td>0</td> <td>0</td> <td>0</td> <td>Afghanistan</td> </tr> <tr> <th>1</th> <td>Europe</td> <td>4.9</td> <td>54</td> <td>132</td> <td>89</td> <td>Albania</td> </tr> <tr> <th>2</th> <td>Africa</td> <td>0.7</td> <td>14</td> <td>0</td> <td>25</td> <td>Algeria</td> </tr> <tr> <th>3</th> <td>Europe</td> <td>12.4</td> <td>312</td> <td>138</td> <td>245</td> <td>Andorra</td> </tr> <tr> <th>4</th> <td>Africa</td> <td>5.9</td> <td>45</td> <td>57</td> <td>217</td> <td>Angola</td> </tr> </tbody> </table> <p>逗号之前的冒号表示选择所有行，逗号之后的::-1表示反转所有的列，这就是为什么country这一列现在在最右边。</p> <p><strong>通过数据类型选择列</strong></p> <p>这里有drinks这个DataFrame的数据类型：</p> <pre class="has"><code class="language-properties">In [24]: drinks.dtypes   Out[24]: country                          object beer_servings                     int64 spirit_servings                   int64 wine_servings                     int64 total_litres_of_pure_alcohol    float64 continent                        object dtype: object </code></pre> <p>假设你仅仅需要<strong>选取数值型的列</strong>，那么你可以使用<strong>select_dtypes()函数</strong>：</p> <pre class="has"><code class="language-ruby">In [25]: drinks.select_dtypes(include='number').head()   Out[25]: </code></pre> <p> ‍</p> <table width="100%"> <thead> <tr> <th></th> <th>beer_servings</th> <th>spirit_servings</th> <th>wine_servings</th> <th>total_litres_of_pure_alcohol</th> </tr> </thead> <tbody> <tr> <th>0</th> <td>0</td> <td>0</td> <td>0</td> <td>0.0</td> </tr> <tr> <th>1</th> <td>89</td> <td>132</td> <td>54</td> <td>4.9</td> </tr> <tr> <th>2</th> <td>25</td> <td>0</td> <td>14</td> <td>0.7</td> </tr> <tr> <th>3</th> <td>245</td> <td>138</td> <td>312</td> <td>12.4</td> </tr> <tr> <th>4</th> <td>217</td> <td>57</td> <td>45</td> <td>5.9</td> </tr> </tbody> </table> <p>这包含了int和float型的列。</p> <p>你也可以使用这个函数来选取数据类型为object的列：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221229/21a425c368a38112b36a28c87da0a6a5.jpg" alt="整理了25个Pandas实用技巧（上）"/></p> <p>你还可以选取多种数据类型，只需要传递一个列表即可：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221229/a46d8187cfc2d0a9cfe6008417d55774.jpg" alt="整理了25个Pandas实用技巧（上）"/></p> <p>你还可以用来排除特定的数据类型：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221229/aca5708fab4a0d6cb79c9db790c96cf8.jpg" alt="整理了25个Pandas实用技巧（上）"/></p> <h3></h3> <p><strong>将字符型转换为数值型</strong></p> <p>让我们来创建另一个示例DataFrame:</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221229/91dac938dc08669841bc8b6491c433d5.jpg" alt="整理了25个Pandas实用技巧（上）"/></p> <p>这些数字实际上储存为<strong>字符型</strong>，导致其数据类型为object:</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221229/89f2f7daddd4dfe30cf26a363708f41f.jpg" alt="整理了25个Pandas实用技巧（上）"/></p> <p>为了对这些列进行数学运算，我们需要<strong>将数据类型转换成数值型</strong>。你可以对前两列使用<strong>astype()函数</strong>：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221229/133427c896ffb8bdd84dc95d402fdbe4.jpg" alt="整理了25个Pandas实用技巧（上）"/></p> <p>但是，如果你对第三列也使用这个函数，将会引起错误，这是因为这一列包含了破折号（用来表示0）但是pandas并不知道如何处理它。</p> <p>你可以对第三列使用to_numeric()函数，告诉其将任何无效数据转换为NaN:</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221229/1889778d468498a1e55965a29cb3b5b2.jpg" alt="整理了25个Pandas实用技巧（上）"/></p> <p>如果你知道NaN值代表0，那么你可以fillna()函数将他们替换成0：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221229/2c8da1303d3ebb562c8e548184de10c5.jpg" alt="整理了25个Pandas实用技巧（上）"/></p> <p>最后，你可以通过apply()函数一次性对整个DataFrame使用这个函数：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221229/ce693cd7a6629757f696b060968ad59c.jpg" alt="整理了25个Pandas实用技巧（上）"/></p> <p>仅需一行代码就完成了我们的目标，因为现在所有的数据类型都转换成float:</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221229/eb8256ddddfbb621068255cff5265445.jpg" alt="整理了25个Pandas实用技巧（上）"/></p> <h3></h3> <p><strong>减小DataFrame空间大小</strong></p> <p>pandas DataFrame被设计成可以适应内存，所以有些时候你可以减小DataFrame的空间大小，让它在你的系统上更好地运行起来。</p> <p>这是drinks这个DataFrame所占用的空间大小：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221229/e8faf3212364ae9dd794f856d93014f3.jpg" alt="整理了25个Pandas实用技巧（上）"/></p> <p>可以看到它使用了30.4KB。</p> <p>如果你对你的DataFrame有操作方面的问题，或者你不能将它读进内存，那么在读取文件的过程中有两个步骤可以使用来减小DataFrame的空间大小。</p> <p>第一个步骤是只读取那些你实际上需要用到的列，可以调用usecols参数：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221229/ce9ce72b5f16e40ad1da4d67ec2960e6.jpg" alt="整理了25个Pandas实用技巧（上）"/></p> <p>通过仅读取用到的两列，我们将DataFrame的空间大小缩小至13.6KB。</p> <p>第二步是将所有实际上为类别变量的object列转换成类别变量，可以调用dtypes参数：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221229/a8720c8f06dc0186943fddad7b415802.jpg" alt="整理了25个Pandas实用技巧（上）"/></p> <p>通过将continent列读取为category数据类型，我们进一步地把DataFrame的空间大小缩小至2.3KB。</p> <p>值得注意的是，如果跟行数相比，category数据类型的列数相对较小，那么catefory数据类型可以减小内存占用。</p> <p><strong>按行从多个文件中构建DataFrame</strong></p> <p>假设你的数据集分化为多个文件，但是你需要将这些数据集读到一个DataFrame中。</p> <p>举例来说，我有一些关于股票的小数聚集，每个数据集为单天的CSV文件。<strong>这是第一天的：</strong></p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221229/b0b8adb3737f27055a19111e1a806911.jpg" alt="整理了25个Pandas实用技巧（上）"/></p> <p><strong>这是第二天的：</strong></p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221229/2cad47577233a248318e77478ee3a27b.jpg" alt="整理了25个Pandas实用技巧（上）"/></p> <p><strong>这是第三天的：</strong></p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221229/ecaea97191d4b34678e491c0f6dbc827.jpg" alt="整理了25个Pandas实用技巧（上）"/></p> <p>你可以将每个CSV文件读取成DataFrame，将它们结合起来，然后再删除原来的DataFrame，但是这样会多占用内存且需要许多代码</p> <p>更好的方式为使用内置的glob模块。你可以给glob()函数传递某种模式，包括未知字符，这样它会返回符合该某事的文件列表。在这种方式下，glob会查找所有以stocks开头的CSV文件：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221229/586ab74d80b651e269352a0d565e5fd1.jpg" alt="整理了25个Pandas实用技巧（上）"/></p> <p>glob会返回任意排序的文件名，这就是我们为什么要用Python内置的sorted()函数来对列表进行排序。</p> <p>我们以生成器表达式用read_csv()函数来读取每个文件，并将结果传递给concat()函数，这会将单个的DataFrame按行来组合：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221229/6c7e803e552431c8d606a59a931e85ef.jpg" alt="整理了25个Pandas实用技巧（上）"/></p> <p>不幸的是，索引值存在重复。为了避免这种情况，我们需要告诉concat()函数来忽略索引，使用默认的整数索引：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221229/97bbeea9ad21a594bc71187f90d68e86.jpg" alt="整理了25个Pandas实用技巧（上）"/></p> <h3></h3> <p><strong>按列从多个文件中构建DataFrame</strong></p> <p>上一个技巧对于数据集中每个文件包含行记录很有用。但是如果数据集中的每个文件包含的列信息呢？</p> <p>这里有一个例子，dinks数据集被划分成两个CSV文件，每个文件包含三列：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221229/b73ffa31a0315ed74b71616a4dd7d530.jpg" alt="整理了25个Pandas实用技巧（上）"/></p> <p>同上一个技巧一样，我们以使用glob()函数开始。这一次，我们需要告诉concat()函数按列来组合：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221229/451978197009caa82110fab3dda5d87c.jpg" alt="整理了25个Pandas实用技巧（上）"/></p> <p>现在我们的DataFrame已经有六列了。</p> <blockquote> <p style="text-align: left">End.</p> <p style="text-align: left">译者：山阴少年</p> <p style="text-align: left">来源：博客园</p> <p style="text-align: left">原文链接：https://nbviewer.jupyter.org/github/justmarkham/pandas-videos/blob/master/top_25_pandas_tricks.ipynb</p> <p style="text-align: left">本文为转载，如有侵权请联系后台删除</p> </blockquote> </div></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-80785.htm">想开一家宠物店需要投资多少费用（开一家宠物店需要投资多少钱）</a></p>
+                                        <p>下一个：<a href="/news/article-81490.htm">中国兽药公司前50名（中国兽药公司前50名排名）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-3-9-free-high-speed-nodes.htm" title="「3月9日」最高速度22.2M/S，2025年V2ray/Shadowrocket/SSR/ClashStash免费机场订阅链接">「3月9日」最高速度22.2M/S，2025年V2ray/Shadowrocket/SSR/ClashStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-35641.htm" title="动物医院资质要求标准最新文件（符合动物医院法定条件）">动物医院资质要求标准最新文件（符合动物医院法定条件）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-9-vless-node-share.htm" title="「1月9日」最高速度19.2M/S，2025年V2ray/Shadowrocket/Clash/SSRStash免费机场订阅链接">「1月9日」最高速度19.2M/S，2025年V2ray/Shadowrocket/Clash/SSRStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-41270.htm" title="nacos的应用">nacos的应用</a></li>
+                        <li class="py-2"><a href="/news/article-47208.htm" title="小型宠物粮加工厂需要什么手续呢视频 小型宠物粮加工厂需要什么手续呢视频讲解">小型宠物粮加工厂需要什么手续呢视频 小型宠物粮加工厂需要什么手续呢视频讲解</a></li>
+                        <li class="py-2"><a href="/news/article-56707.htm" title="一片枫叶的句子（一片枫叶唯美）">一片枫叶的句子（一片枫叶唯美）</a></li>
+                        <li class="py-2"><a href="/news/article-80785.htm" title="想开一家宠物店需要投资多少费用（开一家宠物店需要投资多少钱）">想开一家宠物店需要投资多少费用（开一家宠物店需要投资多少钱）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-1-node-share.htm" title="「3月1日」最高速度22.1M/S，2025年Shadowrocket/SSR/Clash/V2rayStash免费机场订阅链接">「3月1日」最高速度22.1M/S，2025年Shadowrocket/SSR/Clash/V2rayStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-23-vless-node-share.htm" title="「1月23日」最高速度20.6M/S，2025年SSR/V2ray/Clash/ShadowrocketStash免费机场订阅链接">「1月23日」最高速度20.6M/S，2025年SSR/V2ray/Clash/ShadowrocketStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-37320.htm" title="三国杀已出武将有哪些（三国杀还出新武将吗）">三国杀已出武将有哪些（三国杀还出新武将吗）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">79</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">83</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fruits Shop End-->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3 mb-md-0">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <span class="text-light">Stash Github机场分享官网 版权所有 Powered by WordPress</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/stashgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

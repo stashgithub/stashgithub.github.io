@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://stashgithub.github.io/news/article-82170.htm" />
+    <meta charset="utf-8">
+    <title>java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能</title>
+        <meta name="description" content="C10K问题是代表一万个并发处理连接的术语。为此，我们经常需要更改已创建的网络套接字的设置以及Linux内核的默认设置，监视&nbsp;&nbsp;TCP发送/接收缓冲区和队列的使用，&nbsp;&n" />
+        <link rel="icon" href="/assets/website/img/stashgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Stash Github机场分享官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://stashgithub.github.io/news/article-82170.htm" />
+    <meta property="og:site_name" content="Stash Github机场分享官网" />
+    <meta property="og:title" content="java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能" />
+    <meta property="og:image" content="https://stashgithub.github.io/uploads/20240903-1/b797386c9bd70ebce4cf7ab774017350.webp" />
+        <meta property="og:release_date" content="2025-03-27T08:12:06" />
+    <meta property="og:updated_time" content="2025-03-27T08:12:06" />
+        <meta property="og:description" content="C10K问题是代表一万个并发处理连接的术语。为此，我们经常需要更改已创建的网络套接字的设置以及Linux内核的默认设置，监视&nbsp;&nbsp;TCP发送/接收缓冲区和队列的使用，&nbsp;&n" />
+        
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/assets/website/js/frontend/stashgithub/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/stashgithub/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/stashgithub/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/stashgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNXJ21P00N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NNXJ21P00N');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+        <div class="container topbar bg-primary d-none d-lg-block">
+            <div class="d-flex justify-content-between">
+                
+            </div>
+        </div>
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                <a href="/" class="navbar-brand">
+                                <span class="text-primary display-6">Stash Github</span>
+                                </a>
+                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/client.htm" class="nav-item nav-link">客户端</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                            </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+            <li class="breadcrumb-item active text-white">正文</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+    <!-- Fruits Shop Start-->
+    <div class="container-fluid fruite py-5">
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="StashNode免费订阅官网" data-url="https://stashnode.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <div style="font-size:16px;"> <p>C10K问题是代表一万个并发处理连接的术语。为此，我们经常需要更改已创建的网络套接字的设置以及Linux内核的默认设置，监视&nbsp;&nbsp;TCP发送/接收缓冲区和队列的使用，&nbsp;&nbsp;尤其是将我们的应用程序调整为合适的选项来解决这个问题。</p> <p>在今天的文章中，我将讨论如果我们要构建可处理数千个连接的可伸缩应用程序，则需要遵循一些通用原则。如果您想从应用程序和底层系统中获得一些见识，我将参考Netty Framework，TCP和Socket内部以及一些有用的工具。</p> <p>原则1：确保您的应用适合C10K问题</p> <p>如上所述，当我们需要在最少的上下文切换和低内存占用的情况下尽可能多地利用CPU时，则需要使进程中的线程数非常接近于给定专用处理器的数量。</p> <p>请牢记这一点，唯一可能的解决方案是选择一些非阻塞业务逻辑或具有很高CPU / IO处理时间比例(但是已经很危险)的业务逻辑。</p> <p>有时，在您的应用程序堆栈中识别此行为不是很容易，将需要重新排列应用程序/代码，添加其他外部队列(RabbitMQ)或主题(Kafka)，使用分布式系统，缓冲任务并能够从中拆分非阻塞代码。</p> <p>但是，根据我的经验，由于以下原因，值得重写我的代码并使之更加不受阻塞：</p> <p>我将我的应用程序分为两个不同的应用程序，即使它们共享相同的“域”，它们也很可能不会共享相同的部署和设计策略(例如，应用程序的一部分是可以使用线程池实现的REST端点，基于HTTP的服务器，第二部分是队列/主题的使用者，该队列/主题使用非阻塞驱动程序将某些内容写入DB。</p> <p>我能够以不同的方式缩放这两个部分的实例数，因为负载/ CPU /内存很可能完全不同。</p> <p>使用适当的工具：</p> <p>我们保持线程数量尽可能少。不要忘记不仅检查服务器线程，还检查应用程序的其他部分：队列/主题使用者，DB驱动程序设置，日志记录设置(使用异步微批处理)。始终进行线程转储dump，以查看在您的应用程序中创建了哪些线程以及创建了多少线程(不要忘记使其在负载下进行，否则您的线程池将不会被完全初始化，其中很多都是延迟创建线程的)。我总是从线程池中为我的自定义线程命名(找到受害者并调试代码要容易得多)。</p> <p>请注意，如果堵塞发生在对其他服务的HTTP / DB调用，我们可以使用反应式客户端，该客户端自动为传入的响应注册回调。考虑使用更适合服务2服务通信的协议，例如RSocket。</p> <p>检查您的应用程序中包含的线程数是否一直很少。它指的是您的应用程序是否具有有限的线程池，并且能够承受给定的负载。</p> <p>如果您的应用程序具有多个处理流，请始终验证其中哪些正在阻塞以及哪些是非阻塞。如果阻塞流的数量很大，那么您几乎肯定需要使用不同线程(来自预定义线程池)处理每个请求。在这种情况下，请考虑将基于线程池的HTTP Server与工作程序一起使用，在该服务器上，所有请求都与一个非常大的线程池放在不同的线程上以提高吞吐量。</p> <p>原理2：缓存连接，而不是线程</p> <p>该原理与HTTP Server编程模型的主题紧密相关&nbsp;&nbsp;。主要思想不是将连接绑定到单个线程，而是使用一些库，这些库支持稍微复杂但更有效的读取TCP方法。</p> <p>这并不意味着TCP连接绝对是免费的。最关键的部分是&nbsp;&nbsp;TCP握手。因此，您应该始终使用持久连接(如设置Nginx的keep-alive)。如果仅将一个TCP连接用于发送一条消息，则将支付8个TCP段的开销(连接和关闭连接= 7个段)。</p> <p>接受新的TCP连接</p> <p>如果我们处在无法使用持久连接的情况下，那么很可能在很短的时间内就会产生大量已创建的连接。必须将这些已创建的连接排队，并等待接受我们的应用程序。</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads3/20220602/02256fca135366819a4147231718afe4.jpg" alt="java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能"></p> <p>在上图中，我们可以看到积压了SYN和LISTEN。在&nbsp;&nbsp;SYN Backlog中，&nbsp;我们可以找到仅等待使用TCP Handshake进行确认的连接。但是，在LISTEN&nbsp; Backlog列表中，&nbsp;我们已经完全初始化了连接，即使使用仅等待应用程序接受的TCP发送/接收缓冲区也是如此。请阅读SYN Flood DDoS攻击。</p> <p>如果我们承受着很大的负担，并且有很多传入连接，那么实际上存在一个问题，负责接受连接的应用程序线程可能很繁忙：对已经连接的客户端执行IO。</p> <p>new ServerBootstrap()</p> <p>.channel(EpollServerSocketChannel.class)</p> <p>.group(bossEventLoopGroup, workerEventLoopGroup)</p> <p>.localAddress(8080)</p> <p>.childOption(ChannelOption.SO_SNDBUF, 1024 * 1024)</p> <p>.childOption(ChannelOption.SO_RCVBUF, 32 * 1024)</p> <p>.childHandler(new CustomChannelInitializer());</p> <p>在上面的代码段(Netty Server配置API)中，我们可以看到&nbsp;&nbsp;bossEventLoopGroup&nbsp;和 &nbsp;&nbsp;workerEventLoopGroup&nbsp;。虽然&nbsp;&nbsp;&nbsp;workerEventLoopGroup&nbsp;默认情况下是使用CPU数量* 2个线程/事件循环创建的，&nbsp;用于执行IO操作，但&nbsp;&nbsp;bossEventLoopGroup&nbsp;其中一个线程用于接受新连接。但是在这种情况下，如果由于在ChannelHandlers中执行I / O或执行更长的操作，因此接受新的连接可能会堵塞挨饿&nbsp;。</p> <p>如果遇到完全LISTEN Backlog问题，则可以增加bossEventLoopGroup中的线程数&nbsp;&nbsp;&nbsp;。我们可以很容易地测试我们的过程是否能够承受传入连接的负载。我修改了测试应用程序Websocket-Broadcaster&nbsp;&nbsp;以连接2万个客户端，并多次运行以下命令：</p> <p>$ ss -plnt sport = :8081|cat</p> <p>State Recv-Q Send-Q Local Address:Port Peer Address:Port</p> <p>LISTEN 42 128 *:8081 *:* users:(("java",pid=7418,fd=86))</p> <p>$ ss -plnt sport = :8081|cat</p> <p>State Recv-Q Send-Q Local Address:Port Peer Address:Port</p> <p>LISTEN 0 128 *:8081 *:* users:(("java",pid=7418,fd=86))</p> <p>$ ss -plnt sport = :8081|cat</p> <p>State Recv-Q Send-Q Local Address:Port Peer Address:Port</p> <p>LISTEN 20 128 *:8081 *:* users:(("java",pid=7418,fd=86))</p> <p>$ ss -plnt sport = :8081|cat</p> <p>State Recv-Q Send-Q Local Address:Port Peer Address:Port</p> <p>LISTEN 63 128 *:8081 *:* users:(("java",pid=7418,fd=86))</p> <p>$ ss -plnt sport = :8081|cat</p> <p>State Recv-Q Send-Q Local Address:Port Peer Address:Port</p> <p>LISTEN 0 128 *:8081 *:* users:(("java",pid=7418,fd=86))</p> <p>Send-Q：LISTEN Backlog的总大小</p> <p>Recv-Q：LISTEN Backlog列表中的当前连接数</p> <p>修改LISTEN Backlog的总大小：</p> <p># Current default size of LISTEN Backlog</p> <p># Feel free to change it and test SS command again</p> <p>cat /proc/sys/net/core/somaxconn</p> <p>128</p> <p>TCP发送/接收缓冲区</p> <p>但是，当连接就绪时，最贪婪的部分是TCP发送/接收缓冲区&nbsp;&nbsp;，该缓冲区用于将应用程序写入的字节传输到基础网络堆栈。这些缓冲区的大小可以通过应用程序设置：</p> <p>new ServerBootstrap()</p> <p>.channel(EpollServerSocketChannel.class)</p> <p>.group(bossEventLoopGroup, workerEventLoopGroup)</p> <p>.localAddress(8080)</p> <p>.childOption(ChannelOption.SO_SNDBUF, 1024 * 1024)</p> <p>.childOption(ChannelOption.SO_RCVBUF, 32 * 1024)</p> <p>.childHandler(new CustomChannelInitializer());</p> <p>有关Java中的Socket Options的更多信息，请查看&nbsp;&nbsp;StandardSocketOptions&nbsp;&nbsp;类。较新版本的Linux可以与TCP拥塞窗口配合使用，自动调整缓冲区以达到当前负载的最佳大小。</p> <p>在进行任何自定义大小调整之前，请阅读“&nbsp;&nbsp;TCP缓冲区大小调整”。较大的缓冲区可能会导致内存浪费，另一方面，较小的缓冲区可能会限制读取器或写入器的应用程序，因为将没有空间将字节传输到网络堆栈或从网络堆栈传输字节。</p> <p>为什么缓存Thread是一个坏主意？</p> <p>Java Thread是一个非常昂贵的对象，因为它一对一映射到了内核线程(希望Loom项目来得早可以拯救我们)。在Java中，我们可以使用-Xss&nbsp;选项限制线程的堆栈大小，该&nbsp;&nbsp;选项默认设置为1MB。这意味着一个线程占用1MB的虚拟内存，实际的RSS(居民集大小)等于堆栈的当前大小；内存在开始时并未完全分配并映射到物理内存(这经常被误解，如本文中所展示的：&nbsp;&nbsp;Java线程需要多少内存？)。通常(根据我的经验)，如果我们真的不使用某些贪婪的框架或递归，则线程的大小以数百千字节(200-300kB)为单位。这种内存属于本机内存。我们可以在“本&nbsp;&nbsp;机内存跟踪”中进行跟踪。</p> <p>$ java -XX:+UnlockDiagnosticVMOptions -XX:NativeMemoryTracking=summary /</p> <p>-XX:+PrintNMTStatistics -version</p> <p>openjdk version "11.0.2" 2019-01-15</p> <p>OpenJDK Runtime Environment AdoptOpenJDK (build 11.0.2+9)</p> <p>OpenJDK 64-Bit Server VM AdoptOpenJDK (build 11.0.2+9, mixed mode)</p> <p>Native Memory Tracking:</p> <p>Total: reserved=6643041KB, committed=397465KB</p> <p>- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Java Heap (reserved=5079040KB, committed=317440KB)</p> <p>(mmap: reserved=5079040KB, committed=317440KB)</p> <p>- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Class (reserved=1056864KB, committed=4576KB)</p> <p>(classes #426)</p> <p>( &nbsp;instance classes #364, array classes #62)</p> <p>(malloc=96KB #455)</p> <p>(mmap: reserved=1056768KB, committed=4480KB)</p> <p>( &nbsp;Metadata: &nbsp; )</p> <p>( &nbsp; &nbsp;reserved=8192KB, committed=4096KB)</p> <p>( &nbsp; &nbsp;used=2849KB)</p> <p>( &nbsp; &nbsp;free=1247KB)</p> <p>( &nbsp; &nbsp;waste=0KB =0,00%)</p> <p>( &nbsp;Class space:)</p> <p>( &nbsp; &nbsp;reserved=1048576KB, committed=384KB)</p> <p>( &nbsp; &nbsp;used=270KB)</p> <p>( &nbsp; &nbsp;free=114KB)</p> <p>( &nbsp; &nbsp;waste=0KB =0,00%)</p> <p>- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Thread (reserved=15461KB, committed=613KB)</p> <p>(thread #15)</p> <p>(stack: reserved=15392KB, committed=544KB)</p> <p>(malloc=52KB #84)</p> <p>(arena=18KB #28)</p> <p>大量线程的另一个问题是庞大的&nbsp;&nbsp;Root Set。例如，我们有4个CPU和200个线程。在这种情况下，我们仍然只能在给定的时间运行4个线程，但是如果所有200个线程已经在忙于处理某个请求，我们将为已经在Java Heap上分配但无法创建任何对象的对象付出巨大的代价：线程必须等待CPU空闲的时间。</p> <p>所有已分配且仍在使用的对象是Live Set一部分,Live Set是在垃圾收集周期中必须遍历且无法收集的可访问对象。</p> <p>为什么Root Set 很重要？</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads3/20220602/2b44e268583e0312ea2b9a8a920aa87e.jpg" alt="java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能"></p> <p>当前只有4个线程在CPU上运行并且其余线程仅在CPU Run Queue中等待时，红点可以表示任何时间点&nbsp;&nbsp;。任务的完成并不意味着到目前为止分配的所有对象仍然处于活动状态，并且也并不都是活动集的一部分&nbsp;&nbsp;，它们已经变为垃圾，等待下一个GC周期被删除。这种情况有什么不好？</p> <p>Live Set太大：每个线程都会在Java Heap上保留分配的活动对象，这些对象仅等待CPU取得一些进展。当我们调整堆大小时，我们需要牢记这一点，这种方式将以非常低的效率使用大量内存，特别是如果我们要设计处理大量请求的小型服务时。</p> <p>由于更大的Root Set而导致GC暂停更大：更大的Root Set对我们的垃圾收集器意味着复杂的工作。&nbsp;现代GC首先从识别Root Set(也称为快照快照或初始标记)开始&nbsp;，主要是通过活动线程保持堆外部分配的可访问对象(但不仅是线程)，然后同时遍历对象图/查找当前Live Set的参考。根root设置越大，GC识别和遍历它的工作就越多，此外，初始标记通常是称为“世界停止”&nbsp;的阶段。并发遍历庞大的对象图还会导致较大的延迟和GC本身的较差的可预测性(GC必须更早地开始并发阶段以使其在堆满之前，这也取决于分配率)。</p> <p>升级到老一代：较大的“ Live Set”还将影响将给定对象视为活动对象的时间。即使保持该对象的线程大部分时间都花在了CPU之外，这也增加了将该对象提升为旧一代(或至少提升为生存空间)的机会。</p> <p>原则3：停止生成垃圾</p> <p>如果您真的想编写一个承受巨大负担的应用程序，那么您需要考虑所有对象的分配，并且不要让JVM浪费任何单个字节。Netty给我们带来了&nbsp;&nbsp;ByteBuffers&nbsp;和ByteBuf&nbsp;。这是非常先进的，因此非常简短。</p> <p>ByteBuffers是JDK的byte持有者，有两个选项HeapByteBuffer&nbsp;(在堆上分配的字节数组)和&nbsp;&nbsp;DirectByteBuffer(堆外内存)，DirectByteBuffers可以直接传递给本机OS功能来执行I / O，换句话说，当您使用Java执行I / O时，您可以传递一个引用DirectByteBuffer&nbsp;(带有偏移量和长度)。</p> <p>这可以在许多用例中提供帮助。</p> <p>假设有1万个连接，并且希望向所有连接广播相同的字符串值。没有理由传递字符串并导致将相同的字符串10k次映射到byte，甚至更糟的是，为每个客户端连接生成新的字符串对象，并使用相同的字节数组污染堆；相反，我们可以生成自己的DirectByteBuffer&nbsp;并将其提供给所有连接，通过JVM将其传递给操作系统。</p> <p>但是，有一个问题。DirectByteBuffer&nbsp;分配非常昂贵。因此，在JDK中，每个进行I / O的线程都为此内部缓存了一个DirectByteBuffer&nbsp;。</p> <p>那么，为啥需要HeapByteBuffer？&nbsp;HeapByteBuffer&nbsp;在分配方面要便宜得多。如果考虑到上面的示例，我们至少可以省去第一步-将字符串编码为字节数组(而不是将其编码10k次)，然后我们可以依靠它的DirectByteBuffer自动缓存机制&nbsp;&nbsp;，而不必为每个新的字符串消息分配新 的DirectByteBuffer付出高昂成本，否则我们将需要在业务代码中开发自己的缓存机制。</p> <p>何时使用没有缓存的DirectByteBuffer 和使用带有自动缓存的HeapByteBuffer ？需要权衡。</p> <p>上面还提到了Netty的ByteBuf机制。实际上也是ByteBuffers概念；但是，我们可以享受基于2个索引的便利API(一个用于读取，一个用于写入)。另一个区别是回收内存。DirectByteBuffer 是基于JDK&nbsp;Cleaner&nbsp;&nbsp;类。</p> <p>这意味着我们需要运行GC，否则我们将耗尽本机内存。对于非常优化的应用程序，可能不会出现问题，因为它们不会在堆上分配，这意味着不会触发任何GC。然后，我们需要依靠显式GC(System#gc())进行救援，并为下一个本机分配回收足够的内存。</p> <p>Netty&nbsp;ByteBuf&nbsp;可以创建两种版本：池化和非池化，本机内存的释放(或将缓冲区放回池中)是基于引用计数机制的。这是某种额外的手动工作。当我们想减少参考计数器时我们需要编写，但是它解决了上面提到的问题。</p> <p>原理4：衡量您在高峰时段产生的负荷类型如果您想深入了解TCP层，那么我强烈建议：</p> <p>使用&nbsp;&nbsp;bpftrace，&nbsp;我们可以编写一个简单的程序并获得快速结果，并能够调查问题。这是socketio-pid.bt的示例，&nbsp;&nbsp;显示了根据PID粒度传输了多少字节。</p> <p>#!/snap/bin/bpftrace</p> <p>#include</p> <p>BEGIN</p> <p>{<!-- --></p> <p>printf("Socket READS/WRITES and transmitted bytes, PID: %u\n", $1);</p> <p>}</p> <p>kprobe:sock_read_iter,</p> <p>kprobe:sock_write_iter</p> <p>/$1 == 0 || ($1 != 0 &amp;&amp; pid == $1)/</p> <p>{<!-- --></p> <p>@kiocb[tid] = arg0;</p> <p>}</p> <p>kretprobe:sock_read_iter</p> <p>/@kiocb[tid] &amp;&amp; ($1 == 0 || ($1 != 0 &amp;&amp; pid == $1))/</p> <p>{<!-- --></p> <p>$file = ((struct kiocb *)@kiocb[tid])-&gt;ki_filp;</p> <p>$name = $file-&gt;f_path.dentry-&gt;d_name.name;</p> <p>@io[comm, pid, "read", str($name)] = count();</p> <p>@bytes[comm, pid, "read", str($name)] = sum(retval &gt; 0 ? retval : 0);</p> <p>delete(@kiocb[tid]);</p> <p>}</p> <p>kretprobe:sock_write_iter</p> <p>/@kiocb[tid] &amp;&amp; ($1 == 0 || ($1 != 0 &amp;&amp; pid == $1))/</p> <p>{<!-- --></p> <p>$file = ((struct kiocb *)@kiocb[tid])-&gt;ki_filp;</p> <p>$name = $file-&gt;f_path.dentry-&gt;d_name.name;</p> <p>@io[comm, pid, "write", str($name)] = count();</p> <p>@bytes[comm, pid, "write", str($name)] = sum(retval &gt; 0 ? retval : 0);</p> <p>delete(@kiocb[tid]);</p> <p>}</p> <p>END</p> <p>{<!-- --></p> <p>clear(@kiocb);</p> <p>}</p> <p>我可以看到五个称为server-io-x的&nbsp;Netty线程，每个线程代表一个事件循环。每个事件循环都有一个连接的客户端，应用程序使用Websocket协议将随机生成的字符串消息广播到所有连接的客户端。</p> <p>@bytes&nbsp;&nbsp;—读/写字节的总和</p> <p>@io&nbsp;&nbsp;—&nbsp;总共有多个读/写操作(1条读消息表示Websocket握手)</p> <p>./socketio-pid.bt 27069</p> <p>Attaching 6 probes...</p> <p>Socket READS/WRITES and transmitted bytes, PID: 27069</p> <p>@bytes[server-io-3, 27069, read, TCPv6]: 292</p> <p>@bytes[server-io-4, 27069, read, TCPv6]: 292</p> <p>@bytes[server-io-0, 27069, read, TCPv6]: 292</p> <p>@bytes[server-io-2, 27069, read, TCPv6]: 292</p> <p>@bytes[server-io-1, 27069, read, TCPv6]: 292</p> <p>@bytes[server-io-3, 27069, write, TCPv6]: 1252746</p> <p>@bytes[server-io-1, 27069, write, TCPv6]: 1252746</p> <p>@bytes[server-io-0, 27069, write, TCPv6]: 1252746</p> <p>@bytes[server-io-4, 27069, write, TCPv6]: 1252746</p> <p>@bytes[server-io-2, 27069, write, TCPv6]: 1252746</p> <p>@io[server-io-3, 27069, read, TCPv6]: 1</p> <p>@io[server-io-4, 27069, read, TCPv6]: 1</p> <p>@io[server-io-0, 27069, read, TCPv6]: 1</p> <p>@io[server-io-2, 27069, read, TCPv6]: 1</p> <p>@io[server-io-1, 27069, read, TCPv6]: 1</p> <p>@io[server-io-3, 27069, write, TCPv6]: 1371</p> <p>@io[server-io-1, 27069, write, TCPv6]: 1371</p> <p>@io[server-io-0, 27069, write, TCPv6]: 1371</p> <p>@io[server-io-4, 27069, write, TCPv6]: 1371</p> <p>@io[server-io-2, 27069, write, TCPv6]: 1371</p> <p>原则5：吞吐量和延迟之间的平衡</p> <p>如果考虑应用程序性能，很可能最终会在吞吐量和延迟之间进行权衡。这种权衡涉及所有编程领域，JVM领域的一个著名示例是Garbage Collector：您是否要在某些批处理应用程序中专注于使用ParallelGC的吞吐量，还是需要低延迟的大多数并发GC，例如ShenandoahGC或ZGC？</p> <p>但是，在这一部分中，我将重点介绍可以由我们基于Netty的应用程序或框架驱动的另一种折衷类型。假设我们有将消息推送到连接的客户端的WebSocket服务器。我们真的需要尽快发送特定消息吗？还是可以等待更长的时间，然后创建一批包含五个消息并一起发送的消息？</p> <p>Netty实际上支持完全涵盖此用例的刷新机制。假设我们决定使用批处理将syscall摊销到20％，并牺牲延迟以支持整体吞吐量。</p> <p>如果您想了解有关Java Flight Recorder的更多信息，请阅读我的文章&nbsp;&nbsp;使用Java Flight Recorder挖掘套接字。</p> <p>原则6：紧跟新趋势并不断尝试</p> </div> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-82169.htm">利用ref获取单个元素或者组件，ref</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-74624.htm" title="沈阳宠物用品批发在哪进货（沈阳哪有宠物用品批发）">沈阳宠物用品批发在哪进货（沈阳哪有宠物用品批发）</a></li>
+                        <li class="py-2"><a href="/news/article-55037.htm" title="开宠物食品厂有利润吗多少钱（开个宠物食品厂怎么样）">开宠物食品厂有利润吗多少钱（开个宠物食品厂怎么样）</a></li>
+                        <li class="py-2"><a href="/news/article-43263.htm" title="Citus 分布式 PostgreSQL 集群 &#8211; SQL Reference(查询分布式表 SQL)">Citus 分布式 PostgreSQL 集群 &#8211; SQL Reference(查询分布式表 SQL)</a></li>
+                        <li class="py-2"><a href="/news/article-70652.htm" title="宠物饲料加工厂家电话（宠物饲料生产基地）">宠物饲料加工厂家电话（宠物饲料生产基地）</a></li>
+                        <li class="py-2"><a href="/news/article-67430.htm" title="宠物医院治仓鼠吗安全吗（一般的宠物医院治仓鼠吗）">宠物医院治仓鼠吗安全吗（一般的宠物医院治仓鼠吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-13-latest-vless-node.htm" title="「3月13日」最高速度21.5M/S，2025年Clash/SSR/Shadowrocket/V2rayStash免费机场订阅链接">「3月13日」最高速度21.5M/S，2025年Clash/SSR/Shadowrocket/V2rayStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-41762.htm" title="动物疫苗股票龙头一览（动物疫苗上市a股龙头）">动物疫苗股票龙头一览（动物疫苗上市a股龙头）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-27-vless-github.htm" title="「1月27日」最高速度18.5M/S，2025年Shadowrocket/V2ray/Clash/SSRStash免费机场订阅链接">「1月27日」最高速度18.5M/S，2025年Shadowrocket/V2ray/Clash/SSRStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-59553.htm" title="vue跳转方式及传参 (包括打开新窗口)">vue跳转方式及传参 (包括打开新窗口)</a></li>
+                        <li class="py-2"><a href="/news/article-80785.htm" title="想开一家宠物店需要投资多少费用（开一家宠物店需要投资多少钱）">想开一家宠物店需要投资多少费用（开一家宠物店需要投资多少钱）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">79</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">83</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fruits Shop End-->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3 mb-md-0">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <span class="text-light">Stash Github机场分享官网 版权所有 Powered by WordPress</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/stashgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

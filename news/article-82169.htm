@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://stashgithub.github.io/news/article-82169.htm" />
+    <meta charset="utf-8">
+    <title>利用ref获取单个元素或者组件，ref</title>
+        <meta name="description" content="利用ref获取单个元素或者组件：  获取单个元素 先定义一个空的响应式数据ref定义的 setup中返回该数据，你想获取那个dom元素，在该元素上使用ref属性绑定该数据即可。  &lt;templa" />
+        <link rel="icon" href="/assets/website/img/stashgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Stash Github机场分享官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://stashgithub.github.io/news/article-82169.htm" />
+    <meta property="og:site_name" content="Stash Github机场分享官网" />
+    <meta property="og:title" content="利用ref获取单个元素或者组件，ref" />
+    <meta property="og:image" content="https://stashgithub.github.io/uploads/20240903-1/d87a3c8982a4e3b337559b65c39810d5.webp" />
+        <meta property="og:release_date" content="2025-03-27T08:12:06" />
+    <meta property="og:updated_time" content="2025-03-27T08:12:06" />
+        <meta property="og:description" content="利用ref获取单个元素或者组件：  获取单个元素 先定义一个空的响应式数据ref定义的 setup中返回该数据，你想获取那个dom元素，在该元素上使用ref属性绑定该数据即可。  &lt;templa" />
+        
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="利用ref获取单个元素或者组件，ref">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/assets/website/js/frontend/stashgithub/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/stashgithub/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/stashgithub/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/stashgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNXJ21P00N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NNXJ21P00N');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+        <div class="container topbar bg-primary d-none d-lg-block">
+            <div class="d-flex justify-content-between">
+                
+            </div>
+        </div>
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                <a href="/" class="navbar-brand">
+                                <span class="text-primary display-6">Stash Github</span>
+                                </a>
+                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/client.htm" class="nav-item nav-link">客户端</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                            </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">利用ref获取单个元素或者组件，ref</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+            <li class="breadcrumb-item active text-white">正文</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+    <!-- Fruits Shop Start-->
+    <div class="container-fluid fruite py-5">
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="StashNode免费订阅官网" data-url="https://stashnode.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>利用ref获取单个元素或者组件：</p> <ol> <li>获取单个元素</li> <li>先定义一个空的响应式数据ref定义的</li> <li>setup中返回该数据，你想获取那个dom元素，在该元素上使用ref属性绑定该数据即可。</li> </ol> <pre><code class="prism language-javascript"><span class="token operator">&lt;</span>template<span class="token operator">&gt;</span>   <span class="token operator">&lt;</span>div id<span class="token operator">=</span><span class="token string">"container"</span><span class="token operator">&gt;</span>     <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> vue2<span class="token punctuation">.</span><span class="token number">0</span> 获取单个元素 <span class="token operator">--</span><span class="token operator">&gt;</span>     <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> <span class="token number">1.</span> 通过ref属性绑定该元素 <span class="token operator">--</span><span class="token operator">&gt;</span>     <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> <span class="token number">2.</span> 通过<span class="token keyword">this</span><span class="token punctuation">.</span>$refs<span class="token punctuation">.</span>box获取元素 <span class="token operator">--</span><span class="token operator">&gt;</span>     <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> <span class="token operator">&lt;</span>div ref<span class="token operator">=</span><span class="token string">"box"</span><span class="token operator">&gt;</span>我是box<span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span> <span class="token operator">--</span><span class="token operator">&gt;</span>     <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> vue2<span class="token punctuation">.</span><span class="token number">0</span> 获取v<span class="token operator">-</span><span class="token keyword">for</span>遍历的多个元素 <span class="token operator">--</span><span class="token operator">&gt;</span>     <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> <span class="token number">1.</span> 通过ref属性绑定被遍历元素 <span class="token operator">--</span><span class="token operator">&gt;</span>     <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> <span class="token number">2.</span> 通过<span class="token keyword">this</span><span class="token punctuation">.</span>$refs<span class="token punctuation">.</span>li 是个数组 获取所有遍历元素  <span class="token operator">--</span><span class="token operator">&gt;</span>     <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> <span class="token operator">&lt;</span>ul<span class="token operator">&gt;</span>       <span class="token operator">&lt;</span>li v<span class="token operator">-</span><span class="token keyword">for</span><span class="token operator">=</span><span class="token string">"i in 4"</span> <span class="token operator">:</span>key<span class="token operator">=</span><span class="token string">"i"</span> ref<span class="token operator">=</span><span class="token string">"li"</span><span class="token operator">&gt;</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">{<!-- --></span>i<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">&gt;</span>     <span class="token operator">&lt;</span><span class="token operator">/</span>ul<span class="token operator">&gt;</span> <span class="token operator">--</span><span class="token operator">&gt;</span>      <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 单个元素的情况 <span class="token operator">--</span><span class="token operator">&gt;</span>     <span class="token operator">&lt;</span>div ref<span class="token operator">=</span><span class="token string">"dom"</span><span class="token operator">&gt;</span>我是box<span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>     <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 被遍历元素的情况 <span class="token operator">--</span><span class="token operator">&gt;</span>   <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span> <span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">&gt;</span> <span class="token operator">&lt;</span>script<span class="token operator">&gt;</span> <span class="token keyword">import</span> <span class="token punctuation">{<!-- --></span> ref<span class="token punctuation">,</span> onMounted <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'vue'</span><span class="token punctuation">;</span> <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{<!-- --></span>   name<span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">,</span>   <span class="token function">setup</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>     <span class="token comment">// 1. 获取单个元素</span>     <span class="token comment">// 1.1 先定义一个空的响应式数据ref定义的</span>     <span class="token comment">// 1.2 setup中返回该数据，你想获取那个dom元素，在该元素上使用ref属性绑定该数据即可。</span>     <span class="token keyword">const</span> dom <span class="token operator">=</span> <span class="token function">ref</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span>     <span class="token function">onMounted</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{<!-- --></span>         console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>dom<span class="token punctuation">)</span>     <span class="token punctuation">}</span><span class="token punctuation">)</span>     <span class="token keyword">return</span> <span class="token punctuation">{<!-- --></span> dom <span class="token punctuation">}</span><span class="token punctuation">;</span>   <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span> <span class="token operator">&lt;</span>style lang<span class="token operator">=</span><span class="token string">'less'</span> scoped<span class="token operator">&gt;</span> <span class="token operator">&lt;</span><span class="token operator">/</span>style<span class="token operator">&gt;</span> </code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221229/be7d5fbc69a432b772bee03f6dcd6e46.jpg" alt="利用ref获取单个元素或者组件，ref"></p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-81490.htm">中国兽药公司前50名（中国兽药公司前50名排名）</a></p>
+                                        <p>下一个：<a href="/news/article-82170.htm">java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-49202.htm" title="狗粮品牌有哪些品牌好一点（狗粮排行榜6大优质品牌）">狗粮品牌有哪些品牌好一点（狗粮排行榜6大优质品牌）</a></li>
+                        <li class="py-2"><a href="/news/article-75994.htm" title="疫苗进行动物试验的重要性 疫苗进行动物试验的重要性和意义">疫苗进行动物试验的重要性 疫苗进行动物试验的重要性和意义</a></li>
+                        <li class="py-2"><a href="/news/article-52329.htm" title="vue项目的excel的导入与导出">vue项目的excel的导入与导出</a></li>
+                        <li class="py-2"><a href="/news/article-40782.htm" title="C语言：float、double表示范围">C语言：float、double表示范围</a></li>
+                        <li class="py-2"><a href="/news/article-76666.htm" title="k8s灰度发布、滚动更新与探针详解">k8s灰度发布、滚动更新与探针详解</a></li>
+                        <li class="py-2"><a href="/news/article-52330.htm" title="宠物粮食哪里批发最便宜又好卖的（宠物粮食批发市场）">宠物粮食哪里批发最便宜又好卖的（宠物粮食批发市场）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-3-node-share-links.htm" title="「2月3日」最高速度20M/S，2025年SSR/Clash/V2ray/ShadowrocketStash免费机场订阅链接">「2月3日」最高速度20M/S，2025年SSR/Clash/V2ray/ShadowrocketStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-72614.htm" title="中国兽药十强企业排名（中国兽药公司前50名）">中国兽药十强企业排名（中国兽药公司前50名）</a></li>
+                        <li class="py-2"><a href="/news/article-36835.htm" title="动物防疫疫苗种类大全图（动物疫苗知识）">动物防疫疫苗种类大全图（动物疫苗知识）</a></li>
+                        <li class="py-2"><a href="/news/article-80784.htm" title="开宠物店一天能赚多少（开宠物店赚钱吗?一般来说多久可以回本）">开宠物店一天能赚多少（开宠物店赚钱吗?一般来说多久可以回本）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">79</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">83</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fruits Shop End-->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3 mb-md-0">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <span class="text-light">Stash Github机场分享官网 版权所有 Powered by WordPress</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/stashgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
