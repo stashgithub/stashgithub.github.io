@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://stashgithub.github.io/news/article-83592.htm" />
+    <meta charset="utf-8">
+    <title>一段解决kafka消息处理异常的经典对话</title>
+        <meta name="description" content="对kafka不了解的童鞋可以先看看Kafka漫游记 有一天，卡尔维护的购买系统发生了一个奇怪的异常，从日志里看到，购买后的任务处理竟然先于购买任务执行了。“不可能啊，按照代码的顺序，一定是先执行购买流" />
+        <link rel="icon" href="/assets/website/img/stashgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Stash Github机场分享官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://stashgithub.github.io/news/article-83592.htm" />
+    <meta property="og:site_name" content="Stash Github机场分享官网" />
+    <meta property="og:title" content="一段解决kafka消息处理异常的经典对话" />
+    <meta property="og:image" content="https://stashgithub.github.io/uploads/20240903-1/a701f1b663e8e7fe5fadb91941dac4f0.webp" />
+        <meta property="og:release_date" content="2025-03-29T08:58:15" />
+    <meta property="og:updated_time" content="2025-03-29T08:58:15" />
+        <meta property="og:description" content="对kafka不了解的童鞋可以先看看Kafka漫游记 有一天，卡尔维护的购买系统发生了一个奇怪的异常，从日志里看到，购买后的任务处理竟然先于购买任务执行了。“不可能啊，按照代码的顺序，一定是先执行购买流" />
+        
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="一段解决kafka消息处理异常的经典对话">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/assets/website/js/frontend/stashgithub/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/stashgithub/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/stashgithub/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/stashgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNXJ21P00N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NNXJ21P00N');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+        <div class="container topbar bg-primary d-none d-lg-block">
+            <div class="d-flex justify-content-between">
+                
+            </div>
+        </div>
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                <a href="/" class="navbar-brand">
+                                <span class="text-primary display-6">Stash Github</span>
+                                </a>
+                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/client.htm" class="nav-item nav-link">客户端</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                            </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">一段解决kafka消息处理异常的经典对话</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+            <li class="breadcrumb-item active text-white">正文</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+    <!-- Fruits Shop Start-->
+    <div class="container-fluid fruite py-5">
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="StashNode免费订阅官网" data-url="https://stashnode.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <div id="js_content"> <p style="text-align: justify"> <p style="text-align: justify">对kafka不了解的童鞋可以先看看<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://mp.weixin.qq.com/s?__biz=MzA3OTUxNDY2MA%3D%3D&amp;chksm=9fb31eaaa8c497bcaff12de625f9a83b5e4efc3252db6d3dea41701b2d79ea248d9f0ed7290f&amp;idx=1&amp;mid=2247484385&amp;scene=21&amp;sn=c87ae35110da20fdac4b533c4596b05c#wechat_redirect"  rel="nofollow">Kafka漫游记</a></p> <p style="text-align: justify">有一天，卡尔维护的购买系统发生了一个奇怪的异常，从日志里看到，购买后的任务处理竟然先于购买任务执行了。“不可能啊，按照代码的顺序，一定是先执行购买流程，再发送消息到kafka，最后消费端接收到消息后执行购买后的一些善后任务。从A到B到C，顺序清清楚楚。” 于是，他请教了马克，马克眯着眼睛细看了一会，道:"问题是不是出在这段@Transaction注解上？"</p> <p style="text-align: justify">伪代码：</p> <pre class="has"><code class="language-go">@Transaction public void buy(){ //购买业务逻辑 user.buy(); //发送消息 kafkaTemplete.sendMdg(); } buy();</code></pre> <p style="text-align: justify">马克说道：“这kafka消息鬼的很，它没准在事务提交之前就发送出去了，而消费者在fetch消息执行业务流程的时候这段事务仍然没有提交，这就导致了数据上的乱序，看上去就像购买后任务先于购买任务执行。”</p> <p style="text-align: justify">“那该怎么改呢？把kafkaTemplete.sendMdg()这段移出方法，等事务提交了再发送消息？但我把消息发送这步写在事务注解的方法内部，就是为了在消息发送失败的时候能够实现回滚。如果移出来，而消息发送的时候失败，那怎么办？” 卡尔问道。</p> <p style="text-align: justify">“可以考虑使用本地消息表。” 马克说着在白板上写下了一段伪代码：</p> <p style="text-align: justify">producer：</p> <pre class="has"><code class="language-go">@Transaction public void buy(){ user.buy(); //新建一张msgtable本地消息表，消息在这里插入 insertInitMsgToDB(); }  public void sendMsg(){ //发送消息移到了新方法里 kafkaTemplete.sendMdg(); }  //主流程执行 buy(); sendMsg();</code></pre> <p style="text-align: justify">consumer：</p> <pre class="has"><code class="language-go">@Kafkalistener @Transaction public void msgConsume(Record record){ &nbsp; &nbsp;  &nbsp; if(isConsumed(record)){ &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;//查询本地消息表，已经消费过的则不处理  &nbsp; &nbsp; &nbsp;return；  &nbsp; &nbsp;}   &nbsp; &nbsp;//处理业务逻辑  &nbsp; &nbsp;deal(record);  &nbsp; &nbsp;// 更改本地消息表消息状态为成功  &nbsp; &nbsp;changeRecord(record); }</code></pre> <p style="text-align: justify">"主要是通过时效性高的MQ，自动触发事件；万一消息发送失败，也可以通过数据表的消息记录轮询来保证。不过关系数据库的吞吐量和性能存在瓶颈，频繁的读写消息会给数据库造成压力，考虑当前场景，稳定性要求较高，而并发量还没有上来。可以考虑这种方法。” 马克道。</p> <p style="text-align: justify">卡尔改完后，测试发布，之后再也没出现乱序了，但消息有时会莫名地丢失或者重复消费，卡尔不得不经常查看线上日志，手工修复一些数据问题，费时费力，只能在晚上加班加点开发新的业务。</p> <p style="text-align: justify">马克也一直在跟踪这个问题，有一天，他有了发现，走过来对卡尔说道：“我研究了一些kafka的机制，问题可能是我们kafka中的配置enable.auto.commit 是 true的缘故？”</p> <p style="text-align: justify">卡尔道：“是不是自动提交会带来一些不可控因素？”</p> <p style="text-align: justify">马克道：“对，当我们的配置是自动提交的时候，消费者的消息投递保证有可能是at least once，或者at most once。当到达提交时间间隔，触发Kafka自动提交上次的偏移量时，就可能发生at most once的情况， 在这段时间，如果消费者还没完成消息的处理进程就崩溃了， 消费者进程重新启动时，它开始接收上次提交的偏移量之后的消息，实际上消费者可能会丢失几条消息；而当消费者处理完消息并将消息提交到持久化存储系统，而消费者进程崩溃时，会发生at least once的情况。 在此期间，kafka没有向broker提交offset，因为自动提交时间间隔没有过去。 当消费者进程重新启动时，会收到从上次提交的偏移量开始的一些旧消息。”</p> <p style="text-align: justify">“正是这个导致消息丢失或者重复消费现象，那你想怎么改呢？” 卡尔道。</p> <p style="text-align: justify">马克继续道：“不仅如此，即使消费者进程没有崩溃，假如中间有一个消息的业务逻辑执行抛出了异常，消费者也当作是接收到了消息，程序执行回滚，这条消息也等同于丢失了。我关闭了自动提交(enable.auto.commit:false)，当消费者每次 poll 处理完业务逻辑后必须完成手动同步提交（commitSync），如果消费者在消费过程中发生 crash，或者执行业务逻辑发生异常回滚，下次启动时依然会从之前的位置开始消费，从而保证每次提交的内容都能被消费，即实现了at least once保证。”</p> <p style="text-align: justify">“这防止了消息丢失，但消息重复问题该怎么解决？”</p> <p style="text-align: justify">“先别急，另外需要注意的是，这只是对消费者的配置，为了使消息在发送时不丢失，我们对生产者也要做相应的配置优化。即配置&nbsp;request.required.acks&nbsp;参数。” 马克说着，在纸上列出了一张表格：</p> <table> <tbody> <tr> <td> <p style="text-align: justify">1（默认）</p> </td> <td> <p style="text-align: justify">leader 已成功收到的数据并得到确认后发送下一条 message。如果 leader 宕机，则会丢失数据。</p> </td> </tr> <tr> <td> <p style="text-align: justify">0</p> </td> <td> <p style="text-align: justify">送端无需等待来自 broker 的确认而继续发送下一批消息。这种情况下数据传输效率最高，但是数据可靠性确是最低的。</p> </td> </tr> <tr> <td> <p style="text-align: justify">-1（ALL）</p> </td> <td> <p style="text-align: justify">发送端需要等待 ISR 列表中所有列表都确认接收数据后才算一次发送完成，可靠性最高。</p> </td> </tr> </tbody> </table> <p style="text-align: justify">“至于你说的消费重复问题，主要解决思路是在服务层实现幂等性。让接收端支持消息去重的功能。比如在上面的伪代码中，record中放一个唯一键字段，消费时根据唯一键查询这条消息，判断是否消费过。也可以通过redis缓存来实现类似的机制。”</p> <p style="text-align: justify">卡尔道：“真是这样子的吗？”</p> <p style="text-align: justify">“尽信书不如无书，尤其是技术，是需要经过长时间的时间检验的，你对此有所怀疑的话可以在本地开发环境优化试试看。” 马克道。</p> <p style="text-align: justify">更多精彩：</p> <p style="text-align: justify">本地消息表只是分布式事务处理的一个经典方法，要想了解更全面具体的方案，请关注知识星球，获取支付宝大神的方案杰作，另外有重要开源框架推荐。<span style="font-size: 16px; text-align: center;">&nbsp;&nbsp;</span></p> </div></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-82886.htm">有没有宠物批发的网站推荐（有没有宠物批发的网站推荐知乎）</a></p>
+                                        <p>下一个：<a href="/news/article-83596.htm">新手开什么店赚钱（新手开店开什么店最好）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-2-9-today-vless-node.htm" title="「2月9日」最高速度19.8M/S，2025年V2ray/Shadowrocket/SSR/ClashStash免费机场订阅链接">「2月9日」最高速度19.8M/S，2025年V2ray/Shadowrocket/SSR/ClashStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-1-node-share.htm" title="「3月1日」最高速度22.1M/S，2025年Shadowrocket/SSR/Clash/V2rayStash免费机场订阅链接">「3月1日」最高速度22.1M/S，2025年Shadowrocket/SSR/Clash/V2rayStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-7-node-share-links.htm" title="「1月7日」最高速度21.2M/S，2025年SSR/Clash/V2ray/ShadowrocketStash免费机场订阅链接">「1月7日」最高速度21.2M/S，2025年SSR/Clash/V2ray/ShadowrocketStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-51274.htm" title="动物疫苗的类型包括（动物疫苗的类型包括什么）">动物疫苗的类型包括（动物疫苗的类型包括什么）</a></li>
+                        <li class="py-2"><a href="/news/article-44743.htm" title="动物疫苗和人体疫苗的区别是什么呢图片（动物疫苗对人体有害吗）">动物疫苗和人体疫苗的区别是什么呢图片（动物疫苗对人体有害吗）</a></li>
+                        <li class="py-2"><a href="/news/article-46232.htm" title="动物医院有公立的吗还是私立的好一点 动物医院有公立的吗还是私立的好一点呢">动物医院有公立的吗还是私立的好一点 动物医院有公立的吗还是私立的好一点呢</a></li>
+                        <li class="py-2"><a href="/news/article-57276.htm" title="重庆宠物领养网免费平台有哪些（重庆宠物领养网免费平台有哪些呢）">重庆宠物领养网免费平台有哪些（重庆宠物领养网免费平台有哪些呢）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-10-vless-node-github.htm" title="「3月10日」最高速度21.4M/S，2025年V2ray/Clash/Shadowrocket/SSRStash免费机场订阅链接">「3月10日」最高速度21.4M/S，2025年V2ray/Clash/Shadowrocket/SSRStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-59553.htm" title="vue跳转方式及传参 (包括打开新窗口)">vue跳转方式及传参 (包括打开新窗口)</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-21-free-node-subscribe.htm" title="「3月21日」最高速度21.1M/S，2025年Shadowrocket/V2ray/Clash/SSRStash免费机场订阅链接">「3月21日」最高速度21.1M/S，2025年Shadowrocket/V2ray/Clash/SSRStash免费机场订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">83</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fruits Shop End-->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3 mb-md-0">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <span class="text-light">Stash Github机场分享官网 版权所有 Powered by WordPress</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/stashgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
