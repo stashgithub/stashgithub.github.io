@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://stashgithub.github.io/news/article-87902.htm" />
+    <meta charset="utf-8">
+    <title>docker存储目录详解</title>
+        <meta name="description" content="目录 1、docker存储目录下各子目录详解 2、image目录详解  本次以Centos7.4版本为例，本地镜像的存储目录：/var/lib/docker/  [root@localhost ~]#" />
+        <link rel="icon" href="/assets/website/img/stashgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Stash Github机场分享官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://stashgithub.github.io/news/article-87902.htm" />
+    <meta property="og:site_name" content="Stash Github机场分享官网" />
+    <meta property="og:title" content="docker存储目录详解" />
+    <meta property="og:image" content="https://stashgithub.github.io/uploads/20240903-1/a736b00132e13f8a8b8b7db87b1f97a0.webp" />
+        <meta property="og:release_date" content="2025-04-04T09:04:17" />
+    <meta property="og:updated_time" content="2025-04-04T09:04:17" />
+        <meta property="og:description" content="目录 1、docker存储目录下各子目录详解 2、image目录详解  本次以Centos7.4版本为例，本地镜像的存储目录：/var/lib/docker/  [root@localhost ~]#" />
+        
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="docker存储目录详解">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/assets/website/js/frontend/stashgithub/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/stashgithub/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/stashgithub/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/stashgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNXJ21P00N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NNXJ21P00N');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+        <div class="container topbar bg-primary d-none d-lg-block">
+            <div class="d-flex justify-content-between">
+                
+            </div>
+        </div>
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                <a href="/" class="navbar-brand">
+                                <span class="text-primary display-6">Stash Github</span>
+                                </a>
+                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/client.htm" class="nav-item nav-link">客户端</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                            </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">docker存储目录详解</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+            <li class="breadcrumb-item active text-white">正文</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+    <!-- Fruits Shop Start-->
+    <div class="container-fluid fruite py-5">
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="StashNode免费订阅官网" data-url="https://stashnode.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p id="main-toc"><strong>目录</strong></p> <p id="1%E3%80%81docker%E5%AD%98%E5%82%A8%E7%9B%AE%E5%BD%95%E4%B8%8B%E5%90%84%E5%AD%90%E7%9B%AE%E5%BD%95%E8%AF%A6%E8%A7%A3-toc" style="margin-left:0px;"><a href="#1%E3%80%81docker%E5%AD%98%E5%82%A8%E7%9B%AE%E5%BD%95%E4%B8%8B%E5%90%84%E5%AD%90%E7%9B%AE%E5%BD%95%E8%AF%A6%E8%A7%A3" rel="nofollow">1、docker存储目录下各子目录详解</a></p> <p id="2%E3%80%81image%E7%9B%AE%E5%BD%95%E8%AF%A6%E8%A7%A3-toc" style="margin-left:0px;"><a href="#2%E3%80%81image%E7%9B%AE%E5%BD%95%E8%AF%A6%E8%A7%A3" rel="nofollow">2、image目录详解</a></p> <hr id="hr-toc"/> <p>本次以Centos7.4版本为例，本地镜像的存储目录：<strong><strong>/var/lib/docker/</strong></strong></p> </h1> <p>[root@localhost ~]#<strong><strong>cd /var/lib/docker</strong></strong></p> <p><strong><strong><strong><strong><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220610/b107c57fee88a8faca26475d80363357.jpg"></strong></strong></strong></strong></p> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220610/cd36ebe181e5437f3421132f6507e5da.jpg"></p> <p><strong><strong>containers</strong></strong> 【里面都是容器，每启动一个容器便会在这里记录】</p> <blockquote> <ul> <li><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220610/061153b11142e8c89ea4b3878989cc70.jpg"></li> </ul> <ul> <li><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220610/efbccfc2879725e7b8c689e4024fb815.jpg"></li> </ul> </blockquote> <blockquote> <ul> <li><strong><strong>image</strong></strong><strong></strong><strong></strong><strong></strong> 【默认里面只有一个overlay2目录】</li> </ul> <p><strong><strong>/var/lib/docker/image/overlay2/</strong></strong><strong></strong><strong><strong>【存储镜像管理数据的目录，以使用的存储驱动</strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong><strong>命名，这是Centos系统，使用的驱动为overlay2】</strong></strong></p> <p><strong><strong><strong><strong><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220610/fd735e33f153206ba655c262b42bcde9.jpg"></strong></strong></strong></strong></p> </blockquote> <blockquote> <p><strong><strong>network</strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong><strong>【docker的网关、容器的IP地址等信息】</strong></strong></p> <p><strong><strong><strong><strong><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220610/4c6d5df94747925ea1ec09fb099a4d95.jpg"></strong></strong></strong></strong></p> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220610/53d4d4182a23f1afb95c80bcebd309df.jpg"></p> </blockquote> <blockquote> <ul> <li><strong><strong>overlay2</strong></strong><strong></strong><strong></strong><strong><strong>【Docker存储驱动，常见的有overlay、overlay2、aufs】</strong></strong></li> <li><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220610/023279caa50f11a744b5a77265e6d599.jpg"></li> <li> <p>每启动一个容器就会有一个docker存储挂载，如上所示，他们是共用宿主机的存储，也就是这些docker存储的挂载除了挂载点不一样其他的都一样。<strong><strong>下面是关于存储挂载的测试：</strong></strong></p> </li> <li> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220610/4662361ab0fda40f2f518e54ee52f3a3.jpg"></p> <p>[root@localhost ~]#<strong><strong>dd if=/dev/zero of=/root/qq bs=1M count=5000</strong></strong><strong></strong></p> </li> </ul> <p><strong><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;【生成5G<strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong>&nbsp;&nbsp;&nbsp;的qq测试文件】</strong></strong></p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[root@localhost ~]#<strong><strong>docker cp /root/qq bc391cabe426://test1</strong></strong><strong><strong>【cp到容器里</strong></strong>】</p> <p style="margin-left:.0001pt;text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220610/166fe7e31163effa64263949df1d1fee.jpg"></p> <p>&nbsp;所有容器都共用一个存储，当一个容器有数据变化，那么连接容器的所有存储的挂载信息都会更新产生变化。</p> </blockquote> <blockquote> <p><strong><strong>volumes</strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong><strong>【卷管理】</strong></strong></p> </blockquote> </h1> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220610/b17b079fd8f3faddc6d500fca490b76f.jpg"></p> <ul> <li>/var/lib/docker/image/overlay2/<strong><strong>distribution</strong></strong>:<strong><strong>从远端拉到本地的镜像相关元数据</strong></strong></li> <li>/var/lib/docker/image/overlay2/<strong><strong>imagedb</strong></strong>:<strong></strong><strong></strong><strong></strong><strong><strong>镜像数据库</strong></strong></li> </ul> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220610/b241c33cddc45b448d99a6d8b839ba20.jpg"></p> <p>/var/lib/docker/image/overlay2/imagedb/<strong><strong>content</strong></strong>：</p> <p>每一个镜像都会配置digest，也就是镜像ID。Content目录里会看到一个sha256的目录，进入到该目录下，看到都是以镜像ID命名的文件，docker images看到的镜像ID的前12位就来自这个文件。</p> <p>/var/lib/docker/image/overlay2/imagedb/<strong><strong>metadata</strong></strong>：（略）</p> <ul> <li>/var/lib/docker/image/overlay2/<strong><strong>layerdb</strong></strong>:<strong></strong><strong><strong>镜像每个layer的元数据</strong>，Layer &nbsp;层，分层</strong></li> </ul> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220610/0e1ce83f5904807ad36f08e4e54855f7.jpg"></p> <p><strong><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/var/lib/docker/image/overlay2/layerdb/</strong><strong>mounts</strong></strong><strong><strong>：</strong></strong></p> <p>每启动一个容器，该目录都会将容器的container ID记录下来，当容器被停止了，container ID依旧存在，当容器被删除了，container ID才会被清除。</p> <p><strong><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/var/lib/docker/image/overlay2/layerdb/</strong><strong>sha256</strong></strong><strong><strong>：</strong></strong></p> <p><strong><strong><strong><strong><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220610/b3702bcd0cb37fc1a095e98d13caba0c.jpg"></strong></strong></strong></strong></p> <p>只记录镜像的信息，不记录容器的信息，当镜像有添加或删除时，此目录的信息会有更新</p> <ul> <li>/var/lib/docker/image/overlay2/<strong><strong>repositories.json</strong></strong>:<strong></strong><strong><strong>镜像的相关信息</strong></strong></li> </ul> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;记录了镜像的tag、镜像ID等信息</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-87901.htm">C ++程序实施Rabin-Miller素性测试以检查给定数字是否为素数</a></p>
+                                        <p>下一个：<a href="/news/article-88629.htm">宠物狗粮上市公司有哪些（宠物狗粮上市公司有哪些企业）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-81489.htm" title="整理了25个Pandas实用技巧（上）">整理了25个Pandas实用技巧（上）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-23-free-vless-node.htm" title="「3月23日」最高速度22.6M/S，2025年Shadowrocket/V2ray/SSR/ClashStash免费机场订阅链接">「3月23日」最高速度22.6M/S，2025年Shadowrocket/V2ray/SSR/ClashStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-81490.htm" title="中国兽药公司前50名（中国兽药公司前50名排名）">中国兽药公司前50名（中国兽药公司前50名排名）</a></li>
+                        <li class="py-2"><a href="/news/article-69989.htm" title="JavaScript-页面布局-div布局-盒子模型">JavaScript-页面布局-div布局-盒子模型</a></li>
+                        <li class="py-2"><a href="/news/article-76667.htm" title="python入门基础字典及相关操作详解">python入门基础字典及相关操作详解</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-6-vless-github.htm" title="「4月6日」最高速度22.8M/S，2025年V2ray/Shadowrocket/SSR/ClashStash免费机场订阅链接">「4月6日」最高速度22.8M/S，2025年V2ray/Shadowrocket/SSR/ClashStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-22-free-vless-node.htm" title="「3月22日」最高速度22.9M/S，2025年Clash/Shadowrocket/V2ray/SSRStash免费机场订阅链接">「3月22日」最高速度22.9M/S，2025年Clash/Shadowrocket/V2ray/SSRStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-67429.htm" title="VsCode调试docker中的NodeJS程序">VsCode调试docker中的NodeJS程序</a></li>
+                        <li class="py-2"><a href="/news/article-85754.htm" title="分布式一致性算法 Raft">分布式一致性算法 Raft</a></li>
+                        <li class="py-2"><a href="/news/article-73282.htm" title="安泰动物诊所电话 安泰动物诊所电话号码">安泰动物诊所电话 安泰动物诊所电话号码</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">19</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">87</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fruits Shop End-->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3 mb-md-0">
+                                        <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    <span class="text-light">Stash Github机场分享官网 版权所有 Powered by WordPress</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/stashgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

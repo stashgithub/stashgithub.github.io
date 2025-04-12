@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://stashgithub.github.io/news/article-92338.htm" />
+    <meta charset="utf-8">
+    <title>准确详解：C/C++ float、double数据类型的表示范围及精度</title>
+        <meta name="description" content="本文转载自：https://blog.csdn.net/black_kyatu/article/details/79257346 今天复习C++遇到了float、double数据类型的表示范围及精度问" />
+        <link rel="icon" href="/assets/website/img/stashgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Stash Github机场分享官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://stashgithub.github.io/news/article-92338.htm" />
+    <meta property="og:site_name" content="Stash Github机场分享官网" />
+    <meta property="og:title" content="准确详解：C/C++ float、double数据类型的表示范围及精度" />
+    <meta property="og:image" content="https://stashgithub.github.io/uploads/20240903-1/71f4448ec89d9e2782624e593b1fd35a.webp" />
+        <meta property="og:release_date" content="2025-04-10T08:14:47" />
+    <meta property="og:updated_time" content="2025-04-10T08:14:47" />
+        <meta property="og:description" content="本文转载自：https://blog.csdn.net/black_kyatu/article/details/79257346 今天复习C++遇到了float、double数据类型的表示范围及精度问" />
+        
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="准确详解：C/C++ float、double数据类型的表示范围及精度">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/assets/website/js/frontend/stashgithub/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/stashgithub/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/stashgithub/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/stashgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNXJ21P00N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NNXJ21P00N');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+        <div class="container topbar bg-primary d-none d-lg-block">
+            <div class="d-flex justify-content-between">
+                
+            </div>
+        </div>
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                <a href="/" class="navbar-brand">
+                                <span class="text-primary display-6">Stash Github</span>
+                                </a>
+                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/client.htm" class="nav-item nav-link">客户端</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                            </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">准确详解：C/C++ float、double数据类型的表示范围及精度</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+            <li class="breadcrumb-item active text-white">正文</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+    <!-- Fruits Shop Start-->
+    <div class="container-fluid fruite py-5">
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="StashNode免费订阅官网" data-url="https://stashnode.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>本文转载自：https://blog.csdn.net/black_kyatu/article/details/79257346</p> <p>今天复习C++遇到了float、double数据类型的表示范围及精度问题，花费了一些时间重新梳理了一遍，鉴于网上很多文章写的并不清晰，并且有不少疏漏错误之处，特结合个人理解仔细整理如下。</p> <p>要弄清楚这个问题，首先要搞清楚浮点数在内存中的存储方式。浮点数，区别于定点数，指的是小数点位不确定的的数据类型，其原理是将一个浮点数a用两个数m（尾数）和e（指数）来表示：a = m × b^e。其中的b为选取的基数。科学计数法就是一种特殊形式的浮点数。</p> <p>在计算机二进制表示中，浮点数采用2作为基数，规定尾数的范围为1.0~2.0之间。</p> <p>以float类型为例，根据最广泛采用的IEEE754标准规定，float数据类型长度为32位，其中最高位为符号位，中间8位为指数位，最后23位作为尾数位。</p> <p>最高位符号位通过0/1来区分正负，0正1负；指数位则规定采用移码的形式存储，这样可以保证指数部分为无符号数，方便比较大小。移码表示法是在数X上增加一个偏移量来定义的，如果机器字长为n，规定偏移量为2<sup>(n-1)，对于8位补码-128~127，可得到对应的阶码表示为0~255，其中全0和全1分别用来表示0和无穷大，故规定1~254用来表示规范数字，即对应指数范围从-126到127；尾数部分统一规定为1.0-2.0之间，最高位必然为1，故可以省略，所以尾数部分从小数点后算起，最小可以取到1，最大则取到二进制1.1…1(小数点后23位)，即取到2-2</sup>-23，可近似约等于2。故得到float绝对值的最大值取到2<sup>127*(2-2</sup>-23)约等于2<sup>128=3.4E+38。加上符号之后可得float表示范围为(-3.4E+38)~(3.4E+38)。当然实际是取不到的，开区间。绝对值最小则可以取到2</sup>-127*1，即为1.175E-38。</p> <p>接下来解释精度。由于尾数部分位数是固定的小数点后23位，23位所能表示的最大数是2^23−1=8388607，所以十进制的尾数部分最大数值是8388607，也就是说尾数数值超过这个值之后，float将无法精确表示，所以float最多能表示小于8388607的小数点后7位，但绝对能保证的为6位，也即float的十进制的精度为为6~7位。</p> <p>double数据类型的推算过程和上述同理，唯一的区别在于尾数由23位扩展到52位，阶码由8位增加到了11位，计算方法不变。所以double的阶码（移码表示）为1<sub>2046，偏移量为1023，故指数范围为-1022</sub>1023，得表示范围为(2<sup>1023*2)~(-2</sup>1023*2)即为-1.7E+308~1.7E+308，绝对值最小可以取到2<sup>-1022，精度则为2</sup>52-1=4503599627370495，为16位。所以精度最高位16位，一定可以保证15位。</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-91600.htm">兽医防疫简报范文（兽医开展工作简报）</a></p>
+                                        <p>下一个：<a href="/news/article-92339.htm">动物诊所牌匾设计（动物诊所logo）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-84304.htm" title="自己给宠物打疫苗违法吗怎么举报（自己给宠物打疫苗违法吗怎么举报电话）">自己给宠物打疫苗违法吗怎么举报（自己给宠物打疫苗违法吗怎么举报电话）</a></li>
+                        <li class="py-2"><a href="/news/article-92338.htm" title="准确详解：C/C++ float、double数据类型的表示范围及精度">准确详解：C/C++ float、double数据类型的表示范围及精度</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-3-free-high-speed-nodes.htm" title="「3月3日」最高速度18.2M/S，2025年Shadowrocket/Clash/V2ray/SSRStash免费机场订阅链接">「3月3日」最高速度18.2M/S，2025年Shadowrocket/Clash/V2ray/SSRStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-89359.htm" title="怎么去除房间猫留下的气味（如何去除房间里的猫骚味）">怎么去除房间猫留下的气味（如何去除房间里的猫骚味）</a></li>
+                        <li class="py-2"><a href="/news/article-80082.htm" title="动物打疫苗需要什么手续（动物打疫苗需要什么手续才能打）">动物打疫苗需要什么手续（动物打疫苗需要什么手续才能打）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-9-node-share-links.htm" title="「4月9日」最高速度21.7M/S，2025年V2ray/Clash/Shadowrocket/SSRStash免费机场订阅链接">「4月9日」最高速度21.7M/S，2025年V2ray/Clash/Shadowrocket/SSRStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-79396.htm" title="厦门宠物领养贴吧 厦门宠物领养贴吧论坛">厦门宠物领养贴吧 厦门宠物领养贴吧论坛</a></li>
+                        <li class="py-2"><a href="/news/article-78021.htm" title="河南省动物疫苗采购中标公告（河南省动物疫苗采购中标公告查询）">河南省动物疫苗采购中标公告（河南省动物疫苗采购中标公告查询）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-4-free-subscribe-node.htm" title="「3月4日」最高速度18.8M/S，2025年SSR/Clash/Shadowrocket/V2rayStash免费机场订阅链接">「3月4日」最高速度18.8M/S，2025年SSR/Clash/Shadowrocket/V2rayStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-77338.htm" title="动物疫苗生产企业排行榜最新名单图片（动物疫苗行业龙头）">动物疫苗生产企业排行榜最新名单图片（动物疫苗行业龙头）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">87</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fruits Shop End-->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3 mb-md-0">
+                                        <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    <span class="text-light">Stash Github机场分享官网 版权所有 Powered by WordPress</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/stashgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

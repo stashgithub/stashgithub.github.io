@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://stashgithub.github.io/news/article-93072.htm" />
+    <meta charset="utf-8">
+    <title>Springboot如何同时连接两个数据库</title>
+        <meta name="description" content="&nbsp; &nbsp; &nbsp; &nbsp; 在一些项目中需要同时操作两个数据库，比如定时给数据库做数据同步，将A数据库中的数据复制到B中。 yml配置 spring:   datasour" />
+        <link rel="icon" href="/assets/website/img/stashgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Stash Github机场分享官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://stashgithub.github.io/news/article-93072.htm" />
+    <meta property="og:site_name" content="Stash Github机场分享官网" />
+    <meta property="og:title" content="Springboot如何同时连接两个数据库" />
+    <meta property="og:image" content="https://stashgithub.github.io/uploads/20240903-1/b797386c9bd70ebce4cf7ab774017350.webp" />
+        <meta property="og:release_date" content="2025-04-11T08:56:05" />
+    <meta property="og:updated_time" content="2025-04-11T08:56:05" />
+        <meta property="og:description" content="&nbsp; &nbsp; &nbsp; &nbsp; 在一些项目中需要同时操作两个数据库，比如定时给数据库做数据同步，将A数据库中的数据复制到B中。 yml配置 spring:   datasour" />
+        
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Springboot如何同时连接两个数据库">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/assets/website/js/frontend/stashgithub/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/stashgithub/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/stashgithub/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/stashgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNXJ21P00N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NNXJ21P00N');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+        <div class="container topbar bg-primary d-none d-lg-block">
+            <div class="d-flex justify-content-between">
+                
+            </div>
+        </div>
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                <a href="/" class="navbar-brand">
+                                <span class="text-primary display-6">Stash Github</span>
+                                </a>
+                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/client.htm" class="nav-item nav-link">客户端</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                            </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">Springboot如何同时连接两个数据库</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+            <li class="breadcrumb-item active text-white">正文</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+    <!-- Fruits Shop Start-->
+    <div class="container-fluid fruite py-5">
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="StashNode免费订阅官网" data-url="https://stashnode.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>&nbsp; &nbsp; &nbsp; &nbsp; 在一些项目中需要同时操作两个数据库，比如定时给数据库做数据同步，将A数据库中的数据复制到B中。</p> <h3>yml配置</h3> <pre><code class="language-XML">spring:   datasource:     db1:       driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver       url: jdbc:sqlserver://127.0.0.1:1433;DatabaseName=db_EQMSData       username: sa       password: rollshop     db2:       driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver       url: jdbc:sqlserver://127.0.0.1:1433;DatabaseName=db_EQMSData_02       username: sa       password: rollshop</code></pre> <p>&nbsp;sqlite数据库配置</p> <pre><code class="language-XML">        &lt;dependency&gt;             &lt;groupId&gt;org.xerial&lt;/groupId&gt;             &lt;artifactId&gt;sqlite-jdbc&lt;/artifactId&gt;             &lt;version&gt;3.21.0.1&lt;/version&gt;         &lt;/dependency&gt;</code></pre> <pre><code class="language-XML">      driver-class-name: org.sqlite.JDBC       url: jdbc:sqlite::resource:static/sqlite/db_C808_spot_check_test_sqlite.db       username:       password:</code></pre> <h3>config配置</h3> <p>db1数据库（主库）</p> <pre><code class="language-java">import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder; import org.apache.ibatis.session.SqlSessionFactory; import org.mybatis.spring.SqlSessionFactoryBean; import org.mybatis.spring.SqlSessionTemplate; import org.mybatis.spring.annotation.MapperScan; import org.springframework.beans.factory.annotation.Qualifier; import org.springframework.boot.context.properties.ConfigurationProperties; import org.springframework.context.annotation.Bean; import org.springframework.context.annotation.Configuration; import org.springframework.context.annotation.Primary; import org.springframework.core.io.support.PathMatchingResourcePatternResolver; import org.springframework.jdbc.datasource.DataSourceTransactionManager;  import javax.sql.DataSource;  @Configuration @MapperScan(basePackages = "com.electric.dao.db1", sqlSessionTemplateRef = "db01SqlSessionTemplate") public class DataSource01Config {      @Bean(name = "db01DataSource")     @ConfigurationProperties(prefix = "spring.datasource.db1")     @Primary     public DataSource db01DataSource() {         return DruidDataSourceBuilder.create().build();     }      @Bean(name = "db01SqlSessionFactory")     @Primary     public SqlSessionFactory db01SqlSessionFactory(@Qualifier("db01DataSource") DataSource dataSource) throws Exception {         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();         bean.setDataSource(dataSource);         // 注意，这里是getResources()方法，不是getResource()         bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath*:com/temp/dao/db1/*.xml"));         return bean.getObject();     }      @Bean(name = "db01TransactionManager")     @Primary     public DataSourceTransactionManager db01TransactionManager(@Qualifier("db01DataSource") DataSource dataSource) {         return new DataSourceTransactionManager(dataSource);     }      @Bean(name = "db01SqlSessionTemplate")     @Primary     public SqlSessionTemplate db01SqlSessionTemplate(@Qualifier("db01SqlSessionFactory") SqlSessionFactory sqlSessionFactory) {         return new SqlSessionTemplate(sqlSessionFactory);     } }</code></pre> <p>db2数据库（从库）</p> <pre><code class="language-java">import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder; import org.apache.ibatis.session.SqlSession; import org.apache.ibatis.session.SqlSessionFactory; import org.apache.ibatis.type.JdbcType; import org.mybatis.spring.SqlSessionFactoryBean; import org.mybatis.spring.SqlSessionTemplate; import org.mybatis.spring.annotation.MapperScan; import org.mybatis.spring.boot.autoconfigure.MybatisProperties; import org.springframework.beans.factory.annotation.Autowired; import org.springframework.beans.factory.annotation.Qualifier; import org.springframework.boot.context.properties.ConfigurationProperties; import org.springframework.boot.context.properties.EnableConfigurationProperties; import org.springframework.context.annotation.Bean; import org.springframework.context.annotation.Configuration; import org.springframework.context.annotation.Primary; import org.springframework.core.io.Resource; import org.springframework.core.io.support.PathMatchingResourcePatternResolver; import org.springframework.jdbc.datasource.DataSourceTransactionManager;  import javax.sql.DataSource; import java.io.IOException; import java.util.Optional; import java.util.stream.Stream;  @Configuration @MapperScan(basePackages = "com.electric.dao.db2", sqlSessionTemplateRef = "db02SqlSessionTemplate") public class DateSource02Config {     @Autowired     private MybatisProperties properties;      @Bean(name = "db02DataSource")     @ConfigurationProperties(prefix = "spring.datasource.db2")     public DataSource db02DataSource() {         return DruidDataSourceBuilder.create().build();     }      @Bean(name = "db02SqlSessionFactory")     public SqlSessionFactory db02SqlSessionFactory(@Qualifier("db02DataSource") DataSource dataSource) throws Exception {         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();         bean.setDataSource(dataSource);         // 注意，这里是getResources()方法，不是getResource()         bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath*:com/temp/dao/db2/*.xml"));         return bean.getObject();     }      @Bean(name = "db02TransactionManager")     public DataSourceTransactionManager testTransactionManager(@Qualifier("db02DataSource") DataSource dataSource) {         return new DataSourceTransactionManager(dataSource);     }      @Bean(name = "db02SqlSessionTemplate")     public SqlSessionTemplate db02SqlSessionTemplate(@Qualifier("db02SqlSessionFactory") SqlSessionFactory sqlSessionFactory) {         return new SqlSessionTemplate(sqlSessionFactory);     } }</code></pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-92339.htm">动物诊所牌匾设计（动物诊所logo）</a></p>
+                                        <p>下一个：<a href="/news/article-93073.htm">广州宠物领养中心电话号码 广州宠物领养中心电话号码多少</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-68706.htm" title="上班摸鱼与网络安全">上班摸鱼与网络安全</a></li>
+                        <li class="py-2"><a href="/news/article-76666.htm" title="k8s灰度发布、滚动更新与探针详解">k8s灰度发布、滚动更新与探针详解</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-6-vless-github.htm" title="「4月6日」最高速度22.8M/S，2025年V2ray/Shadowrocket/SSR/ClashStash免费机场订阅链接">「4月6日」最高速度22.8M/S，2025年V2ray/Shadowrocket/SSR/ClashStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-94128.htm" title="宠物店利润有多大（宠物店利润有多大啊）">宠物店利润有多大（宠物店利润有多大啊）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-11-free-node-subscribe.htm" title="「4月11日」最高速度18.1M/S，2025年SSR/Clash/V2ray/ShadowrocketStash免费机场订阅链接">「4月11日」最高速度18.1M/S，2025年SSR/Clash/V2ray/ShadowrocketStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-86462.htm" title="猫咪抓伤轻微出血要打针吗多少钱（猫咪抓伤出血了怎么办）">猫咪抓伤轻微出血要打针吗多少钱（猫咪抓伤出血了怎么办）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-16-vless-node.htm" title="「3月16日」最高速度18.6M/S，2025年SSR/Shadowrocket/Clash/V2rayStash免费机场订阅链接">「3月16日」最高速度18.6M/S，2025年SSR/Shadowrocket/Clash/V2rayStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-14-node-share-links.htm" title="「3月14日」最高速度18.1M/S，2025年SSR/Shadowrocket/V2ray/ClashStash免费机场订阅链接">「3月14日」最高速度18.1M/S，2025年SSR/Shadowrocket/V2ray/ClashStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-66163.htm" title="Sequelize入门——从零开始做一个小demo">Sequelize入门——从零开始做一个小demo</a></li>
+                        <li class="py-2"><a href="/news/article-69343.htm" title="IDEA启动异常Internal error.Please refer to http://jb.ge/ide/critical-startup-errors&#8230;">IDEA启动异常Internal error.Please refer to http://jb.ge/ide/critical-startup-errors&#8230;</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">87</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fruits Shop End-->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3 mb-md-0">
+                                        <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    <span class="text-light">Stash Github机场分享官网 版权所有 Powered by WordPress</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/stashgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

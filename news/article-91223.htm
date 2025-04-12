@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://stashgithub.github.io/news/article-91223.htm" />
+    <meta charset="utf-8">
+    <title>jpa mysql乐观锁_JPA @Lock(value = LockModeType.PESSIMISTIC_WRITE) 悲观锁防坑</title>
+        <meta name="description" content="前提： 由于业务需要在entity Product已经实现了@version的乐观锁的基础上再加上了悲观锁的控制 @Lock(value = LockModeType.PESSIMISTIC_WRIT" />
+        <link rel="icon" href="/assets/website/img/stashgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Stash Github机场分享官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://stashgithub.github.io/news/article-91223.htm" />
+    <meta property="og:site_name" content="Stash Github机场分享官网" />
+    <meta property="og:title" content="jpa mysql乐观锁_JPA @Lock(value = LockModeType.PESSIMISTIC_WRITE) 悲观锁防坑" />
+    <meta property="og:image" content="https://stashgithub.github.io/uploads/20240903-1/abbc81df77ac136bed5bce6cc577fc03.webp" />
+        <meta property="og:release_date" content="2025-04-08T09:55:12" />
+    <meta property="og:updated_time" content="2025-04-08T09:55:12" />
+        <meta property="og:description" content="前提： 由于业务需要在entity Product已经实现了@version的乐观锁的基础上再加上了悲观锁的控制 @Lock(value = LockModeType.PESSIMISTIC_WRIT" />
+        
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="jpa mysql乐观锁_JPA @Lock(value = LockModeType.PESSIMISTIC_WRITE) 悲观锁防坑">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/assets/website/js/frontend/stashgithub/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/stashgithub/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/stashgithub/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/stashgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNXJ21P00N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NNXJ21P00N');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+        <div class="container topbar bg-primary d-none d-lg-block">
+            <div class="d-flex justify-content-between">
+                
+            </div>
+        </div>
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                <a href="/" class="navbar-brand">
+                                <span class="text-primary display-6">Stash Github</span>
+                                </a>
+                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/client.htm" class="nav-item nav-link">客户端</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                            </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">jpa mysql乐观锁_JPA @Lock(value = LockModeType.PESSIMISTIC_WRITE) 悲观锁防坑</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+            <li class="breadcrumb-item active text-white">正文</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+    <!-- Fruits Shop Start-->
+    <div class="container-fluid fruite py-5">
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="StashNode免费订阅官网" data-url="https://stashnode.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <div style="font-size:16px;"> <p>前提：</p> <p>由于业务需要在entity Product已经实现了@version的乐观锁的基础上再加上了悲观锁的控制</p> <p>@Lock(value = LockModeType.PESSIMISTIC_WRITE)</p> <p>Product findByType(String type);</p> <p>详情描述：</p> <p>但是当进行多请求的并发测试的时候发现程序第一个抢占findByType的请求能正常上锁，其它并发请求也正常进入等待，可是当第一个请求修改product并且提交事务释放锁的时候，其它等待请求准备上锁的时候却抛出了乐观锁的错误，为什么会出现这种错误呢？</p> <p>解答：</p> <p>JPA 提供的@Lock 不是直接对findByType生成的对应查询语句后面加for update上锁，而是按照下面的顺序来上锁的：</p> <p>执行查询语句： select * from product where type = ?</p> <p>查询结果(id, type, version): [1001, 'NEW', 1]</p> <p>通过查询出来的id, version在执行以下查询</p> <p>select * from product where product id = 1001 and version = 1</p> <p>如果步骤2查询有数据返回的话就生成下面的for update的查询SQL上锁， 如果没有就抛出乐观锁异常。</p> <p>select * from product where product id = 1001 and version = 1 for update</p> <p>根据@Lock的上述执行原理，当触发多请求并发的时候，所有请求都同步执行了上述1的查询操作，当执行步骤2，3的时候先上锁的请求修改了数据和版本后，后续请求在旧的version就查询不出来数据就抛出了乐观锁异常了。</p> <p>建议：</p> <p>一般情况下尽量避免使用悲观锁，对系统开销很大，如果不得已需要用到的话还是直接写for update的SQL直接上锁。</p> </div></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-91222.htm">JavaScript怎么比较数组元素是否相等</a></p>
+                                        <p>下一个：<a href="/news/article-91599.htm">领养猫咪的合同（领养猫咪合同签了买猫粮合同不买了犯法吗）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-3-12-node-share-links.htm" title="「3月12日」最高速度20.2M/S，2025年Clash/SSR/V2ray/ShadowrocketStash免费机场订阅链接">「3月12日」最高速度20.2M/S，2025年Clash/SSR/V2ray/ShadowrocketStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-83596.htm" title="新手开什么店赚钱（新手开店开什么店最好）">新手开什么店赚钱（新手开店开什么店最好）</a></li>
+                        <li class="py-2"><a href="/news/article-77337.htm" title="南京宠物领养中心电话地址 南京宠物领养中心电话地址查询">南京宠物领养中心电话地址 南京宠物领养中心电话地址查询</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-20-today-vless-node.htm" title="「3月20日」最高速度20.6M/S，2025年Shadowrocket/SSR/Clash/V2rayStash免费机场订阅链接">「3月20日」最高速度20.6M/S，2025年Shadowrocket/SSR/Clash/V2rayStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-6-latest-vless-node.htm" title="「3月6日」最高速度18.5M/S，2025年V2ray/Clash/SSR/ShadowrocketStash免费机场订阅链接">「3月6日」最高速度18.5M/S，2025年V2ray/Clash/SSR/ShadowrocketStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-82170.htm" title="java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能">java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能</a></li>
+                        <li class="py-2"><a href="/news/article-88629.htm" title="宠物狗粮上市公司有哪些（宠物狗粮上市公司有哪些企业）">宠物狗粮上市公司有哪些（宠物狗粮上市公司有哪些企业）</a></li>
+                        <li class="py-2"><a href="/news/article-69344.htm" title="在哪个平台可以免费领养宠物狗?（在哪个平台可以免费领养宠物狗狗）">在哪个平台可以免费领养宠物狗?（在哪个平台可以免费领养宠物狗狗）</a></li>
+                        <li class="py-2"><a href="/news/article-87902.htm" title="docker存储目录详解">docker存储目录详解</a></li>
+                        <li class="py-2"><a href="/news/article-79396.htm" title="厦门宠物领养贴吧 厦门宠物领养贴吧论坛">厦门宠物领养贴吧 厦门宠物领养贴吧论坛</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">87</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fruits Shop End-->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3 mb-md-0">
+                                        <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    <span class="text-light">Stash Github机场分享官网 版权所有 Powered by WordPress</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/stashgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

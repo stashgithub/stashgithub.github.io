@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://stashgithub.github.io/news/article-90108.htm" />
+    <meta charset="utf-8">
+    <title>桶排序c++实现（适用于所有整型数组）</title>
+        <meta name="description" content="桶排序的思路基本就三步： 1.按照数组的上下界与长度将其划分为若干个区间，对应若干个桶，将元素放入对应范围的桶里 2.对每一个桶内部排序 3.遍历所有桶，依次将桶中元素输出 时间和空间开销都是O(n+" />
+        <link rel="icon" href="/assets/website/img/stashgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Stash Github机场分享官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://stashgithub.github.io/news/article-90108.htm" />
+    <meta property="og:site_name" content="Stash Github机场分享官网" />
+    <meta property="og:title" content="桶排序c++实现（适用于所有整型数组）" />
+    <meta property="og:image" content="https://stashgithub.github.io/uploads/20240903-1/18819e91a63ecaef0ba0978cea4c1e1d.webp" />
+        <meta property="og:release_date" content="2025-04-07T09:01:09" />
+    <meta property="og:updated_time" content="2025-04-07T09:01:09" />
+        <meta property="og:description" content="桶排序的思路基本就三步： 1.按照数组的上下界与长度将其划分为若干个区间，对应若干个桶，将元素放入对应范围的桶里 2.对每一个桶内部排序 3.遍历所有桶，依次将桶中元素输出 时间和空间开销都是O(n+" />
+        
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="桶排序c++实现（适用于所有整型数组）">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/assets/website/js/frontend/stashgithub/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/stashgithub/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/stashgithub/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/stashgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNXJ21P00N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NNXJ21P00N');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+        <div class="container topbar bg-primary d-none d-lg-block">
+            <div class="d-flex justify-content-between">
+                
+            </div>
+        </div>
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                <a href="/" class="navbar-brand">
+                                <span class="text-primary display-6">Stash Github</span>
+                                </a>
+                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/client.htm" class="nav-item nav-link">客户端</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                            </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">桶排序c++实现（适用于所有整型数组）</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+            <li class="breadcrumb-item active text-white">正文</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+    <!-- Fruits Shop Start-->
+    <div class="container-fluid fruite py-5">
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="StashNode免费订阅官网" data-url="https://stashnode.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>桶排序的思路基本就三步：</p> <p>1.按照数组的上下界与长度将其划分为若干个区间，对应若干个桶，将元素放入对应范围的桶里</p> <p>2.对每一个桶内部排序</p> <p>3.遍历所有桶，依次将桶中元素输出</p> <p>时间和空间开销都是O(n+k),n是数组长度，k是桶的个数。</p> <p>划分区间采取归一化策略；</p> <p>桶用二维数组动态分配内存；</p> <p>桶的内部排序采取快排，时间复杂度O(NlogN)。</p> <pre><code>#include&lt;iostream&gt; using namespace std; void quick_sort(int a[], int l, int r) { 	if (l &lt; r) { 		int i = l, j = r, x = a[i]; 		while (i &lt; j) { 			while (i&lt;j &amp;&amp; a[j]&gt;x)  j--; 			if (i &lt; j) a[i++] = a[j]; 			while (i &lt; j &amp;&amp; a[i] &lt; x)  i++; 			if (i &lt; j) a[j--] = a[i]; 		} 		a[i] = x; 		quick_sort(a, l, i-1); 		quick_sort(a, i + 1, r); 	} } void bksort(int a[],int n) {//数组长度 	int min = a[0], max = a[0]; 	for (int i = 0; i &lt; n; i++) { 		if (a[i] &lt; min)  min = a[i]; 		if (a[i] &gt; max)  max = a[i]; 	} 	int bkNum = (max - min) / n + 1, tmp = 0; 	int** bk = new int* [bkNum];//动态分配桶内存 	for (int i = 0; i &lt; bkNum; i++)  		bk[i] = new int[bkNum] {0}; 	int* k = new int[bkNum] {0};//动态分配k数组（存储每个桶元素个数）  	for (int i = 0; i &lt; n; i++) { 		int index = (a[i]-min) / n;//定义元素存放的桶号 		bk[index][k[index]++] = a[i]; 	} 	for (int i = 0; i &lt; bkNum; i++) { 		quick_sort(bk[i], 0, k[i] - 1); 		cout &lt;&lt; i &lt;&lt; "号桶元素个数：" &lt;&lt; k[i] &lt;&lt; endl; 		for (int j = 0; j &lt; k[i]; j++) { 			a[tmp++] = bk[i][j];//遍历桶中元素，依次存入原数组 		} 	} }  int main() { 	int a[] = { 1, 45, 32, 23, 22, 31, 47, 24, 4, 15, 55, 67, 59, 68, 89, 84 }; 	int len = sizeof(a) / sizeof(int); 	bksort(a, len); 	for (int i = 0; i &lt; len; i++) 		cout &lt;&lt; a[i] &lt;&lt; " "; }</code></pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-89360.htm">宠物店从哪里进货渠道好（宠物店都从哪里进货）</a></p>
+                                        <p>下一个：<a href="/news/article-90109.htm">猫粮利润空间大吗（猫粮挣钱吗）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-87179.htm" title="猫狗动物医院 猫狗动物医院ns">猫狗动物医院 猫狗动物医院ns</a></li>
+                        <li class="py-2"><a href="/news/article-73281.htm" title="python常见漏洞总结_在线工具">python常见漏洞总结_在线工具</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-24-today-vless-node.htm" title="「3月24日」最高速度20.8M/S，2025年Shadowrocket/Clash/SSR/V2rayStash免费机场订阅链接">「3月24日」最高速度20.8M/S，2025年Shadowrocket/Clash/SSR/V2rayStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-90109.htm" title="猫粮利润空间大吗（猫粮挣钱吗）">猫粮利润空间大吗（猫粮挣钱吗）</a></li>
+                        <li class="py-2"><a href="/news/article-91600.htm" title="兽医防疫简报范文（兽医开展工作简报）">兽医防疫简报范文（兽医开展工作简报）</a></li>
+                        <li class="py-2"><a href="/news/article-85024.htm" title="Kubernetes部署单元-Pod">Kubernetes部署单元-Pod</a></li>
+                        <li class="py-2"><a href="/news/article-65545.htm" title="12306宠物托运价格表（12306宠物托运官网）">12306宠物托运价格表（12306宠物托运官网）</a></li>
+                        <li class="py-2"><a href="/news/article-82170.htm" title="java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能">java建立tcp连接 netty_使用Netty处理Java中成千上万个连接的原理 -DZone性能</a></li>
+                        <li class="py-2"><a href="/news/article-80785.htm" title="想开一家宠物店需要投资多少费用（开一家宠物店需要投资多少钱）">想开一家宠物店需要投资多少费用（开一家宠物店需要投资多少钱）</a></li>
+                        <li class="py-2"><a href="/news/article-70652.htm" title="宠物饲料加工厂家电话（宠物饲料生产基地）">宠物饲料加工厂家电话（宠物饲料生产基地）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">87</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fruits Shop End-->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3 mb-md-0">
+                                        <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    <span class="text-light">Stash Github机场分享官网 版权所有 Powered by WordPress</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/stashgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
