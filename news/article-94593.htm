@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://stashgithub.github.io/news/article-94593.htm" />
+    <meta charset="utf-8">
+    <title>WPF路由事件</title>
+        <meta name="description" content="理解路由事件 事件路由允许源自某个元素的事件由另一个元素引发。 定义、注册和包装路由事件 public class MyWindow : Window { 	/// &lt;summary&gt; 	" />
+        <link rel="icon" href="/assets/website/img/stashgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Stash Github机场分享官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://stashgithub.github.io/news/article-94593.htm" />
+    <meta property="og:site_name" content="Stash Github机场分享官网" />
+    <meta property="og:title" content="WPF路由事件" />
+    <meta property="og:image" content="https://stashgithub.github.io/uploads/20240903-1/a4b29c5c64d53045db59b5c6f440edec.webp" />
+        <meta property="og:release_date" content="2025-04-13T07:17:30" />
+    <meta property="og:updated_time" content="2025-04-13T07:17:30" />
+        <meta property="og:description" content="理解路由事件 事件路由允许源自某个元素的事件由另一个元素引发。 定义、注册和包装路由事件 public class MyWindow : Window { 	/// &lt;summary&gt; 	" />
+        
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="WPF路由事件">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/assets/website/js/frontend/stashgithub/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/stashgithub/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/stashgithub/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/stashgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNXJ21P00N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NNXJ21P00N');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+        <div class="container topbar bg-primary d-none d-lg-block">
+            <div class="d-flex justify-content-between">
+                
+            </div>
+        </div>
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                <a href="/" class="navbar-brand">
+                                <span class="text-primary display-6">Stash Github</span>
+                                </a>
+                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/client.htm" class="nav-item nav-link">客户端</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                            </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">WPF路由事件</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+            <li class="breadcrumb-item active text-white">正文</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+    <!-- Fruits Shop Start-->
+    <div class="container-fluid fruite py-5">
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="StashNode免费订阅官网" data-url="https://stashnode.github.io">
+                  				  				  				<h3 id="理解路由事件">理解路由事件</h3> <p>事件路由允许源自某个元素的事件由另一个元素引发。</p> <p><strong>定义、注册和包装路由事件</strong></p> <pre><code class="language-c#">public class MyWindow : Window { 	/// &lt;summary&gt; 	/// 定义和注册路由事件 	/// &lt;/summary&gt; 	public static readonly RoutedEvent MyRoutedEvent = EventManager.RegisterRoutedEvent("MyEvent", 		RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(MyWindow));  	/// &lt;summary&gt; 	/// 包装路由事件 	/// &lt;/summary&gt; 	public event RoutedEventHandler MyRouted 	{ 		add 		{ 			base.AddHandler(MyRoutedEvent, value); 		} 		remove 		{ 			base.RemoveHandler(MyRoutedEvent, value); 		} 	} }</code></pre> <p><strong>共享路由事件</strong></p> <p>	与依赖项属性一样，可以在类之间共享路由事件的定义。例如，两个基类<em>UIElement</em>和<em>ContentElement</em>类,都使用了<em>MouseUp</em>事件。<em>MouseUp</em>事件是在<em>Windows.Input.Mouse</em>类中定义，通过<em>RoutedEvent.AddOwer()</em>方法重用<em>MouseUp</em>事件。</p> <pre><code class="language-c#">	UIElement.MouseUpEvent = Mouse.MouseUpEvent.AddOwner(Typeof(UIElement));</code></pre> <p><strong>触发路由事件</strong></p> <p>路由事件的引发不是传统的<em>.NET</em>事件包装器引发，而是使用<em>RaiseEvent()</em>方法引发事件，说有UIElement类继承了该方法。</p> <pre><code class="language-c#">	RoutedEventArgs e = new RoutedEventArgs(MyRoutedEvent, this); 	base.RaiseEvent(e);</code></pre> <p><strong>处理路由事件</strong></p> <p>XAML标记添加事件特性</p> <pre><code class="language-xaml">&lt;local:MyWindow ...                  MyRouted="MyWindow_MyRouted"                 ... /&gt;</code></pre> <p>通过代码连接事件</p> <pre><code class="language-c#">     this.MyRouted += MainWindow_MyRouted;  	///WPF事件参数类都是继承自RoutedEventArgs类，可自定义事件参数类来传递更多的信息 	private void MainWindow_MyRouted(object sender, RoutedEventArgs e) 	{ 		//do something... 	}</code></pre> <p>还可以通过调用<em>AddHandler()</em>方法链接事件处理器。</p> <pre><code class="language-c#">	AddHandler(MyRoutedEvent, new RoutedEventHandler((s,e)=&gt; 	{         //do something...                                                  	}));	 	或 	AddHandler(MyRoutedEvent, new RoutedEventHandler(Eventhandler));  	private void Eventhandler(object o, RoutedEventArgs e) 	{ 		//do something... 	} 	//使用RemoveHandler()方法来移除事件处理器 注：匿名委托不适用 	//当程序多次附加事件处理器时，执行RemoveHandler()方法只删除一次连接。例如，连接了两次事件处理程序，删除了一次连接，触发事件时事件处理程序执行一次。		连接了三次事件处理程序，删除了一次连接，触发事件时事件处理程序执行两次。 	RemoveHandler(MyRoutedEvent, new RoutedEventHandler(eventhandler)); 	或      MyRouted -= Eventhandler;</code></pre> <p><strong>事件路由</strong></p> <p><em>WPF</em>窗体中的所有要素都一定程度上继承自<em>UIElement</em>类，<em>WPF</em>中的许多空间都是内容控件，继承自<em>ContentControl</em>，可以在其中多次重复嵌套。</p> <p><em>WPF</em>路由事件模型的三种方式：</p> <ul> <li>直接路由事件(<em>Direct Event</em>)：与.NET事件类似，它起源于一个元素，并且不传递给其他元素。例如，<em>MouseEnter</em>事件是一个直接路由事件。</li> <li>冒泡路由事件(<em>Bubbling Event</em>)：在包含层次中向上传递。例如，<em>MouseDown</em>事件就是冒泡路由事件。冒泡顺序首先由被单击的元素引发，接下来被该元素的父元素引发，依次类推，直到<em>WPF</em>元素树的顶部为止。</li> <li>隧道路由事件(<em>Tunneling Event</em>)：在包含层次中向下传递。隧道路由事件在事件到达恰当的控件之前为预览事件（或者可能终止事件）提供机会。例如，通过<em>PreviewKeyDown</em>事件可以截获是否按下了一个键，首先在窗口级别上，然后是更具体的容器，直到到达按下键时具有焦点的元素。</li> </ul> <p>路由事件的行为在注册路由事件的<em>EventManager.RegisterEvent</em>()中定义，传递为<em>RoutingStrategy</em>枚举值。</p> <p><strong><em>RoutedEventArgs</em>类</strong></p> <p><em>WPF</em>事件参数类都是继承自<em>RoutedEventArgs</em>类，可自定义事件参数类来传递更多的信息。<em>RoutedEventArgs</em>类的属性：</p> <table> <thead> <tr> <th>名称</th> <th>说明</th> </tr> </thead> <tbody> <tr> <td><em>Source</em></td> <td>指示引发事件的对象。对于键盘事件，是当事件发生时具有焦点的控件。对于鼠标事件，是当事件发生时鼠标指针下面所有元素中最上面的元素。</td> </tr> <tr> <td><em>OriginalSource</em></td> <td>指示最初是什么对象引发事件。通常<em>OriginalSource</em>属性和<em>Source</em>属性值是相同的。但是在某些情况下，<em>OriginalSource</em>属性指向对象树种更深得层次，以获得作为更高一级元素一部分的后台元素，事件最原始的源为<em>Border</em>元素，组成在控件模板中。</td> </tr> <tr> <td><em>RoutedEvent</em></td> <td>通过事件处理程序为触发的事件提供<em>RoutedEvent</em>对象。如果使用同一事件处理程序处理不同的事件，这一信息是非常有用得。</td> </tr> <tr> <td><em>Handled</em></td> <td>该属性允许终止事件的冒泡或隧道过程。如果一个控件将<em>Handled</em>属性设置为<em>true</em>，那么事件将不会继续传播。并且也不会再为任何其他元素引发该事件。</td> </tr> </tbody> </table> <p><strong>冒泡路由事件</strong></p> <pre><code class="language-xaml">&lt;Label MouseUp="Label_MouseUp"&gt; 	&lt;Border MouseUp="Border_MouseUp"&gt; 		&lt;StackPanel MouseUp="StackPanel_MouseUp"&gt; 			&lt;Button Width="100" Height="30"  MouseUp="Button_MouseUp"/&gt; 		&lt;/StackPanel&gt; 	&lt;/Border&gt; &lt;/Label&gt;</code></pre> <pre><code class="language-c#">MessageBox.Show("btn"+"\n"+sender.ToString()+ "\n" + e.Source.ToString()+ "\n" + e.OriginalSource.ToString());</code></pre> <p>在一个容器中放置下列元素，分别给每一个元素的<em>MouseUp</em>事件处理器添加以上代码。窗体打开后右键点击按钮就会依次弹出消息框，通过消息框信息可以看到事件的触发顺序依次是<em>Button</em>、<em>StackPanel</em>、<em>Border</em>、<em>Label</em>。若在<em>StackPanel</em>的<em>MouseUp</em>事件处理器中将<em>e.Handled</em>设置为<em>true</em>时，事件将不会继续传播，程序将不会在进入<em>Boder</em>和<em>Label</em>中的<em>MouseUp</em>事件处理器中。</p> <pre><code class="language-c#">e.Handled = true;</code></pre> <p>当事件处于挂起时，还可以通过<em>AddHandler</em>()方法，<em>AddHandler</em>()方法提供一个重载版本，在之前的基础上在传递一个<em>bool</em>类型的参数，将参数设置为<em>true</em>时，即使<em>Handled</em>属性被设置为<em>true</em>也可以接收到事件。</p> <pre><code class="language-c#">lab.AddHandler(UIElement.MouseUpEvent, new MouseButtonEventHandler(Label_MouseUp), true);</code></pre> <p>在设计器中删除<em>Label</em>元素的<em>MouseUp</em>事件特性，在初始化时通过以上代码连接事件处理器。当触发<em>MouseUp</em>时，Label消息框就会出现。</p> <p><strong>附加事件</strong></p> <pre><code class="language-xaml">&lt;StackPanel Name="stpBtn" Grid.Row="2" ButtonBase.Click="DoSomething"&gt; 	&lt;Button Width="100" Height="30" /&gt; 	&lt;Button Width="100" Height="30" Margin="0,10" /&gt; 	&lt;Button Width="100" Height="30" /&gt; &lt;/StackPanel&gt;</code></pre> <p>以上代码在<em>StackPanel</em>元素中关联<em>Button</em>元素的点击事件，当点击其中按钮时就会进图<em>DoSomething</em>()方法，通过类名.事件命关联事件。<em>Click</em>事件是在<em>ButtonBase</em>中定义，Button继承自<em>ButtonBase</em>。附加事件还可以通过以下方式连接：</p> <pre><code class="language-c#">//关联附加事件只能用UIElement.AddHandler()方法 不能用 += 运算符 stpBtn.AddHandler(Button.ClickEvent, new RoutedEventHandler(DoSomething));</code></pre> <p><strong>隧道事件</strong></p> <p>隧道路由事件的工作方式和冒泡路由事件相同，但方向相反。隧道路由事件一般有<em>Preview</em>开头，<em>WPF</em>通常成对的定义隧道路由事件通常和冒泡事件。如果将隧道路由事件标记为已处理过（<em>e.Handled=true</em>），那么就不会发生冒泡路由事件，这是因为两个事件共享<em>RoutedEventArgs</em>的同一个实例。</p> <h3 id="wpf事件"><em>WPF</em>事件</h3> <p><em>WPF</em>元素提供了许多事件，但最重要的事件通常包括5类，生命周期事件、鼠标事件、键盘事件、手写笔事件、多点触控事件。</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-94128.htm">宠物店利润有多大（宠物店利润有多大啊）</a></p>
+                                        <p>下一个：<a href="/news/article-94594.htm">打动物疫苗不能吃什么食物呢图片（动物打疫苗后多久能杀了吃）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-95345.htm" title="瑞派宠物医院工作时间（瑞派宠物医院住宿环境）">瑞派宠物医院工作时间（瑞派宠物医院住宿环境）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-1-latest-vless-node.htm" title="「4月1日」最高速度18.5M/S，2025年V2ray/Clash/Shadowrocket/SSRStash免费机场订阅链接">「4月1日」最高速度18.5M/S，2025年V2ray/Clash/Shadowrocket/SSRStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-75994.htm" title="疫苗进行动物试验的重要性 疫苗进行动物试验的重要性和意义">疫苗进行动物试验的重要性 疫苗进行动物试验的重要性和意义</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-31-node-share-links.htm" title="「3月31日」最高速度20.1M/S，2025年Clash/SSR/Shadowrocket/V2rayStash免费机场订阅链接">「3月31日」最高速度20.1M/S，2025年Clash/SSR/Shadowrocket/V2rayStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-70652.htm" title="宠物饲料加工厂家电话（宠物饲料生产基地）">宠物饲料加工厂家电话（宠物饲料生产基地）</a></li>
+                        <li class="py-2"><a href="/news/article-86461.htm" title="济南宠物领养机构电话多少（济南宠物领养济南宠物赠送）">济南宠物领养机构电话多少（济南宠物领养济南宠物赠送）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-21-free-node-subscribe.htm" title="「3月21日」最高速度21.1M/S，2025年Shadowrocket/V2ray/Clash/SSRStash免费机场订阅链接">「3月21日」最高速度21.1M/S，2025年Shadowrocket/V2ray/Clash/SSRStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-14-node-share-links.htm" title="「3月14日」最高速度18.1M/S，2025年SSR/Shadowrocket/V2ray/ClashStash免费机场订阅链接">「3月14日」最高速度18.1M/S，2025年SSR/Shadowrocket/V2ray/ClashStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-12-free-node-subscribe-links.htm" title="「4月12日」最高速度18.1M/S，2025年SSR/Shadowrocket/Clash/V2rayStash免费机场订阅链接">「4月12日」最高速度18.1M/S，2025年SSR/Shadowrocket/Clash/V2rayStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-25-free-high-speed-nodes.htm" title="「3月25日」最高速度22.2M/S，2025年Clash/Shadowrocket/V2ray/SSRStash免费机场订阅链接">「3月25日」最高速度22.2M/S，2025年Clash/Shadowrocket/V2ray/SSRStash免费机场订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">42</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">87</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fruits Shop End-->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3 mb-md-0">
+                                        <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    <span class="text-light">Stash Github机场分享官网 版权所有 Powered by WordPress</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/stashgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
