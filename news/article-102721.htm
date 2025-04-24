@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://stashgithub.github.io/news/article-102721.htm" />
+    <meta charset="utf-8">
+    <title>Python技法：实现简单的递归下降Parser_在线工具</title>
+        <meta name="description" content="1. 算术运算表达式求值 在上一篇博文《Python技法：用re模块实现简易tokenizer》中，我们介绍了用正则表达式来匹配对应的模式，以实现简单的分词器。然而，正则表达式不是万能的，它本质上是一" />
+        <link rel="icon" href="/assets/website/img/stashgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Stash Github机场分享官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://stashgithub.github.io/news/article-102721.htm" />
+    <meta property="og:site_name" content="Stash Github机场分享官网" />
+    <meta property="og:title" content="Python技法：实现简单的递归下降Parser_在线工具" />
+    <meta property="og:image" content="https://stashgithub.github.io/uploads/20240903-1/d8828431b484477719c0f8023f2403c0.webp" />
+        <meta property="og:release_date" content="2025-04-24T09:15:52" />
+    <meta property="og:updated_time" content="2025-04-24T09:15:52" />
+        <meta property="og:description" content="1. 算术运算表达式求值 在上一篇博文《Python技法：用re模块实现简易tokenizer》中，我们介绍了用正则表达式来匹配对应的模式，以实现简单的分词器。然而，正则表达式不是万能的，它本质上是一" />
+        
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Python技法：实现简单的递归下降Parser_在线工具">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/assets/website/js/frontend/stashgithub/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/stashgithub/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/stashgithub/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/stashgithub/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/G.css" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNXJ21P00N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NNXJ21P00N');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+        <div class="container topbar bg-primary d-none d-lg-block">
+            <div class="d-flex justify-content-between">
+                
+            </div>
+        </div>
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                <a href="/" class="navbar-brand">
+                                <span class="text-primary display-6">Stash Github</span>
+                                </a>
+                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/client.htm" class="nav-item nav-link">客户端</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                            </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">Python技法：实现简单的递归下降Parser_在线工具</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+            <li class="breadcrumb-item active text-white">正文</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+    <!-- Fruits Shop Start-->
+    <div class="container-fluid fruite py-5">
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="StashNode免费订阅官网" data-url="https://stashnode.github.io">
+                <div class="xcblog-blog-detail">
+                      				  				  				<h2 id="1-算术运算表达式求值">1. 算术运算表达式求值</h2> <p>在上一篇博文<font color="blue">《Python技法：用re模块实现简易tokenizer》</font>中，我们介绍了用正则表达式来匹配对应的模式，以实现简单的分词器。然而，正则表达式不是万能的，它本质上是一种有限状态机（finite state machine，FSM）, 无法处理含有递归语法的文本，比如算术运算表达式。</p> <p>要解析这类文本，需要另外一种特定的语法规则。我们这里介绍可以表示上下文无关文法（context free grammer）的语法规则巴科斯范式(BNF)和扩展巴科斯范式(EBNF)。实际上，小到一个算术运算表达式，大到几乎所有程序设计语言，都是通过上下文无关文法来定义的。</p> <p>对于简单的算术运算表达式，假定我们已经用分词技术将其转化为输入的tokens流，如<code>NUM+NUM*NUM</code>（分词方法参见上一篇博文）。</p> <p>在此基础上，我们定义BNF规则定义如下：</p> <pre><code>expr ::= expr + term      | expr - term       | term term ::= term * factor      | term / factor      | factor factor ::= (expr)      | NUM </code></pre> <p>当然，这种计法还不够简洁明了，我们实际采用的为EBNF形式：</p> <pre><code>expr ::= term { (+|-) term }* term ::= factor { (*|/) factor }* factor ::= (expr)         | NUM </code></pre> <p>BNF和EBNF每一条规则(形如<code>::=</code>的式子)都可以看做是一种替换，即左侧的符号可以被右侧的符号所替换。而解析的过程中我们尝试将输入文本同语法规则做匹配，通过BNF/EBNF来完成各种替换和扩展。其中，EBNF中包含在<code>{...}*</code>中的规则是可选的，<code>*</code>意味着零个或多个重复项（参考正则表达式）。</p> <p>下图形象地展示了递归下降解析器(parser)中“递归”和“下降”部分和ENBF的关系：</p> <p><img fetchpriority="high" decoding="async" src="https://images.cnblogs.com/cnblogs_com/blogs/538207/galleries/2102214/o_1c08d01f.png" alt="Python技法：实现简单的递归下降Parser_在线工具" width="550" height="270"></p> <p>在实际的解析过程中，我们对tokens流从左到右进行扫描，在扫描的过程中处理token，如果卡住就产生一个语法错误。对于规则，我们将每一条语法规则转变为一个函数或方法，比如上面的ENBF规则就转换为下列的方法：</p> <pre><code class="language-python">class ExpressionEvaluator():     ...     def expr(self):         ...     def term(self):         ...     def factor(self):         ...          </code></pre> <p>在调用某个规则对应方法的过程中，如果我们发现接下来的符号需要采用另一个规则来匹配，则我们就会“下降”到另一个规则方法（如在<code>expr</code>中调用<code>term</code>，<code>term</code>中调用<code>factor</code>），则也就是递归下降中“下降”的部分。</p> <p>有时也会调用已经在执行的方法（比如在<code>expr</code>中调用<code>term</code>，<code>term</code>中调用<code>factor</code>后，又在<code>factor</code>中调用<code>expr</code>，相当于一条衔尾蛇），这也就是递归下降中“递归”的部分。</p> <p>对于语法中出现的重复部分（例如<code>expr ::= term { (+|-) term }*</code>），我们则通过<code>while</code>循环来实现。</p> <p>下面我们来看具体的代码实现。首先是分词部分，我们参照上一篇介绍分词博客的代码。</p> <pre><code class="language-python">import re import collections  # 定义匹配token的模式 NUM = r'(?P&lt;NUM&gt;\d+)'  # \d表示匹配数字，+表示任意长度 PLUS = r'(?P&lt;PLUS&gt;\+)'  # 注意转义 MINUS = r'(?P&lt;MINUS&gt;-)' TIMES = r'(?P&lt;TIMES&gt;\*)'  # 注意转义 DIVIDE = r'(?P&lt;DIVIDE&gt;/)' LPAREN = r'(?P&lt;LPAREN&gt;\()'  # 注意转义 RPAREN = r'(?P&lt;RPAREN&gt;\))'  # 注意转义 WS = r'(?P&lt;WS&gt;\s+)'  # 别忘记空格，\s表示空格，+表示任意长度  master_pat = re.compile(     '|'.join([NUM, PLUS, MINUS, TIMES, DIVIDE, LPAREN, RPAREN, WS]))  # Tokenizer Token = collections.namedtuple('Token', ['type', 'value'])   def generate_tokens(text):     scanner = master_pat.scanner(text)     for m in iter(scanner.match, None):         tok = Token(m.lastgroup, m.group())         if tok.type != 'WS':  # 过滤掉空格符             yield tok </code></pre> <p>下面是表达式求值器的具体实现：</p> <pre><code class="language-python">class ExpressionEvaluator():     """ 递归下降的Parser实现，每个语法规则都对应一个方法，     使用 ._accept()方法来测试并接受当前处理的token，不匹配不报错，     使用 ._except()方法来测试当前处理的token，并在不匹配的时候抛出语法错误     """      def parse(self, text):         """ 对外调用的接口 """         self.tokens = generate_tokens(text)         self.tok, self.next_tok = None, None  # 已匹配的最后一个token，下一个即将匹配的token         self._next()  # 转到下一个token         return self.expr()  # 开始递归      def _next(self):         """ 转到下一个token """         self.tok, self.next_tok = self.next_tok, next(self.tokens, None)      def _accept(self, tok_type):         """ 如果下一个token与tok_type匹配，则转到下一个token """         if self.next_tok and self.next_tok.type == tok_type:             self._next()             return True         else:             return False      def _except(self, tok_type):         """ 检查是否匹配，如果不匹配则抛出异常 """         if not self._accept(tok_type):             raise SyntaxError("Excepted"+tok_type)      # 接下来是语法规则，每个语法规则对应一个方法          def expr(self):         """ 对应规则： expression ::= term { ('+'|'-') term }* """         exprval = self.term() # 取第一项         while self._accept("PLUS") or self._accept("DIVIDE"): # 如果下一项是"+"或"-"             op = self.tok.type              # 再取下一项，即运算符右值             right = self.term()              if op == "PLUS":                 exprval += right             elif op == "MINUS":                 exprval -= right         return exprval                  def term(self):         """ 对应规则： term ::= factor { ('*'|'/') factor }* """                  termval = self.factor() # 取第一项         while self._accept("TIMES") or self._accept("DIVIDE"): # 如果下一项是"+"或"-"             op = self.tok.type              # 再取下一项，即运算符右值             right = self.factor()              if op == "TIMES":                 termval *= right             elif op == "DIVIDE":                 termval /= right         return termval                                     def factor(self):         """ 对应规则： factor ::= NUM | ( expr ) """         if self._accept("NUM"): # 递归出口             return int(self.tok.value)         elif self._accept("LPAREN"):             exprval = self.expr() # 继续递归下去求表达式值             self._except("RPAREN") # 别忘记检查是否有右括号，没有则抛出异常             return exprval         else:             raise SyntaxError("Expected NUMBER or LPAREN") </code></pre> <p>我们输入以下表达式进行测试：</p> <pre><code class="language-python">e = ExpressionEvaluator() print(e.parse("2")) print(e.parse("2+3")) print(e.parse("2+3*4")) print(e.parse("2+(3+4)*5")) </code></pre> <p>求值结果如下：</p> <pre><code>2 5 14 37 </code></pre> <p>如果我们输入的文本不符合语法规则：</p> <pre><code class="language-python">print(e.parse("2 + (3 + * 4)")) </code></pre> <p>则会抛出<code>SyntaxError</code>异常：<code>Expected NUMBER or LPAREN</code>。<br /> 综上，可见我们的表达式求值算法运行正确。</p> <h2 id="2-生成表达式树">2. 生成表达式树</h2> <p>上面我们是得到表达式的结果，但是如果我们想分析表达式的结构，生成一棵简单的表达式解析树呢？那么我们需要对上述类的方法做一定修改：</p> <pre><code class="language-python">class ExpressionTreeBuilder(ExpressionEvaluator):     def expr(self):             """ 对应规则： expression ::= term { ('+'|'-') term }* """             exprval = self.term() # 取第一项             while self._accept("PLUS") or self._accept("DIVIDE"): # 如果下一项是"+"或"-"                 op = self.tok.type                  # 再取下一项，即运算符右值                 right = self.term()                  if op == "PLUS":                     exprval = ('+', exprval, right)                 elif op == "MINUS":                     exprval -= ('-', exprval, right)             return exprval          def term(self):         """ 对应规则： term ::= factor { ('*'|'/') factor }* """                  termval = self.factor() # 取第一项         while self._accept("TIMES") or self._accept("DIVIDE"): # 如果下一项是"+"或"-"             op = self.tok.type              # 再取下一项，即运算符右值             right = self.factor()              if op == "TIMES":                 termval = ('*', termval, right)             elif op == "DIVIDE":                 termval = ('/', termval, right)         return termval                    def factor(self):         """ 对应规则： factor ::= NUM | ( expr ) """         if self._accept("NUM"): # 递归出口             return int(self.tok.value) # 字符串转整形         elif self._accept("LPAREN"):             exprval = self.expr() # 继续递归下去求表达式值             self._except("RPAREN") # 别忘记检查是否有右括号，没有则抛出异常             return exprval         else:             raise SyntaxError("Expected NUMBER or LPAREN") </code></pre> <p>输入下列表达式测试一下：</p> <pre><code class="language-python">print(e.parse("2+3")) print(e.parse("2+3*4")) print(e.parse("2+(3+4)*5")) print(e.parse('2+3+4')) </code></pre> <p>以下是生成结果：</p> <pre><code>('+', 2, 3) ('+', 2, ('*', 3, 4)) ('+', 2, ('*', ('+', 3, 4), 5)) ('+', ('+', 2, 3), 4) </code></pre> <p>可以看到表达式树生成正确。</p> <p>我们上面的这个例子非常简单，但递归下降的解析器也可以用来实现相当复杂的解析器，例如Python代码就是通过一个递归下降解析器解析的。您要是对此跟感兴趣可以检查Python源码中的<code>Grammar</code>文件来一探究竟。然而，下面我们接着会看到，自己动手写一个解析器会面对各种陷阱和挑战。</p> <h2 id="左递归和运算符优先级陷阱">左递归和运算符优先级陷阱</h2> <p>任何涉及<strong>左递归</strong>形式的语法规则，都没法用递归下降parser来解决。所谓左递归，即规则式子右侧最左边的符号是规则头，比如对于以下规则：</p> <pre><code>items ::= items ',' item        | item </code></pre> <p>完成该解析你可能会定义以下方法：</p> <pre><code class="language-python">def items(self):     itemsval = self.items() # 取第一项，然而此处会无穷递归！     if itemsval and self._accept(','):         itemsval.append(self.item())     else:         itemsval = [self.item()] </code></pre> <p>这样做会在第一行就无穷地调用<code>self.items()</code>从而产生无穷递归错误。</p> <p>还有一种是语法规则自身的错误，比如运算符优先级。我们如果忽视运算符优先级直接将表达式简化如下：</p> <pre><code class="language-python">expr ::= factor { ('+'|'-'|'*'|'/') factor }* factor ::= '(' expr ')'        | NUM </code></pre> <p>这个语法从技术上可以实现，但是没有遵守计算顺序约定，导致<code>"3+4*5"</code>的运算结果为35，而不是预期的23。故此处需要用独立的<code>expr</code>和<code>term</code>规则来确保计算结果的正确性。</p> <h2 id="3-相关包">3. 相关包</h2> <p>最后，对于真正复杂的语法解析，建议采用PyParsing或PLY这样的解析工具。如果你对Python代码的抽象语法树感兴趣，可以看下Python自带的ast模块。</p> <h2 id="参考">参考</h2> <ul> <li>[1] Martelli A, Ravenscroft A, Ascher D. Python cookbook[M]. " O'Reilly Media, Inc.", 2015.</li> <li>[2] https://cs61a.org/study-guide/regex/ </li> <li>[3] https://cs61a.org/study-guide/bnf/ </li> <li>[4] https://zh.wikipedia.org/wiki/巴科斯范式 </li> </ul> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-101919.htm">重庆宠物领养机构（重庆宠物领养微信群）</a></p>
+                                        <p>下一个：<a href="/news/article-102722.htm">开宠物店在哪里进货好（想开宠物店去哪里找货源）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-73952.htm" title="小动物打疫苗的动画片叫什么（小动物打预防针）">小动物打疫苗的动画片叫什么（小动物打预防针）</a></li>
+                        <li class="py-2"><a href="/news/article-84304.htm" title="自己给宠物打疫苗违法吗怎么举报（自己给宠物打疫苗违法吗怎么举报电话）">自己给宠物打疫苗违法吗怎么举报（自己给宠物打疫苗违法吗怎么举报电话）</a></li>
+                        <li class="py-2"><a href="/news/article-100552.htm" title="无锁的原子操作：Redis如何应对并发访问？">无锁的原子操作：Redis如何应对并发访问？</a></li>
+                        <li class="py-2"><a href="/news/article-71313.htm" title="WebSocket协议详解（什么是webSocket）">WebSocket协议详解（什么是webSocket）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-6-vless-github.htm" title="「4月6日」最高速度22.8M/S，2025年V2ray/Shadowrocket/SSR/ClashStash免费机场订阅链接">「4月6日」最高速度22.8M/S，2025年V2ray/Shadowrocket/SSR/ClashStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-91600.htm" title="兽医防疫简报范文（兽医开展工作简报）">兽医防疫简报范文（兽医开展工作简报）</a></li>
+                        <li class="py-2"><a href="/news/article-70651.htm" title="十大动物疫苗公司有哪些股票代码 十大动物疫苗公司有哪些股票代码">十大动物疫苗公司有哪些股票代码 十大动物疫苗公司有哪些股票代码</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-6-latest-vless-node.htm" title="「3月6日」最高速度18.5M/S，2025年V2ray/Clash/SSR/ShadowrocketStash免费机场订阅链接">「3月6日」最高速度18.5M/S，2025年V2ray/Clash/SSR/ShadowrocketStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-68065.htm" title="延边宠物领养中心（延边宠物网）">延边宠物领养中心（延边宠物网）</a></li>
+                        <li class="py-2"><a href="/news/article-97542.htm" title="宠物粮加盟 宠物粮加盟店">宠物粮加盟 宠物粮加盟店</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">63</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">87</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fruits Shop End-->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3 mb-md-0">
+                                        <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    <span class="text-light">Stash Github机场分享官网 版权所有 Powered by WordPress</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/stashgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
