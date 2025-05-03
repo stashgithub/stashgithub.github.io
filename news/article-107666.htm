@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://stashgithub.github.io/news/article-107666.htm" />
+    <meta charset="utf-8">
+    <title>Pandas读取文件时报错Initializing from file failed</title>
+        <meta name="description" content="当在用Python的Pandas库进行读取csv文件，出现了以下错误时：  Traceback (most recent call last): &nbsp; File "D:/Pycharm/Pyt" />
+        <link rel="icon" href="/assets/website/img/stashgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Stash Github机场分享官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://stashgithub.github.io/news/article-107666.htm" />
+    <meta property="og:site_name" content="Stash Github机场分享官网" />
+    <meta property="og:title" content="Pandas读取文件时报错Initializing from file failed" />
+    <meta property="og:image" content="https://stashgithub.github.io/uploads/20240903-1/71f4448ec89d9e2782624e593b1fd35a.webp" />
+        <meta property="og:release_date" content="2025-04-30T09:32:46" />
+    <meta property="og:updated_time" content="2025-04-30T09:32:46" />
+        <meta property="og:description" content="当在用Python的Pandas库进行读取csv文件，出现了以下错误时：  Traceback (most recent call last): &nbsp; File "D:/Pycharm/Pyt" />
+        
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Pandas读取文件时报错Initializing from file failed">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/assets/website/js/frontend/stashgithub/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/stashgithub/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/stashgithub/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/stashgithub/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/G.css" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNXJ21P00N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NNXJ21P00N');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+        <div class="container topbar bg-primary d-none d-lg-block">
+            <div class="d-flex justify-content-between">
+                
+            </div>
+        </div>
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                <a href="/" class="navbar-brand">
+                                <span class="text-primary display-6">Stash Github</span>
+                                </a>
+                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/client.htm" class="nav-item nav-link">客户端</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                            </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">Pandas读取文件时报错Initializing from file failed</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+            <li class="breadcrumb-item active text-white">正文</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+    <!-- Fruits Shop Start-->
+    <div class="container-fluid fruite py-5">
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="StashNode免费订阅官网" data-url="https://stashnode.github.io">
+                <div class="xcblog-blog-detail xcblog-blog-detail-defined">
+                      				  				  				<div id="content_views" class="htmledit_views"> <p>当在用Python的Pandas库进行读取csv文件，出现了以下错误时：</p> <blockquote> <p>Traceback (most recent call last):<br /> &nbsp; File "D:/Pycharm/PythonSpider/HelloWorld.py", line 18, in &lt;module&gt;<br /> &nbsp; &nbsp; shangHai = pd.read_csv('链家上海租房信息.csv')<br /> &nbsp; File "C:\Users\DELL\AppData\Local\Programs\Python\Python37\lib\site-packages\pandas\io\parsers.py", line 678, in parser_f<br /> &nbsp; &nbsp; return _read(filepath_or_buffer, kwds)<br /> &nbsp; File "C:\Users\DELL\AppData\Local\Programs\Python\Python37\lib\site-packages\pandas\io\parsers.py", line 440, in _read<br /> &nbsp; &nbsp; parser = TextFileReader(filepath_or_buffer, **kwds)<br /> &nbsp; File "C:\Users\DELL\AppData\Local\Programs\Python\Python37\lib\site-packages\pandas\io\parsers.py", line 787, in __init__<br /> &nbsp; &nbsp; self._make_engine(self.engine)<br /> &nbsp; File "C:\Users\DELL\AppData\Local\Programs\Python\Python37\lib\site-packages\pandas\io\parsers.py", line 1014, in _make_engine<br /> &nbsp; &nbsp; self._engine = CParserWrapper(self.f, **self.options)<br /> &nbsp; File "C:\Users\DELL\AppData\Local\Programs\Python\Python37\lib\site-packages\pandas\io\parsers.py", line 1708, in __init__<br /> &nbsp; &nbsp; self._reader = parsers.TextReader(src, **kwds)<br /> &nbsp; File "pandas\_libs\parsers.pyx", line 384, in pandas._libs.parsers.TextReader.__cinit__<br /> &nbsp; File "pandas\_libs\parsers.pyx", line 697, in pandas._libs.parsers.TextReader._setup_parser_source<br /> OSError: Initializing from file failed</p> </blockquote> <p>应该就是因为你的文件名是中文而导致没有办法解析：</p> <p>比如：</p> <pre class="has"><code class="language-python">f = pd.read_csv('要打开的文件.csv')</code></pre> <p>只需要这样改就可以了：</p> <pre class="has"><code class="language-python">f = open('要打开的文件.csv','r', encoding='UTF-8') file = pd.read_csv(f) print(file)</code></pre> </div> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-107664.htm">通过覆盖的HTML元素<div>传递鼠标单击</a></p>
+                                        <p>下一个：<a href="/news/article-108501.htm">2021年公务员国考报名时间（2021公务员国考报考时间）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-97541.htm" title="免费领养宠物犬（免费领养宠物犬犯法吗）">免费领养宠物犬（免费领养宠物犬犯法吗）</a></li>
+                        <li class="py-2"><a href="/news/article-109346.htm" title="北京芭比堂动物医院电话号码（芭比堂动物医院有限责任公司）">北京芭比堂动物医院电话号码（芭比堂动物医院有限责任公司）</a></li>
+                        <li class="py-2"><a href="/news/article-94593.htm" title="WPF路由事件">WPF路由事件</a></li>
+                        <li class="py-2"><a href="/news/article-93073.htm" title="广州宠物领养中心电话号码 广州宠物领养中心电话号码多少">广州宠物领养中心电话号码 广州宠物领养中心电话号码多少</a></li>
+                        <li class="py-2"><a href="/news/article-91599.htm" title="领养猫咪的合同（领养猫咪合同签了买猫粮合同不买了犯法吗）">领养猫咪的合同（领养猫咪合同签了买猫粮合同不买了犯法吗）</a></li>
+                        <li class="py-2"><a href="/news/article-107664.htm" title="通过覆盖的HTML元素<div>传递鼠标单击">通过覆盖的HTML元素<div>传递鼠标单击</a></li>
+                        <li class="py-2"><a href="/news/article-109348.htm" title="重庆哪里领养猫咪比较好（重庆哪里可以领养猫猫）">重庆哪里领养猫咪比较好（重庆哪里可以领养猫猫）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-23-node-share-links.htm" title="「4月23日」最高速度19.8M/S，2025年Clash/SSR/V2ray/ShadowrocketStash免费机场订阅链接">「4月23日」最高速度19.8M/S，2025年Clash/SSR/V2ray/ShadowrocketStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-25-free-node-subscribe.htm" title="「4月25日」最高速度22.3M/S，2025年SSR/V2ray/Clash/ShadowrocketStash免费机场订阅链接">「4月25日」最高速度22.3M/S，2025年SSR/V2ray/Clash/ShadowrocketStash免费机场订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-87902.htm" title="docker存储目录详解">docker存储目录详解</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">9</span> <a href="/date/2025-05/" title="2025-05 归档">2025-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">81</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fruits Shop End-->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3 mb-md-0">
+                                        <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    <span class="text-light">Stash Github机场分享官网 版权所有 Powered by WordPress</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/stashgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
