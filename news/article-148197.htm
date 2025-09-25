@@ -80,7 +80,7 @@
         <div class="container px-0">
             <nav class="navbar navbar-light bg-white navbar-expand-xl">
                 <a href="/" class="navbar-brand">
-                                <span class="text-primary display-6">Stash Github</span>
+                                <span class="text-primary display-6">Stash Github 节点分享</span>
                                 </a>
                 <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="fa fa-bars text-primary"></span>
@@ -113,7 +113,7 @@
         <div class="container py-2">
             <div class="row">
                 <div class="col-md-9">
-                                    <input type="hidden" id="share-website-info" data-name="Clash Node官网订阅站" data-url="https://clashnode.github.io">
+                                    <input type="hidden" id="share-website-info" data-name="Clash Node免费节点站" data-url="https://clashnode.github.io">
                 <div class="xcblog-blog-detail xcblog-blog-detail-defined">
                       <p>在信息流动日益受到限制的互联网环境中，科学上网工具已成为数字时代不可或缺的伴侣。v2rayng作为Android平台上基于V2Ray核心的代理工具，以其卓越的性能和灵活的配置，成为了众多用户突破网络限制的首选利器。本文将带您深入探索v2rayng的功能特性、安装配置技巧以及使用心得，为您提供一份详实的使用指南。</p>  <h2>一、v2rayng的核心价值与诞生背景</h2>  <p>v2rayng的出现并非偶然。随着全球互联网治理格局的变化，越来越多的地区实施了不同程度的网络限制。传统的VPN工具往往因为协议单一、容易被识别和封锁而显得力不从心。v2rayng基于V2Ray核心开发，继承了其先进的协议设计和传输技术，专门为Android移动端用户打造了一个既安全又稳定的网络访问解决方案。</p>  <p>与其他代理工具相比，v2rayng最大的优势在于其协议多样性。它不仅仅支持V2Ray原生协议，还兼容Shadowsocks等主流协议，这种设计让用户可以根据网络环境的变化灵活切换连接方式，大大提高了可用性。</p>  <h2>二、v2rayng的六大核心功能详解</h2>  <h3>1. 多协议支持生态系统</h3>  <p>v2rayng支持VMess、VLESS、Shadowsocks、Socks、HTTP等多种协议，每种协议都有其独特的适用场景。VMess协议具备强大的加密和认证机制；VLESS作为轻量级替代方案，在保持安全性的同时提升了性能；Shadowsocks则以其简洁高效著称。这种多协议支持让用户能够根据网络环境选择最优方案。</p>  <h3>2. 智能路由配置系统</h3>  <p>v2rayng的路由功能堪称其精髓所在。用户可以通过精细的规则设置，实现分应用代理、分域名代理等复杂需求。例如，可以设置国内网站直连，国外网站走代理，既节省流量又提高访问速度。路由规则支持域名、IP、地理位置等多种匹配方式，几乎可以满足所有用户的代理需求。</p>  <h3>3. 高级流量伪装技术</h3>  <p>v2rayng的流量伪装能力是其突破网络封锁的关键。通过WebSocket + TLS、HTTP/2等传输方式，将代理流量伪装成正常的HTTPS流量，有效规避深度包检测（DPI）。配合TLS加密，不仅隐藏了流量特征，还提供了额外的安全层。</p>  <h3>4. 多传输方式支持</h3>  <p>除了传统的TCP传输，v2rayng还支持mKCP、WebSocket等传输协议。mKCP在丢包严重的网络环境下表现优异，而WebSocket则可以更好地兼容Web环境。用户可以根据网络质量选择最适合的传输方式。</p>  <h3>5. 实时流量监控与管理</h3>  <p>v2rayng提供详细的流量统计功能，包括实时速度、已用流量、连接时间等信息。用户还可以设置流量上限，避免意外超额使用。历史流量图表帮助用户分析使用模式，优化代理策略。</p>  <h3>6. 订阅功能与批量管理</h3>  <p>对于拥有多个服务器的用户，v2rayng支持订阅功能，可以一键更新服务器列表。同时提供分组管理、延迟测试、自动选择等实用功能，大大简化了多服务器环境下的使用复杂度。</p>  <h2>三、v2rayng的完整安装与配置指南</h2>  <h3>1. 安全下载与安装</h3>  <p>建议从GitHub官方仓库或Google Play商店下载v2rayng，避免使用来历不明的安装包。安装前需要允许"未知来源"应用安装权限，安装完成后建议禁用该权限以确保安全。</p>  <h3>2. 服务器配置详解</h3>  <p>配置服务器时需要注意几个关键参数： - 地址（address）：服务器的IP或域名 - 端口（port）：连接端口号 - 用户ID（id）：VMess协议的用户标识 - 额外ID（alterId）：兼容性参数，通常设为0 - 安全加密方式（security）：推荐使用auto或aes-128-gcm - 传输协议（network）：根据服务器配置选择tcp、kcp、ws等</p>  <h3>3. 路由规则配置技巧</h3>  <p>路由配置是v2rayng使用的关键。建议初学者使用"绕过大陆"模式，即国内网站直连，国外网站代理。高级用户可以根据需要自定义规则，例如： - 将视频流量指向速度更快的服务器 - 让工作相关的域名走特定的代理线路 - 屏蔽广告域名或恶意网站</p>  <h3>4. 传输协议优化建议</h3>  <p>不同的网络环境下应选择不同的传输方式： - 家庭宽带：WebSocket + TLS组合效果最佳 - 移动网络：mKCP协议抗丢包能力更强 - 严格限制环境：建议使用WebSocket模拟正常网页流量</p>  <h2>四、高级使用技巧与优化方案</h2>  <h3>1. 分流策略优化</h3>  <p>通过精细的分流设置，可以显著提升使用体验。例如： - 将大流量应用（如YouTube）单独设置代理规则 - 游戏类应用使用低延迟服务器 - 重要工作应用设置备用服务器</p>  <h3>2. 订阅链接管理</h3>  <p>定期更新订阅链接可以确保服务器列表的新鲜度。建议设置自动更新间隔，同时注意订阅链接的安全性，避免使用明文传输的链接。</p>  <h3>3. 性能调优方案</h3>  <p>在设置中调整以下参数可以改善性能： - 并发连接数：根据设备性能适当增加 - 缓冲区大小：网络不稳定时可以调大 - DNS设置：使用可靠的非污染DNS服务</p>  <h3>4. 隐私保护设置</h3>  <p>启用"阻止绕过代理的UDP连接"选项，防止DNS泄漏。同时建议开启"预连接"功能，减少连接建立时的延迟。</p>  <h2>五、常见问题与解决方案</h2>  <h3>1. 连接失败排查步骤</h3>  <p>当出现连接问题时，可以按以下步骤排查： - 检查本地网络连接是否正常 - 验证服务器配置信息是否正确 - 尝试切换传输协议和加密方式 - 测试其他服务器排除单点故障</p>  <h3>2. 速度优化方案</h3>  <p>如果感觉速度不理想，可以尝试： - 选择地理位置上更近的服务器 - 更换不同的传输协议 - 调整mKCP参数优化网络传输 - 检查本地网络是否存在限制</p>  <h3>3. 耗电问题解决</h3>  <p>v2rayng在长时间使用时可能会增加耗电，建议： - 启用分应用代理，减少不必要的代理流量 - 设置定时开关，在不需要时自动关闭 - 关闭详细日志记录功能</p>  <h2>六、安全使用建议与最佳实践</h2>  <h3>1. 安全性配置</h3>  <p>始终使用最新版本的v2rayng，及时更新安全补丁。避免使用弱加密方式，推荐使用AEAD加密算法。定期更换服务器密码或用户ID。</p>  <h3>2. 隐私保护措施</h3>  <p>配合使用安全的DNS服务，防止DNS查询被监控。考虑搭配使用Tor浏览器或其他隐私增强工具，形成多层保护。</p>  <h3>3. 法律合规使用</h3>  <p>了解所在地区的相关法律法规，仅将v2rayng用于合法的网络访问需求。不得用于违法活动或侵犯他人权益的行为。</p>  <h2>七、未来发展与社区生态</h2>  <p>v2rayng作为开源项目，正在持续发展和完善。其开发者社区活跃，定期发布更新和改进。随着网络环境的不断变化，v2rayng也在积极适配新的协议和技术，以保持其有效性和先进性。</p>  <p>用户可以通过GitHub参与项目讨论，提交问题反馈，甚至贡献代码。丰富的第三方工具和服务生态系统也为v2rayng提供了强大的支持，包括在线配置生成器、订阅转换服务等。</p>  <h2>精彩点评</h2>  <p>v2rayng堪称移动端代理工具中的瑞士军刀，其设计哲学体现了"灵活胜过死板"的智慧。在多变的网络环境中，没有一种方案能够永远有效，而v2rayng通过提供多种协议和配置选项，赋予了用户应对各种情况的适应能力。</p>  <p>其精妙之处在于将复杂的技术细节封装在简洁的界面之下，既满足了高级用户的定制需求，又让初学者能够快速上手。这种平衡艺术体现了开发团队对用户体验的深刻理解。</p>  <p>更重要的是，v2rayng不仅仅是一个工具，它代表了一种理念：数字世界应该是开放和互联的。在保护用户隐私和提供稳定服务的同时，它成为了维护网络自由的重要力量。</p>  <p>然而，强大的工具也需要负责任地使用。v2rayng用户应当认识到，技术本身是中立的，其价值取决于如何使用。在享受技术带来的便利时，我们更应该关注如何构建一个更加开放、包容的数字未来。</p>  <p>最终，v2rayng的价值不仅体现在其技术优势上，更体现在它为用户提供的选择权——选择如何访问信息，如何保护隐私，如何定义自己在数字世界中的存在方式。这或许才是它最珍贵的贡献。</p>                 </div>
                 <div class="clearfix"></div>
@@ -128,16 +128,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-149100.htm" title="V2Ray遭遇封锁的全面解析与应对策略">V2Ray遭遇封锁的全面解析与应对策略</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-8-6-node-share-links.htm" title="「8月6日」最高速度22.6M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「8月6日」最高速度22.6M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-8-8-clash-verge-rev-node-share.htm" title="「8月8日」最高速度20.2M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「8月8日」最高速度20.2M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-9-13-clash-node.htm" title="Stash Github - 9月13日18.1M/S|免费V2ray节点/SSR/Shadowrocket节点/Clash节点推荐，V2rayC梯子购买推荐">Stash Github - 9月13日18.1M/S|免费V2ray节点/SSR/Shadowrocket节点/Clash节点推荐，V2rayC梯子购买推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-8-31-clash-verge-rev-nodes.htm" title="Stash Github - 8月31日19.3M/S|免费V2ray节点/Clash节点/SSR/Shadowrocket节点推荐，V2rayC梯子购买推荐">Stash Github - 8月31日19.3M/S|免费V2ray节点/Clash节点/SSR/Shadowrocket节点推荐，V2rayC梯子购买推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-9-22-clash-verge-rev-github.htm" title="Stash Github - 9月22日18.4M/S|免费Shadowrocket节点/V2ray节点/SSR/Clash节点推荐，V2rayC梯子购买推荐">Stash Github - 9月22日18.4M/S|免费Shadowrocket节点/V2ray节点/SSR/Clash节点推荐，V2rayC梯子购买推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-9-5-clash-verge-rev-node.htm" title="Stash Github - 9月5日18M/S|免费Clash节点/SSR/V2ray节点/Shadowrocket节点推荐，V2rayC梯子购买推荐">Stash Github - 9月5日18M/S|免费Clash节点/SSR/V2ray节点/Shadowrocket节点推荐，V2rayC梯子购买推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-8-27-clash-meta-github.htm" title="Stash Github - 8月27日22.3M/S|免费Shadowrocket节点/V2ray节点/SSR/Clash节点推荐，V2rayC梯子购买推荐">Stash Github - 8月27日22.3M/S|免费Shadowrocket节点/V2ray节点/SSR/Clash节点推荐，V2rayC梯子购买推荐</a></li>
                         <li class="py-2"><a href="/free-nodes/2025-8-20-free-subscribe-node.htm" title="「8月20日」最高速度22.2M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「8月20日」最高速度22.2M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-8-4-node-share-links.htm" title="「8月4日」最高速度21.5M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「8月4日」最高速度21.5M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-8-21-today-clash-verge-rev-node.htm" title="「8月21日」最高速度21.7M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「8月21日」最高速度21.7M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-8-7-clash-verge-rev-nodes.htm" title="「8月7日」最高速度18M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「8月7日」最高速度18M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-7-11-node-share-links.htm" title="「7月11日」最高速度19.1M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「7月11日」最高速度19.1M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-8-11-free-node-subscribe.htm" title="「8月11日」最高速度21M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「8月11日」最高速度21M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-8-3-today-clash-verge-rev-node.htm" title="「8月3日」最高速度18.5M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「8月3日」最高速度18.5M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-8-15-today-clash-verge-rev-node.htm" title="「8月15日」最高速度21.6M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「8月15日」最高速度21.6M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-148668.htm" title="突破网络藩篱：手把手教你用Quantumult解锁TikTok的全球视野">突破网络藩篱：手把手教你用Quantumult解锁TikTok的全球视野</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-9-21-clash-node-github.htm" title="Stash Github - 9月21日20.4M/S|免费Shadowrocket节点/SSR/Clash节点/V2ray节点推荐，V2rayC梯子购买推荐">Stash Github - 9月21日20.4M/S|免费Shadowrocket节点/SSR/Clash节点/V2ray节点推荐，V2rayC梯子购买推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-8-29-free-node-subscribe.htm" title="Stash Github - 8月29日18.2M/S|免费SSR/Shadowrocket节点/Clash节点/V2ray节点推荐，V2rayC梯子购买推荐">Stash Github - 8月29日18.2M/S|免费SSR/Shadowrocket节点/Clash节点/V2ray节点推荐，V2rayC梯子购买推荐</a></li>
                     </ul>
     </div>
 </div>
@@ -149,10 +149,10 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2025-08/" title="2025-08 归档">2025-08</a></h4>
+                <h4><span class="badge" style="float: right;">23</span> <a href="/date/2025-09/" title="2025-09 归档">2025-09</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2025-07/" title="2025-07 归档">2025-07</a></h4>
+                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2025-08/" title="2025-08 归档">2025-08</a></h4>
             </li>
                     </ul>
     </div>
@@ -168,7 +168,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center mb-3 mb-md-0">
-                                        <p>
+                                        <p>本站内容仅供学习与技术研究用途，无意传播或倡导任何违反法律法规的行为。在此声明：用户须自行了解所在地法律法规，合法合规使用；因使用不当产生的法律责任，与本站及作者无关；请在使用前仔细阅读本声明，继续使用即视为同意以上条款。</p>
+                    <p>
                                                 <a href="/">首页</a> |
                                                 <a href="/free-nodes/">免费节点</a> |
                                                 <a href="/paid-subscribe/">推荐机场</a> |
@@ -179,7 +180,7 @@
                         <a href="/privacy.htm">隐私申明</a> |
                         <a href="/sitemap.xml">网站地图</a>
                     </p>
-                    <span class="text-light">Stash Github机场分享官网 版权所有 Powered by WordPress</span>
+                                        <span class="text-light">Stash Github机场分享官网 版权所有 Powered by WordPress</span>
                 </div>
             </div>
         </div>
