@@ -370,14 +370,9 @@ A：Clash是策略路由工具，支持多协议与多节点，而Shadowsocks仅
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Nekoray 的配置文件在哪里保存？</h5></div>
+    <div class="panel-heading"><h5>V2Ray 如何隐藏真实 IP？</h5></div>
     <div class="panel-body">
-        Nekoray 的配置文件默认保存在程序目录下的 `config.json` 中。用户可手动备份此文件以迁移配置，也可使用导入导出功能在不同设备间同步节点数据。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>V2RayN 与 WinXray 哪个更易用？</h5></div>
-    <div class="panel-body">
-        V2RayN 界面更简洁，功能更稳定，而 WinXray 提供了更现代的界面和自动测速功能。对于初学者来说，V2RayN 上手更快；而追求高级功能的用户可能更喜欢 WinXray。<hr />    </div>
+        通过启用 TLS、Reality 或 WebSocket + CDN 转发，V2Ray 可有效隐藏真实服务器 IP。这样外部监测只能看到中转节点，从而提升匿名性与安全性。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Potatso Lite 支持订阅链接导入吗？</h5></div>
@@ -385,29 +380,9 @@ A：Clash是策略路由工具，支持多协议与多节点，而Shadowsocks仅
         Potatso Lite 不支持自动订阅功能，用户需手动添加节点。如果想批量导入订阅，可使用其他客户端生成节点二维码，再手动扫描添加。适合轻量使用者。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Sing-box 支持哪些类型的分流规则？</h5></div>
+    <div class="panel-heading"><h5>Netch 无法识别某游戏流量时应如何处理？</h5></div>
     <div class="panel-body">
-        Sing-box 支持域名、IP、端口、协议类型、用户标签等多种分流规则。结合策略组，可实现精细化流量管理，满足视频加速、广告屏蔽和游戏优化等多样化需求。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Surfboard 在 iOS 上无法连接时如何调试？</h5></div>
-    <div class="panel-body">
-        检查 iOS 的 VPN 配置权限是否授予，确认订阅链接或手动配置填写无误；查看 Surfboard 的日志或诊断页面，查看是否为 DNS 问题、TLS 错误或节点超时，并尝试切换节点或重启应用。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>V2Ray 如何隐藏真实 IP？</h5></div>
-    <div class="panel-body">
-        通过启用 TLS、Reality 或 WebSocket + CDN 转发，V2Ray 可有效隐藏真实服务器 IP。这样外部监测只能看到中转节点，从而提升匿名性与安全性。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>WinXray 如何导入订阅？</h5></div>
-    <div class="panel-body">
-        在 WinXray 界面中点击“导入订阅”选项，将机场提供的订阅链接粘贴进去。点击更新后，WinXray 会自动下载节点配置并生成列表，用户可手动选择或自动切换延迟最低的节点使用。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Trojan-go 与原版 Trojan 有什么不同？</h5></div>
-    <div class="panel-body">
-        Trojan-go 在原版 Trojan 基础上扩展了多协议支持、WebSocket、gRPC、mux 多路复用等特性，同时优化性能并支持更丰富的客户端。相比原版，它更灵活，适合高级用户或多平台部署需求。<hr />    </div>
+        请确认已启用 TUN 模式并在游戏路径中选择正确的执行文件。部分游戏使用反作弊系统需管理员权限运行 Netch；若仍无法识别，可尝试手动添加端口规则。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>V2Ray 的策略组如何根据节点延迟自动切换？</h5></div>
@@ -415,9 +390,34 @@ A：Clash是策略路由工具，支持多协议与多节点，而Shadowsocks仅
         策略组会根据节点延迟和丢包率自动选择最优节点。结合路由规则，可保证国内流量直连、海外流量走最佳节点，提高访问速度和连接稳定性，优化整体网络体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Netch 无法识别某游戏流量时应如何处理？</h5></div>
+    <div class="panel-heading"><h5>Sing-box 支持哪些类型的分流规则？</h5></div>
     <div class="panel-body">
-        请确认已启用 TUN 模式并在游戏路径中选择正确的执行文件。部分游戏使用反作弊系统需管理员权限运行 Netch；若仍无法识别，可尝试手动添加端口规则。    </div>
+        Sing-box 支持域名、IP、端口、协议类型、用户标签等多种分流规则。结合策略组，可实现精细化流量管理，满足视频加速、广告屏蔽和游戏优化等多样化需求。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>V2RayN 与 WinXray 哪个更易用？</h5></div>
+    <div class="panel-body">
+        V2RayN 界面更简洁，功能更稳定，而 WinXray 提供了更现代的界面和自动测速功能。对于初学者来说，V2RayN 上手更快；而追求高级功能的用户可能更喜欢 WinXray。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Surfboard 在 iOS 上无法连接时如何调试？</h5></div>
+    <div class="panel-body">
+        检查 iOS 的 VPN 配置权限是否授予，确认订阅链接或手动配置填写无误；查看 Surfboard 的日志或诊断页面，查看是否为 DNS 问题、TLS 错误或节点超时，并尝试切换节点或重启应用。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Nekoray 的配置文件在哪里保存？</h5></div>
+    <div class="panel-body">
+        Nekoray 的配置文件默认保存在程序目录下的 `config.json` 中。用户可手动备份此文件以迁移配置，也可使用导入导出功能在不同设备间同步节点数据。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Trojan-go 与原版 Trojan 有什么不同？</h5></div>
+    <div class="panel-body">
+        Trojan-go 在原版 Trojan 基础上扩展了多协议支持、WebSocket、gRPC、mux 多路复用等特性，同时优化性能并支持更丰富的客户端。相比原版，它更灵活，适合高级用户或多平台部署需求。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>WinXray 如何导入订阅？</h5></div>
+    <div class="panel-body">
+        在 WinXray 界面中点击“导入订阅”选项，将机场提供的订阅链接粘贴进去。点击更新后，WinXray 会自动下载节点配置并生成列表，用户可手动选择或自动切换延迟最低的节点使用。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -446,16 +446,16 @@ A：Clash是策略路由工具，支持多协议与多节点，而Shadowsocks仅
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2025-10-19-clash-verge-rev-nodes.htm" title="Stash Github - 10月19日18.1M/S|免费Clash节点/SSR节点/Shadowrocket节点/Singbox节点/V2ray节点节点推荐，V2rayC梯子购买推荐">Stash Github - 10月19日18.1M/S|免费Clash节点/SSR节点/Shadowrocket节点/Singbox节点/V2ray节点节点推荐，V2rayC梯子购买推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-24-free-node-subscribe.htm" title="Stash Github - 10月24日19.7M/S|免费Clash节点/Singbox节点/Shadowrocket节点/V2ray节点/SSR节点节点推荐，V2rayC梯子购买推荐">Stash Github - 10月24日19.7M/S|免费Clash节点/Singbox节点/Shadowrocket节点/V2ray节点/SSR节点节点推荐，V2rayC梯子购买推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-16-clash-verge-rev-node.htm" title="Stash Github - 10月16日21.7M/S|免费SSR节点/Shadowrocket节点/Singbox节点/V2ray节点/Clash节点节点推荐，V2rayC梯子购买推荐">Stash Github - 10月16日21.7M/S|免费SSR节点/Shadowrocket节点/Singbox节点/V2ray节点/Clash节点节点推荐，V2rayC梯子购买推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-3-clash-verge-rev-node-github.htm" title="Stash Github - 11月3日18.2M/S|免费SSR节点/Clash节点/Singbox节点/V2ray节点/Shadowrocket节点节点推荐，V2rayC梯子购买推荐">Stash Github - 11月3日18.2M/S|免费SSR节点/Clash节点/Singbox节点/V2ray节点/Shadowrocket节点节点推荐，V2rayC梯子购买推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-9-clash-verge-rev-node.htm" title="Stash Github - 11月9日20.5M/S|免费Clash节点/SSR节点/V2ray节点/Singbox节点/Shadowrocket节点节点推荐，V2rayC梯子购买推荐">Stash Github - 11月9日20.5M/S|免费Clash节点/SSR节点/V2ray节点/Singbox节点/Shadowrocket节点节点推荐，V2rayC梯子购买推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-22-clash-node-github.htm" title="Stash Github - 10月22日22.9M/S|免费Shadowrocket节点/SSR节点/V2ray节点/Clash节点/Singbox节点节点推荐，V2rayC梯子购买推荐">Stash Github - 10月22日22.9M/S|免费Shadowrocket节点/SSR节点/V2ray节点/Clash节点/Singbox节点节点推荐，V2rayC梯子购买推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-10-clash-v2ray-ss-ssr.htm" title="Stash Github - 11月10日21M/S|免费SSR节点/Shadowrocket节点/Clash节点/V2ray节点/Singbox节点节点推荐，V2rayC梯子购买推荐">Stash Github - 11月10日21M/S|免费SSR节点/Shadowrocket节点/Clash节点/V2ray节点/Singbox节点节点推荐，V2rayC梯子购买推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-27-clash-verge-rev-nodes.htm" title="Stash Github - 10月27日22.8M/S|免费SSR节点/Shadowrocket节点/Singbox节点/V2ray节点/Clash节点节点推荐，V2rayC梯子购买推荐">Stash Github - 10月27日22.8M/S|免费SSR节点/Shadowrocket节点/Singbox节点/V2ray节点/Clash节点节点推荐，V2rayC梯子购买推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-6-clash-verge-rev-github.htm" title="Stash Github - 10月6日19.9M/S|免费SSR节点/Clash节点/V2ray节点/Singbox节点/Shadowrocket节点节点推荐，V2rayC梯子购买推荐">Stash Github - 10月6日19.9M/S|免费SSR节点/Clash节点/V2ray节点/Singbox节点/Shadowrocket节点节点推荐，V2rayC梯子购买推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-12-clash-node-github.htm" title="Stash Github - 10月12日20.1M/S|免费Clash节点/Singbox节点/V2ray节点/SSR节点/Shadowrocket节点节点推荐，V2rayC梯子购买推荐">Stash Github - 10月12日20.1M/S|免费Clash节点/Singbox节点/V2ray节点/SSR节点/Shadowrocket节点节点推荐，V2rayC梯子购买推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-25-node-share.htm" title="Stash Github - 10月25日18.4M/S|免费Shadowrocket节点/SSR节点/Clash节点/V2ray节点/Singbox节点节点推荐，V2rayC梯子购买推荐">Stash Github - 10月25日18.4M/S|免费Shadowrocket节点/SSR节点/Clash节点/V2ray节点/Singbox节点节点推荐，V2rayC梯子购买推荐</a></li>
                         <li class="py-2"><a href="/free-nodes/2025-10-4-clash-meta-github.htm" title="Stash Github - 10月4日19.4M/S|免费Singbox节点/Clash节点/SSR节点/V2ray节点/Shadowrocket节点节点推荐，V2rayC梯子购买推荐">Stash Github - 10月4日19.4M/S|免费Singbox节点/Clash节点/SSR节点/V2ray节点/Shadowrocket节点节点推荐，V2rayC梯子购买推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-13-clash-node-daily-updates.htm" title="Stash Github - 10月13日20.4M/S|免费SSR节点/Singbox节点/V2ray节点/Clash节点/Shadowrocket节点节点推荐，V2rayC梯子购买推荐">Stash Github - 10月13日20.4M/S|免费SSR节点/Singbox节点/V2ray节点/Clash节点/Shadowrocket节点节点推荐，V2rayC梯子购买推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-31-clash-node.htm" title="Stash Github - 10月31日20.1M/S|免费V2ray节点/Singbox节点/Shadowrocket节点/SSR节点/Clash节点节点推荐，V2rayC梯子购买推荐">Stash Github - 10月31日20.1M/S|免费V2ray节点/Singbox节点/Shadowrocket节点/SSR节点/Clash节点节点推荐，V2rayC梯子购买推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-9-free-node-subscribe.htm" title="Stash Github - 10月9日18.3M/S|免费Clash节点/Shadowrocket节点/Singbox节点/SSR节点/V2ray节点节点推荐，V2rayC梯子购买推荐">Stash Github - 10月9日18.3M/S|免费Clash节点/Shadowrocket节点/Singbox节点/SSR节点/V2ray节点节点推荐，V2rayC梯子购买推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-26-clash-node-github.htm" title="Stash Github - 11月26日20.1M/S|免费SSR节点/Clash节点/Shadowrocket节点/V2ray节点/Singbox节点节点推荐，V2rayC梯子购买推荐">Stash Github - 11月26日20.1M/S|免费SSR节点/Clash节点/Shadowrocket节点/V2ray节点/Singbox节点节点推荐，V2rayC梯子购买推荐</a></li>
                         <li class="py-2"><a href="/free-nodes/2025-11-15-clash-node-github.htm" title="Stash Github - 11月15日20.9M/S|免费Clash节点/SSR节点/Shadowrocket节点/V2ray节点/Singbox节点节点推荐，V2rayC梯子购买推荐">Stash Github - 11月15日20.9M/S|免费Clash节点/SSR节点/Shadowrocket节点/V2ray节点/Singbox节点节点推荐，V2rayC梯子购买推荐</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-14-node-share.htm" title="Stash Github - 11月14日21.6M/S|免费Singbox节点/Clash节点/V2ray节点/Shadowrocket节点/SSR节点节点推荐，V2rayC梯子购买推荐">Stash Github - 11月14日21.6M/S|免费Singbox节点/Clash节点/V2ray节点/Shadowrocket节点/SSR节点节点推荐，V2rayC梯子购买推荐</a></li>
                     </ul>
     </div>
 </div>
@@ -467,7 +467,7 @@ A：Clash是策略路由工具，支持多协议与多节点，而Shadowsocks仅
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">16</span> <a href="/date/2025-11/" title="2025-11 归档">2025-11</a></h4>
+                <h4><span class="badge" style="float: right;">23</span> <a href="/date/2025-11/" title="2025-11 归档">2025-11</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">26</span> <a href="/date/2025-10/" title="2025-10 归档">2025-10</a></h4>
