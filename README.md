@@ -1,4 +1,4 @@
-# Stash Github - 11月26日21.4M/S|免费V2ray节点/Clash节点/Singbox节点/Shadowrocket节点/SSR节点节点推荐，V2rayC梯子购买推荐  更新时间 2025-11-26 08:21:08
+# Stash Github - 12月3日18.4M/S|免费V2ray节点/Singbox节点/SSR节点/Shadowrocket节点/Clash节点节点推荐，V2rayC梯子购买推荐  更新时间 2025-12-03 10:27:43
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://stashgithub.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
@@ -9,23 +9,23 @@
 
 ### 免费Clash节点订阅链接
 
-- https://stashgithub.github.io/uploads/2025/11/0-20251126.yaml
-- https://stashgithub.github.io/uploads/2025/11/1-20251126.yaml
-- https://stashgithub.github.io/uploads/2025/11/2-20251126.yaml
-- https://stashgithub.github.io/uploads/2025/11/3-20251126.yaml
-- https://stashgithub.github.io/uploads/2025/11/4-20251126.yaml
+- https://stashgithub.github.io/uploads/2025/12/0-20251203.yaml
+- https://stashgithub.github.io/uploads/2025/12/1-20251203.yaml
+- https://stashgithub.github.io/uploads/2025/12/2-20251203.yaml
+- https://stashgithub.github.io/uploads/2025/12/3-20251203.yaml
+- https://stashgithub.github.io/uploads/2025/12/4-20251203.yaml
 
 ### 免费V2ray节点订阅链接
 
-- https://stashgithub.github.io/uploads/2025/11/0-20251126.txt
-- https://stashgithub.github.io/uploads/2025/11/1-20251126.txt
-- https://stashgithub.github.io/uploads/2025/11/2-20251126.txt
-- https://stashgithub.github.io/uploads/2025/11/3-20251126.txt
-- https://stashgithub.github.io/uploads/2025/11/4-20251126.txt
+- https://stashgithub.github.io/uploads/2025/12/0-20251203.txt
+- https://stashgithub.github.io/uploads/2025/12/1-20251203.txt
+- https://stashgithub.github.io/uploads/2025/12/2-20251203.txt
+- https://stashgithub.github.io/uploads/2025/12/3-20251203.txt
+- https://stashgithub.github.io/uploads/2025/12/4-20251203.txt
 
 ### 免费Sing-box节点订阅链接
 
-- https://stashgithub.github.io/uploads/2025/11/20251126.json
+- https://stashgithub.github.io/uploads/2025/12/20251203.json
 
 ## 更多Clash节点订阅 ：
 
